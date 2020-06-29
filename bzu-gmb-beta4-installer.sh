@@ -25,8 +25,13 @@ else exit 0
 fi
 
 #объявляем нужные переменные для скрипта
-script_dir="/home/$USER/.local/share/bzu-gmb"
-version=`cat ${script_dir}/config/name_version`
+script_dir="/home/$USER/.local/share/bzu-gmb-test/bzu-gmb"
+script_ext_dir="/home/$USER/.local/share/bzu-gmb-test/"
+name_desktop_file="bzu-gmb-dev.desktop"
+name_script=`basename "$0"`
+script_dir_install=$(cd $(dirname "$0") && pwd)
+bzu_gmb_name_arc="bzu-gmb-beta4"
+
 
 
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
@@ -63,36 +68,40 @@ dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' |
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
 #Основные команды установки
-rm -r "/home/$USER/.local/share/bzu-gmb"
-rm -r "/home/$USER/temp" || true
-rm "/home/$USER/.local/share/applications/bzu-gmb.desktop"
-cd
-mkdir -p "/home/$USER/temp"
-cd /temp
-wget "https://drive.google.com/uc?export=download&id=190oopXNogX6Y4WuphpWqYbchRzDQv7ds" -O bzu-gmb-beta4.7z
-7z x bzu-gmb-beta4.7z -o/home/$USER/.local/share/
-cd
-rm -r "/home/$USER/temp" || true
+rm -rf "${script_dir}" || true
+rm -f "/home/$USER/.local/share/applications/${name_desktop_file}" || true
+tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || let "error += 1"
+
+#объявляем нужные переменные для скрипта
+version=`cat ${script_dir}/config/name_version` || let "error += 1"
+name_desktop="${version}-dev" || let "error += 1"
+
 #Создаем ярлык для скрипта
 Exec_full="gnome-terminal -- bash "${script_dir}"/bzu-gmb-launcher.sh" 
-echo "[Desktop Entry]"	 				  > "${script_dir}/bzu-gmb.desktop"
-echo "Name=${name_desktop}" 				 >> "${script_dir}/bzu-gmb.desktop"
-echo "Exec="${Exec_full}""	                         >> "${script_dir}/bzu-gmb.desktop"
-echo "Type=Application" 				 >> "${script_dir}/bzu-gmb.desktop"
-echo "Categories=Game;System"	                         >> "${script_dir}/bzu-gmb.desktop"
-echo "StartupNotify=true" 	    			  >> "${script_dir}/bzu-gmb.desktop"
-echo "Path="${script_dir}""	                	  >> "${script_dir}/bzu-gmb.desktop"
-echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/bzu-gmb.desktop"
+echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || let "error += 1"
+echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
+echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
+echo "Type=Application" 				 >> "${script_dir}/${name_desktop_file}"
+echo "Categories=Game;System"	                         >> "${script_dir}/${name_desktop_file}"
+echo "StartupNotify=true" 	    			  >> "${script_dir}/${name_desktop_file}"
+echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_file}"
+echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/${name_desktop_file}"
 
 #переносим ярлык в папку программ
-chmod u+x "${script_dir}/bzu-gmb.desktop"
-cp -f "${script_dir}/bzu-gmb.desktop" /home/${USER}/.local/share/applications/ 
+chmod u+x "${script_dir}/${name_desktop_file}" || let "error += 1"
+cp -f "${script_dir}/${name_desktop_file}" /home/${USER}/.local/share/applications/ || let "error += 1"
 #даем права на главные скрипты утилиты
-chmod +x "${script_dir}/bzu-gmb-launcher.sh"
-chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh"
-chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh"
-chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh"
+chmod +x "${script_dir}/bzu-gmb-launcher.sh" || let "error += 1"
+chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || let "error += 1"
+chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 1"
+chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || let "error += 1"
 
-zenity --info --width=512 --text "Установка BZU GameMod Boosting Installer beta4 завершена успешно !"
+if ((error > 3));then
+zenity --info --width=512 --text "Установка BZU GameMod Boosting Installer beta4 завершена c ошибками!"
+else
+zenity --info --width=512 --text "Установка BZU GameMod Boosting Installer beta4 завершена успешно."
+fi
+
+exit 0
 
 
