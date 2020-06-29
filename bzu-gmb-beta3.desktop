@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=bzu-gmb-beta3
+Comment=bzu-gmb-beta3
+GenericName=bzu-gmb-beta3
+Keywords=;
+#так же есть варианты для gnome: gnome-terminal,для mate: mate-terminal
+Exec=/usr/bin/gnome-terminal -e .//usr/share/bzu-gmb/bzu-gmb-launcher.sh
+Terminal=false
+Type=Application
+#после /home/ пишите своего пользователя вместо redroot и можете скачать любой логотип с расшерением .PNG
+Icon=/usr/share/bzu-gmb/icons/bzu-gmb512.png
+Categories=system
+#после /home/ пишите своего пользователя вместо redroot
+Path=/usr/share/bzu-gmb/
+NoDiplay=false
+Name[ru]=bzu-gmb-beta3
