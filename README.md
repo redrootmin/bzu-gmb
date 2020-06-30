@@ -3,7 +3,7 @@ bzu-gmb is auto-installer linux gaming tools for debian-based distributions , bz
 ----
 <img src="image/bzu-gmb-beta4.png" alt="My cool logo"/>
 
-Options tools
+Options bzu-gmb-beta4
 ----------
 Ready modules for Ubuntu: XanMod, Xanmod-edge, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, Goverlay, CoreCtrl, Furmark_Pack(OpenGL Benchmark), TFM_Vulkan(Benchmark).
 
