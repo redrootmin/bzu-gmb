@@ -34,16 +34,16 @@ To Do:
 
 -Full support Linux Mint 19.3 \ Ubuntu 18.04
 
--now modele: psensor+config, new benchmarks, protonGE for steam, proton-rdr2, portwine ports
+-now modules: psensor+config, new benchmarks, protonGE for steam, proton-rdr2, portwine ports
 
 -support re-os(testing)
 
 -support pop!_os(testing)
 
--now modele and update old
+-now modules and update old
 
 -testing now modele from other authors (if they will)
 
--now version beta5: fix bugs, new function, test new module for multimedia, visualization Ubuntu
+-now version beta5: fix bugs, new function, test new modules for multimedia, visualization Ubuntu
 
 
