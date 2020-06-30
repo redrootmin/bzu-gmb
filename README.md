@@ -1,5 +1,6 @@
 # bzu-gmb
 bzu-gmb is auto-installer linux gaming tools for debian-based distributions , bzu-gmb created on bash with the use of zenity, yad libraries
+----
 <img src="image/bzu-gmb-beta4.png" alt="My cool logo"/>
 
 Options tools
@@ -14,7 +15,7 @@ FAQ for install beta4:
 
 go to [release](https://github.com/redrootmin/bzu-gmb/releases)
 
-download in user space (/home/user/)
+download last version bzu-gmb in to user space (/home/user/)
 
 go to terminal and inter commands:
 
