@@ -4,7 +4,7 @@ LinuxKernel
 Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-stable
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -14,7 +14,7 @@ LinuxKernel
 Тестовая версия кастомного ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-latest
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -24,7 +24,7 @@ LinuxKernel
 Стабильная версия кастомного ядро Linux, основное отличие от XanMod в более новом планировщике процессов: MuQSS, который по заверению разработчика выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. ВНИМАНИЕ: Вы можете установить Liquorix-Kernel и  Xanmod-Kernel в одну систему. Опции: MuQSS_Process_Scheduler,Preemptible_tree-based_hierarchical_RCU,Hard_Kernel_Preemption,Budget_Fair_Queue,TCP_BBR_Congestion_Control,Binary Builds_For_Popular_Debian_Distros,Distribution_Kernel_Drop-in_Replacement,Minimal_Debugging
 Яцына М.А.
 liquorix-kernel-stable
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -34,7 +34,7 @@ OpenDriver
 Тестовый открытый драйвер для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,ZINK,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Kisak 
 Яцына М.А.
 mesa-oibaf
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -44,7 +44,7 @@ OpenDriver
 Стабильный открытый драйвер для Видеокарт AMD\INTEL, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf
 Яцына М.А.
 mesa-kisak
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -64,7 +64,7 @@ GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.
 mangohud
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -74,7 +74,7 @@ GameTools
 vkBasalt это открытая утилита для наложения различных эффектов на игры где используется Vulkan API, данная утилита является по сути аналогом windows-утилиты ReShade. vkBasalt даже может использовать эффекты которые сделаны специально для ReShade. Утилита совсем новая и ей есть куда расти, в данный момент ее по большей части используют для удаления мыла из игр, где оно сильно заметно, например в разрешении 1280x720p
 Яцына М.А.
 vkbasalt
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -84,7 +84,7 @@ GameTools
 Goverlay это открытая утилита с помощью которой можно создавать конфигурации для MangoHud и vkBasalt, основное отличие удобный интерфейс и предварительная визуализация настроек, Goverlay может сохранять конфигурацию в глобальные настройки MangoHud и vkBasalt, либо в файл настроек, который вы можете использовать индивидуально для нужной вам игры. ТРЕБУЕТСЯ: MangoHud,vkBasalt
 Яцына М.А.
 goverlay
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -104,7 +104,7 @@ Benchmark
 Набор утилит для тестирования OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), классически Furmark (волосатый бублик) в комплекте а также: TessMark,GiMark,PixMark Piano,PixMark Volplosion,Plot3D,Triangle. ТРЕБУЕТСЯ: Feral GameMode, Mesa Gallium HUD, Mesa zink 
 Яцына М.А.
 furmark-pack
-Ubuntu 19.10 Ubuntu 20.04 LTS
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #
@@ -114,7 +114,7 @@ Benchmark
 Простой тест Vulkan API на Unity3D. ТРЕБУЕТСЯ: Feral GameMode, MangoHud
 Яцына М.А.
 tfm-vulkan
-Ubuntu 19.10 Ubuntu 20.04 LTS 
+Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3
 #
 #
 #

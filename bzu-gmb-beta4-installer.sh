@@ -25,9 +25,9 @@ else exit 0
 fi
 
 #объявляем нужные переменные для скрипта
-script_dir="/home/$USER/.local/share/bzu-gmb-test/bzu-gmb"
-script_ext_dir="/home/$USER/.local/share/bzu-gmb-test/"
-name_desktop_file="bzu-gmb-dev.desktop"
+script_dir="/home/$USER/.local/share/bzu-gmb"
+script_ext_dir="/home/$USER/.local/share/"
+name_desktop_file="bzu-gmb.desktop"
 name_script=`basename "$0"`
 script_dir_install=$(cd $(dirname "$0") && pwd)
 bzu_gmb_name_arc="bzu-gmb-beta4"
@@ -74,7 +74,7 @@ tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_di
 
 #объявляем нужные переменные для скрипта
 version=`cat ${script_dir}/config/name_version` || let "error += 1"
-name_desktop="${version}-dev" || let "error += 1"
+name_desktop="${version}" || let "error += 1"
 
 #Создаем ярлык для скрипта
 Exec_full="gnome-terminal -- bash "${script_dir}"/bzu-gmb-launcher.sh" 
