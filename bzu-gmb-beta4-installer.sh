@@ -40,36 +40,36 @@ YadStatus=`dpkg -s yad | grep installed`
 echo "YAD" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
-dpkg -s inxi | grep installed > /dev/null || echo 'no install inxi :(' | sudo -S apt install -f -y inxi
+dpkg -s inxi | grep installed > /dev/null || echo 'no install inxi :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
 echo "INXI" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
-dpkg -s meson | grep installed > /dev/null || echo 'no install meson :(' | sudo -S apt install -f -y meson
+dpkg -s meson | grep installed > /dev/null || echo 'no install meson :(' | echo "$pass_user" | sudo -S apt install -f -y meson
 inxistatus=`dpkg -s inxi | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
-dpkg -s ninja-build | grep installed > /dev/null || echo 'no install ninja-build :(' | sudo -S apt install -f -y ninja-build
+dpkg -s ninja-build | grep installed > /dev/null || echo 'no install ninja-build :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "ninja-build" $inxistatus
 
 #проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
-dpkg -s p7zip-rar | grep installed > /dev/null || echo 'no install p7zip-rar :(' | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
+dpkg -s p7zip-rar | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "p7zip-rar" $inxistatus
 
 #проверяем установлена утилита python-tk - она необходима для установки многих программ
-dpkg -s python-tk | grep installed > /dev/null || echo 'no install p7zip-rar :(' | sudo -S apt install -f -y python-tk
+dpkg -s python-tk | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
 inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 
 #проверяем установлена утилита xosd-bin - она необходима для работы многих программ
-dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | sudo -S apt install -f -y xosd-bin
+dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
 #Основные команды установки
 rm -rf "${script_dir}" || true
-rm -f "/home/$USER/.local/share/applications/${name_desktop_file}" || true
+rm -f "${script_ext_dir}applications/${name_desktop_file}" || true
 tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || let "error += 1"
 
 #объявляем нужные переменные для скрипта
