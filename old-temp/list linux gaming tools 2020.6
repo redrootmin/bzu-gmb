@@ -1,0 +1,135 @@
+ Список самых важных утилит для оптимихации, ускранения и запуска игр на ОС Ubuntu 20.04 с железом GPU AMD
+
+
+0. Wayland session
+#Support: No tearing!!!
+   Install:
+   sudo apt install -y --reinstall gnome-session gnome-session-wayland
+
+
+1. Mesa Latest Dev from Oibaf: https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers
+   Options: Mesa 20.2+ dev, Valve ACO, Intel iris, Vulkan Overlay, Zink
+   Update: Auto
+   Install:
+   sudo add-apt-repository ppa:oibaf/graphics-drivers
+   sudo apt update
+   sudo apt upgrade
+
+1.1 Mesa beta from kisak: https://launchpad.net/~kisak/+archive/ubuntu/kisak-mesa
+   Options: Mesa 20.1+ , Valve ACO, Intel iris, Vulkan Overlay
+   Update: Auto
+   Install:
+   sudo add-apt-repository ppa:kisak/kisak-mesa
+   sudo apt update
+   sudo apt upgrade   
+
+
+2. CoreCtrl 1.2+ for Overclocking\Undervolting GPU AMD: 
+   Support: rx 4xx\5xx series \ vega 64\56 \ rx5xxxx
+   Update: Manual
+   Install:
+   sudo add-apt-repository -y ppa:ernstp/mesarc
+   sudo apt update -y
+   sudo apt install -f corectrl
+   sudo rm /etc/apt/sources.list.d/ernstp-ubuntu-mesarc*.list
+   sudo rm /etc/apt/sources.list.d/ernstp-ubuntu-mesarc*.list.save
+   sudo apt update -y
+   sudo apt upgrade
+   sudo nano /etc/default/grub
+# => GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" + amdgpu.ppfeaturemask=0xffffffff
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff"
+# ctrl+0 (save), ctrl+x(quit)
+   sudo update-grub
+   sudo update-initramfs -u
+# error on start\ not work? install package: sudo apt install --reinstall -f -y libqt5charts5 libqt5charts5-dev qttools5-dev libkf5auth-dev libkf5archive-dev libbotan-2-dev qtdeclarative5-dev qml-module-qtquick-controls qml-module-qt-labs-platform qml-module-qtcharts libgl1-mesa-dev mesa-common-dev
+
+
+3. Custom Linux kernel for Desktop OC and gaming.
+
+3.0 to see the menu with kernels in GRUB, you need to make changes to it:
+   sudo nano /etc/default/grub
+#add lines to the GRUB settings file, or modify command flags!
+   GRUB_DEFAULT="saved"
+   GRUB_SAVEDEFAULT=true
+   GRUB_HIDDEN_TIMEOUT="120"
+   GRUB_TIMEOUT="5"
+   GRUB_TIMEOUT_STYLE="menu"
+#save
+   sudo update-grub
+   sudo update-initramfs -u
+
+3.1 XanMod Kernel: https://xanmod.org
+   Options:  Low-Latency, BFQ I/O Scheduler, ZSTD kernel, Clear Linux patchs, Wine / Proton Fsync, 
+   BMQ Process Scheduler, Aufs,PREEMPT_RT
+   Update: Auto
+   Install: 
+   echo 'deb http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list  && wget -qO - https://dl.xanmod.org/gpg.key | sudo apt-key add -
+   sudo apt update
+# for install LTS Kernel (5.6+)
+   sudo apt install linux-xanmod
+# for install Latest Kernel (5.7+)
+   sudo apt install linux-xanmod-edge
+   Update: Manual
+   Download from Download XanMod Kernel and install: https://sourceforge.net/projects/xanmod/files/
+   sudo dpkg -i linux-image-*xanmod*.deb linux-headers-*xanmod*.deb
+WORNING: Vega 11\8 + CoreCtrl work only XanMod Kernel 5.5.17
+
+3.2 Liquorix kernel: https://liquorix.net/
+   Options: MuQSS Scheduler, High Resolution Scheduling, Hard Kernel Preemption, low latency.
+   Install:
+   sudo add-apt-repository ppa:damentz/liquorix
+   sudo apt-get update
+   sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64
+
+
+4. Mangohud is Vulkan and OpenGL overlay for driver Mesa: https://github.com/flightlessmango/MangoHud
+   Options: support Vulkan (Nvidia\AMD), OpenGL (AMD mesa), fps, frametime, gpu(temp,load,clock, 
+   clock mem), cpu (temp,load,clock), load ram\vram, vsync Vulkan\OpenGl, fps_limit, save data to log,
+   customizeable hud
+   Update: Manual
+   Install:      
+# load arch from https://github.com/flightlessmango/MangoHud/releases
+#[MangoHud 0.4.1]
+   wget https://github.com/flightlessmango/MangoHud/releases/download/v0.4.1/MangoHud-v0.4.1.tar.gz
+   tar xfvz MangoHud*.tar.gz
+   cd ~/MangoHud
+# for update MangoHud
+   ./mangohud-setup.sh uninstall
+# input root password
+# for install MangoHud
+   ./mangohud-setup.sh install
+# for test
+    mangohud glxgears
+# samples: https://yadi.sk/d/dSw831eDUsUyhA
+# faq: https://github.com/flightlessmango/MangoHud
+  
+
+5. Feral Interactive GameMode, Optimise Linux system performance for games: https://github.com/FeralInteractive/gamemode
+   Options: CPU governor, I/O priority, Process niceness, Kernel scheduler, Screensaver inhibiting, 
+   GPU performance mode (NVIDIA and AMD), GPU overclocking (NVIDIA)
+   Update: Auto for Ubuntu 19.10\20.04
+   Install:
+# for Ubuntu 19.10\20.04       
+  sudo apt install -f gamemode
+# for test
+  gamemoderun glxgears
+# gnome addons: https://extensions.gnome.org/extension/1852/gamemode/
+
+ 
+6.  vkBazalt
+
+7. Project PortWINE
+
+8. Steam Proton, Custom Proton and protontricks
+
+9. Lutris
+
+10. PlayOnLinux
+
+11. wine-launcher
+
+12. goverlay
+
+           
+
+

@@ -1,4 +1,6 @@
 #!/bin/bash
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
 
 #проверяем что модуль запущен от пользователя root
 [ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}
@@ -18,18 +20,17 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка утилиты CoreCtrl 1.х-dev от Juan Palacios [https://gitlab.com/corectrl/corectrl]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка утилиты CoreCtrl 1.х-dev от Juan Palacios [https://gitlab.com/corectrl/corectrl]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
 sudo -S killall corectrl || true
 sudo -S add-apt-repository -y ppa:ernstp/mesarc  || let "error += 1"
-#sudo -S apt update -y 
 sudo -S apt install -f -y corectrl || let "error += 1"
-sudo -S rm /etc/apt/sources.list.d/ernstp-ubuntu-mesarc*.list || let "error += 1"
-sudo -S rm /etc/apt/sources.list.d/ernstp-ubuntu-mesarc*.list.save || true
+sudo -S rm /etc/apt/sources.list.d/ernstp*.list || let "error += 1"
+sudo -S rm /etc/apt/sources.list.d/ernstp*.list.save || true
 sudo -S apt update -y || let "error += 1"
-sudo -S apt upgrade -y || let "error += 1"
+#sudo -S apt upgrade -y || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
@@ -47,6 +48,19 @@ echo "модуль ${name_script}, дата установки:${date_install}, 
 echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и функциях тут: https://gitlab.com/corectrl/corectrl/-/wikis/How-profiles-works"	 				  >> "${script_dir}/module_install_log"
 
-
-
 exit 0
+
+
+#Для создания скрипта использовались следующие ссылки
+#https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta
+#https://www.linuxliteos.com/forums/scripting-and-bash/preview-and-download-images-and-files-with-zenity-dialog/
+#https://www.ibm.com/developerworks/ru/library/l-zenity/
+#https://habr.com/ru/post/281034/
+#https://webhamster.ru/mytetrashare/index/mtb0/20
+#https://itfb.com.ua/kak-prisvoit-rezultat-komandy-peremennoj-obolochki/
+#https://tproger.ru/translations/bash-cheatsheet/
+#https://mirivlad.ru/2017/11/20-primerov-ispolzovaniya-potokovogo-tekstovogo-redaktora-sed/
+#https://www.opennet.ru/docs/RUS/bash_scripting_guide/c1833.html
+#https://losst.ru/massivy-bash
+#https://www.shellhacks.com/ru/grep-or-grep-and-grep-not-match-multiple-patterns/
+#https://techrocks.ru/2019/01/21/bash-if-statements-tips/

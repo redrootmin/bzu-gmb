@@ -1,4 +1,7 @@
-#! /bin/bash
+#!/bin/bash
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
+
 #проверяем что скрипт установки не запущен от пользователя root
 if [ "$UID" -eq 0 ];then
 zenity --error --text="Этот скрипт не нужно запускать из под root!"; exit 1
@@ -15,7 +18,6 @@ if pass_user0=$(zenity --entry --title="Для работы скрипта ус�
  --entry-text="пароль" --hide-text --width=560 --height=128)
 then
 export pass_user=${pass_user0}
-#echo "pass:${pass_user}"
 else
   zenity --error --text="Пароль не введён"
 exit 0
@@ -67,9 +69,23 @@ inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
+# Проверка что существует папка applications, если нет, создаем ее
+if [ ! -d "/home/${USER}/.local/share/applications" ]
+then
+	mkdir -p "/home/${USER}/.local/share/applications"
+fi
+
+# Проверка что существует папка /usr/share/test, если нет, создаем ее
+if [ ! -d "/usr/share/test" ]
+then
+echo "$pass_user" | sudo -S mkdir -p "/usr/share/test" || let "error += 1"
+echo "$pass_user" | sudo -S chmod -R 755 /usr/share/test || let "error += 1"
+fi
+
+
 #Основные команды установки
-rm -rf "${script_dir}" || true
-rm -f "${script_ext_dir}applications/${name_desktop_file}" || true
+rm -rf "${script_dir}" || let "error += 1"
+rm -f "${script_ext_dir}applications/${name_desktop_file}" || let "error += 1"
 tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || let "error += 1"
 
 #объявляем нужные переменные для скрипта
@@ -88,20 +104,35 @@ echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_
 echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/${name_desktop_file}"
 
 #переносим ярлык в папку программ
-chmod u+x "${script_dir}/${name_desktop_file}" || let "error += 1"
-cp -f "${script_dir}/${name_desktop_file}" /home/${USER}/.local/share/applications/ || let "error += 1"
+echo "$pass_user" | sudo -S cp -f "${script_dir}/${name_desktop_file}" /usr/share/applications/ || let "error += 1"
+
 #даем права на главные скрипты утилиты
 chmod +x "${script_dir}/bzu-gmb-launcher.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || let "error += 1"
+chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20-beta4.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || let "error += 1"
 
+
+
 if ((error > 3));then
-zenity --info --width=512 --text "Установка BZU GameMod Boosting Installer beta4 завершена c ошибками!"
+zenity --error --width=512 --text="Установка BZU GameMod Boosting Installer beta4 завершена c ошибками!"
 else
-zenity --info --width=512 --text "Установка BZU GameMod Boosting Installer beta4 завершена успешно."
+zenity --info --width=512 --text="Установка BZU GameMod Boosting Installer beta4 завершена успешно."
 fi
 
 exit 0
 
-
+#Для создания скрипта использовались следующие ссылки
+#https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta
+#https://www.linuxliteos.com/forums/scripting-and-bash/preview-and-download-images-and-files-with-zenity-dialog/
+#https://www.ibm.com/developerworks/ru/library/l-zenity/
+#https://habr.com/ru/post/281034/
+#https://webhamster.ru/mytetrashare/index/mtb0/20
+#https://itfb.com.ua/kak-prisvoit-rezultat-komandy-peremennoj-obolochki/
+#https://tproger.ru/translations/bash-cheatsheet/
+#https://mirivlad.ru/2017/11/20-primerov-ispolzovaniya-potokovogo-tekstovogo-redaktora-sed/
+#https://www.opennet.ru/docs/RUS/bash_scripting_guide/c1833.html
+#https://losst.ru/massivy-bash
+#https://www.shellhacks.com/ru/grep-or-grep-and-grep-not-match-multiple-patterns/
+#https://techrocks.ru/2019/01/21/bash-if-statements-tips/

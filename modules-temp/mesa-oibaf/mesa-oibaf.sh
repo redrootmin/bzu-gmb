@@ -1,4 +1,6 @@
 #!/bin/bash
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
 
 #проверяем что модуль запущен от пользователя root
 [ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}
@@ -18,7 +20,7 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка тестового, открытого драйвера Mesa 20.2+ от Oibaf [https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка тестового, открытого драйвера Mesa 20.2+ от Oibaf [https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
@@ -27,13 +29,14 @@ tput sgr0
 #echo "INXI" $inxistatus
 
 #запуск основных команд модуля
-sudo -S add-apt-repository ppa:oibaf/graphics-driver -y || let "error += 1"
-#sudo -S apt update -y || error+=1 # нужно только для linuxMint 19.x
-sudo -S apt upgrade -y || let "error += 1"
-sudo -S apt-get autoremove -y || let "error += 1"
-sudo -S apt-get clean -y || let "error += 1"
-sudo -S apt-get install -f -y || let "error += 1"
-sudo -S apt install -f -y --reinstall libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-utils || let "error += 1"
+sudo -S add-apt-repository -y ppa:oibaf/graphics-drivers || let "error += 1"
+sudo -S aptitude -y update || error+=1 # нужно только для linuxMint
+sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd64 libgl1-mesa-dri:amd64 libglapi-mesa:amd64 libglu1-mesa:amd64 libglx-mesa0:amd64 libllvm10:amd64 libllvm10:i386 libxatracker2:amd64 mesa-utils  mesa-va-drivers:amd64 mesa-vdpau-drivers:amd64 mesa-vulkan-drivers:amd64 mesa-vulkan-drivers:i386 xserver-xorg-video-amdgpu || let "error += 1"
+sudo -S aptitude -y upgrade || let "error += 1"
+#sudo -S apt-get autoremove -y || let "error += 1"
+#sudo -S apt-get clean -y || let "error += 1"
+#sudo -S apt-get install -f -y || let "error += 1"
+#sudo -S apt install -f -y --reinstall libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-utils || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
@@ -49,7 +52,7 @@ echo "нужно использовать следующие флаги:"	 				 
 echo "для Vavle ACO: флаг RADV_PERFTEST=aco в Mesa 20.2 теперь не нужен, а если ACO нужно отключить используйте: RADV_DEBUG=llvm"	 				  >> "${script_dir}/module_install_log"
 echo "для zink: MESA_LOADER_DRIVER_OVERRIDE=zink"	 				  >> "${script_dir}/module_install_log"
 echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
-echo "RADV_PERFTEST=aco %command%"	 				  >> "${script_dir}/module_install_log"
+echo "RADV_DEBUG=llvm %command%"	 				  >> "${script_dir}/module_install_log"
 echo "MESA_LOADER_DRIVER_OVERRIDE=zink %command%"	 				  >> "${script_dir}/module_install_log"
 #echo "GRUB_TIMEOUT="5""	 				  >> "${script_dir}/module_install_log"
 #echo "GRUB_TIMEOUT_STYLE="menu""	 				  >> "${script_dir}/module_install_log"
@@ -58,3 +61,17 @@ echo "MESA_LOADER_DRIVER_OVERRIDE=zink %command%"	 				  >> "${script_dir}/modul
 sleep 3
 
 exit 0
+
+#Для создания скрипта использовались следующие ссылки
+#https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta
+#https://www.linuxliteos.com/forums/scripting-and-bash/preview-and-download-images-and-files-with-zenity-dialog/
+#https://www.ibm.com/developerworks/ru/library/l-zenity/
+#https://habr.com/ru/post/281034/
+#https://webhamster.ru/mytetrashare/index/mtb0/20
+#https://itfb.com.ua/kak-prisvoit-rezultat-komandy-peremennoj-obolochki/
+#https://tproger.ru/translations/bash-cheatsheet/
+#https://mirivlad.ru/2017/11/20-primerov-ispolzovaniya-potokovogo-tekstovogo-redaktora-sed/
+#https://www.opennet.ru/docs/RUS/bash_scripting_guide/c1833.html
+#https://losst.ru/massivy-bash
+#https://www.shellhacks.com/ru/grep-or-grep-and-grep-not-match-multiple-patterns/
+#https://techrocks.ru/2019/01/21/bash-if-statements-tips/

@@ -16,21 +16,25 @@ version="${version0}"
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
+module_link="https://github.com/DadSchoorse/vkBasalt/releases/download/v0.3.2.1/vkBasalt-0.3.2.1.tar.gz"
+module_name="vkBasalt-0.3.2.1"
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка открытой утилиты vkBasalt-v0.3.2.1 от 
-DadSchoorse [https://github.com/DadSchoorse/vkBasalt]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка открытой утилиты ${module_name} от 
+DadSchoorse [https://github.com/DadSchoorse/vkBasalt]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
+sudo -S aptitude install -y build-essential glslang-dev glslang-tools libx11-dev libvulkan-dev libvulkan-dev:i386
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp"|| let "error += 1"
-sudo -S wget https://github.com/DadSchoorse/vkBasalt/releases/download/v0.3.2.1/vkBasalt-0.3.2.1.tar.gz || let "error += 1"
+sudo -S wget "${module_link}" || let "error += 1"
 sudo -S tar xfvz vkBasalt*.tar.gz || let "error += 1"
-cd "${script_dir}/modules-temp/${name_script}/temp/vkBasalt-0.3.2.1" || let "error += 1"
+cd "${script_dir}/modules-temp/${name_script}/temp/${module_name}" || let "error += 1"
 sudo -S meson --buildtype=release --prefix=/usr builddir || let "error += 1"
 sudo -S ninja -C builddir install || let "error += 1"
+sudo -S cp -f "${script_dir}/modules-temp/${name_script}/temp/${module_name}/config/vkBasalt.conf" /etc/vkBasalt.conf
 cd
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 

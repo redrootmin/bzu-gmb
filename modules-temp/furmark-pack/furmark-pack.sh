@@ -21,6 +21,13 @@ date_install=`date`
 tput setaf 2; echo "Установка набора утилит GpuTest 0.7.0 от Geeks3D [https://www.geeks3d.com/gputest/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
+# Проверка что существует папка /usr/share/test, если нет, создаем ее
+if [ ! -d "/usr/share/test" ]
+then
+sudo -S mkdir -p "/usr/share/test" || let "error += 1"
+sudo chmod -R 755 /usr/share/test || let "error += 1"
+fi
+
 #запуск основных команд модуля
 sudo -S killall GpuTest || true
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
