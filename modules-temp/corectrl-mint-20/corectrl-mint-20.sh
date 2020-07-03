@@ -37,7 +37,7 @@ sudo -S wget "${module_link}" -O "${module_name_arc}" || let "error += 1"
 sudo -S tar -xpJf "${script_dir}/modules-temp/${name_script}/temp/${module_name_arc}"
 sudo -S add-apt-repository -y ppa:ernstp/mesarc  || let "error += 1"
 sudo -S apt update
-sudo -S aptitude -y install libbotan-2-dev libfam0 libkf5archive5 libkf5auth-data libkf5authcore5 libkf5coreaddons-data libkf5coreaddons5 libpolkit-qt5-1-1 libqt5charts5 libqt5qml5 libqt5quick5 libqt5quickcontrols2-5 libqt5quicktemplates2-5 libtspi1 qml-module-qt-labs-platform qml-module-qtcharts qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-templates2 qml-module-qtquick-window2 qml-module-qtquick2
+sudo -S aptitude -y install vulkan-tools libbotan-2-dev libfam0 libkf5archive5 libkf5auth-data libkf5authcore5 libkf5coreaddons-data libkf5coreaddons5 libpolkit-qt5-1-1 libqt5charts5 libqt5qml5 libqt5quick5 libqt5quickcontrols2-5 libqt5quicktemplates2-5 libtspi1 qml-module-qt-labs-platform qml-module-qtcharts qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-templates2 qml-module-qtquick-window2 qml-module-qtquick2
 sudo -S dpkg -i *.deb
 sudo -S rm /etc/apt/sources.list.d/ernstp*.list || let "error += 1"
 sudo -S rm /etc/apt/sources.list.d/ernstp*.list.save || true

@@ -23,7 +23,6 @@ done
 export modules_select=`eval ${select_install}`
 echo "$modules_select"
 
-#zenity --info --text="${modules_select}"
 
 #сбрасываем log установки в файле: module_install_log
 date_install=`date`
@@ -36,7 +35,7 @@ global_error0=0
 # основной цикл проверки выброных модулей и запуска их скриптов на установку
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
-echo ${modules_select} | grep "${module_base[$i+1]}" > /dev/null
+echo ${modules_select} | grep -o "${module_base[$i+1]}" > /dev/null
 if [ $? = 0 ];then
 run_module="${script_dir}/modules-temp/${module_base[$i+5]}/${module_base[$i+5]}.sh"
 chmod +x ${run_module}
