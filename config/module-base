@@ -9,7 +9,7 @@ Ubuntu 19.10 Ubuntu 20.04 LTS Linux Mint 19.3 Linux Mint 20
 #
 #
 xanmod-latest48.png
-XanMod-edge
+Xanmod-edge
 LinuxKernel
 Тестовая версия кастомного ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
@@ -99,7 +99,7 @@ Ubuntu 19.10 Ubuntu 20.04 LTS
 #
 #
 corectrl48.png
-CoreCtrl 1.2-dev
+Corectrl 1.2-dev
 OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ТРЕБУЕТСЯ: дополнительная конфигурация GRUB
 Яцына М.А.
@@ -109,7 +109,7 @@ corectrl-mint19
 #
 #
 corectrl48.png
-CoreCtrl
+corectrl 1.2-dev
 OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ТРЕБУЕТСЯ: дополнительная конфигурация GRUB
 Яцына М.А.

@@ -13,7 +13,7 @@ select_install='yad  --center --window-icon="$icon1" --image="$image1" --image-o
 
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
-echo ${module_base[$i+6]} | grep "${linuxos_version}" > /dev/null
+echo ${module_base[$i+6]} | grep -ow "${linuxos_version}" > /dev/null
 if [ $? = 0 ];then
 select_install+="FALSE"" "'"'"${script_dir}/icons/${module_base[$i]}"'"'" "'"'"<b>${module_base[$i+1]}</b>"'"'" "'"'"${module_base[$i+2]}"'"'" "'"'"${module_base[$i+3]}"'"'" "'"'"${module_base[$i+4]}"'"'" "
 fi
@@ -35,7 +35,7 @@ global_error0=0
 # основной цикл проверки выброных модулей и запуска их скриптов на установку
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
-echo ${modules_select} | grep -o "${module_base[$i+1]}" > /dev/null
+echo ${modules_select} | grep -ow "${module_base[$i+1]}" > /dev/null
 if [ $? = 0 ];then
 run_module="${script_dir}/modules-temp/${module_base[$i+5]}/${module_base[$i+5]}.sh"
 chmod +x ${run_module}
