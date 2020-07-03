@@ -32,7 +32,7 @@ script_ext_dir="/home/$USER/.local/share/"
 name_desktop_file="bzu-gmb.desktop"
 name_script=`basename "$0"`
 script_dir_install=$(cd $(dirname "$0") && pwd)
-bzu_gmb_name_arc="bzu-gmb-beta4"
+bzu_gmb_name_arc="bzu-gmb-beta4-installer"
 
 
 
