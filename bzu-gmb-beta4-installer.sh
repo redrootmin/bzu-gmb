@@ -93,11 +93,12 @@ version=`cat ${script_dir}/config/name_version` || let "error += 1"
 name_desktop="${version}" || let "error += 1"
 
 #Создаем ярлык для скрипта
-Exec_full="gnome-terminal -- bash "${script_dir}"/bzu-gmb-launcher.sh" 
+Exec_full=${script_dir}"/bzu-gmb-launcher.sh" 
 echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || let "error += 1"
 echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
 echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
 echo "Type=Application" 				 >> "${script_dir}/${name_desktop_file}"
+echo "Terminal=true" 				 >> "${script_dir}/${name_desktop_file}"
 echo "Categories=Game;System"	                         >> "${script_dir}/${name_desktop_file}"
 echo "StartupNotify=true" 	    			  >> "${script_dir}/${name_desktop_file}"
 echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_file}"
