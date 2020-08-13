@@ -69,6 +69,10 @@ inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
+#проверяем установлена утилита aptitude - она необходима для работы многих программ
+dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
+inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
+
 # Проверка что существует папка applications, если нет, создаем ее
 if [ ! -d "/home/${USER}/.local/share/applications" ]
 then
@@ -109,6 +113,7 @@ echo "$pass_user" | sudo -S cp -f "${script_dir}/${name_desktop_file}" /usr/shar
 #даем права на главные скрипты утилиты
 chmod +x "${script_dir}/bzu-gmb-launcher.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || let "error += 1"
+chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04.1-LTS-beta4.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20-beta4.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 1"
 chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || let "error += 1"

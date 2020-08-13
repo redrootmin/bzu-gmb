@@ -1,9 +1,1 @@
-Лог установки модулей из bzu-gmb-beta4-2, дата установки:Пт июл  3 14:49:26 MSK 2020
-модуль mesa-oibaf, дата установки:Пт июл  3 14:49:26 MSK 2020, количество ошибок:
-для использования функций: Valve ACO(fast work high shaders) и zink(render OpenGL to Vulkan) 
-нужно использовать следующие флаги:
-для Vavle ACO: флаг RADV_PERFTEST=aco в Mesa 20.2 теперь не нужен, а если ACO нужно отключить используйте: RADV_DEBUG=llvm
-для zink: MESA_LOADER_DRIVER_OVERRIDE=zink
-например в steam:
-RADV_PERFTEST=aco %command%
-MESA_LOADER_DRIVER_OVERRIDE=zink %command%
+Лог установки модулей из bzu-gmb-beta4-3, дата установки:Чт 13 авг 2020 21:40:54 MSK

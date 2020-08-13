@@ -26,6 +26,8 @@ cp -f "${script_dir}/bzu-gmb.desktop" /home/${USER}/.local/share/applications/
 fi
 chmod +x ~/.local/share/bzu-gmb/bzu-gmb-launcher.sh
 chmod +x ~/.local/share/bzu-gmb/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh
+chmod +x ~/.local/share/bzu-gmb/bzu-gmb-Ubuntu-20.04.1-LTS-beta4.sh
+chmod +x ~/.local/share/bzu-gmb/bzu-gmb-Linux-Mint-20-beta4.sh
 chmod +x ~/.local/share/bzu-gmb/bzu-gmb-Ubuntu-19.10-beta4.sh
 chmod +x ~/.local/share/bzu-gmb/bzu-gmb-Linux-Mint-19.3-beta4.sh
 
