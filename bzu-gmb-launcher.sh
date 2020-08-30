@@ -50,6 +50,10 @@ inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
+#проверяем установлена утилита aptitude - она необходима для работы многих программ
+dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
+inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
+
 # проверка что за система запустила скрипт
 linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 

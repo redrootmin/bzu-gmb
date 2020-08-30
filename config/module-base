@@ -59,7 +59,7 @@ Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 20
 #
 #
 mangohud48.png
-MangoHud-v0.4.1
+MangoHud-v0.5.1
 GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.

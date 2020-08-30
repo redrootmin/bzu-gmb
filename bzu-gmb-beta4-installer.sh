@@ -10,7 +10,7 @@ echo "все хорошо этот скрипт не запущен из под 
 fi
 
 #Уведомление пользователя, о том что он устанавливает себе на ПК
-zenity --question --title="BZU GameMod Boosting Installer beta4" --text="Данный скрипт установит на вашу OC GNU\Linux утилиту BZU-GMB-BETA4, она поможет вам быстро и без сложностей установить все, что требуется для оптимизации и ускорения системы для игр и программ которые активно используют 3Д графику. ВНИМАНИЕ: Скрипт пока поддерживает только: Ubuntu 19.10, Ubuntu 20.04 и оптимизирован под видеокарты компании AMD. Но в любом случае, установку Вы совершаете на свой страх и риск, за любые негативные последствия для вашей OC GNU\Linux, автор ответственность не несет. Утилита будет установлена в папку:[/home/$USER/.local/share/bzu-gmb]. Нажмите ДА, если готовы продолжить установку." --width=560 --height=128
+zenity --question --title="BZU GameMod Boosting Installer beta4-4" --text="Данный скрипт установит на вашу OC GNU\Linux утилиту BZU-GMB-BETA4, она поможет вам быстро и без сложностей установить все, что требуется для оптимизации и ускорения системы для игр и программ которые активно используют 3Д графику. ВНИМАНИЕ: Скрипт пока поддерживает только: Ubuntu 19.10, Ubuntu 20.04 и оптимизирован под видеокарты компании AMD. Но в любом случае, установку Вы совершаете на свой страх и риск, за любые негативные последствия для вашей OC GNU\Linux, автор ответственность не несет. Утилита будит остановлена в папку:[/usr/share/bzu-gmb]. Нажмите ДА, если готовы продолжить установку." --width=560 --height=128
 if [ "$?" -eq "0" ];then
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
@@ -27,8 +27,8 @@ else exit 0
 fi
 
 #объявляем нужные переменные для скрипта
-script_dir="/home/$USER/.local/share/bzu-gmb"
-script_ext_dir="/home/$USER/.local/share/"
+script_dir="/usr/share/bzu-gmb"
+script_ext_dir="/usr/share/"
 name_desktop_file="bzu-gmb.desktop"
 name_script=`basename "$0"`
 script_dir_install=$(cd $(dirname "$0") && pwd)
@@ -74,10 +74,10 @@ dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' |
 inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
 
 # Проверка что существует папка applications, если нет, создаем ее
-if [ ! -d "/home/${USER}/.local/share/applications" ]
-then
-	mkdir -p "/home/${USER}/.local/share/applications"
-fi
+#if [ ! -d "/home/${USER}/.local/share/applications" ]
+#then
+#	mkdir -p "/home/${USER}/.local/share/applications"
+#fi
 
 # Проверка что существует папка /usr/share/test, если нет, создаем ее
 if [ ! -d "/usr/share/test" ]
@@ -88,24 +88,26 @@ fi
 
 
 #Основные команды установки
-rm -rf "${script_dir}" || let "error += 1"
-rm -f "${script_ext_dir}applications/${name_desktop_file}" || let "error += 1"
-tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || let "error += 1"
+echo "$pass_user" | sudo -S rm -rf "${script_dir}" || let "error += 1"
+echo "$pass_user" | sudo -S rm -rf "/home/$USER/.local/share/bzu-gmb" || let "error += 1"
+echo "$pass_user" | sudo -S rm -f "${script_ext_dir}applications/${name_desktop_file}" || let "error += 1"
+echo "$pass_user" | sudo -S tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || let "error += 1"
 
 #объявляем нужные переменные для скрипта
 version=`cat ${script_dir}/config/name_version` || let "error += 1"
 name_desktop="${version}" || let "error += 1"
 
 #Создаем ярлык для скрипта
-Exec_full="gnome-terminal -- bash "${script_dir}"/bzu-gmb-launcher.sh" 
-echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || let "error += 1"
-echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
-echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
-echo "Type=Application" 				 >> "${script_dir}/${name_desktop_file}"
-echo "Categories=Game;System"	                         >> "${script_dir}/${name_desktop_file}"
-echo "StartupNotify=true" 	    			  >> "${script_dir}/${name_desktop_file}"
-echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_file}"
-echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/${name_desktop_file}"
+Exec_full="bash -c"${script_dir}"/bzu-gmb-launcher.sh" 
+echo "$pass_user" | sudo -S echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || let "error += 1"
+echo "$pass_user" | sudo -S echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Type=Application" 				 >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Categories=Game;System"	                         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "StartupNotify=true" 	    			  >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Terminal=true"         >> "${script_dir}/${name_desktop_file}"
 
 #переносим ярлык в папку программ
 echo "$pass_user" | sudo -S cp -f "${script_dir}/${name_desktop_file}" /usr/share/applications/ || let "error += 1"

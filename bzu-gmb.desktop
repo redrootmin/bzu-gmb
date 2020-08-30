@@ -1,8 +1,9 @@
 [Desktop Entry]
-Name=bzu-gmb-beta4-2
-Exec=gnome-terminal -- bash /home/gamer/.local/share/bzu-gmb/bzu-gmb-launcher.sh
+Name=bzu-gmb-beta4-5
+Exec=bash -c /usr/share/bzu-gmb/bzu-gmb-launcher.sh
 Type=Application
 Categories=Game;System
 StartupNotify=true
-Path=/home/gamer/.local/share/bzu-gmb
-Icon=/home/gamer/.local/share/bzu-gmb/icons/bzu-gmb512.png
+Path=/usr/share/bzu-gmb
+Icon=/usr/share/bzu-gmb/icons/bzu-gmb512.png
+Terminal=true
