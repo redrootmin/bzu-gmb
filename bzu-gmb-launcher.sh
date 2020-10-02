@@ -50,7 +50,7 @@ packages=(
 
 for pkg_name in ${packages[*]}
 do
-  check_and_install pkg_name
+  check_and_install $pkg_name
 done
 
 # проверка что за система запустила скрипт
