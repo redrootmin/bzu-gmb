@@ -30,10 +30,6 @@ chmod +x bzu-gmb-beta4-installer.sh
 To Do:
 -----
 
--support Linux Mint 20
-
--Full support Linux Mint 19.3 \ Ubuntu 18.04
-
 -now modules: psensor+config, new benchmarks, protonGE for steam, proton-rdr2, portwine ports
 
 -support re-os(testing)
