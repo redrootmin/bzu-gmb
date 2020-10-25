@@ -1,2 +1,10 @@
-Лог установки модулей из bzu-gmb-beta4-5, дата установки:Вс 30 авг 2020 21:15:57 MSK
+Лог установки модулей из bzu-gmb-beta4-5, дата установки:Вс 30 авг 2020 20:45:30 MSK
 =========================================
+==========[mangohud]==========
+модуль mangohud, дата установки:Вс 30 авг 2020 20:45:30 MSK, количество ошибок:1
+для использования MangoHud:
+если OpenGL: mangohud /way/to/app
+если Vulkan: MANGOHUD=1(либо mangohud) /way/to/app
+например в steam:
+MANGOHUD=1 MANGOHUD_CONFIG=cpu_temp,gpu_temp,vram,ram,position=top-right,font_size=22,vsync=3,arch %command%
+Подробнее о командах и фукнциях тут: https://github.com/flightlessmango/MangoHud
