@@ -98,7 +98,7 @@ version=`cat ${script_dir}/config/name_version` || let "error += 1"
 name_desktop="${version}" || let "error += 1"
 
 #Создаем ярлык для скрипта
-Exec_full="bash -c"${script_dir}"/bzu-gmb-launcher.sh" 
+Exec_full="bash -c "${script_dir}"/bzu-gmb-launcher.sh" 
 echo "$pass_user" | sudo -S echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || let "error += 1"
 echo "$pass_user" | sudo -S echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
 echo "$pass_user" | sudo -S echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
