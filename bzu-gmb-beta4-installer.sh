@@ -118,11 +118,14 @@ echo "$pass_user" | sudo -S cp -f "${script_dir}/${name_desktop_file}" /usr/shar
 
 #даем права на главные скрипты утилиты
 sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh" || let "error += 1"
+sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || let "error += 1"
+sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20-beta4.sh" || let "error += 1"
+sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-18.04-LTS-beta4.sh" || let "error += 1"
+sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 1"
 sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || let "error += 1"
 sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04.1-LTS-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || let "error += 1"
+sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.10-beta4.sh" || let "error += 1"
+
 
 
 
