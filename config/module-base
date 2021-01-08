@@ -1,23 +1,23 @@
 xanmod48.png
 XanMod
 LinuxKernel
-Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
+Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом многоядерных процессоров и современных видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-stable
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 xanmod-latest48.png
-Xanmod-edge
+Xanmod-cacule
 LinuxKernel
-Тестовая версия кастомного ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
+Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-latest
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 liquorix-kernel48.png
 Liquorix-Kernel
 LinuxKernel
@@ -27,7 +27,17 @@ liquorix-kernel-stable
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
+root
+ubuntu-kernel-lowlatency48.png
+Kernel lowlatency 5.8+
+LinuxKernel
+Стабильная версия оригинального ядра Linux для Ubuntu 20.04-20.10 с низкими задержками, основной плюс данной версия ядра в более высокой производительности в нативных играх или мультимедийных программах. Но на практике лучше всего проводить тестирование для конкретной игры или программы, так как возможен и обратный эффект с понижением производительности.
+Яцына М.А.
+ubuntu-kernel-lowlatency
+Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10 Linux Mint 20
+5.8.0-33
 #
+root
 mesa-oibaf48.png
 Mesa from Oibaf
 OpenDriver
@@ -37,7 +47,7 @@ mesa-oibaf
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 mesa-kisak48.png
 Mesa from Kisak
 OpenDriver
@@ -47,7 +57,7 @@ mesa-kisak
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 gamemode48.png
 Feral GameMode
 GameTools
@@ -57,9 +67,9 @@ feralgamemode
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 mangohud48.png
-MangoHud-v0.5.1
+MangoHud-v0.6.1
 GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.
@@ -67,7 +77,7 @@ mangohud
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 vkbasalt48.png
 vkBasalt-v0.3.2.1
 GameTools
@@ -77,17 +87,17 @@ vkbasalt
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 goverlay48.png
 Goverlay-v0.3.5
 GameTools
 Goverlay это открытая утилита с помощью которой можно создавать конфигурации для MangoHud и vkBasalt, основное отличие удобный интерфейс и предварительная визуализация настроек, Goverlay может сохранять конфигурацию в глобальные настройки MangoHud и vkBasalt, либо в файл настроек, который вы можете использовать индивидуально для нужной вам игры. ТРЕБУЕТСЯ: MangoHud,vkBasalt
 Яцына М.А.
 goverlay
-Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+HOLD
 #
 #
-#
+root
 corectrl48.png
 CoreCtrl
 OverClockTools
@@ -97,7 +107,17 @@ corectrl
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10
 #
 #
+root
+corectrl-2-48.png
+CoreCTRL
+OverClockTools
+CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ВНИМАНИЕ: Эта экспериментальная версия модуля, которая кроме установки CoreCtrl, добавляет правило для запуска утилиты без запроса пароля супер пользователя и добавляет маску в grub для полного управления питанием и частотами видеокарт АМД которые используют amdgpu в драйвере mesa.
+Яцына М.А.
+corectrl-2
+Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10
 #
+#
+root
 corectrl48.png
 Corectrl 1.2-dev
 OverClockTools
@@ -107,7 +127,7 @@ corectrl-mint19
 
 #Linux Mint 19.3 Ubuntu 18.04 LTS
 #
-#
+root
 corectrl48.png
 corectrl 1.2-dev
 OverClockTools
@@ -117,7 +137,117 @@ corectrl-mint-20
 Linux Mint 20
 #
 #
+root
+psensor48.png
+Psensor
+Monitoring
+Psensor это утилита для мониторинга сенсоров комплектующих вашего ПК или ноутбука, ее можно назвать аналогом HWmonitor в среде windows, основные плюсы: построение графиков, мониторинг с фиксацией состояний датчиков: в реальном времени, минимальный, максимальный. 
+Яцына М.А.
+psensor-all
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 20 Ubuntu 20.10
 #
+#
+root
+inxi48.png
+inxi
+Monitoring
+inxi это консольная утилита для вывода информации о комплектующих ПК или ноутбука, версии ядра, драйвера видеокарты, датчиков температуры и загрузки системы, что бы получить полную информацию нужно открыть терминал: ctrl+alt+t и ввести: inxi -Fxs 
+Яцына М.А.
+inxi
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10
+#
+#
+root
+glances48.png
+Glances
+Monitoring
+Glances это консольная утилита для мониторинга операционных систем на ядре Linux, вы сможете получить данные о датчика температуры, загрузке системы, запущенных процессов, состояния сети и т.д. Для запуска утилиты в терминале запустите эту команду: glances --enable-plugin sensors
+Mirthless D
+glances
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10 Linux Mint 19.3 Linux Mint 20
+#
+#
+root
+cpu-x48.png
+cpu-x
+Monitoring
+cpu-x это утилита для вывода информации о процессоре, материнской платы, оперативной памяти, графического процессора и о самой операционной системе. Также имеет встроенный бенчмарк процессора. Являться почти полным аналогом CPU-Z в среде windows
+Яцына М.А.
+cpu-x
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+#
+#
+root
+xboxdrv48.png
+xboxdrv
+GameTools
+xboxdrv это утилита для конфигурирования игровых устройств управления, изначальна была сделана для геймпада консоли Xbox, но в итоге поддерживает достаточно много устройств, утилита консольная, но есть и графическая оболочка для управления.
+Яцына М.А.
+xboxdrv
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+#
+#
+root
+steam48.png
+Steam Linux
+GamingApp
+Установка нативного клиента Steam для linux
+Яцына М.А.
+steam
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+#
+#
+root
+protonge48.png
+ProtonGE
+GameTools
+ProtonGE это кастумная версия Proton для клиента Steam в linux, основной плюсы этой версии: больше поддерживается игр, более новые библиотеки и версии wine,dxvk,vkd3d. Если у Вас что то не запускается через стандартный Steam Proton, эта кастумная версия скорее всего поможет вам с этой проблемой.
+Яцына М.А.
+proton-ge
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+#
+#
+root
+lutris48.png
+Lutris
+GamingApp
+Lutris это клиент для установки и запуска различных игр в среде десктопных Linux систем, основным отличием его от PlayOnLinux является наибольшая универсальность, с помощью Litris можно запустить windows игры, установить клиенты: steam, epicstore, gog-galaxy, origins, uplay и множество игр с консолей, дополнительно Lutris аккумулирует другие игры и ресурсы найденные в системе у себя в окне запуска, например может взять версию Proton из стим и запустить игру скаченную из gog, либо добавить все игры из steam к себе для запуска. Lutris настоящий игровой комбайн для всего что связанно с играми в Linux системах
+Яцына М.А.
+Lutris
+error
+#
+#
+root
+playonlinux48.png
+PlayOnLinux
+GamingApp
+PlayOnLinux долгое время была заслуженно очень популярной программой для запуска windows игр в Linux системах, так как в ней было удобно управлять версиями wine, устанавливать дополнения в префиксы с играми, архивировать весь префикс с игрой\играми и переносить на другую систему, но на данный момент она устарела и не может нормально работать с dxvk\vkd3d\proton. Ее основной плюс в том сейчас в возможности запуска очень старых игры на старом железе, где современные утилиты или технологии не работают или просто не нужны
+Яцына М.А.
+playonlinux
+error
+#
+#
+root
+port-proton-adons48.png
+PortWINE зависимости
+GamingAddons
+PortWINE зависимости это набор пакетов которые обеспечивают поддержку запуска Портов проект PortWINE. ВНИМАНИЕ: без установки этих пакетов работоспособность PortProton и других портов не гарантирована!
+Яцына М.А.
+port-proton-adons
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+#
+#
+root
+port-proton48.png
+PortProton
+GamingApp
+PortProton позволяет использовать версию WINE от Valve (Proton) без Steam и запускать windows игры которые вы например скачали с gog, программа максимально простая в использовании, на официальном сайте разработчика можно найти подробную видео инструкцию
+Яцына М.А.
+port-proton
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
+PortProton-55
+#
+noroot
 furmark48.png
 Furmark_Pack
 Benchmark
@@ -127,7 +257,7 @@ furmark-pack
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
-#
+root
 vulkan48.png
 TFM_Vulkan
 Benchmark
@@ -137,5 +267,24 @@ tfm-vulkan
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
 #
 #
+root
+gdebi48.png
+gdebi
+GuiDebInstaller
+gdebi это утилита для установки deb пакетов, без участия консоли, она сама установит зависимости, напишет если есть проблемы или пакет не может быть установлен в систему так как не совместим. Отличное решение, кто первично не любит лезть в консоль Linux системы :)
+Яцына М.А.
+gdebi
+Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10
 #
-
+#
+root
+gnome-ext-pack48.png
+GnomeExtensionsPack
+GnomeStyle
+GnomeExtensionsPack это набор скриптов, которые изменяют вид Ubuntu, интерфейс и устанавливают дополнения Gnome3, для более эффективного использования всех возможностей gnome и удобства работы с профессиональным ПО, мультимедиа и играми. ВНИМАНИЕ: скрипт предназначен для только что установленной системы, если у вас уже настроена и установлена Ubuntu 20.04.1 LTS то вы можете столкнуться с глюками и багами и действуете на свой стах и риск! 
+Яцына М.А.
+gnome-ext-pack-2004
+Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS
+#
+#
+noroot

@@ -1,10 +1,57 @@
- Список самых важных утилит для оптимихации, ускранения и запуска игр на ОС Ubuntu 20.04 с железом GPU AMD
+ЭТО СПИСОК\ИСТРУКЦИЯ С НАБОРОМ НАСТРОЕК\УТИЛИТ\ПРОГРАММ ДЛЯ ОПТИМИЗАЦИИ ОС UBUNTU 20.04+ С ВИДЕОКАРТАМИ AMD ДЛЯ ИГР\МУЛЬТИМЕДИА ПРОГРАММ\ПРОФЕССИОНАЛЬНЫХ РЕДАКТОРОВ
 
 
-0. Wayland session
-#Support: No tearing!!!
-   Install:
-   sudo apt install -y --reinstall gnome-session gnome-session-wayland
+0. OPTIMIZATION\DIAGNOSTIC UBUNTU
+
+#SOFT TOOLS FOR VIZUAL AND SYSTEM
+sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweak-tool chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev grub-customizer encfs
+
+
+#SWAP CREATE
+sudo fallocate -l 4g /home/4GiB.swap
+sudo chmod 600 /home/4GiB.swap # даем спец права на файл
+sudo mkswap /home/4GiB.swap # форматируем файл для свопа
+sudo swapon /home/4GiB.swap # задействуем файл как своп
+echo '/home/4GiB.swap swap swap defaults 0 0' | sudo tee -a /etc/fstab
+free -h # for test
+
+#RAM + HDD\SSD OPTIMIZATION
+echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.vfs_cache_pressure=1000" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.dirty_background_ratio = 50" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.dirty_ratio = 80" | sudo tee -a /etc/sysctl.conf
+
+BOOST FILE SYSTEM EXT4 
+sudo nano /etc/fstab
+#and add ",noatime,nodiratime,nobarrier"
+semple: UUID=5a18c97e-bd40-4b55-a2c8-ab7da4cf20f0 / ext4 errors=remount-ro,noatime,nodiratime,nobarrier 0 1
+#info https://qna.habr.com/q/427095
+
+#MONITORING TOOLS
+sudo add-apt-repository ppa:jonmagon/kdiskmark
+sudo apt-get install wavemon cpu-x psensor gsmartcontrol kdiskmark
+
+#OPTIMIZATION SOUND CARD
+Открываем
+sudo gedit /etc/pulse/daemon.conf
+#Находим строки и заменяем
+resample-method = speex-float-1 на resample-method = src-sinc-medium-quality
+default-sample-format = s16le на default-sample-format = s32le
+default-sample-rate = 44100 на default-sample-rate = 192000
+alternate-sample-rate = 48000 на alternate-sample-rate = 192000
+#Если перед строками стоят ; или # - удаляем эти знаки.
+#Нажимаем в редакторе сохранить и выходим.
+#Открываем
+sudo gedit /usr/share/alsa/alsa.conf
+#Находим строку и заменяем
+defaults.pcm.dmix.rate 192000
+#Нажимаем в редакторе сохранить и выходим.
+Перезагружаемся!
+ЕСЛИ ПОЯВИЛСЯ ПРОТИВНЫЙ СРИП\СКРЕЖЕТ В ЗВУКЕ
+# Открываем sudo gedit /etc/pulse/daemon.conf
+#Находим строку и заменяем
+realtime-scheduling = yes и меняем на realtime-scheduling = no
+# Если перед строками стоят ; или # - удаляем эти знаки.
 
 
 1. Mesa Latest Dev from Oibaf: https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers
@@ -15,7 +62,7 @@
    sudo apt update
    sudo apt upgrade
 
-1.1 Mesa beta from kisak: https://launchpad.net/~kisak/+archive/ubuntu/kisak-mesa
+1.1 Mesa stable from kisak: https://launchpad.net/~kisak/+archive/ubuntu/kisak-mesa
    Options: Mesa 20.1+ , Valve ACO, Intel iris, Vulkan Overlay
    Update: Auto
    Install:
@@ -38,6 +85,8 @@
    sudo nano /etc/default/grub
 # => GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" + amdgpu.ppfeaturemask=0xffffffff
    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff"
+# for HD7970 
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff modprobe.blacklist=radeon radeon.si_support=0 radeon.cik_support=0 amdgpu.si_support=1 amdgpu.cik_support=1 radeon.audio=1 mitigations=off"
 # ctrl+0 (save), ctrl+x(quit)
    sudo update-grub
    sudo update-initramfs -u
@@ -162,7 +211,7 @@ sudo apt install -f celluloid
 
 19.Audacity
 sudo add-apt-repository ppa:ubuntuhandbook1/audacity
-sudo apt install audacity
+sudo apt install audacity audacious
 
 20. install krita
 sudo add-apt-repository ppa:kritalime/ppa
@@ -171,9 +220,9 @@ sudo apt install krita
 21. Grub Customizer
 sudo apt-get install grub-customizer
 
-22. install psensor
-sudo apt install psensor
-tar -xpJf ".psensor.tar.xz" -C "/home/$USER/"  
+22.PORTPROTON 4.2
+wget -T 2 https://portwine-linux.ru/ftp/portwine/PortProton-42 && sh "./PortProton-42" && rm -f "./PortProton-42"
+
 
 23.
 wget https://github.com/AntiMicroX/antimicrox/releases/download/3.1.2/antimicrox-3.1.2-amd64.deb
@@ -189,3 +238,33 @@ sudo xboxdrv --evdev /dev/input/event18 --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_Z=x
 26.
 
 27.
+
+28.How to Install and Make Nemo the Default File Manager in Ubuntu
+sudo apt install nemo
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+gsettings set org.gnome.desktop.background show-desktop-icons false
+gsettings set org.nemo.desktop show-desktop-icons true
+
+29.Right-click New File Context Menu for Nautilus / Gnome File Manager
+git clone https://github.com/angela-d/nautilus-right-click-new-file.git && cd nautilus-right-click-new-file
+./automate.sh
+
+30. install Kdenlive development (only eng)
+sudo add-apt-repository ppa:kdenlive/kdenlive-master
+sudo apt install -f kdenlive 
+#install stable rus
+sudo add-apt-repository ppa:kdenlive/kdenlive-stable
+sudo apt install kdenlive
+
+31.installer deb Packages gdebi
+download package on https://pkgs.org/
+sudo apt install -f;wget archive.ubuntu.com/ubuntu/pool/universe/g/gdebi/gdebi_0.9.5.7+nmu3_all.deb;sudo dpkg -i gdebi_0.9.5.7+nmu3_all.deb;sudo apt install -f;sudo dpkg -i gdebi_0.9.5.7+nmu3_all.deb
+
+32. xscreensaver (original matrix screensaver)
+sudo apt-get install xscreensaver xscreensaver-gl xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
+
+33. convert all video file *.avi to youtube confort compression and mp4 format, run in terminal
+for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.avi}.mp4"; done
+
+34. disable service
+service=replay-sorcery; systemctl stop $service && systemctl disable $service && rm /etc/systemd/system/$service &&  systemctl daemon-reload && systemctl reset-failed

@@ -21,8 +21,7 @@ fi
 done
 
 export modules_select=`eval ${select_install}`
-echo "$modules_select"
-
+#echo "$modules_select"
 
 #сбрасываем log установки в файле: module_install_log
 date_install=`date`
@@ -47,22 +46,31 @@ let "module_num=(${i}+1)"
 for (( m=${module_num}; m <= (${module_num}+8); m=m+1 ))
 do
 echo "${module_base[$m]}" >> "${script_dir}/modules-temp/${module_name}/module_config"
-echo "${module_base[$m]}"
+#echo "${module_base[$m]}"
 done
 
 # запуск модуля с правами root в отдельном процессе bash что бы изолировать его от переменной $pass_user где храниться root-пароль пользователя
 echo "$pass_user" | sudo -S echo "==========[${module_name}]==========" >> "${script_dir}/module_install_log"
-echo "$pass_user" | sudo -S bash ${run_module} || let "global_error += 1"
-
+if [[ "${module_base[$i+9]}" == "noroot" ]];then
+#запуск модуля с передачей пароля root пользователя
+bash ${run_module} ${pass_user} || let "global_error += 1"
 # удаляем файл конфигурации созданный специально для модуля
 echo "$pass_user" | sudo -S rm "${script_dir}/modules-temp/${module_base[$i+5]}/module_config" || true
-
 #проверяем есть ли глобальная ошибка в модуле при установке, если да, пишем об этом в логе, логика не срабатывает повторно, для это используется дополнительная переменная global_error0
 if (($global_error > $global_error0));then
 echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Критическая ошибка, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 let "global_error0 += 1" 
 fi
-
+else
+echo "$pass_user" | sudo -S bash ${run_module} || let "global_error += 1"
+# удаляем файл конфигурации созданный специально для модуля
+echo "$pass_user" | sudo -S rm "${script_dir}/modules-temp/${module_base[$i+5]}/module_config" || true
+#проверяем есть ли глобальная ошибка в модуле при установке, если да, пишем об этом в логе, логика не срабатывает повторно, для это используется дополнительная переменная global_error0
+if (($global_error > $global_error0));then
+echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Критическая ошибка, дата установки:${date_install}" >> "${script_dir}/module_install_log"
+let "global_error0 += 1" 
+fi
+fi
 fi
 
 done

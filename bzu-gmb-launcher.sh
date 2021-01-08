@@ -7,8 +7,8 @@ version0=`cat "${script_dir}/config/name_version"`
 export version="${version0}"
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-if pass_user0=$(zenity --entry --title="Для работы скрипта ${version} требуется пароль root" --text="Введите пароль:" \
- --entry-text="пароль" --hide-text --width=460 --height=128)
+if pass_user0=$(zenity --entry --title="Для работы скрипта ${version} требуется Ваш пароль суперпользователя" --text="Введите пароль:" \
+ --entry-text="пароль" --hide-text --width=640 --height=128)
 then
 export pass_user=${pass_user0}
 #echo "pass:${pass_user}"
@@ -16,6 +16,9 @@ else
   zenity --error --text="Пароль не введён"
 exit 0
 fi
+
+# получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
+echo "$USER" > "${script_dir}/config/user"
 
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
 dpkg -s yad | grep installed > /dev/null || echo 'no installing yad :(' | echo "$pass_user" | sudo -S apt install -f -y yad
@@ -53,6 +56,10 @@ inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 #проверяем установлена утилита aptitude - она необходима для работы многих программ
 dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
 inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
+
+#проверяем установлена терминал xterm - он необходим для работы многих программ
+dpkg -s xterm | grep installed > /dev/null || echo 'no install xterm :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
+inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
 
 # проверка что за система запустила скрипт
 linuxos=`grep '^PRETTY_NAME' /etc/os-release`

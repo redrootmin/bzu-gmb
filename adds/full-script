@@ -1,5 +1,5 @@
 # установка дополнительного ПО
-sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweak-tool chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev grub-customizer psensor
+sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweak-tool chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev grub-customizer psensor inxi gdebi
 
 # устаноавливаем черное logo ubuntu на заставку загрузки
 git clone https://github.com/ashutoshgngwr/ubuntu-darwin.git
@@ -10,6 +10,7 @@ sudo echo "2" | sudo update-alternatives --config default.plymouth
 
 #включаем настройки окон и темы
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+#yara-full-dark  https://www.omgubuntu.co.uk/2020/04/enable-full-dark-mode-in-ubuntu-20-04
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 gsettings set org.gnome.desktop.interface icon-theme Numix-Circle
 gsettings set  org.gnome.desktop.interface cursor-theme DMZ-White
@@ -27,15 +28,21 @@ https://extensions.gnome.org/extension/2141/horizontal-workspaces/
 https://extensions.gnome.org/extension/3465/panel-date-format/
 https://extensions.gnome.org/extension/750/openweather/
 https://extensions.gnome.org/extension/1305/more-columns-in-applications-view/
+https://extensions.gnome.org/extension/2917/bring-out-submenu-of-power-offlogout-button/
+https://extensions.gnome.org/extension/2986/runcat/
+https://extensions.gnome.org/extension/1071/applications-overview-tooltip/
 
 
-
+#установка коллекции дополнений
+### dconf dump /org/gnome/shell/extensions/ > extensions.conf ###
+### gnome-extensions list ###
 tar -xpJf "extensions.tar.xz" -C "/home/$USER/.local/share/gnome-shell/"
 dconf load /org/gnome/shell/extensions/ < extensions.conf 
 gsettings set org.gnome.shell disable-user-extensions true
 gsettings set org.gnome.shell disable-user-extensions false
 sudo pkill -9 ^gnome-shell
-gnome-extensions enable bluetooth-quick-connect@bjarosze.gmail.com;gnome-extensions enable caffeine@patapon.info;gnome-extensions enable dash-to-panel@jderose9.github.com;gnome-extensions enable desktop-icons@csoriano;gnome-extensions enable disable-screenshield@lgpasquale.com;gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable gamemode@christian.kellner.me;gnome-extensions enable gsconnect@andyholmes.github.io;gnome-extensions enable impatience@gfxmonk.net;gnome-extensions enable nohotcorner@azuri.free.fr;gnome-extensions enable panel-osd@berend.de.schouwer.gmail.com;gnome-extensions enable places-menu@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable sound-output-device-chooser@kgshank.net;gnome-extensions enable tweaks-system-menu@extensions.gnome-shell.fifi.org;gnome-extensions enable ubuntu-appindicators@ubuntu.com;gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable hide-dash@xenatt.github.com;gnome-extensions enable horizontal-workspaces@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable workspaces-thumbnails@fthx;gnome-extensions enable minimum-workspaces@philbot9.github.com;gnome-extensions enable blyr@yozoon.dev.gmail.com;gnome-extensions disable hide-dash@xenatt.github.com 
+gnome-extensions enable bluetooth-quick-connect@bjarosze.gmail.com;gnome-extensions enable caffeine@patapon.info;gnome-extensions enable dash-to-panel@jderose9.github.com;gnome-extensions enable desktop-icons@csoriano;gnome-extensions enable disable-screenshield@lgpasquale.com;gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable gamemode@christian.kellner.me;gnome-extensions enable gsconnect@andyholmes.github.io;gnome-extensions enable impatience@gfxmonk.net;gnome-extensions enable nohotcorner@azuri.free.fr;gnome-extensions enable panel-osd@berend.de.schouwer.gmail.com;gnome-extensions enable places-menu@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable sound-output-device-chooser@kgshank.net;gnome-extensions enable tweaks-system-menu@extensions.gnome-shell.fifi.org;gnome-extensions enable ubuntu-appindicators@ubuntu.com;gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable hide-dash@xenatt.github.com;gnome-extensions enable horizontal-workspaces@gnome-shell-extensions.gcampax.github.com;gnome-extensions enable workspaces-thumbnails@fthx;gnome-extensions enable minimum-workspaces@philbot9.github.com;gnome-extensions enable blyr@yozoon.dev.gmail.com;gnome-extensions enable panel-date-format@atareao.es;gnome-extensions enable BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm;gnome-extensions enable cpupower@mko-sl.de
+
 
 
 # for disable gnome-extension
@@ -67,10 +74,10 @@ MESA_LOADER_DRIVER_OVERRIDE=zink %command%
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off amdgpu.ppfeaturemask=0xffffffff"
 
 # ВНИМАНИЕ: для включения разгона для rx400\500\vega 56\64 используйте строку ниже для GRUB_CMDLINE_LINUX_DEFAULT
-# GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nopti pti=off spectre_v2=off l1tf=off nospec_store_bypass_disable no_stf_barrier amdgpu.ppfeaturemask=0xffffffff"
+# GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off amdgpu.ppfeaturemask=0xffffffff"
 
 # ВНИМАНИЕ: для включения поддержки вулкана в HD79xx используйте строку ниже для GRUB_CMDLINE_LINUX_DEFAULT
-#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nopti pti=off spectre_v2=off l1tf=off nospec_store_bypass_disable no_stf_barrier amdgpu.ppfeaturemask=0xffffffff modprobe.blacklist=radeon radeon.si_support=0 amdgpu.si_support=1 radeon.audio=1"
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off amdgpu.ppfeaturemask=0xffffffff modprobe.blacklist=radeon radeon.si_support=0 amdgpu.si_support=1 radeon.audio=1"
 
 7.1.ДЛЯ РАБОТЫ С SSD НУЖНО ВЫСТАВИТЬ ФЛАГИ В /ETC/FSTAB:
 sudo gedit /etc/fstab
@@ -83,7 +90,7 @@ ssd,discard (Defaults - этот убираем) - для btrFS.
 
 отключение барьеров в /etc/fstab
 https://qna.habr.com/q/427095
-/etc/fstab
+sudo gedit /etc/fstab
 UUID=5a18c97e-bd40-4b55-a2c8-ab7da4cf20f0 / ext4 errors=remount-ro,noatime,nodiratime,nobarrier 0 1
 
 

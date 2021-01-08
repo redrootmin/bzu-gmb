@@ -17,14 +17,14 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка открытой утилиты MangoHud 0.5.1 от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка открытой утилиты MangoHud 0.6.1 от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp"|| let "error += 1"
-sudo -S wget https://github.com/flightlessmango/MangoHud/releases/download/v0.5.1/MangoHud-v0.5.1.tar.gz || let "error += 1"
+sudo -S wget https://github.com/flightlessmango/MangoHud/releases/download/v0.6.1/MangoHud-0.6.1.tar.gz || let "error += 1"
 sudo -S tar xfvz MangoHud*.tar.gz || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp/MangoHud" || let "error += 1"
 sudo -S sh mangohud-setup.sh uninstall || true

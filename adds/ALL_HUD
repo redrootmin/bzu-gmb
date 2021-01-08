@@ -46,12 +46,13 @@ PROTON_LOG=1 %command%
 [STANDART AMD]
 
 [run mesa 20.1+]
-RADV_PERFTEST=aco mangohud MANGOHUD_CONFIG=cpu_temp,gpu_temp,vram,ram,font_size=22,vsync=3,vulkan_driver,gpu_text=VEGA56,cpu_text=Ryzen2600,arch,gpu_core_clock,gpu_mem_clock,position=top-right ENABLE_VKBASALT=1 gamemoderun %command%
 
-mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=VEGA_56,cpu_text=r5_2600,arch,gpu_core_clock,gpu_mem_clock,position=top-right ENABLE_VKBASALT=1 gamemoderun %command%
+mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=VEGA_56,cpu_text=r5_2600,arch,gpu_core_clock,gpu_mem_clock,position=top-right,vsync=3 ENABLE_VKBASALT=1 gamemoderun %command%
+
+mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=VEGA_56,cpu_text=r5_2600,arch,gpu_core_clock,gpu_mem_clock,position=top-right,vsync=3 DXVK_ASYNC=1 ENABLE_VKBASALT=1 gamemoderun %command%
 
 [run amdvlk vsync]
-VK_ICD_FILENAMES=/home/gamer/AMDVLK/64-bit/amd_icd64.json:/home/gamer/AMDVLK/32-bit/amd_icd32.json mangohud MANGOHUD_CONFIG=cpu_temp,gpu_temp,vram,ram,position=top-right,font_size=22,vsync=3,vulkan_driver,gpu_text=VEGA56,cpu_text=Ryzen2600,arch,gpu_core_clock,gpu_mem_clock ENABLE_VKBASALT=1 gamemoderun %command%
+VK_ICD_FILENAMES=/home/gamer/AMDVLK/64-bit/amd_icd64.json:/home/gamer/AMDVLK/32-bit/amd_icd32.json mangohud MANGOHUD_CONFIG=cpu_temp,gpu_temp,vram,ram,position=top-right,font_size=22,vsync=3,vulkan_driver,gpu_text=VEGA56,cpu_text=r5_2700,arch,gpu_core_clock,gpu_mem_clock ENABLE_VKBASALT=1 gamemoderun %command%
 
 
 [FOR BENCHMARKING]
@@ -60,10 +61,19 @@ STEAM-NVIDIA
 mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=1660Ti,cpu_text=Ryzen2600,arch,gpu_core_clock,gpu_mem_clock,position=top-left gamemoderun %command%
 
 STEAM-AMD
+VEGA_56
 mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=VEGA56,cpu_text=Ryzen2600,arch,gpu_core_clock,gpu_mem_clock,position=top-right gamemoderun %command%
 
+HD7970
+mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=HD7970,cpu_text=r5_2600,arch,gpu_core_clock,gpu_mem_clock,position=top-right gamemoderun %command%
 
+MANGOHUD_DLSYM=1 mangohud %command%
+MANGOHUD=1
+mangohud
 
+HD7970
+ENABLE_VKBASALT=1 mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,gpu_text=HD7970,cpu_text=R5_2400,arch,gpu_core_clock,gpu_mem_clock,position=top-right gamemoderun %command%
 
+DXVK_HUD=1 gamemoderun gamescope -w 1280 -h 720 -W 1920 -H 1080 -n -- %command%
 
 
