@@ -1,23 +1,22 @@
 # bzu-gmb
-bzu-gmb is auto-installer linux gaming tools for debian-based distributions , bzu-gmb created on bash with the use of zenity, yad libraries
-----
+bzu-gmb is an auto-installer of GNU/Linux gaming tools for Debian-based distributions, written in bash using zenity and yad libraries
+-----------
 <img src="image/bzu-gmb-beta4-7.png" alt="My cool logo"/>
 
-Options bzu-gmb-beta4
-----------
-Ready modules for Ubuntu: XanMod, Xanmod-edge, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, Goverlay, CoreCtrl, Furmark_Pack(OpenGL Benchmark), TFM_Vulkan(Benchmark).
+Options
+-----------
+Ready modules for Ubuntu: XanMod, Xanmod-edge, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, Goverlay, CoreCtrl, Furmark_Pack (OpenGL Benchmark), TFM_Vulkan (Benchmark).
 
-For Linux Mint 19.3 not ready: Feral GameMode, CoreCtrl.
+Not ready modules for Linux Mint 19.3: Feral GameMode, CoreCtrl.
 
+Installation FAQ:
+-----------
 
-FAQ for install beta4:
-------------
+Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-go to [release](https://github.com/redrootmin/bzu-gmb/releases)
+Download the latest bzu-gmb version to user space (/home/user/)
 
-download last version bzu-gmb in to user space (/home/user/)
-
-go to terminal and inter commands:
+Go to terminal and type the following commands:
 
 tar -xpJf bzu-gmb-beta4-installer.tar.xz
 
@@ -27,19 +26,17 @@ chmod +x bzu-gmb-beta4-installer.sh
 
 ./bzu-gmb-beta4-installer.sh
 
-To Do:
------
+TODO:
+-----------
 
--now modules: psensor+config, new benchmarks, protonGE for steam, proton-rdr2, portwine ports
+- Add modules: psensor + config, new benchmarks, proton-rdr2, portwine ports
 
--support re-os(testing)
+- Add REOS support (testing)
 
--support pop!_os(testing)
+- Add Pop!_OS support (testing)
 
--now modules and update old
+- Add new modules and update old ones
 
--testing now modele from other authors (if they will)
+- Test new modules from other authors (if they are)
 
--now version beta5: fix bugs, new function, test new modules for multimedia, visualization Ubuntu
-
-
+- Add beta5 version: fix bugs, add new functionality, test new multimedia modules, customize Ubuntu
