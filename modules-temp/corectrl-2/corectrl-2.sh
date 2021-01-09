@@ -35,13 +35,13 @@ function install_flags_grub_kernel {
 flag_status=`cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2"`
 if [[ "${flag_status}" == "$2" ]];then
 tput setaf 3
-echo "флаг $2 уже добавлен в grub" 
+echo "Флаг $2 уже добавлен в grub" 
 tput sgr0 
 cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
 else
 sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2
-echo "флаг ${amd_full_gpu_control} добавлен в grub"
+echo "Флаг ${amd_full_gpu_control} добавлен в grub"
 tput sgr0
 cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 
@@ -82,12 +82,12 @@ echo "Action=org.corectrl.*" >> ${rule_file_install}
 echo "ResultActive=yes" >> ${rule_file_install}
 sudo -S mv "${rule_file_install}" "${rule_dir_install}"
 tput setaf 2
-echo "файл правила запуска corectrl без sudo создан!"
+echo "Файл правила запуска CoreCtrl без sudo создан!"
 tput sgr0
 cat "${rule_dir_install}/${rule_file_install}"
 else
 tput setaf 3
-echo "файл правила запуска corectrl без sudo уже создан"
+echo "Файл правила запуска CoreCtrl без sudo уже создан!"
 tput sgr0
 cat "${rule_dir_install}/${rule_file_install}"
 fi
@@ -99,22 +99,21 @@ install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
 sudo -S update-grub
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем CoreCtrl!"  || let "error += 1"
-sudo -S dpkg --list | echo "Установлена утилита:"`grep "CoreCtrl" | sed s/"ii"//g`
+tput setaf 2; echo "Установлен драйвер ${mesa_version}, тестируем CoreCtrl!"  || let "error += 1"
+sudo -S dpkg --list | echo "Установлена утилита "`grep "CoreCtrl" | sed s/"ii"//g`
 #сброс цвета текста в терминале
 tput sgr0
 #тестовый запуск CoreCtrl
 corectrl & sleep 5;sudo -S killall corectrl
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 
 #Добавляем информацию о том как использовать CoreCtrl лог установки
-echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
+echo "Подробнее о запуске CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и функциях тут: https://gitlab.com/corectrl/corectrl/-/wikis/How-profiles-works"	 				  >> "${script_dir}/module_install_log"
 
 exit 0
-
 
 #Для создания скрипта использовались следующие ссылки
 #https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta
