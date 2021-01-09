@@ -25,7 +25,7 @@ version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка набора скриптов для изменения интерфейса и внешнего вида ubuntu 20.04.1 LTS. Версия скрипта 1.0 beta, автор: Яцына М.А."
+tput setaf 2; echo "Установка набора скриптов для изменения интерфейса и внешнего вида Ubuntu 20.04.1 LTS. Версия скрипта 1.0 beta, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
@@ -93,13 +93,9 @@ tput setaf 2; echo "Установка завершена"
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 
-#Добавляем информацию о том как использовать CoreCtrl лог установки
-#echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
-#echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
 exit 0
-
 
 #Для создания скрипта использовались следующие ссылки
 #https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta
