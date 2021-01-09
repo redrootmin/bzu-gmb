@@ -6,11 +6,11 @@
 if [ "$UID" -eq 0 ];then
 zenity --error --text="Этот скрипт не нужно запускать из под root!"; exit 1
 else
-echo "все хорошо этот скрипт не запущен из под root!"
+echo "Всё хорошо, этот скрипт не запущен из под root!"
 fi
 
 #Уведомление пользователя, о том что он устанавливает себе на ПК
-zenity --question --title="BZU GameMod Boosting Installer beta4-7" --text="Данный скрипт установит на вашу OC GNU\Linux утилиту BZU-GMB-BETA4, она поможет вам быстро и без сложностей установить все, что требуется для оптимизации и ускорения системы для игр и программ которые активно используют 3Д графику. ВНИМАНИЕ: Скрипт пока офицально поддерживает только: Ubuntu 20.04, Ubuntu 20.10 и оптимизирован под видеокарты компании AMD. Но в любом случае, установку Вы совершаете на свой страх и риск, за любые негативные последствия для вашей OC GNU\Linux, автор ответственность не несет. Утилита будит остановлена в папку:[/usr/share/bzu-gmb]. Нажмите ДА, если готовы продолжить установку." --width=560 --height=128
+zenity --question --title="BZU GameMod Boosting Installer beta4-7" --text="Данный скрипт установит на вашу OC GNU/Linux утилиту BZU-GMB-BETA4, она поможет вам быстро и без сложностей установить все, что требуется для оптимизации и ускорения системы для игр и программ, которые активно используют 3D графику. ВНИМАНИЕ: Скрипт пока офицально поддерживает только Ubuntu 20.04, Ubuntu 20.10 и оптимизирован под видеокарты компании AMD. Но в любом случае установку Вы совершаете на свой страх и риск, за любые негативные последствия для вашей OC GNU/Linux автор ответственности не несет. Утилита будет установлена в папку [/usr/share/bzu-gmb]. Нажмите ДА, если готовы продолжить установку." --width=560 --height=128
 if [ "$?" -eq "0" ];then
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
@@ -37,44 +37,44 @@ bzu_gmb_name_arc="bzu-gmb-beta4-installer"
 
 
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
-dpkg -s yad | grep installed > /dev/null || echo 'no installing yad :(' | echo "$pass_user" | sudo -S apt install -f -y yad
+dpkg -s yad | grep installed > /dev/null || echo 'yad not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
 YadStatus=`dpkg -s yad | grep installed`
 echo "YAD" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
-dpkg -s inxi | grep installed > /dev/null || echo 'no install inxi :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
+dpkg -s inxi | grep installed > /dev/null || echo 'inxi not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
 echo "INXI" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
-dpkg -s meson | grep installed > /dev/null || echo 'no install meson :(' | echo "$pass_user" | sudo -S apt install -f -y meson
+dpkg -s meson | grep installed > /dev/null || echo 'meson not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
 inxistatus=`dpkg -s inxi | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
-dpkg -s ninja-build | grep installed > /dev/null || echo 'no install ninja-build :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
+dpkg -s ninja-build | grep installed > /dev/null || echo 'ninja-build not installed :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "ninja-build" $inxistatus
 
 #проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
-dpkg -s p7zip-rar | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
+dpkg -s p7zip-rar | grep installed > /dev/null || echo 'p7zip-rar not installed :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "p7zip-rar" $inxistatus
 
 #проверяем установлена утилита python-tk - она необходима для установки многих программ
-dpkg -s python-tk | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
+dpkg -s python-tk | grep installed > /dev/null || echo 'python-tk not installed :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
 inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 
 #проверяем установлена утилита xosd-bin - она необходима для работы многих программ
-dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
+dpkg -s xosd-bin | grep installed > /dev/null || echo 'xosd-bin not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
 #проверяем установлена утилита aptitude - она необходима для работы многих программ
-dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
+dpkg -s aptitude | grep installed > /dev/null || echo 'aptitude not installed :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
 inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
 
 #проверяем установлена терминал xterm - он необходим для работы многих программ
-dpkg -s xterm | grep installed > /dev/null || echo 'no install xterm :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
+dpkg -s xterm | grep installed > /dev/null || echo 'xterm :( not installed' | echo "$pass_user" | sudo -S apt install -f -y xterm
 inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
 
 # Проверка что существует папка applications, если нет, создаем ее
