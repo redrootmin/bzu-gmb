@@ -20,8 +20,7 @@ module_link="https://github.com/DadSchoorse/vkBasalt/releases/download/v0.3.2.1/
 module_name="vkBasalt-0.3.2.1"
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка открытой утилиты ${module_name} от 
-DadSchoorse [https://github.com/DadSchoorse/vkBasalt]. Версия скрипта 1.1, автор: Яцына М.А."
+tput setaf 2; echo "Установка открытой утилиты ${module_name} от DadSchoorse [https://github.com/DadSchoorse/vkBasalt]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
@@ -40,17 +39,17 @@ sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 vkbasalt_version=`vulkaninfo | grep "VK_LAYER_VKBASALT"`  || let "error += 1"
-echo "Установлен vkBasalt:";tput setaf 2; echo ${vkbasalt_version}  || let "error += 1"
+echo "Установлен vkBasalt ";tput setaf 2; echo ${vkbasalt_version}  || let "error += 1"
 #сброс цвета текста в терминале
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "ВНИМАНИЕ: vkBasalt работает только с программами которые используют Vulkan API:"	 				  >> "${script_dir}/module_install_log"
+echo "ВНИМАНИЕ: vkBasalt работает только с программами, которые используют Vulkan API"	 				  >> "${script_dir}/module_install_log"
 echo "Для использования vkBasalt:"	 				  >> "${script_dir}/module_install_log"
 echo "ENABLE_VKBASALT=1 /way/to/Vulkan/app"	 				  >> "${script_dir}/module_install_log"
-echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
+echo "Например, в Steam:"	 				  >> "${script_dir}/module_install_log"
 echo "ENABLE_VKBASALT=1 %command%"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://github.com/DadSchoorse/vkBasalt"	 				  >> "${script_dir}/module_install_log"
 
