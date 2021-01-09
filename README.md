@@ -5,7 +5,7 @@ bzu-gmb is an auto-installer of GNU/Linux gaming tools for Debian-based distribu
 
 Options
 -----------
-Ready modules for Ubuntu: XanMod, Xanmod-cacule, Liquorix, Low-latency kernel, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, Goverlay, CoreCtrl, Psensor, Inxi, Glances, CPU-X, Xboxdrv, Steam, ProtonGE, PortProton, Furmark_Pack (OpenGL Benchmark), TFM_Vulkan (Benchmark), Gdebi.
+Ready modules for Ubuntu: XanMod, Xanmod-cacule, Liquorix, Low-Latency kernel, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, Psensor, Inxi, Glances, CPU-X, Xboxdrv, Steam, ProtonGE, PortProton, Furmark_Pack (OpenGL Benchmark), TFM_Vulkan (Benchmark), Gdebi.
 
 Not ready modules for Linux Mint 19.3: Feral GameMode, CoreCtrl.
 
