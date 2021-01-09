@@ -25,14 +25,14 @@ tput sgr0
 sudo -S apt install -f -y --reinstall psensor || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-sudo dpkg --list | echo "Установлена утилита:"`grep "psensor" | sed s/"ii"//g`
+sudo dpkg --list | echo "Установлена утилита "`grep "psensor" | sed s/"ii"//g`
 #сброс цвета текста в терминале
 tput sgr0
 #тестовый запуск Psensor
 psensor & sleep 5;sudo -S killall psensor
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
 #echo "для использования Feral GameMode:"	 				  >> "${script_dir}/module_install_log"
