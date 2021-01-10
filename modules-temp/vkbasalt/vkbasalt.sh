@@ -46,7 +46,7 @@ tput sgr0
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "ВНИМАНИЕ: vkBasalt работает только с программами, которые используют Vulkan API"	 				  >> "${script_dir}/module_install_log"
+echo "Внимание! vkBasalt работает только с программами, которые используют Vulkan API"	 				  >> "${script_dir}/module_install_log"
 echo "Для использования vkBasalt:"	 				  >> "${script_dir}/module_install_log"
 echo "ENABLE_VKBASALT=1 /way/to/Vulkan/app"	 				  >> "${script_dir}/module_install_log"
 echo "Например, в Steam:"	 				  >> "${script_dir}/module_install_log"
