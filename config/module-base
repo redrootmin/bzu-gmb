@@ -1,7 +1,7 @@
 xanmod48.png
 XanMod
 LinuxKernel
-Стабильное кастомное ядро Linux, оптимизированное для десктопных ОС с учетом многоядерных процессоров и современных видеокарт. Увеличивает производительность в играх и программах, использующих графику. Опции: Low-Latency, BFQ I/O Scheduler, ZSTD kernel, Clear Linux patchs, Wine/Proton Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT
+Стабильное кастомное ядро Linux, оптимизированное для десктопных ОС с учетом многоядерных процессоров и современных видеокарт. Увеличивает производительность в играх и программах, использующих графику. Опции: Low-Latency, BFQ I/O Scheduler, ZSTD kernel, Clear Linux patchs, Wine/Proton Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT.
 Яцына М.А.
 xanmod-kernel-stable
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -11,7 +11,7 @@ root
 xanmod-latest48.png
 Xanmod-cacule
 LinuxKernel
-Версия кастомного ядра Linux XanMod с высокой отзывчивостью, оптимизированная для десктопных ОС с учетом современных многоядерных процессоров и видеокарт. Увеличивает производительность в играх и программах, использующих графику. Внимание! Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра XanMod. Опции: Low-Latency, BFQ_I/O_Scheduler, ZSTD_kernel, Clear_Linux_patchs, Wine/Proton_Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT
+Версия кастомного ядра Linux XanMod с высокой отзывчивостью, оптимизированная для десктопных ОС с учетом современных многоядерных процессоров и видеокарт. Увеличивает производительность в играх и программах, использующих графику. Внимание! Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра XanMod. Опции: Low-Latency, BFQ_I/O_Scheduler, ZSTD_kernel, Clear_Linux_patchs, Wine/Proton_Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT.
 Яцына М.А.
 xanmod-kernel-latest
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -21,7 +21,7 @@ root
 liquorix-kernel48.png
 Liquorix
 LinuxKernel
-Стабильная версия кастомного ядра Linux. Основное отличие от XanMod - новый планировщик процессов MuQSS, который, по заверению разработчика, выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. Внимание! Вы можете установить Liquorix и XanMod в одну систему. Опции: MuQSS_Process_Scheduler, Preemptible_tree-based_hierarchical_RCU, Hard_Kernel_Preemption, Budget_Fair_Queue, TCP_BBR_Congestion_Control, Binary Builds_For_Popular_Debian_Distros, Distribution_Kernel_Drop-in_Replacement, Minimal_Debugging
+Стабильная версия кастомного ядра Linux. Основное отличие от XanMod - новый планировщик процессов MuQSS, который, по заверению разработчика, выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. Внимание! Вы можете установить Liquorix и XanMod в одну систему. Опции: MuQSS_Process_Scheduler, Preemptible_tree-based_hierarchical_RCU, Hard_Kernel_Preemption, Budget_Fair_Queue, TCP_BBR_Congestion_Control, Binary Builds_For_Popular_Debian_Distros, Distribution_Kernel_Drop-in_Replacement, Minimal_Debugging.
 Яцына М.А.
 liquorix-kernel-stable
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
