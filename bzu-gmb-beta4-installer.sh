@@ -42,16 +42,16 @@ bzu_gmb_name_arc="bzu-gmb-beta4-installer"
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
 dpkg -s yad | grep installed > /dev/null || echo 'yad is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
 YadStatus=`dpkg -s yad | grep installed`
-echo "YAD" $YadStatus
+echo "yad" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
 dpkg -s inxi | grep installed > /dev/null || echo 'inxi is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
-echo "INXI" $inxistatus
+echo "Inxi" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
 dpkg -s meson | grep installed > /dev/null || echo 'meson is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
-inxistatus=`dpkg -s inxi | grep installed`
+inxistatus=`dpkg -s meson | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
@@ -61,7 +61,7 @@ echo "ninja-build" $inxistatus
 
 #проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
 dpkg -s p7zip-rar | grep installed > /dev/null || echo 'p7zip-rar is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
-inxistatus=`dpkg -s ninja-build | grep installed`
+inxistatus=`dpkg -s p7zip-rar | grep installed`
 echo "p7zip-rar" $inxistatus
 
 #проверяем установлена утилита python-tk - она необходима для установки многих программ
@@ -128,9 +128,6 @@ sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 
 sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || let "error += 1"
 sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04.1-LTS-beta4.sh" || let "error += 1"
 sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.10-beta4.sh" || let "error += 1"
-
-
-
 
 if ((error > 3));then
 zenity --error --width=512 --text="Установка BZU GameMod Boosting Installer beta4 завершена c ошибками!"
