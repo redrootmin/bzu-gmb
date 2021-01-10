@@ -70,7 +70,7 @@ tput sgr0
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Информация о том как использовать утилиту\программу
-echo "ВНИМАНИЕ: для запуска Windows-игр в Steam через ProtonGE Вам обязательно нужно включить фукнцию Steam Play и выбирать нужную версию Proton в играх"	 				  >> "${script_dir}/module_install_log"
+echo "Внимание! Для запуска Windows-игр в Steam через ProtonGE Вам обязательно нужно включить фукнцию Steam Play и выбирать нужную версию Proton в играх"	 				  >> "${script_dir}/module_install_log"
 echo "Сайт, где можно посмотреть, какие Windows игры работают в Steam и в каком качестве: https://www.protondb.com/"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях ProtonGE тут: https://github.com/GloriousEggroll/proton-ge-custom#modification"	 				  >> "${script_dir}/module_install_log"
 
