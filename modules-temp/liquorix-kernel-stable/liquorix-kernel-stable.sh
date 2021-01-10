@@ -44,7 +44,7 @@ echo "Модуль ${name_script}, дата установки: ${date_install},
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
 echo "Для отображения списка ядер при загрузке GRUB "	 				  >> "${script_dir}/module_install_log"
 echo "нужно добавить флаги в файл /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
-echo "для этого в консоле запускаем sudo nano /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
+echo "для этого в консоли запускаем sudo nano /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
 echo "далее редактируем либо создаем эти строки в файле:"	 				  >> "${script_dir}/module_install_log"
 echo "GRUB_DEFAULT="saved""	 				  >> "${script_dir}/module_install_log"
 echo "GRUB_SAVEDEFAULT=true"	 				  >> "${script_dir}/module_install_log"
