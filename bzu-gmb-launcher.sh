@@ -80,7 +80,7 @@ echo $linuxos | grep "${linuxos_list[$i]}" > /dev/null
 if [ $? = 0 ];then
 #если есть совпадение формируем команду запуска главного модуля для нужной системы
 start0="bash ${script_dir}/bzu-gmb-${linuxos_list[$i]}-beta4.sh"
-echo "GNU/Linux OS: ${linuxos_list[$i]}"
+echo "GNU/Linux distribution: ${linuxos_list[$i]}"
 export linuxos_version=${linuxos_list[$i]}
 #присваиваем значение переменной что бы заглушка на не поддерживаемую ОС отключилась, при отмене установки
 linuxos_status=$i
