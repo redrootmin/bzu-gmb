@@ -33,7 +33,7 @@ tput sgr0
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "ВНИМАНИЕ: для запуска игр вам нужно обнавить Steam до beta версии и включить функцию Steam Play"	 				  >> "${script_dir}/module_install_log"
+echo "Внимание! Для запуска игр вам нужно обнавить Steam до Beta версии и включить функцию Steam Play"	 				  >> "${script_dir}/module_install_log"
 echo "Сайт, где можно посмотреть, какие Windows игры работают в Steam и в каком качестве: https://www.protondb.com/"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях Proton тут: https://github.com/ValveSoftware/Proton"	 				  >> "${script_dir}/module_install_log"
 
