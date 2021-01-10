@@ -19,7 +19,7 @@ Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 U
 #
 root
 liquorix-kernel48.png
-Liquorix-Kernel
+Liquorix
 LinuxKernel
 Стабильная версия кастомного ядра Linux. Основное отличие от XanMod - новый планировщик процессов MuQSS, который, по заверению разработчика, выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. Внимание! Вы можете установить Liquorix и XanMod в одну систему. Опции: MuQSS_Process_Scheduler, Preemptible_tree-based_hierarchical_RCU, Hard_Kernel_Preemption, Budget_Fair_Queue, TCP_BBR_Congestion_Control, Binary Builds_For_Popular_Debian_Distros, Distribution_Kernel_Drop-in_Replacement, Minimal_Debugging
 Яцына М.А.
