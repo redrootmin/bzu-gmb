@@ -7,7 +7,7 @@ version0=`cat "${script_dir}/config/name_version"`
 export version="${version0}"
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-if pass_user0=$(zenity --entry --title="Для работы скрипта ${version} требуется Ваш пароль суперпользователя" --text="Введите пароль:" \
+if pass_user0=$(zenity --entry --title="Для работы скрипта требуется пароль root" --text="Введите пароль:" \
  --entry-text="пароль" --hide-text --width=640 --height=128)
 then
 export pass_user=${pass_user0}
@@ -23,16 +23,16 @@ echo "$USER" > "${script_dir}/config/user"
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
 dpkg -s yad | grep installed > /dev/null || echo 'yad is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
 YadStatus=`dpkg -s yad | grep installed`
-echo "YAD" $YadStatus
+echo "yad" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
 dpkg -s inxi | grep installed > /dev/null || echo 'inxi is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
-echo "INXI" $inxistatus
+echo "Inxi" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
 dpkg -s meson | grep installed > /dev/null || echo 'meson is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
-inxistatus=`dpkg -s inxi | grep installed`
+inxistatus=`dpkg -s meson | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
@@ -80,7 +80,7 @@ echo $linuxos | grep "${linuxos_list[$i]}" > /dev/null
 if [ $? = 0 ];then
 #если есть совпадение формируем команду запуска главного модуля для нужной системы
 start0="bash ${script_dir}/bzu-gmb-${linuxos_list[$i]}-beta4.sh"
-echo "Linux OS: ${linuxos_list[$i]}"
+echo "GNU/Linux OS: ${linuxos_list[$i]}"
 export linuxos_version=${linuxos_list[$i]}
 #присваиваем значение переменной что бы заглушка на не поддерживаемую ОС отключилась, при отмене установки
 linuxos_status=$i
@@ -111,8 +111,8 @@ eval $start
 #заглушка на вывод ошибки если система не совместима со скриптом
 if [ $linuxos_status = 0 ];then
 linux=`echo $linuxos | sed 's/PRETTY_NAME=/ /g'`
-echo $linux "OS is not supported"
-zenity --error --ellipsize --text="Данная операционная система $linux не поддерживается bzu-gmb"
+echo $linux "is not supported"
+zenity --error --ellipsize --text="Дистрибутив $linux не поддерживается bzu-gmb"
 fi
 
 exit 0
