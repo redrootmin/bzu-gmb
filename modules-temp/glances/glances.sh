@@ -48,9 +48,9 @@ bash -c "xterm -hold -maximized -e glances --enable-plugin sensors" & sleep 5;su
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "ВНИМАНИЕ: чтобы пользоваться утилитой Glances в консоли, введите это: "	 				  >> "${script_dir}/module_install_log"
+echo "Внимание! Чтобы пользоваться утилитой Glances в консоли, введите это: "	 				  >> "${script_dir}/module_install_log"
 echo "glances --enable-plugin sensors"	 				  >> "${script_dir}/module_install_log"
-echo "Также есть возможность запустить утилиту через ярлых, смотрите в меню программ"	 				  >> "${script_dir}/module_install_log"
+echo "Также есть возможность запустить утилиту через ярлык, смотрите в меню программ"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://github.com/nicolargo/glances"	 				  >> "${script_dir}/module_install_log"
 
 exit 0
