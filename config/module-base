@@ -1,7 +1,7 @@
 xanmod48.png
 XanMod
 LinuxKernel
-Стабильное кастомное ядро Linux, оптимизированное для десктопных GNU/Linux операционных систем с учетом многоядерных процессоров и современных видеокарт, на выходе больше производительности в играх и программах, активно использующих графику. Опции: Low-Latency, BFQ I/O Scheduler, ZSTD kernel, Clear Linux patchs, Wine/Proton Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT
+Стабильное кастомное ядро Linux, оптимизированное для десктопных ОС с учетом многоядерных процессоров и современных видеокарт. Увеличивает производительность в играх и программах, использующих графику. Опции: Low-Latency, BFQ I/O Scheduler, ZSTD kernel, Clear Linux patchs, Wine/Proton Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-stable
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -11,7 +11,7 @@ root
 xanmod-latest48.png
 Xanmod-cacule
 LinuxKernel
-Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных GNU/Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах, активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency, BFQ_I/O_Scheduler, ZSTD_kernel, Clear_Linux_patchs, Wine\Proton_Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT
+Версия кастомного ядра Linux XanMod с высокой отзывчивостью, оптимизированная для десктопных ОС с учетом современных многоядерных процессоров и видеокарт. Увеличивает производительность в играх и программах, использующих графику. Внимание! Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра XanMod. Опции: Low-Latency, BFQ_I/O_Scheduler, ZSTD_kernel, Clear_Linux_patchs, Wine/Proton_Fsync, BMQ_Process_Scheduler, Aufs, PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-latest
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -21,7 +21,7 @@ root
 liquorix-kernel48.png
 Liquorix-Kernel
 LinuxKernel
-Стабильная версия кастомного ядро Linux, основное отличие от XanMod - более новый планировщик процессов MuQSS, который, по заверению разработчика, выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. ВНИМАНИЕ: Вы можете установить Liquorix-Kernel и  Xanmod-Kernel в одну систему. Опции: MuQSS_Process_Scheduler, Preemptible_tree-based_hierarchical_RCU, Hard_Kernel_Preemption, Budget_Fair_Queue, TCP_BBR_Congestion_Control, Binary Builds_For_Popular_Debian_Distros, Distribution_Kernel_Drop-in_Replacement, Minimal_Debugging
+Стабильная версия кастомного ядра Linux. Основное отличие от XanMod - новый планировщик процессов MuQSS, который, по заверению разработчика, выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. Внимание! Вы можете установить Liquorix и XanMod в одну систему. Опции: MuQSS_Process_Scheduler, Preemptible_tree-based_hierarchical_RCU, Hard_Kernel_Preemption, Budget_Fair_Queue, TCP_BBR_Congestion_Control, Binary Builds_For_Popular_Debian_Distros, Distribution_Kernel_Drop-in_Replacement, Minimal_Debugging
 Яцына М.А.
 liquorix-kernel-stable
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -31,7 +31,7 @@ root
 ubuntu-kernel-lowlatency48.png
 Kernel lowlatency 5.8+
 LinuxKernel
-Стабильная версия оригинального ядра Linux для Ubuntu 20.04-20.10 с низкими задержками, основной плюс данной версии ядра - увеличение производительности в нативных играх или мультимедийных программах. Но на практике лучше всего проводить тестирование для конкретной игры или программы, так как возможен и обратный эффект с понижением производительности.
+Стабильная версия оригинального ядра Linux для Ubuntu 20.04-20.10 с низкими задержками. Основной плюс данной версии ядра - увеличение производительности в нативных играх или мультимедийных программах. На практике лучше всего проводить тестирование для конкретной задачи, т.к. возможен обратный эффект с понижением производительности.
 Яцына М.А.
 ubuntu-kernel-lowlatency
 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Ubuntu 20.10 Linux Mint 20
@@ -41,7 +41,7 @@ root
 mesa-oibaf48.png
 Mesa from Oibaf
 OpenDriver
-Тестовый открытый драйвер для Видеокарт AMD/Intel/Nvidia, есть аппаратная поддержка OpenGL 2/3/4, Vulkan 1.2+, Valve ACO, zink, Gallium HUD, Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Kisak.
+Тестовый открытый драйвер для Видеокарт AMD/Intel/Nvidia, есть аппаратная поддержка OpenGL 2/3/4, Vulkan 1.2+, Valve ACO, zink, Gallium HUD, Vulkan Overlay. Внимание! Не выбирается вместе с Mesa from Kisak.
 Яцына М.А.
 mesa-oibaf
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -51,7 +51,7 @@ root
 mesa-kisak48.png
 Mesa from Kisak
 OpenDriver
-Стабильный открытый драйвер для Видеокарт AMD/Intel, есть аппаратная поддержка OpenGL 2/3/4, Vulkan 1.2+, Valve ACO, Gallium HUD, Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf.
+Стабильный открытый драйвер для Видеокарт AMD/Intel, есть аппаратная поддержка OpenGL 2/3/4, Vulkan 1.2+, Valve ACO, Gallium HUD, Vulkan Overlay. Внимание! Не выбирается вместе с Mesa from Oibaf.
 Яцына М.А.
 mesa-kisak
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 19.3 Linux Mint 20 Ubuntu 20.10
@@ -61,7 +61,7 @@ root
 gamemode48.png
 Feral GameMode
 GameTools
-Утилита от компании Feral Interactive, которая на лету изменяет различные системные настройки Linux для достижения максимальной производительности игровых приложений.
+Утилита от компании Feral Interactive, которая на лету изменяет различные системные настройки Linux для достижения максимальной производительности в играх.
 Яцына М.А.
 feralgamemode
 Ubuntu 19.10 Ubuntu 20.04 LTS Ubuntu 20.04.1 LTS Linux Mint 20 Ubuntu 20.10
