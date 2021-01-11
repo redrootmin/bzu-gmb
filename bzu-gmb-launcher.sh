@@ -7,7 +7,7 @@ version0=`cat "${script_dir}/config/name_version"`
 export version="${version0}"
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-if pass_user0=$(zenity --entry --title="Для работы скрипта ${version} требуется Ваш пароль суперпользователя" --text="Введите пароль:" \
+if pass_user0=$(zenity --entry --title="Для работы скрипта требуется пароль root" --text="Введите пароль:" \
  --entry-text="пароль" --hide-text --width=640 --height=128)
 then
 export pass_user=${pass_user0}
@@ -21,44 +21,44 @@ fi
 echo "$USER" > "${script_dir}/config/user"
 
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
-dpkg -s yad | grep installed > /dev/null || echo 'no installing yad :(' | echo "$pass_user" | sudo -S apt install -f -y yad
+dpkg -s yad | grep installed > /dev/null || echo 'yad is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
 YadStatus=`dpkg -s yad | grep installed`
-echo "YAD" $YadStatus
+echo "yad" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
-dpkg -s inxi | grep installed > /dev/null || echo 'no install inxi :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
+dpkg -s inxi | grep installed > /dev/null || echo 'inxi is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
-echo "INXI" $inxistatus
+echo "Inxi" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
-dpkg -s meson | grep installed > /dev/null || echo 'no install meson :(' | echo "$pass_user" | sudo -S apt install -f -y meson
-inxistatus=`dpkg -s inxi | grep installed`
+dpkg -s meson | grep installed > /dev/null || echo 'meson is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
+inxistatus=`dpkg -s meson | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
-dpkg -s ninja-build | grep installed > /dev/null || echo 'no install ninja-build :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
+dpkg -s ninja-build | grep installed > /dev/null || echo 'ninja-build is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "ninja-build" $inxistatus
 
 #проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
-dpkg -s p7zip-rar | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
+dpkg -s p7zip-rar | grep installed > /dev/null || echo 'p7zip-rar is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "p7zip-rar" $inxistatus
 
 #проверяем установлена утилита python-tk - она необходима для установки многих программ
-dpkg -s python-tk | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
+dpkg -s python-tk | grep installed > /dev/null || echo 'python-tk is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
 inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 
 #проверяем установлена утилита xosd-bin - она необходима для работы многих программ
-dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
+dpkg -s xosd-bin | grep installed > /dev/null || echo 'xosd-bin is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
 #проверяем установлена утилита aptitude - она необходима для работы многих программ
-dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
+dpkg -s aptitude | grep installed > /dev/null || echo 'aptitude is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
 inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
 
 #проверяем установлена терминал xterm - он необходим для работы многих программ
-dpkg -s xterm | grep installed > /dev/null || echo 'no install xterm :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
+dpkg -s xterm | grep installed > /dev/null || echo 'xterm is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
 inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
 
 # проверка что за система запустила скрипт
@@ -80,7 +80,7 @@ echo $linuxos | grep "${linuxos_list[$i]}" > /dev/null
 if [ $? = 0 ];then
 #если есть совпадение формируем команду запуска главного модуля для нужной системы
 start0="bash ${script_dir}/bzu-gmb-${linuxos_list[$i]}-beta4.sh"
-echo "Linux OS:${linuxos_list[$i]}"
+echo "GNU/Linux distribution: ${linuxos_list[$i]}"
 export linuxos_version=${linuxos_list[$i]}
 #присваиваем значение переменной что бы заглушка на не поддерживаемую ОС отключилась, при отмене установки
 linuxos_status=$i
@@ -111,10 +111,9 @@ eval $start
 #заглушка на вывод ошибки если система не совместима со скриптом
 if [ $linuxos_status = 0 ];then
 linux=`echo $linuxos | sed 's/PRETTY_NAME=/ /g'`
-echo $linux "No support OS"
-zenity --error --ellipsize --text="данная операционная система $linux не поддерживается bzu-gmb"
+echo $linux "is not supported"
+zenity --error --ellipsize --text="Дистрибутив $linux не поддерживается bzu-gmb"
 fi
-
 
 exit 0
 

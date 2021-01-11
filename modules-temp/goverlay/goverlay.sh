@@ -18,7 +18,7 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка открытой утилиты Goverlay-v0.3.5 от benjamimgois [https://github.com/benjamimgois/goverlay]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка открытой утилиты Goverlay v0.3.5 от benjamimgois [https://github.com/benjamimgois/goverlay]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
@@ -37,14 +37,14 @@ cd
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2;echo "Установлен Goverlay-v0.3.5!"|| let "error += 1"
+tput setaf 2;echo "Установлен Goverlay v0.3.5!"|| let "error += 1"
 #сброс цвета текста в терминале
 tput sgr0
 /usr/share/goverlay/goverlay & sleep 5;sudo -S killall goverlay
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
 echo "ВНИМАНИЕ: Goverlay работает только с программами MangoHud и vkBasalt"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://github.com/benjamimgois/goverlay"	 				  >> "${script_dir}/module_install_log"
