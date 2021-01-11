@@ -46,7 +46,7 @@ bash -c "${script_dir_install}${name_script}/${name_script}.sh" & sleep 5;sudo -
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
 echo "ВНИМАНИЕ: xboxdrv-qt-5.6-rc является неофицальным GUI для драйвера xboxdrv, поэтому разработчики рекомендуют пользоваться утилитой в консоле, пример: "	 				  >> "${script_dir}/module_install_log"
 echo "cat /proc/bus/input/devices | grep "ipega media gamepad controller" -A 4 | grep -oh "event[1-9]*[1-9]""	 				  >> "${script_dir}/module_install_log"

@@ -18,7 +18,7 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка тестируемой версии, кастомного ядра Linux от XanMod [https://xanmod.org]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка тестируемой версии кастомного ядра Linux от XanMod [https://xanmod.org]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
@@ -35,16 +35,16 @@ sudo -S update-initramfs -u || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 kernel_installed=`dpkg --list | grep -E -m 1 'linux-image.*xanmod'` || let "error += 1"
-tput setaf 2; echo "Установлено новое ядро:${kernel_installed}"  || let "error += 1"
+tput setaf 2; echo "Установлено новое ядро ${kernel_installed}"  || let "error += 1"
 #сброс цвета текста в терминале
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "для отображения списка ядер при загрузке GRUB "	 				  >> "${script_dir}/module_install_log"
-echo "нужно добавить флаги в файл: /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
-echo "для этого в консоле запускаем:sudo nano /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
+echo "Для отображения списка ядер при загрузке GRUB "	 				  >> "${script_dir}/module_install_log"
+echo "нужно добавить флаги в файл /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
+echo "для этого в консоли запускаем sudo nano /etc/default/grub"	 				  >> "${script_dir}/module_install_log"
 echo "далее редактируем либо создаем эти строки в файле:"	 				  >> "${script_dir}/module_install_log"
 echo "GRUB_DEFAULT="saved""	 				  >> "${script_dir}/module_install_log"
 echo "GRUB_SAVEDEFAULT=true"	 				  >> "${script_dir}/module_install_log"

@@ -20,7 +20,7 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка тестового, открытого драйвера Mesa 20.2+ от Oibaf [https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]. Версия скрипта 1.1, автор: Яцына М.А."
+tput setaf 2; echo "Установка тестового открытого драйвера Mesa 20.2+ от Oibaf [https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
@@ -40,18 +40,18 @@ sudo -S aptitude -y upgrade || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер:${mesa_version}"  || let "error += 1"
+tput setaf 2; echo "Установлен драйвер ${mesa_version}"  || let "error += 1"
 #сброс цвета текста в терминале
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "для использования функций: Valve ACO(fast work high shaders) и zink(render OpenGL to Vulkan) "	 				  >> "${script_dir}/module_install_log"
+echo "Для использования функций Valve ACO (fast work high shaders) и Zink (render OpenGL to Vulkan)"	 				  >> "${script_dir}/module_install_log"
 echo "нужно использовать следующие флаги:"	 				  >> "${script_dir}/module_install_log"
-echo "для Vavle ACO: флаг RADV_PERFTEST=aco в Mesa 20.2 теперь не нужен, а если ACO нужно отключить используйте: RADV_DEBUG=llvm"	 				  >> "${script_dir}/module_install_log"
-echo "для zink: MESA_LOADER_DRIVER_OVERRIDE=zink"	 				  >> "${script_dir}/module_install_log"
-echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
+echo "для Vavle ACO: RADV_PERFTEST=aco (в Mesa 20.2+ теперь не нужен), а если ACO нужно отключить, используйте: RADV_DEBUG=llvm"	 				  >> "${script_dir}/module_install_log"
+echo "для Zink: MESA_LOADER_DRIVER_OVERRIDE=zink"	 				  >> "${script_dir}/module_install_log"
+echo "Например, в Steam:"	 				  >> "${script_dir}/module_install_log"
 echo "RADV_DEBUG=llvm %command%"	 				  >> "${script_dir}/module_install_log"
 echo "MESA_LOADER_DRIVER_OVERRIDE=zink %command%"	 				  >> "${script_dir}/module_install_log"
 #echo "GRUB_TIMEOUT="5""	 				  >> "${script_dir}/module_install_log"

@@ -39,18 +39,18 @@ sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2
-sudo -S dpkg --list | echo "Установлена утилита:"`grep "${name_script}" | sed s/"ii"//g`
+sudo -S dpkg --list | echo "Установлена утилита "`grep "${name_script}" | sed s/"ii"//g`
 #сброс цвета текста в терминале
 tput sgr0
 bash -c "${script_dir_install}${name_script}/${name_script}.sh" & sleep 5;sudo -S killall xboxdrv-qt-5.6-rc
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "ВНИМАНИЕ: xboxdrv-qt-5.6-rc является неофицальным GUI для драйвера xboxdrv, поэтому разработчики рекомендуют пользоваться утилитой в консоле, пример: "	 				  >> "${script_dir}/module_install_log"
+echo "Внимание! xboxdrv-qt-5.6-rc является неофицальным GUI для драйвера xboxdrv, поэтому разработчики рекомендуют пользоваться утилитой в консоли, пример: "	 				  >> "${script_dir}/module_install_log"
 echo "cat /proc/bus/input/devices | grep "ipega media gamepad controller" -A 4 | grep -oh "event[1-9]*[1-9]""	 				  >> "${script_dir}/module_install_log"
 echo "sudo xboxdrv --evdev /dev/input/event** --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_Z=x2,ABS_RZ=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_A=a,BTN_B=b,BTN_X=x,BTN_Y=y,BTN_TL=lb,BTN_TR=rb,BTN_TL2=lt,BTN_TR2=rt,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_SELECT=back,BTN_START=start --silent &"	 				  >> "${script_dir}/module_install_log"
-echo "Подробнее о командах и фукнциях тут: https://xboxdrv.gitlab.io/xboxdrv.html"	 				  >> "${script_dir}/module_install_log"
+echo "Подробнее о командах и функциях тут: https://xboxdrv.gitlab.io/xboxdrv.html"	 				  >> "${script_dir}/module_install_log"
 
 exit 0

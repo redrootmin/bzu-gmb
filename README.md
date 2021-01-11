@@ -1,24 +1,22 @@
 # bzu-gmb
-bzu-gmb is auto-installer linux gaming tools for debian-based distributions , bzu-gmb created on bash with the use of zenity, yad libraries
-----
+bzu-gmb is an auto-installer of GNU/Linux gaming tools for Debian-based distributions, written in bash using zenity and yad libraries
+-----------
 <img src="image/bzu-gmb-beta4-7.png" alt="My cool logo"/>
 
-Options bzu-gmb-beta4
-----------
-Ready modules for Ubuntu: XanMod, Xanmod-edge, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, Goverlay, CoreCtrl, Furmark_Pack(OpenGL Benchmark), TFM_Vulkan(Benchmark).
+Options
+-----------
+Ready modules for Ubuntu: XanMod, Xanmod-cacule, Liquorix, Low-Latency kernel, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, Inxi, Glances, CPU-X, Xboxdrv, Steam, ProtonGE, PortWINE, PortProton, Furmark_Pack (OpenGL, Zink Benchmark), TFM_Vulkan (Benchmark), Gdebi, GnomeExtensionsPack.
 
-For Linux Mint 19.3 not ready: Feral GameMode, CoreCtrl.
+Not ready modules for Linux Mint 19.3: Feral GameMode, CoreCtrl.
 
+Installation:
+-----------
+Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-FAQ for install beta4:
-------------
+Download the latest bzu-gmb version to user space (/home/user/)
 
-go to [release](https://github.com/redrootmin/bzu-gmb/releases)
-
-download last version bzu-gmb in to user space (/home/user/)
-
-go to terminal and inter commands:
-
+Go to terminal and type the following commands:
+```
 tar -xpJf bzu-gmb-beta4-installer.tar.xz
 
 cd ~/bzu-gmb
@@ -26,20 +24,18 @@ cd ~/bzu-gmb
 chmod +x bzu-gmb-beta4-installer.sh
 
 ./bzu-gmb-beta4-installer.sh
+```
 
-To Do:
------
+TODO:
+-----------
+- Add modules: psensor + config, new benchmarks, proton-rdr2, portwine ports
 
--now modules: psensor+config, new benchmarks, protonGE for steam, proton-rdr2, portwine ports
+- Add REOS support (testing)
 
--support re-os(testing)
+- Add Pop!_OS support (testing)
 
--support pop!_os(testing)
+- Add new modules and update old ones
 
--now modules and update old
+- Test new modules from other authors (if they are)
 
--testing now modele from other authors (if they will)
-
--now version beta5: fix bugs, new function, test new modules for multimedia, visualization Ubuntu
-
-
+- Add beta5 version: fix bugs, add new functionality, test new multimedia modules, customize Ubuntu

@@ -59,7 +59,7 @@ cd /usr/share/test/GpuTest_Linux_x64_0.7.0/
 ./GpuTest /test=fur /width=1024 /height=640 & sleep 5;sudo -S killall GpuTest
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://www.geeks3d.com/gputest/"	 				  >> "${script_dir}/module_install_log"
 
 exit 0

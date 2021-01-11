@@ -18,7 +18,7 @@ script_dir_install=`cat "${script_dir}/config/script_dir_install"`
 date_install=`date`
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка утилиты glances [https://github.com/nicolargo/glances]. Версия скрипта 1.0, автор: Mirthless D"
+tput setaf 2; echo "Установка утилиты Glances [https://github.com/nicolargo/glances]. Версия скрипта 1.0, автор: Mirthless D"
 tput sgr0
 
 #запуск основных команд модуля
@@ -39,18 +39,18 @@ sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2
-sudo -S dpkg --list | echo "Установлена утилита:"`grep "${name_script}" | sed s/"ii"//g`
+sudo -S dpkg --list | echo "Установлена утилита "`grep "${name_script}" | sed s/"ii"//g`
 #сброс цвета текста в терминале
 tput sgr0
 bash -c "xterm -hold -maximized -e glances --enable-plugin sensors" & sleep 5;sudo -S killall glances xterm
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "ВНИМАНИЕ: что бы пользоваться утилитой glances в консоле, введите это: "	 				  >> "${script_dir}/module_install_log"
+echo "Внимание! Чтобы пользоваться утилитой Glances в консоли, введите это: "	 				  >> "${script_dir}/module_install_log"
 echo "glances --enable-plugin sensors"	 				  >> "${script_dir}/module_install_log"
-echo "Также есть возможность запустить утилиту через ярлых, смотрите в меню программ"	 				  >> "${script_dir}/module_install_log"
+echo "Также есть возможность запустить утилиту через ярлык, смотрите в меню программ"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://github.com/nicolargo/glances"	 				  >> "${script_dir}/module_install_log"
 
 exit 0
