@@ -21,44 +21,44 @@ fi
 echo "$USER" > "${script_dir}/config/user"
 
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
-dpkg -s yad | grep installed > /dev/null || echo 'yad is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
+dpkg -s yad | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y yad
 YadStatus=`dpkg -s yad | grep installed`
 echo "yad" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
-dpkg -s inxi | grep installed > /dev/null || echo 'inxi is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
+dpkg -s inxi | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
 echo "Inxi" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
-dpkg -s meson | grep installed > /dev/null || echo 'meson is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
+dpkg -s meson | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y meson
 inxistatus=`dpkg -s meson | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
-dpkg -s ninja-build | grep installed > /dev/null || echo 'ninja-build is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
+dpkg -s ninja-build | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y ninja-build
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "ninja-build" $inxistatus
 
 #проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
-dpkg -s p7zip-rar | grep installed > /dev/null || echo 'p7zip-rar is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
-inxistatus=`dpkg -s ninja-build | grep installed`
+dpkg -s p7zip-rar | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
+inxistatus=`dpkg -s p7zip-rar | grep installed`
 echo "p7zip-rar" $inxistatus
 
 #проверяем установлена утилита python-tk - она необходима для установки многих программ
-dpkg -s python-tk | grep installed > /dev/null || echo 'python-tk is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
+dpkg -s python-tk | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y python-tk
 inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 
 #проверяем установлена утилита xosd-bin - она необходима для работы многих программ
-dpkg -s xosd-bin | grep installed > /dev/null || echo 'xosd-bin is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
+dpkg -s xosd-bin | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
 #проверяем установлена утилита aptitude - она необходима для работы многих программ
-dpkg -s aptitude | grep installed > /dev/null || echo 'aptitude is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
+dpkg -s aptitude | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y aptitude
 inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
 
 #проверяем установлена терминал xterm - он необходим для работы многих программ
-dpkg -s xterm | grep installed > /dev/null || echo 'xterm is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
+dpkg -s xterm | grep installed > /dev/null || echo "$pass_user" | sudo -S apt install -f -y xterm
 inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
 
 # проверка что за система запустила скрипт
