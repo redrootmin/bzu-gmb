@@ -22,7 +22,7 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка дополнительных пакетов и утилит для портов проекта PortWINE https://portwine-linux.ru/portwine-faq/]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка дополнительныз пакетов и утилит для портов проекта portwine https://portwine-linux.ru/portwine-faq/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
@@ -39,14 +39,14 @@ sudo -S sudo apt autoremove || true
 #tput setaf 1; echo "При установки Lutris произошла ошибка!"  || let "error += 1"
 #tput sgr0
 #else
-tput setaf 2; echo "Установка зависимостей PortWINE завершена"
+tput setaf 2; echo "Установка PortWINE зависимостей завершена"
 tput sgr0
 #тестовый запуск Lutris
 #lutris & sleep 5;sudo -S killall lutris
 #fi
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
+echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
 #Добавляем информацию о том как использовать CoreCtrl лог установки
 #echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"

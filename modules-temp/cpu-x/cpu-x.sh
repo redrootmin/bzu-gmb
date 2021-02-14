@@ -18,21 +18,30 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка утилиты CPU-X для вывода информации о процессоре, материнской плате, оперативной памяти, графическом процессоре и о самой операционной системе [https://x0rg.github.io/CPU-X/]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка утилиты cpu-x для вывода информации о процессоре, материнской платы, оперативной памяти, графического процессора и о самой операционной системе [https://x0rg.github.io/CPU-X/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
 sudo -S apt install -f -y --reinstall cpu-x || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-sudo dpkg --list | echo "Установлена утилита "`grep "cpu-x" | sed s/"ii"//g`
+sudo dpkg --list | echo "Установлена утилита:"`grep "cpu-x" | sed s/"ii"//g`
 #сброс цвета текста в терминале
 tput sgr0
 #тестовый запуск Psensor
 sudo -S cpu-x & sleep 5;sudo -S killall cpu-x
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
+echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
+
+#Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
+#echo "для использования Feral GameMode:"	 				  >> "${script_dir}/module_install_log"
+#echo "gamoderun /way/to/app"	 				  >> "${script_dir}/module_install_log"
+
+#echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
+#echo "gamemoderun %command%"	 				  >> "${script_dir}/module_install_log"
+#echo "Подробнее о командах и функциях тут: https://github.com/FeralInteractive/gamemode"	 				  >> "${script_dir}/module_install_log"
+
 
 #задержка вывода информации о итогах установки, что бы пользователь мог ознакомиться.
 

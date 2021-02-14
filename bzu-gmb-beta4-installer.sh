@@ -6,18 +6,15 @@
 if [ "$UID" -eq 0 ];then
 zenity --error --text="Этот скрипт не нужно запускать из под root!"; exit 1
 else
-echo "Всё хорошо, этот скрипт не запущен из под root!"
+echo "все хорошо этот скрипт не запущен из под root!"
 fi
 
 #Уведомление пользователя, о том что он устанавливает себе на ПК
-zenity --question --title="BZU GameMod Boosting Installer beta4-7" --text="Данный скрипт установит на вашу OC GNU/Linux утилиту bzu-gmb-beta4. Она поможет вам быстро и легко установить все, что требуется для оптимизации и ускорения системы для игр и программ, которые используют 3D графику. 
-Внимание! Скрипт офицально поддерживает только Ubuntu 20.04-20.10 и оптимизирован под видеокарты компании AMD. Установку Вы совершаете на свой страх и риск, автор не несёт ответственности за любые негативные последствия для вашей OC. 
-Утилита будет установлена в папку /usr/share/bzu-gmb. 
-Нажмите Да, если Вы готовы продолжить установку." --width=560 --height=128
+zenity --question --title="BZU GameMod Boosting Installer beta4-7" --text="Данный скрипт установит на вашу OC GNU\Linux утилиту BZU-GMB-BETA4, она поможет вам быстро и без сложностей установить все, что требуется для оптимизации и ускорения системы для игр и программ которые активно используют 3Д графику. ВНИМАНИЕ: Скрипт пока офицально поддерживает только: Ubuntu 20.04, Ubuntu 20.10 и оптимизирован под видеокарты компании AMD. Но в любом случае, установку Вы совершаете на свой страх и риск, за любые негативные последствия для вашей OC GNU\Linux, автор ответственность не несет. Утилита будит остановлена в папку:[/usr/share/bzu-gmb]. Нажмите ДА, если готовы продолжить установку." --width=560 --height=128
 if [ "$?" -eq "0" ];then
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-if pass_user0=$(zenity --entry --title="Для работы скрипта установки требуется пароль root" --text="Введите пароль:" \
+if pass_user0=$(zenity --entry --title="Для работы скрипта установки bzu-gmb-beta4 требуется пароль root" --text="Введите пароль:" \
  --entry-text="пароль" --hide-text --width=560 --height=128)
 then
 export pass_user=${pass_user0}
@@ -40,44 +37,44 @@ bzu_gmb_name_arc="bzu-gmb-beta4-installer"
 
 
 #проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
-dpkg -s yad | grep installed > /dev/null || echo 'yad is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
+dpkg -s yad | grep installed > /dev/null || echo 'no installing yad :(' | echo "$pass_user" | sudo -S apt install -f -y yad
 YadStatus=`dpkg -s yad | grep installed`
-echo "yad" $YadStatus
+echo "YAD" $YadStatus
 
 #проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
-dpkg -s inxi | grep installed > /dev/null || echo 'inxi is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
+dpkg -s inxi | grep installed > /dev/null || echo 'no install inxi :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
 inxistatus=`dpkg -s inxi | grep installed`
-echo "Inxi" $inxistatus
+echo "INXI" $inxistatus
 
 #проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
-dpkg -s meson | grep installed > /dev/null || echo 'meson is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
-inxistatus=`dpkg -s meson | grep installed`
+dpkg -s meson | grep installed > /dev/null || echo 'no install meson :(' | echo "$pass_user" | sudo -S apt install -f -y meson
+inxistatus=`dpkg -s inxi | grep installed`
 echo "meson" $inxistatus
 
 #проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
-dpkg -s ninja-build | grep installed > /dev/null || echo 'ninja-build is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
+dpkg -s ninja-build | grep installed > /dev/null || echo 'no install ninja-build :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
 inxistatus=`dpkg -s ninja-build | grep installed`
 echo "ninja-build" $inxistatus
 
 #проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
-dpkg -s p7zip-rar | grep installed > /dev/null || echo 'p7zip-rar is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
-inxistatus=`dpkg -s p7zip-rar | grep installed`
+dpkg -s p7zip-rar | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
+inxistatus=`dpkg -s ninja-build | grep installed`
 echo "p7zip-rar" $inxistatus
 
 #проверяем установлена утилита python-tk - она необходима для установки многих программ
-dpkg -s python-tk | grep installed > /dev/null || echo 'python-tk is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
+dpkg -s python-tk | grep installed > /dev/null || echo 'no install p7zip-rar :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
 inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
 
 #проверяем установлена утилита xosd-bin - она необходима для работы многих программ
-dpkg -s xosd-bin | grep installed > /dev/null || echo 'xosd-bin is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
+dpkg -s xosd-bin | grep installed > /dev/null || echo 'no install xosd-bin :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
 inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
 
 #проверяем установлена утилита aptitude - она необходима для работы многих программ
-dpkg -s aptitude | grep installed > /dev/null || echo 'aptitude is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
+dpkg -s aptitude | grep installed > /dev/null || echo 'no install aptitude :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
 inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
 
 #проверяем установлена терминал xterm - он необходим для работы многих программ
-dpkg -s xterm | grep installed > /dev/null || echo 'xterm is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
+dpkg -s xterm | grep installed > /dev/null || echo 'no install xterm :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
 inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
 
 # Проверка что существует папка applications, если нет, создаем ее
@@ -85,51 +82,54 @@ inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
 #then
 #	mkdir -p "/home/${USER}/.local/share/applications"
 #fi
-
+error=0
 # Проверка что существует папка /usr/share/test, если нет, создаем ее
 if [ ! -d "/usr/share/test" ]
 then
-echo "$pass_user" | sudo -S mkdir -p "/usr/share/test" || let "error += 1"
-echo "$pass_user" | sudo -S chmod -R 755 /usr/share/test || let "error += 1"
+echo "$pass_user" | sudo -S mkdir -p "/usr/share/test" || error=$(($error + 1))
+echo "$pass_user" | sudo -S chmod -R 755 /usr/share/test || error=$(($error + 1))
 fi
 
 
 #Основные команды установки
-echo "$pass_user" | sudo -S rm -rf "${script_dir}" || let "error += 1"
-echo "$pass_user" | sudo -S rm -rf "/home/$USER/.local/share/bzu-gmb" || let "error += 1"
-echo "$pass_user" | sudo -S rm -f "${script_ext_dir}applications/${name_desktop_file}" || let "error += 1"
-echo "$pass_user" | sudo -S tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || let "error += 1"
+echo "$pass_user" | sudo -S rm -rf "${script_dir}" || error=$(($error + 1))
+echo "$pass_user" | sudo -S rm -rf "/home/$USER/.local/share/bzu-gmb" || error=$(($error + 1))
+echo "$pass_user" | sudo -S rm -f "${script_ext_dir}applications/${name_desktop_file}" || error=$(($error + 1))
+echo "$pass_user" | sudo -S tar -xpJf "${script_dir_install}/${bzu_gmb_name_arc}.tar.xz" -C "${script_ext_dir}" || error=$(($error + 1))
 
 #объявляем нужные переменные для скрипта
-version=`cat ${script_dir}/config/name_version` || let "error += 1"
-name_desktop="${version}" || let "error += 1"
+version=`cat ${script_dir}/config/name_version` || error=$(($error + 1))
+name_desktop="${version}" || error=$(($error + 1))
 
 #Создаем ярлык для скрипта
 Exec_full="bash -c "${script_dir}"/bzu-gmb-launcher.sh" 
-sudo -S echo "$pass_user" | sudo -S echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || let "error += 1"
-sudo -S echo "$pass_user" | sudo -S echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "Type=Application" 				 >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "Categories=Game;System"	                         >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "StartupNotify=true" 	    			  >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/${name_desktop_file}"
-sudo -S echo "$pass_user" | sudo -S echo "Terminal=true"         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "[Desktop Entry]"	 				  > "${script_dir}/${name_desktop_file}" || error=$(($error + 1))
+echo "$pass_user" | sudo -S echo "Name=${name_desktop}" 				 >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Exec="${Exec_full}""	                         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Type=Application" 				 >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Categories=Game;System"	                         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "StartupNotify=true" 	    			  >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Path="${script_dir}""	                	  >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Icon="${script_dir}/icons/bzu-gmb512.png""         >> "${script_dir}/${name_desktop_file}"
+echo "$pass_user" | sudo -S echo "Terminal=true"         >> "${script_dir}/${name_desktop_file}"
 
 #переносим ярлык в папку программ
-echo "$pass_user" | sudo -S cp -f "${script_dir}/${name_desktop_file}" /usr/share/applications/ || let "error += 1"
+echo "$pass_user" | sudo -S cp -f "${script_dir}/${name_desktop_file}" /usr/share/applications/ || error=$(($error + 1))
 
 #даем права на главные скрипты утилиты
-sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-18.04-LTS-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04.1-LTS-beta4.sh" || let "error += 1"
-sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.10-beta4.sh" || let "error += 1"
+echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh" || error=$(($error + 1))
+echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04-LTS-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04.1-LTS-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-20.04.2-LTS-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-20.1-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Ubuntu-19.10-beta4.sh" || error=$(($error + 1))
+#echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-Linux-Mint-19.3-beta4.sh" || error=$(($error + 1))
 
-if ((error > 3));then
+
+
+if (($error > 3));then
 zenity --error --width=512 --text="Установка BZU GameMod Boosting Installer beta4 завершена c ошибками!"
 else
 zenity --info --width=512 --text="Установка BZU GameMod Boosting Installer beta4 завершена успешно."

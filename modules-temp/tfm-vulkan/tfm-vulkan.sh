@@ -55,7 +55,7 @@ tput setaf 2;echo "Установлен Tyler's Frame Machine [Vulkan]!"|| let "
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
+echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://github.com/Tylemagne/TFM"	 				  >> "${script_dir}/module_install_log"
 
 exit 0
@@ -73,3 +73,9 @@ exit 0
 #https://losst.ru/massivy-bash
 #https://www.shellhacks.com/ru/grep-or-grep-and-grep-not-match-multiple-patterns/
 #https://techrocks.ru/2019/01/21/bash-if-statements-tips/
+
+
+
+
+
+

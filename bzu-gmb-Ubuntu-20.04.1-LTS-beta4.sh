@@ -25,7 +25,7 @@ export modules_select=`eval ${select_install}`
 
 #сбрасываем log установки в файле: module_install_log
 date_install=`date`
-echo "$pass_user" | sudo -S echo "Лог установки модулей из ${version}, дата установки: ${date_install}" > "${script_dir}/module_install_log"
+echo "$pass_user" | sudo -S echo "Лог установки модулей из ${version}, дата установки:${date_install}" > "${script_dir}/module_install_log"
 echo "$pass_user" | sudo -S echo "=========================================" >> "${script_dir}/module_install_log"
 #сбрасываем глобальную ошибку
 global_error=0
@@ -58,7 +58,7 @@ bash ${run_module} ${pass_user} || let "global_error += 1"
 echo "$pass_user" | sudo -S rm "${script_dir}/modules-temp/${module_base[$i+5]}/module_config" || true
 #проверяем есть ли глобальная ошибка в модуле при установке, если да, пишем об этом в логе, логика не срабатывает повторно, для это используется дополнительная переменная global_error0
 if (($global_error > $global_error0));then
-echo "$pass_user" | sudo -S echo "В модуле ${module_base[$i+1]} критическая ошибка, дата установки: ${date_install}" >> "${script_dir}/module_install_log"
+echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Критическая ошибка, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 let "global_error0 += 1" 
 fi
 else
@@ -67,7 +67,7 @@ echo "$pass_user" | sudo -S bash ${run_module} || let "global_error += 1"
 echo "$pass_user" | sudo -S rm "${script_dir}/modules-temp/${module_base[$i+5]}/module_config" || true
 #проверяем есть ли глобальная ошибка в модуле при установке, если да, пишем об этом в логе, логика не срабатывает повторно, для это используется дополнительная переменная global_error0
 if (($global_error > $global_error0));then
-echo "$pass_user" | sudo -S echo "В модуле ${module_base[$i+1]} критическая ошибка, дата установки: ${date_install}" >> "${script_dir}/module_install_log"
+echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Критическая ошибка, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 let "global_error0 += 1" 
 fi
 fi
@@ -79,13 +79,14 @@ done
 #echo ${global_error}
 if (($global_error > 0));then
 echo "$pass_user" | sudo -S echo "[[[[[[[[[[[[[[[[CRITICAL ERRORS]]]]]]]]]]]]]]]]" >> "${script_dir}/module_install_log"
-echo "$pass_user" | sudo -S echo "Количество критических ошибок в модулях: ${global_error}, дата установки: ${date_install}" >> "${script_dir}/module_install_log"
+echo "$pass_user" | sudo -S echo "Количество критических ошибок в модулях:${global_error}, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 fi
 
 #проверка как завершилась работа установки модулей, если были ошибки, то логи показывать не нужно
 zenity --text-info --width=480 --height=680 --title="Лог установки модулей ${version} " --filename="${script_dir}/module_install_log" --editable
 
 exit 0
+
 
 #Для создания скрипта использовались следующие ссылки
 #https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta

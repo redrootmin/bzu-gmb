@@ -267,4 +267,35 @@ sudo apt-get install xscreensaver xscreensaver-gl xscreensaver-data-extra xscree
 for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.avi}.mp4"; done
 
 34. disable service
-service=replay-sorcery; systemctl stop $service && systemctl disable $service && rm /etc/systemd/system/$service &&  systemctl daemon-reload && systemctl reset-failed
+service=replay-sorcery; systemctl stop $service && systemctl disable $service && rm /etc/systemd/system/$service &&  systemctl daemon-reload && systemctl reset-failed\
+
+35. github desktop
+wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftky-desktop.list'
+sudo apt-get update
+
+36. УСТАНОВКА ПО ДЛЯ ЧИСТКИ ОТ МУСОРА И МОНИТОРИНГА  СИСТЕМЫ Stacer
+sudo add-apt-repository ppa:oguzhaninan/stacer
+sudo apt  install stacer
+
+37. анализ свободного места на диске baobab
+sudo apt install baobab
+
+38. obs-studio
+sudo apt-add-repository ppa:obsproject/obs-studio
+sudo apt-get update
+sudo apt-get install ffmpeg obs-studio
+УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER, замена obs-qtwebkit, основан на Chromium OEM
+sudo apt install cmake libgconf-2-4
+#скачиваем архив с плагином и распаковываем его: https://github.com/bazukas/obs-linuxbrowser/releases
+или скачиваем в консоли
+wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
+#создаем папку плагины в конфигурации OBS-studio
+mkdir -p $HOME/.config/obs-studio/plugins
+#далее распаковываем архив в папку с плагинами OBS-studio
+tar xfvz linuxbrowser*.tgz -C $HOME/.config/obs-studio/plugins/
+#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
+#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
+
+Автор: Яцына М.А, Александр Дронов
+

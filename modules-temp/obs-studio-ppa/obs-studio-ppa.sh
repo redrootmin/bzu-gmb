@@ -23,27 +23,43 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
 version_proton=${module_conf[7]}
 #получение пароля root пользователя
-pass_root="$1"
-#даем информацию в терминал какой модуль устанавливается
+pass_user="$1"
 
-tput setaf 2; echo "Установка утилиты для игр PortProton от проекта PortWine [hhttps://portwine-linux.ru/port-proton-linux/]. Версия скрипта 1.0, автор: Яцына М.А."
+#даем информацию в терминал какой модуль устанавливается
+tput setaf 2; echo "Установка открытой программы для трансляций OBS Studio [https://obsproject.com/ru]. Установка утилиты осуществлыется через репозиторий: [sudo add-apt-repository ppa:obsproject/obs-studio]  Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
-cd "/home/${user_run_script}"
-sudo -u ${user_run_script} wget -c -T 2 "https://portwine-linux.ru/ftp/portwine/${version_proton}" && sh "./${version_proton}" -rus && rm -f "./${version_proton}"
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+echo "${pass_user}" | sudo -S add-apt-repository -y ppa:obsproject/obs-studio  || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall ffmpeg obs-studio || let "error += 1"
+# переходим в папку пользователя
+cd
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
+
+# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
+echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
+#скачиваем архив с плагином и распаковываем его
+wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
+#создаем папку плагины в конфигурации OBS-studio
+mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
+#далее распаковываем архив в папку с плагинами OBS-studio
+tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
+#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
+#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
+
 #формируем информацию о том что в итоге установили и показываем в терминал
-#module_installing=`dpkg -s lutris | grep installed` || true
-#if [[ "${module_installing}" == "" ]]
-#then
-#tput setaf 1; echo "При установки Lutris произошла ошибка!"  || let "error += 1"
-#tput sgr0
-#else
-tput setaf 2; echo "Установка PortProton завершена"
+mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
+tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
+#сброс цвета текста в терминале
 tput sgr0
-#тестовый запуск Lutris
-#lutris & sleep 5;sudo -S killall lutris
-#fi
+
+# 5 секунд теста mangohud
+obs studio & sleep 5;echo "${pass_user}" | sudo -S killall obs studio
+tput setaf 2; echo "Установка завершена"
+tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"

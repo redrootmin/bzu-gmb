@@ -5,9 +5,13 @@ script_dir0=$(cd $(dirname "$0") && pwd);
 export script_dir="${script_dir0}"
 version0=`cat "${script_dir}/config/name_version"`
 export version="${version0}"
+# получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
+echo "$USER" > "${script_dir}/config/user"
+# проверка что за система запустила скрипт
+#linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-if pass_user0=$(zenity --entry --title="Для работы скрипта требуется пароль root" --text="Введите пароль:" \
+if pass_user0=$(zenity --entry --title="Для работы скрипта ${version} требуется Ваш пароль суперпользователя" --text="Введите пароль:" \
  --entry-text="пароль" --hide-text --width=640 --height=128)
 then
 export pass_user=${pass_user0}
@@ -17,102 +21,56 @@ else
 exit 0
 fi
 
-# получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
-echo "$USER" > "${script_dir}/config/user"
+#функция для проверки пакетов на установку, если нужно установлевает
+function install_package {
+dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+package_status=`dpkg -s $1 | grep -oh "installed"`
+echo "$1:" $package_status
+}
 
-#проверка установлен или нет yad и другое необходимое ПО для bzu-gmb
-dpkg -s yad | grep installed > /dev/null || echo 'yad is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y yad
-YadStatus=`dpkg -s yad | grep installed`
-echo "yad" $YadStatus
-
-#проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
-dpkg -s inxi | grep installed > /dev/null || echo 'inxi is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y inxi
-inxistatus=`dpkg -s inxi | grep installed`
-echo "Inxi" $inxistatus
-
-#проверяем установлена утилита meson - она необходима для сборки многих программ из исходников
-dpkg -s meson | grep installed > /dev/null || echo 'meson is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y meson
-inxistatus=`dpkg -s meson | grep installed`
-echo "meson" $inxistatus
-
-#проверяем установлена утилита ninja-build - она необходима для сборки многих программ из исходников
-dpkg -s ninja-build | grep installed > /dev/null || echo 'ninja-build is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y ninja-build
-inxistatus=`dpkg -s ninja-build | grep installed`
-echo "ninja-build" $inxistatus
-
-#проверяем установлена утилита p7zip-rar - она необходима для установки многих программ
-dpkg -s p7zip-rar | grep installed > /dev/null || echo 'p7zip-rar is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y p7zip-rar rar unrar unace arj
-inxistatus=`dpkg -s ninja-build | grep installed`
-echo "p7zip-rar" $inxistatus
-
-#проверяем установлена утилита python-tk - она необходима для установки многих программ
-dpkg -s python-tk | grep installed > /dev/null || echo 'python-tk is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y python-tk
-inxistatus=`dpkg -s python-tk | grep installed`;echo "python-tk" $inxistatus
-
-#проверяем установлена утилита xosd-bin - она необходима для работы многих программ
-dpkg -s xosd-bin | grep installed > /dev/null || echo 'xosd-bin is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xosd-bin
-inxistatus=`dpkg -s xosd-bin | grep installed`;echo "xosd-bin" $inxistatus
-
-#проверяем установлена утилита aptitude - она необходима для работы многих программ
-dpkg -s aptitude | grep installed > /dev/null || echo 'aptitude is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y aptitude
-inxistatus=`dpkg -s aptitude | grep installed`;echo "aptitude" $inxistatus
-
-#проверяем установлена терминал xterm - он необходим для работы многих программ
-dpkg -s xterm | grep installed > /dev/null || echo 'xterm is not installed :(' | echo "$pass_user" | sudo -S apt install -f -y xterm
-inxistatus=`dpkg -s xterm | grep installed`;echo "xterm" $inxistatus
-
-# проверка что за система запустила скрипт
-linuxos=`grep '^PRETTY_NAME' /etc/os-release`
-
-#загружаем список операционных систем из файла в массив
-readarray -t linuxos_list < "${script_dir}/config/list-os"
-
-#создаем цикл где будет проверяться согласно данных из файла в какой системе запущен скрипт
-linuxos_num=${#linuxos_list[@]}
-#задаем переменные, что бы отработал заглушка на неправильную ОС и очищаем переменную для цикла на всякий случай
-linuxos_status=0
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
 i=0
-
-while [ $i -lt $linuxos_num ]
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
 do
-#проверяем на совпадение списка систем из файла и системы в которой запущен скрипт
-echo $linuxos | grep "${linuxos_list[$i]}" > /dev/null
-if [ $? = 0 ];then
-#если есть совпадение формируем команду запуска главного модуля для нужной системы
-start0="bash ${script_dir}/bzu-gmb-${linuxos_list[$i]}-beta4.sh"
-echo "GNU/Linux distribution: ${linuxos_list[$i]}"
-export linuxos_version=${linuxos_list[$i]}
-#присваиваем значение переменной что бы заглушка на не поддерживаемую ОС отключилась, при отмене установки
-linuxos_status=$i
-#echo "start0:$start0"
-fi
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 
-#Топорная заглушка на случай если бета версия Ubuntu
-#echo $linuxos | grep "Ubuntu 20.04.1 LTS" > /dev/null
-#if [ $? = 0 ];then
-#start0=`echo $start0 | sed 's/Ubuntu 20.04.1 LTS/Ubuntu 20.04 LTS/g'`
-#export linuxos_version=`echo ${linuxos_version0} | sed 's/Ubuntu 20.04.1 LTS/Ubuntu 20.04 LTS/g'`
-#inuxos_status="4"
-#fi
-#echo "$start0"
-#sleep 60
-#exit 0
 
-#заменяем пробелы в команде запуска скрипта на знак -, что бы не замарачиваться с жалобой системы на пробелы в имени файла
-start=`echo $start0 | sed 's/ /-/2g'`
-#echo "start:" $start
-#exit 0
+#загружаем список операционных систем из файла в массив
+readarray -t linuxos_list < "${script_dir}/config/list-os"
+#создаем цикл где будет проверяться согласно данных из файла в какой системе запущен скрипт
+linuxos_number=${#linuxos_list[@]}
+#задаем переменные, что бы отработал заглушка на неправильную ОС и очищаем переменную для цикла на всякий случай
+linuxos_version=""
+i=0
+#проверяем на совпадение списка систем из файла и системы в которой запущен скрипт
+linux_os=`cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'`
+while [ $i -lt $linuxos_number ]
+do
+if [[ "${linux_os}" == "${linuxos_list[$i]}" ]]
+then
+export linuxos_version=${linuxos_list[$i]}
+fi
+i=$(($i + 1))
+done
+tput setaf 2
+echo "your Linux OS:["$linuxos_version"]"
+tput sgr0
 
-#запуск скрипта согласно системы в которой он находиться
-#echo $start
-eval $start
-#заглушка на вывод ошибки если система не совместима со скриптом
-if [ $linuxos_status = 0 ];then
-linux=`echo $linuxos | sed 's/PRETTY_NAME=/ /g'`
-echo $linux "is not supported"
-zenity --error --ellipsize --text="Дистрибутив $linux не поддерживается bzu-gmb"
+#
+if [[ $linuxos_version == "" ]]
+then
+zenity --error --ellipsize --text="Данная операционная система $linux_os не поддерживается ${version}"
+else
+cd ${script_dir}
+./bzu-gmb-gui-beta4.sh
 fi
 
 exit 0

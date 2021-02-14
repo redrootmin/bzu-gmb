@@ -5,7 +5,7 @@
 iconway1="${script_dir}/icons/"
 imageway1="${script_dir}/image/"
 icon1="$iconway1""bzu-gmb48.png"
-image1="$imageway1""bzu-gmb-gls1024.png"
+image1="$imageway1""bzu-gmb-gls1080-new.png"
 
 readarray -t module_base < "${script_dir}/config/module-base"
 let "module_base_num = ${#module_base[@]} - 10"

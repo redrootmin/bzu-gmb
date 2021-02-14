@@ -26,20 +26,22 @@ sudo -S apt install -f -y --reinstall gamemode || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер ${mesa_version}, тестируем Feral GameMode!"  || let "error += 1"
+tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем Feral GameMode!"  || let "error += 1"
 gamemoderun
 #сброс цвета текста в терминале
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
+echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "Для использования Feral GameMode:"	 				  >> "${script_dir}/module_install_log"
+echo "для использования Feral GameMode:"	 				  >> "${script_dir}/module_install_log"
 echo "gamoderun /way/to/app"	 				  >> "${script_dir}/module_install_log"
-echo "Например, в Steam:"	 				  >> "${script_dir}/module_install_log"
+
+echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
 echo "gamemoderun %command%"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и функциях тут: https://github.com/FeralInteractive/gamemode"	 				  >> "${script_dir}/module_install_log"
+
 
 #задержка вывода информации о итогах установки, что бы пользователь мог ознакомиться.
 

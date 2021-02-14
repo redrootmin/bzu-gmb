@@ -45,13 +45,13 @@ tput setaf 2; echo "Установлен драйвер:${mesa_version}"  || let
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
+echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "Для использования функции Valve ACO (fast work high shaders)"	 				  >> "${script_dir}/module_install_log"
+echo "для использования функции Valve ACO(fast work high shaders)"	 				  >> "${script_dir}/module_install_log"
 echo "нужно использовать следующий флаг:"	 				  >> "${script_dir}/module_install_log"
-echo "RADV_PERFTEST=aco"	 				  >> "${script_dir}/module_install_log"
+echo "для Vavle ACO: RADV_PERFTEST=aco"	 				  >> "${script_dir}/module_install_log"
 #echo "для zink: MESA_LOADER_DRIVER_OVERRIDE=zink"	 				  >> "${script_dir}/module_install_log"
-echo "Например, в Steam:"	 				  >> "${script_dir}/module_install_log"
+echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
 echo "RADV_PERFTEST=aco %command%"	 				  >> "${script_dir}/module_install_log"
 
 #задержка вывода информации о итогах установки, что бы пользователь мог ознакомиться.

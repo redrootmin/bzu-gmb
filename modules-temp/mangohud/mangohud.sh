@@ -33,19 +33,19 @@ cd
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер ${mesa_version}, тестируем мониторинг!"  || let "error += 1"
+tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем мониторинг!"  || let "error += 1"
 #сброс цвета текста в терминале
 tput sgr0
 # 5 секунд теста mangohud
 mangohud glxgears | sleep 5 | exit 0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
-echo "Модуль ${name_script}, дата установки: ${date_install}, количество ошибок: ${error}"	 				  >> "${script_dir}/module_install_log"
+echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "Для использования MangoHud:"	 				  >> "${script_dir}/module_install_log"
+echo "для использования MangoHud:"	 				  >> "${script_dir}/module_install_log"
 echo "если OpenGL: mangohud /way/to/app"	 				  >> "${script_dir}/module_install_log"
 echo "если Vulkan: MANGOHUD=1(либо mangohud) /way/to/app"	 				  >> "${script_dir}/module_install_log"
-echo "Например, в Steam:"	 				  >> "${script_dir}/module_install_log"
+echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
 echo "MANGOHUD=1 MANGOHUD_CONFIG=cpu_temp,gpu_temp,vram,ram,position=top-right,font_size=22,vsync=3,arch %command%"	 				  >> "${script_dir}/module_install_log"
 echo "Подробнее о командах и фукнциях тут: https://github.com/flightlessmango/MangoHud"	 				  >> "${script_dir}/module_install_log"
 
