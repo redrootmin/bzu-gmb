@@ -7,6 +7,15 @@ imageway1="${script_dir}/image/"
 icon1="$iconway1""bzu-gmb48.png"
 image1="$imageway1""bzu-gmb-gls1080-new.png"
 
+#загружаем статус buz-gmb
+bzu_gmb_status=`cat "${script_dir}/config/status"`
+#меняем версию операционной системы на эксперементальную, что бы отобразить все модули Ubuntu
+if [[ "${bzu_gmb_status}" == "experimental" ]]
+then
+linuxos_version="experimental"
+zenity --error --ellipsize  --timeout=2 --text="${version} запущен в эксперементальном режиме!"
+fi
+
 readarray -t module_base < "${script_dir}/config/module-base"
 let "module_base_num = ${#module_base[@]} - 10"
 select_install='yad  --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT --button="Выход:1" --button="Установка:0" '

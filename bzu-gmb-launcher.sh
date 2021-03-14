@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
 # определение папки где находиться скрипт и версию скрипта
 script_dir0=$(cd $(dirname "$0") && pwd);
 export script_dir="${script_dir0}"
@@ -11,15 +12,16 @@ echo "$USER" > "${script_dir}/config/user"
 #linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-if pass_user0=$(zenity --entry --title="Для работы скрипта ${version} требуется Ваш пароль суперпользователя" --text="Введите пароль:" \
- --entry-text="пароль" --hide-text --width=640 --height=128)
+pass_user0=$(zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль суперпользователя:" --hide-text)
+
+if [[ "${pass_user0}" == "" ]]
 then
-export pass_user=${pass_user0}
-#echo "pass:${pass_user}"
-else
-  zenity --error --text="Пароль не введён"
+zenity --error --text="Пароль не введён"
 exit 0
+else 
+export pass_user=${pass_user0}
 fi
+
 
 #функция для проверки пакетов на установку, если нужно установлевает
 function install_package {
@@ -51,6 +53,7 @@ linuxos_number=${#linuxos_list[@]}
 linuxos_version=""
 i=0
 #проверяем на совпадение списка систем из файла и системы в которой запущен скрипт
+#linux_os=`cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'`
 linux_os=`cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'`
 while [ $i -lt $linuxos_number ]
 do
@@ -67,8 +70,18 @@ tput sgr0
 #
 if [[ $linuxos_version == "" ]]
 then
-zenity --error --ellipsize --text="Данная операционная система $linux_os не поддерживается ${version}"
+if experemental_os=$(zenity --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
+then
+echo "experimental" > "${script_dir}/config/status"
+echo $linux_os >> "${script_dir}/config/list-os"
+cd ${script_dir}
+./bzu-gmb-gui-beta4.sh
+else 
+zenity --error --ellipsize  --timeout=5 --text="Данная операционная система $linux_os не совместима с ${version}"
+fi
+
 else
+#echo "normal" > "${script_dir}/config/status"
 cd ${script_dir}
 ./bzu-gmb-gui-beta4.sh
 fi
