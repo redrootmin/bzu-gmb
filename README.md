@@ -1,13 +1,11 @@
 # bzu-gmb
-bzu-gmb is an auto-installer of GNU/Linux gaming tools for Debian-based distributions, written in bash using zenity and yad libraries
+bzu-gmb is silent auto-installer of GNU/Linux gaming tools for Debian-based distributions, written in bash using zenity and yad libraries
 -----------
 <img src="image/bzu-gmb-beta4-7.png" alt="My cool logo"/>
 
 Options
 -----------
-Ready modules for Ubuntu: XanMod, Xanmod-cacule, Liquorix, Low-Latency kernel, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, Inxi, Glances, CPU-X, Xboxdrv, Steam, ProtonGE, PortWINE, PortProton, Furmark_Pack (OpenGL, Zink Benchmark), TFM_Vulkan (Benchmark), Gdebi, GnomeExtensionsPack.
-
-Not ready modules for Linux Mint 19.3: Feral GameMode, CoreCtrl.
+Ready modules : XanMod, Xanmod-cacule, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, inxi, Glances, cpu-x, xboxdrv, Steam Linux, ProtonGE, PortWINE adon, PortProton, Furmark_Pack(OpenGL Benchmark, ZINK), TFM_Vulkan(Benchmark), gdebi, GnomeExtensionsPack, mangohud-ppa, vkbasalt-ppa, Goverlay-ppa, obs-studio-ppa
 
 Installation:
 -----------
@@ -28,14 +26,6 @@ chmod +x bzu-gmb-beta4-installer.sh
 
 TODO:
 -----------
-- Add modules: psensor + config, new benchmarks, proton-rdr2, portwine ports
-
-- Add REOS support (testing)
-
-- Add Pop!_OS support (testing)
-
-- Add new modules and update old ones
-
-- Test new modules from other authors (if they are)
-
-- Add beta5 version: fix bugs, add new functionality, test new multimedia modules, customize Ubuntu
+- Add Experemintal Mode - DONE
+- Add auto-update-system tools
+- Add beta5  new functionality, new multimedia modules, customize Ubuntu
