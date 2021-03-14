@@ -53,6 +53,10 @@ defaults.pcm.dmix.rate 192000
 realtime-scheduling = yes и меняем на realtime-scheduling = no
 # Если перед строками стоят ; или # - удаляем эти знаки.
 
+# VIRTUALBOX 1920x1080
+xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode Virtual1 1920x1080
+xrandr --output Virtual1 --mode 1920x1080
 
 1. Mesa Latest Dev from Oibaf: https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers
    Options: Mesa 20.2+ dev, Valve ACO, Intel iris, Vulkan Overlay, Zink
@@ -269,7 +273,7 @@ for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.
 34. disable service
 service=replay-sorcery; systemctl stop $service && systemctl disable $service && rm /etc/systemd/system/$service &&  systemctl daemon-reload && systemctl reset-failed\
 
-35. github desktop
+35. github desktop shiftkey [https://github.com/shiftkey/desktop/releases]
 wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftky-desktop.list'
 sudo apt-get update
@@ -299,3 +303,9 @@ tar xfvz linuxbrowser*.tgz -C $HOME/.config/obs-studio/plugins/
 
 Автор: Яцына М.А, Александр Дронов
 
+39. sudo apt install baobab
+
+40.УСТАНОВКА ANDROID-STUDIO ПОСЛЕДНЯЯ ВЕРСИЯ
+sudo add-apt-repository -y ppa:maarten-fonville/android-studio
+sudo apt update
+sudo apt install android-studio
