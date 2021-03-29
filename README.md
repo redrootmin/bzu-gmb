@@ -29,6 +29,7 @@ TODO:
 - Add Experemintal Mode - DONE
 - Add auto-update-system tools
 - Add beta5  new functionality, new multimedia modules, customize Ubuntu
+- 
 DONATE:
 -----------
 [Юmoney] https://donate.stream/gamer-station-on-linux
