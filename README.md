@@ -29,3 +29,16 @@ TODO:
 - Add Experemintal Mode - DONE
 - Add auto-update-system tools
 - Add beta5  new functionality, new multimedia modules, customize Ubuntu
+- 
+DONATE:
+-----------
+- [Юmoney] https://donate.stream/gamer-station-on-linux
+- MASTER-CARD(Sber-bank): 4817760347461257
+- VISA(Alfa-bank):5521752695283643
+- 
+[Crypto]
+- LBRY: bCqqmkBsKjE5vpwvXrzPoMfHBH9cKhX5Jr
+- USDT-TRC20: TY4SMZJJySq3BvDJmVZomR6TApTvJDufgu
+- ETH: 0x21e77e9c3e68dc6c6a451900926bdc3c3ba63015
+- BTC: 17LasNEVBVKajX3F1gEYngJH2K9fwZZ6z9
+- BIP(Minter): Mxb524fd034cc6c5c75973048439c88104221c60d9
