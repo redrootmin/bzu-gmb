@@ -1,6 +1,10 @@
 #!/bin/bash
 #creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
-# GPL-3.0 License 
+# GPL-3.0 License
+
+# zenity installation check
+if !(dpkg -s zenity | grep -q installed); then sudo -S apt install -f -y zenity; echo 'zenity installed'; fi
+ 
 # определение папки где находиться скрипт и версию скрипта
 script_dir0=$(cd $(dirname "$0") && pwd);
 export script_dir="${script_dir0}"
