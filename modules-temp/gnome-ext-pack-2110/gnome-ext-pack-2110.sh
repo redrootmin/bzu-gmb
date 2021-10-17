@@ -25,14 +25,14 @@ version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка набора скриптов для изменения интерфейса и внешнего вида ubuntu 20.04.1 LTS. Версия скрипта 1.1, автор: Яцына М.А."
+tput setaf 2; echo "Установка набора скриптов для изменения интерфейса и внешнего вида ubuntu 21.10 . Версия скрипта 1.0 beta, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-echo "${pass_user}" | sudo -S wget "https://drive.google.com/uc?export=download&id=19e2o4ZgAigA5oYUblI9BkFSEmhuowWfa" -O "${name_script}.tar.xz" || let "error += 1"
+echo "${pass_user}" | sudo -S wget "https://drive.google.com/uc?export=download&id=1eVbeZdMwW57zjs73LhEZKIUpkzuWxC70" -O "${name_script}.tar.xz" || let "error += 1"
 echo "${pass_user}" | sudo -S tar -xpJf "${name_script}.tar.xz"
 cd "${script_dir}/modules-temp/${name_script}/temp/${name_script}"
 
@@ -41,7 +41,6 @@ echo "${pass_user}" | sudo -S apt install -f -y --reinstall gnome-session gnome-
 echo "${pass_user}" | sudo -S apt update
 echo "${pass_user}" | sudo -S apt upgrade
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall gnome-session gnome-tweaks chrome-gnome-shell gnome-shell-extensions numix-icon-theme-circle git libglib2.0-dev grub-customizer paprefs pavucontrol
-
 
 # устаноавливаем черное logo ubuntu на заставку загрузки
 rm -rf ubuntu-darwin | true
@@ -62,30 +61,28 @@ gsettings set  org.gnome.desktop.interface cursor-theme DMZ-White
 echo "${pass_user}" | sudo -S cp -f 17.jpg /usr/share/backgrounds/
 gsettings set org.gnome.desktop.background picture-uri file:////usr/share/backgrounds/17.jpg
 # включаем свои обоя на экран входа в систему
-echo "${pass_user}" | sudo -S ./focalgdm3 --set /usr/share/backgrounds/17.jpg
+#echo "${pass_user}" | sudo -S ./focalgdm3 --set /usr/share/backgrounds/17.jpg
 
-#установка коллекции дополнений
+#установка коллекции дополнений GNOME 40
 ### dconf dump /org/gnome/shell/extensions/ > extensions.conf ###
 ### dconf dump / > dconf_full.conf ###
 ### dconf reset -f /org/gnome/shell/extensions/ ###
 ### dconf load /org/gnome/shell/extensions/ < extensions.conf ###
 ### gnome-extensions list ###
 ### for disable gnome-extension ###
-###gnome-extensions disable hide-dash@xenatt.github.com ###
 rm -fr "/home/${user_run_script}/.local/share/gnome-shell/extensions" || true
 tar -xpJf "extensions.tar.xz" -C "/home/${user_run_script}/.local/share/gnome-shell/"
 cp -f user "/home/${user_run_script}/.config/dconf"
 dconf reset -f /org/gnome/shell/extensions/
-#dconf load /org/gnome/shell/extensions/ < extensions.conf
-#cp -f user "/home/${user_run_script}/.config/dconf"
-dconf load / < dconf_full.conf
+dconf load /org/gnome/shell/extensions/ < extensions.conf
+#dconf load / < dconf_full.conf
 gsettings set org.gnome.shell disable-user-extensions true
 gsettings set org.gnome.shell disable-user-extensions false
-#echo "${root_pass}" | sudo -S pkill -9 ^gnome-shell
-#busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
-#sleep 5
+echo "${root_pass}" | sudo -S pkill -9 ^gnome-shell
+sleep 5
 gsettings set org.gnome.shell disable-user-extensions true
 gsettings set org.gnome.shell disable-user-extensions false
+
 gnome-extensions enable add-to-desktop@tommimon.github.com
 gnome-extensions enable dash-to-panel@jderose9.github.com
 gnome-extensions enable just-perfection-desktop@just-perfection
@@ -101,23 +98,23 @@ gnome-extensions enable gamemode@christian.kellner.me
 gnome-extensions enable gsconnect@andyholmes.github.io
 gnome-extensions enable impatience@gfxmonk.net
 gnome-extensions enable openweather-extension@jenslody.de
+gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable sound-output-device-chooser@kgshank.net
 gnome-extensions enable panel-osd@berend.de.schouwer.gmail.com
 gnome-extensions enable x11gestures@joseexposito.github.io
 gnome-extensions enable compiz-windows-effect@hermes83.github.com
 gnome-extensions enable big-avatar@gustavoperedo.org
-gnome-extensions disable desktop-icons@csoriano
 gnome-extensions enable ding@rastersoft.com
 gnome-extensions enable ubuntu-appindicators@ubuntu.com
 gnome-extensions enable ubuntu-dock@ubuntu.com
 
-#включаем настройки дополнительной темы из дополнения
-#gsettings set org.gnome.shell.extensions.user-theme name Yaru-dark
-#gsettings set org.gnome.desktop.interface gtk-theme Yaru-dark
-#cp -f user "/home/${user_run_script}/.config/dconf"
-#echo "${root_pass}" | sudo -S pkill -9 ^gnome-shell
-sleep 5
-busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
+#включаем настройки темной оригинальной темы Ubuntu
+gsettings set org.gnome.desktop.interface gtk-theme Yaru-dark
+#делаем повторно замену файла конфигруации пользовательского окружения
+cp -f user "/home/${user_run_script}/.config/dconf"
+#финально перезагружем окружение gnome
+echo "${pass_user}" | sudo -S pkill -9 ^gnome-shell
+
 #выходим из временной папки и удаляем ее
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true

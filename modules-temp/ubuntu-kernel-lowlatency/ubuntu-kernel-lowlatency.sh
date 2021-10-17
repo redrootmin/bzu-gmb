@@ -16,26 +16,25 @@ user_run_script=`cat "${script_dir}/config/user"`
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #echo ${module_conf[*]}
 
-#создаем цикл где будет проверяться согласно данных из файла в какой системе запущен скрипт
-version_kernel=${module_conf[7]}
-#echo "kernel version for install"${version_kernel}
-#exit 0
+#узнаем в системе какое lowlatency ядро доступно и записываем в переменную
+version_kernel=`apt-cache search linux-lowlatency | grep "image" | sed -r 's/(.+lowlatency).+/\1/' | sed 's/unsigned-//g'`
+
 #объявляем нужные переменные для скрипта
 date_install=`date`
 
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка стабильной версии оригинального ядра Linux "${version_kernel}" для Ubuntu 20.04-20.10 с низкими задержками. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка стабильной версии оригинального ядра Linux "${version_kernel}" для Ubuntu 20.04\21.10, Linux Mint 20.2 с низкими задержками. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 #запуск основных команд модуля
-sudo -S apt-get update
-dpkg -s linux-image-${version_kernel}-lowlatency | grep installed > /dev/null || echo "пробуем установить linux-image-${version_kernel}-lowlatency" | sudo -S apt install -f -y linux-image-${version_kernel}-lowlatency linux-headers-${version_kernel}-lowlatency linux-modules-${version_kernel}-lowlatency
-
-dpkg -s linux-image-${version_kernel}-lowlatency | grep installed > /dev/null || echo "пробуем еще раз установить linux-image-${version_kernel}-lowlatency" | sudo -S apt install -f -y --reinstall linux-image-${version_kernel}-lowlatency linux-headers-${version_kernel}-lowlatency linux-modules-${version_kernel}-lowlatency
+sudo -S apt-get update -y
+sudo -S apt-get upgrade -y
+echo "пробуем установить ядро:" ${version_kernel}
+sudo -S apt install -f -y --reinstall linux-lowlatency
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2
-kernel_instaling=`dpkg -s linux-image-${version_kernel}-lowlatency | grep installed`
-echo "Ядро linux-image-${version_kernel}-lowlatency: ${kernel_instaling}"
+kernel_instaling=`dpkg -s "${version_kernel}" | grep installed | sed 's/Status://g'`
+echo "Ядро ${version_kernel}: ${kernel_instaling}"
 #сброс цвета текста в терминале
 tput sgr0
 

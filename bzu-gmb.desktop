@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=bzu-gmb-beta4-8
+Name=bzu-gmb-beta4-8-1
 Exec=bash -c /usr/share/bzu-gmb/bzu-gmb-launcher.sh
 Type=Application
 Categories=Game;System

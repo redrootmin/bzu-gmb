@@ -12,7 +12,7 @@ echo "$USER" > "${script_dir}/config/user"
 #linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-pass_user0=$(zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль суперпользователя:" --hide-text)
+pass_user0=$(zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
 
 if [[ "${pass_user0}" == "" ]]
 then

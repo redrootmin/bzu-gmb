@@ -33,18 +33,18 @@ date_install=`date`
 
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка установка кастумной версии ProtonGE [https://github.com/GloriousEggroll/proton-ge-custom]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка установка кастумной версии ProtonGE [https://github.com/GloriousEggroll/proton-ge-custom]. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
 
 echo "${pass_user}" | sudo -S killall steam || true
-name_download_arh="Proton-6.1-GE-2.tar.gz"
-name_dir_installing="Proton-6.1-GE-2"
+name_download_arh="Proton-6.19-GE-2.tar.gz"
+name_dir_installing="Proton-6.19-GE-2"
 cd
 rm -r "${script_dir_install}/${name_dir_installing}" || true
 rm "${name_download_arh}" || true
-wget "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.1-GE-2/${name_download_arh}" || let "error += 1" 
+wget "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/6.19-GE-2/${name_download_arh}" || let "error += 1"
 tar xfvz "${name_download_arh}" -C "${script_dir_install}"
 #sudo -S chmod -R 777 "${script_dir_install}/${name_dir_installing}"
 rm "${name_download_arh}" || true

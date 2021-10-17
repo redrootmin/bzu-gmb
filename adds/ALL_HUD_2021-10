@@ -1,0 +1,138 @@
+[OpenGL] 
+GALLIUM_HUD=simple,.x1750fps+frametime+GPU-load+cpu+cpu0+cpu1+cpu2+cpu3+cpu4+cpu5+cpu6+cpu7 GALLIUM_HUD_PERIOD=1 %command%
+
+[OpenGL] 
+GALLIUM_HUD=simple,.x1750fps+frametime+GPU-load+cpu+cpu0+cpu1+cpu2+cpu3+cpu4+cpu5+cpu6+cpu7 GALLIUM_HUD_PERIOD=1 gamemoderun %command%
+
+[Vulkan\DXVK]
+MANGOHUD=1 
+[OpenGL\Vulkan\DXVK] 
+mangohud
+
+[OpenGL vsync] 
+mangohud MANGOHUD_CONFIG=cpu_temp,gpu_temp,vram,ram,position=top-right,font_size=22,gl_vsync=1 gamemoderun
+
+[ZINK(GLtoVK)] 
+MESA_LOADER_DRIVER_OVERRIDE=zink GALLIUM_HUD=simple,fps+frametime+GPU-load+cpu GALLIUM_HUD_PERIOD=1 %command%
+
+[ZINK(GLtoVK)] 
+MESA_LOADER_DRIVER_OVERRIDE=zink GALLIUM_HUD=simple,fps+frametime+GPU-load+cpu GALLIUM_HUD_PERIOD=1 gamemoderun %command%
+
+
+[MESA VULKAN OVERLAY NATIVE]
+VK_INSTANCE_LAYERS=VK_LAYER_MESA_overlay VK_LAYER_MESA_OVERLAY_CONFIG=position=top-right
+
+[DXVK_HUD]
+DXVK_HUD=1 %command%
+
+
+[steam proton commands]
+PROTON_NO_ESYNC=1
+PROTON_NO_FSYNC=1
+DXVK_ASYNC=1  # if you use dxvk_async version: https://github.com/Enteneller2017/dxvk-async/releases
+
+[edit Steam Prefix] WINEPREFIX="/mnt/proton-base/SteamLibrary_proton/steamapps/compatdata/4570/pfx" winecfg
+
+[vkBAZALT flags]
+ENABLE_VKBASALT=1
+
+[Install Media Foundation DLL to Steam Prefix]
+git clone https://github.com/z0z0z/mf-install.git
+cd mf-install
+WINEPREFIX="/mnt/data-linux/SteamLibrary_linux_test/steamapps/compatdata/954740/pfx" ./mf-install.sh
+
+PROTON_LOG=1 %command%
+
+
+DXVK_HUD=1 gamemoderun gamescope -w 1280 -h 720 -W 1920 -H 1080 -n -- %command%
+
+
+[FOR BENCHMARKING in 2021]
+
+[VULKAN in 2021]
+mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right DXVK_ASYNC=1 gamemoderun %command%
+
+[OPENGL in 2021]
+mangohud MANGOHUD_DLSYM=1 MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right DXVK_ASYNC=1 gamemoderun %command%
+
+[ZINK(GLtoVK)in 2021]
+MESA_LOADER_DRIVER_OVERRIDE=zink mangohud MANGOHUD_DLSYM=1 MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right DXVK_ASYNC=1 gamemoderun %command%
+
+[STANDART AMD in 2021]
+
+[VULKAN in 2021]
+mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right,vsync=3 DXVK_ASYNC=1 gamemoderun %command%
+
+[OPENGL in 2021]
+mangohud --dlsym MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right,gl_vsync=1 DXVK_ASYNC=1 gamemoderun %command%
+
+[ZINK(GLtoVK)]
+MESA_LOADER_DRIVER_OVERRIDE=zink mangohud MANGOHUD_DLSYM=1 MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right,gl_vsync=1 DXVK_ASYNC=1 gamemoderun %command%
+
+
+[new mesa flags 21.2+]
+
+NEXT-GEN GEOMETRY (NGG):
+RADV_PERFTEST=nggc
+
+VARIABLE RATE SHADING (VRS):
+RADV_FORCE_VRS=2x2
+
+Enable FSR in Vulkan games:
+WINE_FULLSCREEN_FSR=1
+WINE_FULLSCREEN_FSR_STRENGTH=2  # 0-5
+
+[vulkan]
+WINE_FULLSCREEN_FSR=1 RADV_FORCE_VRS=2x2 RADV_PERFTEST=nggc mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx550_4g,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right DXVK_ASYNC=1 gamemoderun %command%
+
+[opengl]
+RADV_FORCE_VRS=2x2 RADV_PERFTEST=nggc mangohud MANGOHUD_DLSYM=1 MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right DXVK_ASYNC=1 gamemoderun %command%
+
+[FOR PORT PROTON]
+export MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right
+export DXVK_ASYNC=1
+export RADV_FORCE_VRS=2x2
+
+
+[TEARFREE ON IN AMD]
+(for rx400\500\vega\rx5000\6000)
+sudo nano /usr/share/X11/xorg.conf.d/10-amdgpu.conf
+
+Section "Device"
+Identifier "AMDgpu"
+Option  "DRI" "3"
+Option  "TearFree" "true"
+EndSection
+
+#[LIBSTRANGLE FORCE VSYNC FOR NATIVE OPENGL\VULKAN GAMES]
+#https://gitlab.com/torkel104/libstrangle
+git clone https://gitlab.com/torkel104/libstrangle
+cd libstrangle 
+sudo apt-get install gcc-multilib
+sudo apt install g++ g++-multilib
+sudo apt install libx11-dev
+sudo apt install mesa-common-dev
+make
+sudo make install
+
+# ubuntu 20.04.x for OpenGL\Vulkan
+STRANGLE_VSYNC=1 strangle 35 mangohud vkcube
+
+# ubuntu 21.10.x for Vulkan only
+STRANGLE_FPS=30 STRANGLE_VKONLY=1 strangle /path/to/game
+STRANGLE_VKONLY=1 STRANGLE_VSYNC=2 strangle /path/to/game
+
+OpenGL
+-1 - Adaptive sync (unconfirmed if this actually works)
+0 - Force off
+1 - Force on
+n - Sync to refresh rate / n.
+
+Vulkan
+0 - Force off
+1 - Mailbox mode. Vsync with uncapped framerate.
+2 - Traditional vsync with framerate capped to refresh rate.
+3 - Adaptive vsync with tearing at low framerates.
+
+
+
