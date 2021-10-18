@@ -21,20 +21,6 @@ sleep 5
 exit 0
 fi
 
-#pass_user="$1"
-#добовляем переменную с иминем пользователя от имини которого запущен скрипт, да это не обязательно, но не хочу переписывать код ниже :)
-user_run_script="$USER"
-
-#Уведомление пользователя, о том что он устанавливает себе на ПК
-zenity --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="мини установка bzu-gmb" --checkbox="добавить bzu-gmb из папки в систему" --width=640 --height=408
-if [ "$?" -eq "0" ];then
-
-# Проверка что существует папка applications, если нет, создаем ее
-if [ ! -d "/home/${USER}/.local/share/applications" ]
-then
-mkdir -p "/home/${USER}/.local/share/applications"
-fi
-
 #собираем данные о том в какой папке находиться bzu-gmb
 script_dir=$(cd $(dirname "$0") && pwd);
 version_bzu_gmb=`cat "${script_dir}/config/name_version"`
@@ -43,6 +29,16 @@ name_desktop_file="bzu-gmb.desktop"
 name_script_start="bzu-gmb-launcher.sh"
 name_app="${version_bzu_gmb}"
 exec_full="bash -c "${script_dir}"/"${name_script_start}""
+
+#pass_user="$1"
+#добовляем переменную с иминем пользователя от имини которого запущен скрипт, да это не обязательно, но не хочу переписывать код ниже :)
+user_run_script="$USER"
+
+# Проверка что существует папка applications, если нет, создаем ее
+if [ ! -d "/home/${USER}/.local/share/applications" ]
+then
+mkdir -p "/home/${USER}/.local/share/applications"
+fi
 
 #функция для проверки пакетов на установку, если нужно установлевает
 function install_package {
@@ -89,6 +85,8 @@ gio set "home/${ser_run_script}/.local/share/applications/${name_desktop_file}" 
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
 
+#Уведомление пользователя, о том что он устанавил себе на ПК
+zenity --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408
 
 #busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0
