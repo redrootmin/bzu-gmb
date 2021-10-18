@@ -289,7 +289,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 noroot
 kate-editor48.png
-Kate-edito-ppa
+Kate-editor-ppa
 Development
 Kate (KDE Advanced Text Editor) — текстовый редактор, входящий в состав среды рабочего стола KDE. Распространяется согласно GNU General Public License. Основной плюс данного редактора текста\кода, это огромная поддержка синтаксиса языков программирования, разделение кода на два окна, а также при сохранении, если файл находиться в среде superuser, вас не вылетает ошибка, а запрашивается пароль root :)
 Яцына М.А.

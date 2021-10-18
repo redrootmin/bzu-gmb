@@ -11,7 +11,7 @@ tput setaf 2; echo "все хорошо этот скрипт не запуще�
 fi
 
 read -sp 'Введите Пароль root:' pass_user
-
+echo " "
 #проверяем ввел пользователь пароль или нет
 if [[ "${pass_user}" == "" ]]
 then
@@ -73,11 +73,11 @@ echo "Terminal=true" >> "${script_dir}/${name_desktop_file}"
 echo "Icon="${script_dir}/icons/bzu-gmb512.png"" >> "${script_dir}/${name_desktop_file}"
 
 #Копируем ярлыв в программы домашней папки пользователя
-cp -f "${script_dir}/${name_desktop_file}" "/home/${ser_run_script}/.local/share/applications/"
+cp -f "${script_dir}/${name_desktop_file}" "/home/${user_run_script}/.local/share/applications/"
 
 #Даем права на запуск ярлыка в папке программы и копируем в папку с ярлыками пользователя
 gio set "${script_dir}/${name_desktop_file}" "metadata::trusted" yes
-gio set "home/${ser_run_script}/.local/share/applications/${name_desktop_file}" "metadata::trusted" yes
+gio set "/home/${user_run_script}/.local/share/applications/${name_desktop_file}" "metadata::trusted" yes
 #gio info "${script_dir}/name_desktop_file" | grep "metadata::trusted"
 
 
