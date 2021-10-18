@@ -1,5 +1,5 @@
 #!/bin/bash
-#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+#creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License 
 
 iconway1="${script_dir}/icons/"
@@ -9,6 +9,7 @@ image1="$imageway1""bzu-gmb-gls1080-new.png"
 
 #загружаем статус buz-gmb
 bzu_gmb_status=`cat "${script_dir}/config/status"`
+
 #меняем версию операционной системы на эксперементальную, что бы отобразить все модули Ubuntu
 if [[ "${bzu_gmb_status}" == "experimental" ]]
 then
@@ -61,7 +62,9 @@ done
 # запуск модуля с правами root в отдельном процессе bash что бы изолировать его от переменной $pass_user где храниться root-пароль пользователя
 echo "$pass_user" | sudo -S echo "==========[${module_name}]==========" >> "${script_dir}/module_install_log"
 if [[ "${module_base[$i+9]}" == "noroot" ]];then
+# даем право за на запуск модуля как скрипт
 #запуск модуля с передачей пароля root пользователя
+echo "$pass_user" | sudo -S chmod +x "${run_module}"
 bash ${run_module} ${pass_user} || let "global_error += 1"
 # удаляем файл конфигурации созданный специально для модуля
 echo "$pass_user" | sudo -S rm "${script_dir}/modules-temp/${module_base[$i+5]}/module_config" || true
@@ -71,6 +74,9 @@ echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Крит
 let "global_error0 += 1" 
 fi
 else
+# даем право за на запуск модуля как скрипт
+echo "$pass_user" | sudo -S chmod +x "${run_module}"
+# запуск модуля с правами root пользователя
 echo "$pass_user" | sudo -S bash ${run_module} || let "global_error += 1"
 # удаляем файл конфигурации созданный специально для модуля
 echo "$pass_user" | sudo -S rm "${script_dir}/modules-temp/${module_base[$i+5]}/module_config" || true
