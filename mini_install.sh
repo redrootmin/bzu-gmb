@@ -7,11 +7,12 @@ if [ "$UID" -eq 0 ];then
 tput setaf 1; echo "Этот скрипт не нужно запускать из под root!";tput sgr0;exit 1
 else
 tput setaf 2; echo "все хорошо этот скрипт не запущен из под root!"
-
 fi
 
+#запрос пароля root для установки ПО необходимого для bzu-gmb
 read -sp 'Введите Пароль root:' pass_user
 echo " "
+
 #проверяем ввел пользователь пароль или нет
 if [[ "${pass_user}" == "" ]]
 then
