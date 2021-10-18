@@ -1,7 +1,8 @@
 #!/bin/bash
 #creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License 
-
+#
+#
 #проверяем что скрипт установки не запущен от пользователя root
 if [ "$UID" -eq 0 ];then
 zenity --error --text="Этот скрипт не нужно запускать из под root!"; exit 1
