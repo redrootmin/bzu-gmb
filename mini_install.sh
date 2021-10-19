@@ -13,6 +13,7 @@ fi
 read -sp 'Введите Пароль root:' pass_user
 echo " "
 
+
 #проверяем ввел пользователь пароль или нет
 if [[ "${pass_user}" == "" ]]
 then
