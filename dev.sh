@@ -2,6 +2,15 @@
 #creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License
 
+
+
+
+
+
+
+
+echo " "
+exit 0
 #проверяем что скрипт установки не запущен от пользователя root
 if [ "$UID" -eq 0 ];then
 tput setaf 1; echo "Этот скрипт не нужно запускать из под root!";tput sgr0;exit 1
