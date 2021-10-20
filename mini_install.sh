@@ -75,6 +75,8 @@ echo "Terminal=true" >> "${script_dir}/${name_desktop_file}"
 echo "Icon="${script_dir}/icons/bzu-gmb512.png"" >> "${script_dir}/${name_desktop_file}"
 
 #Копируем ярлыв в программы домашней папки пользователя
+#sudo rm -f /usr/share/applications/bzu-gmb.desktop
+echo "$pass_user" | sudo -S rm -f "/usr/share/applications/${name_desktop_file}" || true
 cp -f "${script_dir}/${name_desktop_file}" "/home/${user_run_script}/.local/share/applications/"
 
 #Даем права на запуск ярлыка в папке программы и копируем в папку с ярлыками пользователя
