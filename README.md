@@ -11,17 +11,11 @@ Installation:
 -----------
 Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-Download the latest bzu-gmb version to user space (/home/user/)
+Or download latest bzu-gmb version in install in user space
 
-Go to terminal and type the following commands:
+Go to terminal (CTRL+ALT+T)and copy commands:
 ```
-tar -xpJf bzu-gmb-beta4-installer.tar.xz
-
-cd ~/bzu-gmb
-
-chmod +x bzu-gmb-beta4-installer.sh
-
-./bzu-gmb-beta4-installer.sh
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.tar.xz;tar -xpJf bzu-gmb-dev.tar.xz;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
 ```
 
 TODO:
