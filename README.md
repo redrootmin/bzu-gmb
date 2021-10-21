@@ -11,7 +11,7 @@ Installation:
 -----------
 Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-Or download latest bzu-gmb version in install in user space
+Or download latest bzu-gmb version and install in user space
 
 Go to terminal (CTRL+ALT+T)and copy commands:
 ```
