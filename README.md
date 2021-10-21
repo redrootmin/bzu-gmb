@@ -15,7 +15,7 @@ Or download latest bzu-gmb version in install in user space
 
 Go to terminal (CTRL+ALT+T)and copy commands:
 ```
-cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.tar.xz;tar -xpJf bzu-gmb-dev.tar.xz;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
 ```
 
 TODO:
