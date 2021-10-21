@@ -1,5 +1,5 @@
 # bzu-gmb
-bzu-gmb is silent auto-installer of GNU/Linux gaming tools for Debian-based distributions, written in bash using zenity and yad libraries
+bzu-gmb is auto-installer linux gaming tools,  development, graphic\video editors for Ubuntu\Linux Mint and other debian-based distributions in experimental mode, written in bash using zenity and yad libraries
 -----------
 <img src="image/bzu-gmb-beta4-7.png" alt="My cool logo"/>
 
@@ -11,17 +11,11 @@ Installation:
 -----------
 Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-Download the latest bzu-gmb version to user space (/home/user/)
+Or download latest bzu-gmb version in install in user space
 
-Go to terminal and type the following commands:
+Go to terminal (CTRL+ALT+T)and copy commands:
 ```
-tar -xpJf bzu-gmb-beta4-installer.tar.xz
-
-cd ~/bzu-gmb
-
-chmod +x bzu-gmb-beta4-installer.sh
-
-./bzu-gmb-beta4-installer.sh
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
 ```
 
 TODO:
@@ -33,12 +27,9 @@ TODO:
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
-- MASTER-CARD(Sber-bank): 4817760347461257
-- VISA(Alfa-bank):5521752695283643
-- 
+
 [Crypto]
 - LBRY: bCqqmkBsKjE5vpwvXrzPoMfHBH9cKhX5Jr
 - USDT-TRC20: TY4SMZJJySq3BvDJmVZomR6TApTvJDufgu
 - ETH: 0x21e77e9c3e68dc6c6a451900926bdc3c3ba63015
 - BTC: 17LasNEVBVKajX3F1gEYngJH2K9fwZZ6z9
-- BIP(Minter): Mxb524fd034cc6c5c75973048439c88104221c60d9
