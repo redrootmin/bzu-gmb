@@ -5,7 +5,7 @@
 iconway1="${script_dir}/icons/"
 imageway1="${script_dir}/image/"
 icon1="$iconway1""bzu-gmb48.png"
-image1="$imageway1""bzu-gmb-gls1080-new.png"
+image1="$imageway1""new-panel-logo1080.png"
 
 #загружаем статус buz-gmb
 bzu_gmb_status=`cat "${script_dir}/config/status"`
@@ -15,6 +15,7 @@ if [[ "${bzu_gmb_status}" == "experimental" ]]
 then
 linuxos_version="experimental"
 zenity --error --ellipsize  --timeout=2 --text="${version} запущен в эксперементальном режиме!"
+image1="$imageway1""new-panel-logo-exp-1080.png"
 fi
 
 readarray -t module_base < "${script_dir}/config/module-base"

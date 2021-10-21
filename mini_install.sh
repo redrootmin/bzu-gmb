@@ -28,6 +28,7 @@ script_dir=$(cd $(dirname "$0") && pwd);
 version_bzu_gmb=`cat "${script_dir}/config/name_version"`
 app_dir="${script_dir}/modules-temp"
 name_desktop_file="bzu-gmb.desktop"
+name_icon="icons/bzu-gmb-new320.png"
 name_script_start="bzu-gmb-launcher.sh"
 name_app="${version_bzu_gmb}"
 exec_full="bash -c "${script_dir}"/"${name_script_start}""
@@ -72,7 +73,7 @@ echo "Comment=bzu-gmb is auto-installer linux gaming tools for debian-based dist
 echo "Categories=Utility;System;" >> "${script_dir}/${name_desktop_file}"
 echo "Exec=${exec_full}" >> "${script_dir}/${name_desktop_file}"
 echo "Terminal=true" >> "${script_dir}/${name_desktop_file}"
-echo "Icon="${script_dir}/icons/bzu-gmb512.png"" >> "${script_dir}/${name_desktop_file}"
+echo "Icon="${script_dir}/${name_icon}"" >> "${script_dir}/${name_desktop_file}"
 
 #Копируем ярлыв в программы домашней папки пользователя
 #sudo rm -f /usr/share/applications/bzu-gmb.desktop
