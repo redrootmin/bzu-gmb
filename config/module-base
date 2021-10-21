@@ -318,6 +318,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 noroot
+godot_portable48.png
+godot-portable
+Development
+Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.).ВНИМАНИЕ: Данная версия Portable, Godot хранит все настройки пользователя в папке "app/editor_data/", а в папке движка есть скрипт мини установки: mini_install.sh 
+Яцына М.А.
+godot-portable
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Godot 3.3.4
+#
+noroot
 kate-editor48.png
 Kate-editor-ppa
 Development

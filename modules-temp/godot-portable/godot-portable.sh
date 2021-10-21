@@ -26,10 +26,10 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка редактора текста\кода ${version_app},Распространяется согласно MIT License  [https://vscodium.com/]. Редактора устанавливается в виде Portable версии, в папку пользователя ${user_run_script}. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка Godot Engine - открытого кроссплатформенного 2D и 3D игрового движка под лицензией MIT [https://godotengine.org/]. Установка Godot Engine производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
-#запуск основных команд модуля
+
 #echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 #echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 #cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
@@ -52,6 +52,8 @@ tput sgr0
 #app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
 #tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
 
+
+#запуск основных команд модуля
 # Проверка что существует папка applications, если нет, создаем ее
 if [ ! -d "/home/${user_run_script}/.local/share/applications" ]
 then
@@ -59,34 +61,30 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/VSCodium" ]
+if [ ! -d "/home/${user_run_script}/godot-portable" ]
 then
-tput setaf 2; echo "Редактор  ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
+tput setaf 2; echo "Игровой движек ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-
-cd;wget "https://drive.google.com/uc?export=download&id=1pL6h2e3sirwfKjnhaQcX5U2-5hArtFdK" -O "${name_script}.tar.xz";tar -xpJf "${name_script}.tar.xz";cd ~/VSCodium;chmod +x mini_install.sh;bash mini_install.sh
-else
-tput setaf 1; echo "Редактор  ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
-tput sgr0
-fi
-
-
-app_name="codium"
-#dpkg -s ${app_name} | grep -ow "installed" > /dev/null
-#if [ $? = 0 ];then
-#tput setaf 2; echo "${app_name}:installed"
-#tput sgr0
-echo "Testing:${version_app}"
+rm -f godot-portable.tar.xz
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/godot-portable.tar.xz
+tar -xpJf "${name_script}.tar.xz"
+rm -f godot-portable.tar.xz
+cd ~/${name_script};chmod +x mini_install.sh
+bash mini_install.sh
 
 # 5 секунд теста программы
-bash -c "/home/${user_run_script}/VSCodium/VSCodium_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
-tput setaf 2; echo "Установка редактора текста\кода ${version_app} завершена :)"
+app_name="godot-portable"
+echo "Testing:${version_app}"
+cd "/home/${user_run_script}/${name_script}"
+echo "Папка установки:/home/${user_run_script}/${name_script}"
+bash -c "/home/${user_run_script}/${name_script}/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+tput setaf 2; echo "Установка Игрового движка ${version_app} завершена :)"
 tput sgr0
-#else tput setaf 1;echo "${name_script}:not installing!"
-#fi
-#tput sgr0
-
+else
+tput setaf 1; echo "Игровой движек ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput sgr0
+fi
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
