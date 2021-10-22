@@ -65,7 +65,7 @@ i=$(($i + 1))
 done
 tput setaf 2
 echo "your Linux OS:["$linuxos_version"]"
-echo "" > "${script_dir}/config/status"
+#echo "" > "${script_dir}/config/status"
 tput sgr0
 
 #

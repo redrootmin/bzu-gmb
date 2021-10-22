@@ -33,7 +33,7 @@ tput sgr0
 cd "/home/${user_run_script}"
 sudo -u ${user_run_script} wget -c -T 2 "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/${version_proton}" && sh "${version_proton}" -rus
 #формируем информацию о том что в итоге установили и показываем в терминал
-if [ ! -d "/home/redroot/PortWINE/PortProton/data/user.conf" ];then
+if [ ! -d "/home/redroot/PortWINE/PortProton/" ];then
 tput setaf 1;echo "PortProton не установился, либо поврежден!" || let "error += 1"
 tput sgr0
 else
