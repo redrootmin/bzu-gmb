@@ -12,7 +12,7 @@ echo "$USER" > "${script_dir}/config/user"
 #linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-pass_user0=$(zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
+pass_user0=$(GTK_THEME="Adwaita-dark" zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
 
 if [[ "${pass_user0}" == "" ]]
 then
@@ -71,7 +71,7 @@ tput sgr0
 #
 if [[ $linuxos_version == "" ]]
 then
-if experemental_os=$(zenity --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
+if experemental_os=$(GTK_THEME="Adwaita-dark" zenity --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
 then
 echo "experimental" > "${script_dir}/config/status"
 echo $linux_os >> "${script_dir}/config/list-os"
