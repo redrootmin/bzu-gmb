@@ -378,6 +378,16 @@ Ubuntu 20.04.3 LTS
 #
 #
 noroot
+ubuntu-logo-icon48.png
+BackToGnomeVanilla
+GnomeStyle
+BackToGnomeVanilla - это небольшой набор комманд, они изменяют вид Ubuntu 20.04.3 с темы и оформления Canonical на Ubuntu Gnome Vannila, который мы с вами видили в последний раз в Ubuntu Gnome 17.04. ВНИМАНИЕ: скрипт предназначен для только для новой системы и устанавливается в режиме Xorg, если у вас уже настроена и установлена Ubuntu 20.04.x LTS то вы можете столкнуться с глюками и багами и действуете на свой стах и риск! 
+Яцына М.А.
+back-to-gnome-vanilla
+Ubuntu 20.04.3 LTS 
+#
+#
+noroot
 gnome-ext-pack48.png
 GnomeExtensionsPack2
 GnomeStyle

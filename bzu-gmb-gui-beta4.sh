@@ -4,7 +4,7 @@
 
 iconway1="${script_dir}/icons/"
 imageway1="${script_dir}/image/"
-icon1="$iconway1""bzu-gmb48.png"
+icon1="$iconway1""bzu-gmb-new48.png"
 image1="$imageway1""new-panel-logo1080.png"
 
 #загружаем статус buz-gmb
