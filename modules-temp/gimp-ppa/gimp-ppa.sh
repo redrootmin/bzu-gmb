@@ -31,7 +31,7 @@ tput sgr0
 
 #запуск основных команд модуля
 #echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:inkscape.dev/stable || let "error += 1"
-echo "${pass_user}" | sudo -S apt install -f -y --install gimp || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall gimp || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="gimp"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
