@@ -30,7 +30,7 @@ tput setaf 2; echo "Установка Audacity свободного много�
 tput sgr0
 
 #запуск основных команд модуля
-echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:ubuntuhandbook1/audacity || let "error += 1"
+#echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:ubuntuhandbook1/audacity || let "error += 1"
 echo "${pass_user}" | sudo -S apt update -y
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall audacity || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
