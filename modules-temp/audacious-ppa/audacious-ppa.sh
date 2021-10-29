@@ -26,48 +26,32 @@ version_proton=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка открытой программы для трансляций OBS Studio [https://obsproject.com/ru]. Установка утилиты осуществлыется через репозиторий: [sudo add-apt-repository ppa:obsproject/obs-studio]  Версия скрипта 1.1, автор: Яцына М.А."
+tput setaf 2; echo "Установка Audacious свободного аудиопроигрывателя [https://www.audacityteam.org/]. Установка Audacious осуществлыется через оригинальный репозиторий программы. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
-echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-echo "${pass_user}" | sudo -S add-apt-repository -y ppa:obsproject/obs-studio  || let "error += 1"
+echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:ubuntuhandbook1/audacity || let "error += 1"
 echo "${pass_user}" | sudo -S apt update -y
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall ffmpeg obs-studio || let "error += 1"
-# переходим в папку пользователя
-cd
-echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
-
-# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
-echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
-#скачиваем архив с плагином и распаковываем его
-wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
-#создаем папку плагины в конфигурации OBS-studio
-mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
-#далее распаковываем архив в папку с плагинами OBS-studio
-tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
-#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
-#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall audacious || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
-mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
-#сброс цвета текста в терминале
+app_name="audacious"
+dpkg -s ${app_name} | grep -ow "installed" > /dev/null
+if [ $? = 0 ];then
+tput setaf 2; echo "${app_name}:installed"
+tput sgr0
+echo "Testing:${app_name}"
+# 5 секунд теста программы
+audacious & sleep 5;echo "${pass_user}" | sudo -S killall audacious
+tput setaf 2; echo "Установка ${app_name} завершена :)"
+tput sgr0
+else tput setaf 1;echo "${name_script}:not installing!"
+fi
 tput sgr0
 
-# 5 секунд теста mangohud
-obs studio & sleep 5;echo "${pass_user}" | sudo -S killall obs studio
-tput setaf 2; echo "Установка завершена"
-tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
-#Добавляем информацию о том как использовать CoreCtrl лог установки
-#echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
-#echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
 exit 0
 
 

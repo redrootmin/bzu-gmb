@@ -31,9 +31,10 @@ tput sgr0
 
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:pinta-maintainers/pinta-daily || let "error += 1"
+echo "${pass_user}" | sudo -S apt update -y
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall pinta || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
-app_name="mono"
+app_name="pinta"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
 if [ $? = 0 ];then
 tput setaf 2; echo "${app_name}:installed"

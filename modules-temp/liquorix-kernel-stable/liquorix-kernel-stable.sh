@@ -28,7 +28,7 @@ tput sgr0
 
 #запуск основных команд модуля
 sudo -S add-apt-repository ppa:damentz/liquorix -y || let "error += 1"
-sudo -S apt update || let "error += 1"
+sudo -S apt update -y || let "error += 1"
 sudo -S apt install -f -y linux-image-liquorix-amd64 linux-headers-liquorix-amd64 || let "error += 1"
 sudo -S update-grub || let "error += 1"
 sudo -S update-initramfs -u || let "error += 1"
