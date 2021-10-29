@@ -31,8 +31,10 @@ tput sgr0
 
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:kdenlive/kdenlive-stable || let "error += 1"
-echo "${pass_user}" | sudo -S apt update
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall kdenlive || let "error += 1"
+echo "${pass_user}" | sudo -S apt update -y
+echo "${pass_user}" | sudo -S apt install -y --reinstall kdenlive || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -f -y || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -y --reinstall kdenlive || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="kdenlive"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
