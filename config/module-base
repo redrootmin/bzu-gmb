@@ -278,6 +278,26 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 PortProton-97
 #
 noroot
+furmark48.png
+Furmark_Pack
+Benchmark
+Набор утилит для тестирования OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), классически Furmark (волосатый бублик) в комплекте а также: TessMark,GiMark,PixMark Piano,PixMark Volplosion,Plot3D,Triangle. ТРЕБУЕТСЯ: Feral GameMode, Mesa Gallium HUD, Mesa zink 
+Яцына М.А.
+furmark-pack
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+#
+#
+root
+vulkan48.png
+TFM_Vulkan
+Benchmark
+Простой тест Vulkan API на Unity3D. ТРЕБУЕТСЯ: Feral GameMode, MangoHud
+Яцына М.А.
+tfm-vulkan
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+#
+#
+root
 obs-studio48.png
 obs-studio-ppa
 StreamApp
@@ -306,6 +326,16 @@ SimpleScreenRecorder - это простой но мощный инструме�
 simple-screen-recorder-ppa
 Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
+#
+noroot
+lossless-cut48.png
+Lossless-Cut-appimage
+VideoEditor
+LosslessCut - это мультиплатформенное программное обеспечение, которое используется для обрезки\нарезки\добавления субтитров в аудио и видео файлы без потери качества. LosslessCut работает очень быстро, потому что он делает почти прямое копирование данных, без потери качества и перекодирования. Для всей основной работы используется функционал FFmpeg. С помощью LosslessCut вы можете из длинного видео вырезать  не нужные части (все изменения добавляются как задания), удалить звук, добавить музыку, субтитры и далее перекодировать все в единый файл с поддержкой стандарта для YouTube. ВНИМАНИЕ: это Portable версия в виде Appimage
+Яцына М.А.
+lossless-cut-appimage
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+lossless-cut v3.39.0 
 #
 noroot
 blender48.png
@@ -468,26 +498,6 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 noroot
-furmark48.png
-Furmark_Pack
-Benchmark
-Набор утилит для тестирования OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), классически Furmark (волосатый бублик) в комплекте а также: TessMark,GiMark,PixMark Piano,PixMark Volplosion,Plot3D,Triangle. ТРЕБУЕТСЯ: Feral GameMode, Mesa Gallium HUD, Mesa zink 
-Яцына М.А.
-furmark-pack
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
-#
-#
-root
-vulkan48.png
-TFM_Vulkan
-Benchmark
-Простой тест Vulkan API на Unity3D. ТРЕБУЕТСЯ: Feral GameMode, MangoHud
-Яцына М.А.
-tfm-vulkan
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
-#
-#
-root
 gdebi48.png
 gdebi
 GuiDebInstaller
