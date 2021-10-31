@@ -30,7 +30,7 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Refresh2025 простой утилиты для тестирования работы OpenGL,Vulkan в Linux OS [https://godotengine.org/]. Установка Refresh2025 производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка Refresh2025 простой утилиты для тестирования работы OpenGL,Vulkan в Linux OS [https://github.com/srmojuze/Refresh2025]. Установка Refresh2025 производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 
