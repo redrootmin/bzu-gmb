@@ -288,13 +288,23 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 root
+refresh2025-48.png
+Refresh2025-Benchmark
+Benchmark
+Refresh2025 - простая утилита для тестирования работы OpenGL,Vulkan в Linux OS. В Refresh2025 встроен MahgoHud(Portable).
+Яцына М.А.
+refresh2025-benchmark
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Refresh2025 1.0
+#
+noroot
 vulkan48.png
 TFM_Vulkan
 Benchmark
 Простой тест Vulkan API на Unity3D. ТРЕБУЕТСЯ: Feral GameMode, MangoHud
 Яцына М.А.
 tfm-vulkan
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+HODL
 #
 #
 root
