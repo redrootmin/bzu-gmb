@@ -23,7 +23,7 @@ zenity --error --text="Пароль не введён"
 exit 0
 else 
 export pass_user=${pass_user0}
-
+fi
 else 
 exit 0
 fi

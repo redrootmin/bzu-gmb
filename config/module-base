@@ -279,15 +279,15 @@ PortProton-97
 #
 noroot
 furmark48.png
-Furmark_Pack
+Furmark-Linux
 Benchmark
-Набор утилит для тестирования OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), классически Furmark (волосатый бублик) в комплекте а также: TessMark,GiMark,PixMark Piano,PixMark Volplosion,Plot3D,Triangle. ТРЕБУЕТСЯ: Feral GameMode, Mesa Gallium HUD, Mesa zink 
+Furmark-Linux это Linux версия популярного теста 3D-графики Furmark (волосатый бублик), данная утилита позволяет проверить работу\сделать замеры производительности графики в API OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), дополнительно в комплекте достаточно тяжелый тест: PixMark Piano. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
 Яцына М.А.
-furmark-pack
+furmark-linux
 Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Furmark-Linux
 #
-#
-root
+noroot
 refresh2025-48.png
 Refresh2025-Benchmark
 Benchmark

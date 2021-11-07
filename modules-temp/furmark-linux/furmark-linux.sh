@@ -30,7 +30,7 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Refresh2025 простой утилиты для тестирования работы OpenGL,Vulkan в Linux OS [https://github.com/srmojuze/Refresh2025]. Установка Refresh2025 производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка furmark-linux простой утилиты для тестирования работы API OpenGL,Zink в Linux OS [https://www.geeks3d.com/gputest/]. Установка furmark-linux производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 
@@ -65,24 +65,24 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/refresh2025-benchmark" ]
+if [ ! -d "/home/${user_run_script}/furmark_linux" ]
 then
 tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
 rm -f refresh2025-benchmark.tar.xz
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark.tar.xz
-tar -xpJf "refresh2025-benchmark.tar.xz"
-rm -f refresh2025-benchmark.tar.xz
-cd ~/refresh2025-benchmark;chmod +x mini_install.sh
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/furmark_linux.tar.xz
+tar -xpJf "furmark_linux.tar.xz"
+rm -f furmark_linux.tar.xz
+cd ~/furmark_linux;chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
-app_name="refresh2025-benchmark"
+app_name="furmark-linux"
 #echo "Testing:${version_app}"
-cd "/home/"${user_run_script}"/refresh2025-benchmark/app"
-echo "Папка установки:/home/"${user_run_script}"/refresh2025-benchmark"
-#bash -c "/home/"${user_run_script}"/refresh2025-benchmark/app/refresh2025[opengl]starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "Refresh2025.x86_64"
+cd "/home/"${user_run_script}"/furmark_linux/app"
+echo "Папка установки:/home/"${user_run_script}"/furmark_linux"
+bash -c "/home/${user_run_script}/furmark_linux/core-utils/./mangohud_portable --dlsym /home/${user_run_script}/furmark_linux/app/GpuTest /test=fur /width=640 /height=480" & sleep 5;echo "${pass_user}" | sudo -S killall "GpuTest"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
 else
