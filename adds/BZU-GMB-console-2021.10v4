@@ -494,7 +494,7 @@ sudo apt install qpdftools
 
 #[LINUX RDP КЛИЕНТ]
 sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
-sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret
+sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret  freerdp2-x11 libcacard0 libphodav-2.0-0 libphodav-2.0-common libspice-client-glib-2.0-8 libspice-client-gtk-3.0-5 libusbredirhost1 libusbredirparser1 remmina-plugin-exec remmina-plugin-kwallet remmina-plugin-spice spice-client-glib-usb-acl-helper
 
 
 #[BLANKET - ИМЕТАЦИЯ РАЗЛИЧНЫХ ШУМОВ]
