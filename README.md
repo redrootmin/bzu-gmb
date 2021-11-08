@@ -11,12 +11,7 @@ Installation:
 -----------
 Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-<<<<<<< HEAD
-Or download latest bzu-gmb version in install in user space
-
-=======
 latest version installing in user space
->>>>>>> 6a6bddff5b1aab87f51afc54429d361587b471ce
 Go to terminal (CTRL+ALT+T)and copy commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
@@ -31,12 +26,3 @@ TODO:
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
-<<<<<<< HEAD
-
-[Crypto]
-- LBRY: bCqqmkBsKjE5vpwvXrzPoMfHBH9cKhX5Jr
-- USDT-TRC20: TY4SMZJJySq3BvDJmVZomR6TApTvJDufgu
-- ETH: 0x21e77e9c3e68dc6c6a451900926bdc3c3ba63015
-- BTC: 17LasNEVBVKajX3F1gEYngJH2K9fwZZ6z9
-=======
->>>>>>> 6a6bddff5b1aab87f51afc54429d361587b471ce
