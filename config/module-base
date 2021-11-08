@@ -284,7 +284,7 @@ Benchmark
 Furmark-Linux это Linux версия популярного теста 3D-графики Furmark (волосатый бублик), данная утилита позволяет проверить работу\сделать замеры производительности графики в API OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), дополнительно в комплекте достаточно тяжелый тест: PixMark Piano. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
 Яцына М.А.
 furmark-linux
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Linux Mint 20.2 experimental
 Furmark-Linux
 #
 noroot
