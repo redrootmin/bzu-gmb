@@ -80,8 +80,7 @@ app_name="codium"
 echo "Testing:${version_app}"
 
 # 5 секунд теста программы
-bash -c VSCodium_starter.sh
-sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+bash -c "/home/${user_run_script}/VSCodium/VSCodium_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
 tput setaf 2; echo "Установка редактора текста\кода ${version_app} завершена :)"
 tput sgr0
 #else tput setaf 1;echo "${name_script}:not installing!"

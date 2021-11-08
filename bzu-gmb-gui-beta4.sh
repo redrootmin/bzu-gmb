@@ -4,8 +4,8 @@
 
 iconway1="${script_dir}/icons/"
 imageway1="${script_dir}/image/"
-icon1="$iconway1""bzu-gmb48.png"
-image1="$imageway1""bzu-gmb-gls1080-new.png"
+icon1="$iconway1""bzu-gmb-new48.png"
+image1="$imageway1""new-panel-logo1080.png"
 
 #загружаем статус buz-gmb
 bzu_gmb_status=`cat "${script_dir}/config/status"`
@@ -14,12 +14,13 @@ bzu_gmb_status=`cat "${script_dir}/config/status"`
 if [[ "${bzu_gmb_status}" == "experimental" ]]
 then
 linuxos_version="experimental"
-zenity --error --ellipsize  --timeout=2 --text="${version} запущен в эксперементальном режиме!"
+GTK_THEME="Adwaita-dark" zenity --error --ellipsize  --timeout=2 --text="${version} запущен в эксперементальном режиме!"
+image1="$imageway1""new-panel-logo-exp-1080.png"
 fi
 
 readarray -t module_base < "${script_dir}/config/module-base"
 let "module_base_num = ${#module_base[@]} - 10"
-select_install='yad  --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT --button="Выход:1" --button="Установка:0" '
+select_install='GTK_THEME="Adwaita-dark" yad  --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT --button="Выход:1" --button="Установка:0" '
 
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
@@ -98,7 +99,7 @@ echo "$pass_user" | sudo -S echo "Количество критических о
 fi
 
 #проверка как завершилась работа установки модулей, если были ошибки, то логи показывать не нужно
-zenity --text-info --width=480 --height=680 --title="Лог установки модулей ${version} " --filename="${script_dir}/module_install_log" --editable
+GTK_THEME="Adwaita-dark" zenity --text-info --width=480 --height=680 --title="Лог установки модулей ${version} " --filename="${script_dir}/module_install_log" --editable
 
 exit 0
 

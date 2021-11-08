@@ -28,6 +28,7 @@ script_dir=$(cd $(dirname "$0") && pwd);
 version_bzu_gmb=`cat "${script_dir}/config/name_version"`
 app_dir="${script_dir}/modules-temp"
 name_desktop_file="bzu-gmb.desktop"
+name_icon="icons/bzu-gmb-new320.png"
 name_script_start="bzu-gmb-launcher.sh"
 name_app="${version_bzu_gmb}"
 exec_full="bash -c "${script_dir}"/"${name_script_start}""
@@ -72,9 +73,11 @@ echo "Comment=bzu-gmb is auto-installer linux gaming tools for debian-based dist
 echo "Categories=Utility;System;" >> "${script_dir}/${name_desktop_file}"
 echo "Exec=${exec_full}" >> "${script_dir}/${name_desktop_file}"
 echo "Terminal=true" >> "${script_dir}/${name_desktop_file}"
-echo "Icon="${script_dir}/icons/bzu-gmb512.png"" >> "${script_dir}/${name_desktop_file}"
+echo "Icon="${script_dir}/${name_icon}"" >> "${script_dir}/${name_desktop_file}"
 
 #Копируем ярлыв в программы домашней папки пользователя
+#sudo rm -f /usr/share/applications/bzu-gmb.desktop
+echo "$pass_user" | sudo -S rm -f "/usr/share/applications/${name_desktop_file}" || true
 cp -f "${script_dir}/${name_desktop_file}" "/home/${user_run_script}/.local/share/applications/"
 
 #Даем права на запуск ярлыка в папке программы и копируем в папку с ярлыками пользователя
@@ -88,7 +91,7 @@ echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
 
 #Уведомление пользователя, о том что он устанавил себе на ПК
-zenity --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
+GTK_THEME="Adwaita-dark" zenity --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
 
 #busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0

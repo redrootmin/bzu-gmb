@@ -21,15 +21,15 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[*]} - Все записи в массиве
 #version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
-version_proton=${module_conf[7]}
+#version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка редактора текста\кода Kate (KDE Advanced Text Editor),Распространяется согласно GNU General Public License  [https://kate-editor.org/ru/]. Установка редактора осуществлыется через официальный репозиторий Ubuntu. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка редактора текста\кода Microsoft Visual Studio Code, ВНИМАНИЕ! нужно принять лицензионного соглашения Microsoft  [https://code.visualstudio.com/]. Установка редактора осуществлыется через официальный репозиторий Ubuntu. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
-#запуск основных команд модуля
+
 #echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 #echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 #cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
@@ -47,19 +47,27 @@ tput sgr0
 #tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
 #после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
 #как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall --install-recommends kate breeze || let "error += 1"
+
+#запуск основных команд модуля
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+echo "${pass_user}" | sudo -S install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+echo "${pass_user}" | sudo -S sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+echo "${pass_user}" | sudo -S apt install -f -y apt-transport-https
+echo "${pass_user}" | sudo -S apt update -y
+echo "${pass_user}" | sudo -S sudo apt install -f -y code
 #формируем информацию о том что в итоге установили и показываем в терминал
 #app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
 #tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
-app_name="kate"
+app_name="code"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
 if [ $? = 0 ];then
 tput setaf 2; echo "${app_name}:installed"
 tput sgr0
 echo "Testing:${app_name}"
 # 5 секунд теста программы
-kate & sleep 5;echo "${pass_user}" | sudo -S killall kate
-tput setaf 2; echo "Установка редактора текста\кода Kate (KDE Advanced Text Editor) завершена :)"
+code & sleep 5;echo "${pass_user}" | sudo -S killall code
+tput setaf 2; echo "Установка редактора текста\кода Microsoft Visual Studio Code завершена :)"
 tput sgr0
 else tput setaf 1;echo "${name_script}:not installing!"
 fi

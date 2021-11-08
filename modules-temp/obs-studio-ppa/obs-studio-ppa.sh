@@ -34,6 +34,7 @@ echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/t
 echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 echo "${pass_user}" | sudo -S add-apt-repository -y ppa:obsproject/obs-studio  || let "error += 1"
+echo "${pass_user}" | sudo -S apt update -y
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall ffmpeg obs-studio || let "error += 1"
 # переходим в папку пользователя
 cd

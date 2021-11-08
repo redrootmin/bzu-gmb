@@ -26,7 +26,7 @@ version_proton=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка редактора текста\кода Kate (KDE Advanced Text Editor),Распространяется согласно GNU General Public License  [https://kate-editor.org/ru/]. Установка редактора осуществлыется через официальный репозиторий Ubuntu. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка Godot Engine - открытого кроссплатформенного 2D и 3D игрового движка под лицензией MIT [https://godotengine.org/]. Установка Godot Engine осуществлыется через официальный репозиторий Ubuntu. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
@@ -47,19 +47,21 @@ tput sgr0
 #tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
 #после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
 #как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall --install-recommends kate breeze || let "error += 1"
+
+#запуск основных команд модуля
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall godot* || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
 #app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
 #tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
-app_name="kate"
+app_name="godot3"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
 if [ $? = 0 ];then
 tput setaf 2; echo "${app_name}:installed"
 tput sgr0
 echo "Testing:${app_name}"
 # 5 секунд теста программы
-kate & sleep 5;echo "${pass_user}" | sudo -S killall kate
-tput setaf 2; echo "Установка редактора текста\кода Kate (KDE Advanced Text Editor) завершена :)"
+godot3 & sleep 5;echo "${pass_user}" | sudo -S killall godot3
+tput setaf 2; echo "Установка Godot Engine завершена :)"
 tput sgr0
 else tput setaf 1;echo "${name_script}:not installing!"
 fi
