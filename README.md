@@ -5,7 +5,7 @@ bzu-gmb is auto-installer linux gaming tools,  development, graphic\video editor
 
 Options
 -----------
-Ready modules : XanMod, Xanmod-cacule, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, inxi, Glances, cpu-x, xboxdrv, Steam Linux, ProtonGE, PortWINE adon, PortProton, Furmark_Pack(OpenGL Benchmark, ZINK), TFM_Vulkan(Benchmark), gdebi, GnomeExtensionsPack, mangohud-ppa, vkbasalt-ppa, Goverlay-ppa, obs-studio-ppa, Kdenlive-ppa, SimpleScreenRecorder-ppa, Lossless-Cut-appimage, Blender-ppa, vscodium-portable-1.61.1, visual-studio-code-ppa, godot-ppa, godot-portable, Kate-editor-ppa, Krita-ppa, Inkscape-ppa, GIMP-ppa, pinta-ppa, Celluloid-ppa, Audacity-ppa, Audacious-ppa, Thunderbird-ppa, Qpdf-tools-ppa, Simple-scan-ppa, BackToGnomeVanilla, GnomeExtensionsPack2 for Ubuntu 21.10\Debian-testing
+Ready modules: XanMod, Xanmod-cacule, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, inxi, Glances, cpu-x, xboxdrv, Steam Linux, ProtonGE, PortWINE adon, PortProton, Furmark_Pack(OpenGL Benchmark, ZINK), TFM_Vulkan(Benchmark), gdebi, GnomeExtensionsPack, mangohud-ppa, vkbasalt-ppa, Goverlay-ppa, obs-studio-ppa, Kdenlive-ppa, SimpleScreenRecorder-ppa, Lossless-Cut-appimage, Blender-ppa, vscodium-portable-1.61.1, visual-studio-code-ppa, godot-ppa, godot-portable, Kate-editor-ppa, Krita-ppa, Inkscape-ppa, GIMP-ppa, pinta-ppa, Celluloid-ppa, Audacity-ppa, Audacious-ppa, Thunderbird-ppa, Qpdf-tools-ppa, Simple-scan-ppa, BackToGnomeVanilla, GnomeExtensionsPack2 for Ubuntu 21.10\Debian-testing
 
 Installation:
 -----------
