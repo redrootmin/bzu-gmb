@@ -26,9 +26,3 @@ TODO:
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
-
-[Crypto]
-- LBRY: bCqqmkBsKjE5vpwvXrzPoMfHBH9cKhX5Jr
-- USDT-TRC20: TY4SMZJJySq3BvDJmVZomR6TApTvJDufgu
-- ETH: 0x21e77e9c3e68dc6c6a451900926bdc3c3ba63015
-- BTC: 17LasNEVBVKajX3F1gEYngJH2K9fwZZ6z9
