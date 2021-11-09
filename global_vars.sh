@@ -1,9 +1,17 @@
 #!/bin/bash
-# определение папки где находиться скрипт и версию скрипта
-script_dir0=$(cd $(dirname "$0") && pwd);
-export script_dir="${script_dir0}"
-version0=`cat "${script_dir}/config/name_version"`
-export version="${version0}"
+#creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
+
+#Определение расположениея папки bzu-gmb
+#main_dir=`echo ${app_dir} | sed 's/\/app\>//g'`
+main_dir=$(dirname $(readlink -f "$0"))
+utils_dir="${main_dir}/core-utils"
+cd ${app_dir}
+
+#Определение переменныех утилит и скриптов
+YAD="${utils_dir}/yad"
+mangohud="${utils_dir}/./mangohud_portable"
+zenity="${utils_dir}/zenity"
 
 #Для создания скрипта использовались следующие ссылки
 #https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta

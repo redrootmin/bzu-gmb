@@ -1,22 +1,43 @@
 #!/bin/bash
 #creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License 
-# определение папки где находиться скрипт и версию скрипта
-script_dir0=$(cd $(dirname "$0") && pwd);
-export script_dir="${script_dir0}"
-version0=`cat "${script_dir}/config/name_version"`
-export version="${version0}"
+
+
+#Определение расположениея папки bzu-gmb и версию
+#main_dir=`echo ${app_dir} | sed 's/\/app\>//g'`
+script_dir0=$(dirname $(readlink -f "$0"))
+utils_dir0="${script_dir0}/core-utils"
+version0=`cat "${script_dir0}/config/name_version"`
+export script_dir=${script_dir0}
+export utils_dir=${utils_dir0}
+export version=${version0}
+
+#Определение переменныех утилит и скриптов
+YAD0="${utils_dir}/yad"
+mangohud0="${utils_dir}/./mangohud_portable"
+zenity0="${utils_dir}/zenity"
+export YAD=${YAD0}
+export mangohud=${mangohud0}
+export zenity=${zenity0}
+
 # получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
 echo "$USER" > "${script_dir}/config/user"
+
+#script_dir0=$(cd $(dirname "$0") && pwd);
+#export script_dir="${script_dir0}"
+#version0=`cat "${script_dir}/config/name_version"`
+#export version="${version0}"
+# получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
+#echo "$USER" > "${script_dir}/config/user"
 # проверка что за система запустила скрипт
 #linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 
 # запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-pass_user0=$(GTK_THEME="Adwaita-dark" zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
+pass_user0=$(GTK_THEME="Adwaita-dark" ${zenity} --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
 
 if [[ "${pass_user0}" == "" ]]
 then
-zenity --error --text="Пароль не введён"
+GTK_THEME="Adwaita-dark" ${zenity} --error --text="Пароль не введён"
 exit 0
 else 
 export pass_user=${pass_user0}
@@ -71,14 +92,14 @@ tput sgr0
 #
 if [[ $linuxos_version == "" ]]
 then
-if experemental_os=$(GTK_THEME="Adwaita-dark" zenity --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
+if experemental_os=$(GTK_THEME="Adwaita-dark" ${zenity} --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
 then
 echo "experimental" > "${script_dir}/config/status"
 echo $linux_os >> "${script_dir}/config/list-os"
 cd ${script_dir}
 ./bzu-gmb-gui-beta4.sh
 else 
-zenity --error --ellipsize  --timeout=5 --text="Данная операционная система $linux_os не совместима с ${version}"
+GTK_THEME="Adwaita-dark" ${zenity} --error --ellipsize  --timeout=5 --text="Данная операционная система $linux_os не совместима с ${version}"
 fi
 
 else
