@@ -30,6 +30,8 @@ select_install+="FALSE"" "'"'"${script_dir}/icons/${module_base[$i]}"'"'" "'"'"<
 fi
 #echo "${module_base[$i+6]}"
 done
+# создаем файл с полной конфигурацией yad
+echo "${select_install}" >> ${script_dir}/config/yad-module-form
 
 export modules_select=`eval ${select_install}`
 #echo "$modules_select"
