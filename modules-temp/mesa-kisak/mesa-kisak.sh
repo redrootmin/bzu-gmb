@@ -84,3 +84,6 @@ exit 0
 #https://losst.ru/massivy-bash
 #https://www.shellhacks.com/ru/grep-or-grep-and-grep-not-match-multiple-patterns/
 #https://techrocks.ru/2019/01/21/bash-if-statements-tips/
+
+
+
