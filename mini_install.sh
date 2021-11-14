@@ -92,7 +92,7 @@ done
 fi
 
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
-if [[ "${linux_os}" == "Debian" ]]
+if [[ "${linux_os}" == "Debian GNU/Linux bookworm/sid" ]]
 then
 #echo "$pass_user" | su
 #/sbin/usermod -aG sudo $USER
