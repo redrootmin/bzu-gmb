@@ -45,25 +45,25 @@ fi
 
 
 #функция для проверки пакетов на установку, если нужно установлевает
-function install_package {
-dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
-package_status=`dpkg -s $1 | grep -oh "installed"`
-echo "$1:" $package_status
+#function install_package {
+#dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+#package_status=`dpkg -s $1 | grep -oh "installed"`
+#echo "$1:" $package_status
 }
 
 #загружаем список пакетов из файла в массив
-readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
+#readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
 #задем переменной колличество пакетов в массиве
-packages_number=${#packages_list[@]}
+#packages_number=${#packages_list[@]}
 #обьявляем переменную числовой
-i=0
+#i=0
 #цикл проверки пакетов из массива
-while [ $i -lt $packages_number ]
-do
+#while [ $i -lt $packages_number ]
+#do
 #вызов функции для проверки пакетов из массива
-install_package ${packages_list[$i]} ${pass_user}
-i=$(($i + 1))
-done
+#install_package ${packages_list[$i]} ${pass_user}
+#i=$(($i + 1))
+#done
 
 
 #загружаем список операционных систем из файла в массив
