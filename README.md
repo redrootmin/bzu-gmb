@@ -16,7 +16,7 @@ Go to terminal (CTRL+ALT+T)and copy commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;bash mini_install.sh
 ```
-Installation Debian-testing:
+Installation Debian-testing[bookworm]:
 -----------
 
 latest version installing in user space
