@@ -110,6 +110,8 @@ then
 #install_package ${packages_list[$i]} ${pass_user}
 #i=$(($i + 1))
 #done
+echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates timeshift inxi  gnome-session gnome-tweaks
+echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
 fi
 
 
