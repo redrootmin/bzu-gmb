@@ -73,20 +73,46 @@ In terminal enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
 ```
+<<<<<<< HEAD
 [Unstable version] (for testing only)
 
 In terminal enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;bash mini_install.sh
+=======
+Installation Debian-testing:
+-----------
+
+latest version installing in user space
+Go to terminal and copy commands:
+```
+su
+```
+```
+/sbin/usermod -aG sudo $USER
+```
+```
+echo "deb http://deb.debian.org/debian/ bookworm main" >> /etc/apt/sources.list;echo "deb-src http://deb.debian.org/debian/ bookworm main" > /etc/apt/sources.list;echo "deb http://security.debian.org/ bookworm/updates main contrib non-free" > /etc/apt/sources.list;echo "deb-src http://security.debian.org/ bookworm/updates main contrib non-free" > /etc/apt/sources.list;echo "deb http://ftp.debian.org/debian bookworm-backports main contrib non-free" > /etc/apt/sources.list;echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free" > /etc/apt/sources.list;sudo echo "deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free" > /etc/apt/sources.list
+sudo apt update -y;sudo apt upgrade -y
+```
+```
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
+>>>>>>> Update README.md
 ```
 
 TODO:
 -----------
 - Add Experemintal Mode - DONE
+<<<<<<< HEAD
 - Add beta49  new functionality, new multimedia modules, customize Ubuntu  - DONE
 - Add in beta50 support eng\rus language
 - Add in beta50 auto-update-system tools
 
+=======
+- Add auto-update-system tools
+- Add beta5  new functionality, new multimedia modules, customize Ubuntu  - DONE
+- 
+>>>>>>> Update README.md
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
