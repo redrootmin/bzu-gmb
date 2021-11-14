@@ -105,9 +105,18 @@ i=0
 while [ $i -lt $packages_number ]
 do
 #вызов функции для проверки пакетов из массива
+<<<<<<< HEAD
 install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
+=======
+#install_package ${packages_list[$i]} ${pass_user}
+#i=$(($i + 1))
+#done
+echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates timeshift inxi  gnome-session gnome-tweaks
+echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
+fi
+>>>>>>> update-for-debian
 
 #echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates  inxi gnome-tweaks
 #echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
