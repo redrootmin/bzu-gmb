@@ -49,7 +49,7 @@ fi
 #dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
 #package_status=`dpkg -s $1 | grep -oh "installed"`
 #echo "$1:" $package_status
-}
+#}
 
 #загружаем список пакетов из файла в массив
 #readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
