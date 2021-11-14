@@ -74,7 +74,7 @@ echo "$1:" $package_status
 }
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if [[ "${linux_os}" == "Ubuntu" ]] or [[ "${linux_os}" == "Linux Mint" ]]
+if [[ "${linux_os}" == "Ubuntu" ]] || [[ "${linux_os}" == "Linux Mint" ]]
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
