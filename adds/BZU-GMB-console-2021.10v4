@@ -533,7 +533,7 @@ User Themes https://extensions.gnome.org/extension/19/user-themes/
 Workspaces Thumbnails https://extensions.gnome.org/extension/2557/workspaces-thumbnails/
 X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
 
-[UBUNTU 21.10, GNOME 40, GNOME EXTENSIONS]:
+#[UBUNTU 21.10, GNOME 40, GNOME EXTENSIONS]:
 Add to Desktop https://extensions.gnome.org/extension/3240/add-to-desktop/
 Applications Overview Tooltip https://extensions.gnome.org/extension/1071/applications-overview-tooltip/
 Auto Move Windows  https://extensions.gnome.org/extension/16/auto-move-windows/
@@ -559,7 +559,11 @@ Workspace Indicator https://extensions.gnome.org/extension/21/workspace-indicato
 X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
 
 
+#[INSTALL-BEST-OPEN-LINUX-GAMES]
+sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-common minetest minetest-data warzone2100 warzone2100 warzone2100-data
 
+#[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
+https://github.com/OpenRA/OpenRA/releases
 
 
 
