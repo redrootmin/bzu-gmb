@@ -11,7 +11,7 @@ root
 xanmod-latest48.png
 Xanmod-cacule
 LinuxKernel
-Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
+Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT. ВИНИМАНИЕ! На офицальном сайте этой сборки ядра не рекомендуют использовать эту версию с видеокартами Nvidia, только классический Xanmod.
 Яцына М.А.
 xanmod-kernel-latest
 Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
@@ -228,14 +228,14 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 root
-protonge48.png
-ProtonGE
+protonup-qt48.png
+ProtonUp-Qt
 GameTools
-ProtonGE это кастумная версия Proton для клиента Steam в linux, основной плюсы этой версии: больше поддерживается игр, более новые библиотеки и версии wine,dxvk,vkd3d. Если у Вас что то не запускается через стандартный Steam Proton, эта кастумная версия скорее всего поможет вам с этой проблемой.
+ProtonUp-Qt - Графический менеджер для установки и управления Proton-GE для Steam и Wine-GE для Lutris. Утилита ProtonUp создана AUNaseef, использует Python 3 и Qt 6. Данная версия в формате Appimage и должна заработать на большом кооличестве Linux систем.
 Яцына М.А.
-proton-ge
+protonup-qt-appimage
 Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
-#
+ProtonUp-Qt-2.1.1-x86
 #
 noroot
 lutris48.png
@@ -243,7 +243,7 @@ Lutris
 GamingApp
 Lutris это клиент для установки и запуска различных игр в среде десктопных Linux систем, основным отличием его от PlayOnLinux является наибольшая универсальность, с помощью Litris можно запустить windows игры, установить клиенты: steam, epicstore, gog-galaxy, origins, uplay и множество игр с консолей, дополнительно Lutris аккумулирует другие игры и ресурсы найденные в системе у себя в окне запуска, например может взять версию Proton из стим и запустить игру скаченную из gog, либо добавить все игры из steam к себе для запуска. Lutris настоящий игровой комбайн для всего что связанно с играми в Linux системах
 Яцына М.А.
-Lutris
+lutris
 HODL
 #
 #
