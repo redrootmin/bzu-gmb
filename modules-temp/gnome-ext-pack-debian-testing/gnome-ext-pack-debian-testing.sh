@@ -75,9 +75,10 @@ echo "${pass_user}" | sudo -S mv debian-darwin/debian-darwin /usr/share/plymouth
 ### for disable gnome-extension ###
 rm -fr "/home/${user_run_script}/.local/share/gnome-shell/extensions" || true
 tar -xpJf "extensions.tar.xz" -C "/home/${user_run_script}/.local/share/gnome-shell/"
+#dconf reset -f /org/gnome/shell/extensions/
 cp -f user "/home/${user_run_script}/.config/dconf"
 sleep 5
-
+dconf load / < dconf_full.conf
 #финально перезагружем окружение gnome
 echo "${pass_user}" | sudo -S pkill -9 ^gnome-shell
 
