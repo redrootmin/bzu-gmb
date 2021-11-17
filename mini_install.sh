@@ -77,7 +77,7 @@ echo "$1:" $package_status
 if [[ "${linux_os}" == "Ubuntu" ]] || [[ "${linux_os}" == "Linux Mint 20.2" ]]
 then
 #загружаем список пакетов из файла в массив
-readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
 #задем переменной колличество пакетов в массиве
 packages_number=${#packages_list[@]}
 #обьявляем переменную числовой
@@ -94,25 +94,22 @@ fi
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
 if [[ "${linux_os}" == "Debian GNU/Linux bookworm/sid" ]]
 then
-#echo "$pass_user" | su
-#/sbin/usermod -aG sudo $USER
-#exit
 #загружаем список пакетов из файла в массив
-#readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
+readarray -t packages_list < "${script_dir}/config/packages-debian-book_worm"
 #задем переменной колличество пакетов в массиве
-#packages_number=${#packages_list[@]}
+packages_number=${#packages_list[@]}
 #обьявляем переменную числовой
-#i=0
+i=0
 #цикл проверки пакетов из массива
-#while [ $i -lt $packages_number ]
-#do
+while [ $i -lt $packages_number ]
+do
 #вызов функции для проверки пакетов из массива
-#install_package ${packages_list[$i]} ${pass_user}
-#i=$(($i + 1))
-#done
-echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
-echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates timeshift inxi  gnome-session gnome-tweaks
-echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates  inxi gnome-tweaks
+#echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
 fi
 
 
