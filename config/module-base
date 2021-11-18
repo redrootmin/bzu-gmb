@@ -227,7 +227,7 @@ steam
 Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 protonup-qt48.png
 ProtonUp-Qt
 GameTools
@@ -514,10 +514,10 @@ GuiDebInstaller
 gdebi это утилита для установки deb пакетов, без участия консоли, она сама установит зависимости, напишет если есть проблемы или пакет не может быть установлен в систему так как не совместим. Отличное решение, кто первично не любит лезть в консоль Linux системы :)
 Яцына М.А.
 gdebi
-Ubuntu 20.04.3 LTS Ubuntu 21.10
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 gnome-ext-pack48.png
 GnomeExtensionsPack
 GnomeStyle

@@ -94,6 +94,7 @@ fi
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
 if [[ "${linux_os}" == "Debian GNU/Linux bookworm/sid" ]]
 then
+echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-debian-book_worm"
 #задем переменной колличество пакетов в массиве
@@ -107,7 +108,7 @@ do
 install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
-#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+
 #echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates  inxi gnome-tweaks
 #echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
 fi
