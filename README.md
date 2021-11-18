@@ -39,9 +39,9 @@ cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redroot
 TODO:
 -----------
 - Add Experemintal Mode - DONE
-- Add auto-update-system tools
-- Add beta5  new functionality, new multimedia modules, customize Ubuntu  - DONE
-- 
+- Add beta49  new functionality, new multimedia modules, customize Ubuntu  - DONE
+- Add in beta50 support eng\rus language
+- Add n beta50 auto-update-system tools
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
