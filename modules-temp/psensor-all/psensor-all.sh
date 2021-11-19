@@ -28,19 +28,19 @@ version_proton=${module_conf[7]}
 pass_user0="$1"
 export pass_user="${pass_user0}"
 date_install=`date`
-linuxos_run_bzu-gmb0=`cat "${script_dir}/config/os-run-script"`
-linuxos_run_bzu-gmb=${linuxos_run_bzu-gmb0}
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+linuxos_run_bzu_gmb=${linuxos_run_bzu-gmb0}
 #даем информацию в терминал какой модуль устанавливается
 tput setaf 2; echo "Установка утилиты Psensor для мониторинга оборудования [https://wpitchoune.net/psensor/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
-if [[ "${linuxos_run_bzu-gmb}" == "Ubuntu" ]] || [[ "${linuxos_run_bzu-gmb}" == "Linux Mint 20.2" ]]
+if [[ "${linuxos_run_bzu_gmb}" == "Ubuntu" ]] || [[ "${linuxos_run_bzu_gmb}" == "Linux Mint 20.2" ]]
 then
 #запуск основных команд модуля
 sudo -S apt install -f -y --reinstall psensor || let "error += 1"
 fi
 
-if [[ "${linuxos_run_bzu-gmb}" == "Debian GNU/Linux bookworm/sid" ]]
+if [[ "${linuxos_run_bzu_gmb}" == "Debian GNU/Linux bookworm/sid" ]]
 then
 module_link='https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/psensor-debian-deb.tar.xz'
 module_name_arc="psensor-debian-deb.tar.xz"
