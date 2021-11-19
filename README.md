@@ -11,7 +11,7 @@ Installation Ubuntu\Linux Mint:
 -----------
 Stable version, you can be downloaded in [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-Development version
+[Development version]
 
 In terminal (CTRL+ALT+T) enter commands:
 ```
