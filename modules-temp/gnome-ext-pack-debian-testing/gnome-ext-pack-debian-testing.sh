@@ -55,7 +55,7 @@ echo "${pass_user}" | sudo -S apt install -f -y --reinstall chrome-gnome-shell g
 
 #echo "${pass_user}" | sudo -S cp -r debian-darwin/debian-darwin /usr/share/plymouth/themes/debina-darwin
 splash_status=`cat /etc/default/grub | grep -ow "splash"`
-if [[ "splash_status" == "" ]]
+if [[ "${splash_status}" == "" ]]
 then
 echo "${pass_user}" | sudo -S sed -i 's/quiet/quiet splash/g' /etc/default/grub
 echo "${pass_user}" | sudo -S update-grub
