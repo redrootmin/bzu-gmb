@@ -46,7 +46,7 @@ echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}" > /
 export dir_grub_file="/etc/default"
 export grub_file_name="grub"
 readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
-cp -p -f "/etc/default/grub" "/etc/default/grub.bak"
+echo "${pass_user}" | sudo -S cp -p -f "/etc/default/grub" "/etc/default/grub.bak"
 echo "сделан бикап файла grub /etc/default/grub.bak"
 
 function install_flags_grub_kernel {
@@ -55,13 +55,13 @@ if [[ "${flag_status}" == "$2" ]];then
 tput setaf 3
 echo "флаг $2 уже добавлен в grub" 
 tput sgr0 
-cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
+echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
 else
 echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2
 echo "флаг ${amd_full_gpu_control} добавлен в grub"
 tput sgr0
-cat ${dir_grub_file}/${grub_file_name} | grep "$1"
+echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
 }
 
@@ -75,8 +75,8 @@ echo "${pass_user}" | sudo -S apt update -y || let "error += 1"
 
 module_link='https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/corectrl-debian-deb.tar.xz'
 module_name_arc="corectrl-debian-deb.tar.xz"
-echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 wget "${module_link}" -O "${module_name_arc}" || let "error += 1"
 tar -xpJf "${module_name_arc}"
