@@ -75,11 +75,14 @@ echo "${pass_user}" | sudo -S apt update -y || let "error += 1"
 
 module_link='https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/corectrl-debian-deb.tar.xz'
 module_name_arc="corectrl-debian-deb.tar.xz"
-cd
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 wget "${module_link}" -O "${module_name_arc}" || let "error += 1"
-tar -xpJf "${script_dir}/modules-temp/${name_script}/temp/${module_name_arc}"
+tar -xpJf "${module_name_arc}"
 echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
-
+cd
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 #создание файла с правилом запуска corectrl без запроса пароля
 if [[ "${polkit_version}" == "0.105" ]]
 then
