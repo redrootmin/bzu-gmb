@@ -1,26 +1,31 @@
 # bzu-gmb
-bzu-gmb is auto-installer linux gaming tools,  development, graphic\video editors for Ubuntu\Linux Mint and other debian-based distributions in experimental mode, written in bash using zenity and yad libraries
+bzu-gmb is auto-installer linux gaming tools,  development, graphic\video editors for Ubuntu\Linux Mint\Debian testing and other debian-based distributions in experimental mode, written in bash using zenity and yad libraries
 -----------
 <img src="image/bzu-gmb-beta4-7.png" alt="My cool logo"/>
 
 Options
 -----------
-Ready modules: XanMod, Xanmod-cacule, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, inxi, Glances, cpu-x, xboxdrv, Steam Linux, ProtonGE, PortWINE adon, PortProton, Furmark_Pack(OpenGL Benchmark, ZINK), TFM_Vulkan(Benchmark), gdebi, GnomeExtensionsPack, mangohud-ppa, vkbasalt-ppa, Goverlay-ppa, obs-studio-ppa, Kdenlive-ppa, SimpleScreenRecorder-ppa, Lossless-Cut-appimage, Blender-ppa, vscodium-portable-1.61.1, visual-studio-code-ppa, godot-ppa, godot-portable, Kate-editor-ppa, Krita-ppa, Inkscape-ppa, GIMP-ppa, pinta-ppa, Celluloid-ppa, Audacity-ppa, Audacious-ppa, Thunderbird-ppa, Qpdf-tools-ppa, Simple-scan-ppa, BackToGnomeVanilla, GnomeExtensionsPack2 for Ubuntu 21.10\Debian-testing
+Ready modules : XanMod, Xanmod-cacule, Mesa Oibaf, Mesa Kisak, Feral GameMode, MangoHud, vkBazalt, CoreCtrl, CoreCtrl 2.0, Psensor, inxi, Glances, cpu-x, xboxdrv, Steam Linux, ProtonUp-Qt, ProtonGE, PortWINE adon, PortProton, Furmark_Pack(OpenGL Benchmark, ZINK), TFM_Vulkan(Benchmark), gdebi, GnomeExtensionsPack, mangohud-ppa, vkbasalt-ppa, Goverlay-ppa, obs-studio-ppa, Kdenlive-ppa, SimpleScreenRecorder-ppa, Lossless-Cut-appimage, Blender-ppa, vscodium-portable-1.61.1, visual-studio-code-ppa, godot-ppa, godot-portable, Kate-editor-ppa, Krita-ppa, Inkscape-ppa, GIMP-ppa, pinta-ppa, Celluloid-ppa, Audacity-ppa, Audacious-ppa, Thunderbird-ppa, Qpdf-tools-ppa, Simple-scan-ppa, BackToGnomeVanilla, GnomeExtensionsPack2 for Ubuntu 21.10, GnomeExtensionsPack2 for Debian-testing
 
 Installation Ubuntu\Linux Mint:
 -----------
-Go to [Releases](https://github.com/redrootmin/bzu-gmb/releases)
+Stable version, you can be downloaded in [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
-latest version installing in user space
-Go to terminal (CTRL+ALT+T)and copy commands:
+Development version
+In terminal (CTRL+ALT+T) enter commands:
+```
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
+```
+Unstable version (for testing only)
+In terminal (CTRL+ALT+T) enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;bash mini_install.sh
 ```
+
 Installation Debian-testing[bookworm]:
 -----------
-
-latest version installing in user space
-Go to terminal and copy commands:
+debian preconfiguration 
+in terminal enter commands:
 ```
 su
 ```
@@ -32,6 +37,16 @@ echo "deb http://deb.debian.org/debian/ bookworm main" > /etc/apt/sources.list;e
 ```
 Reboot Debian!
 -----------
+
+Stable version, you can be downloaded in [Releases](https://github.com/redrootmin/bzu-gmb/releases)
+
+Development version
+in terminal enter commands:
+```
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
+```
+Unstable version (for testing only) 
+in terminal enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;bash mini_install.sh
 ```
@@ -41,7 +56,7 @@ TODO:
 - Add Experemintal Mode - DONE
 - Add beta49  new functionality, new multimedia modules, customize Ubuntu  - DONE
 - Add in beta50 support eng\rus language
-- Add n beta50 auto-update-system tools
+- Add in beta50 auto-update-system tools
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
