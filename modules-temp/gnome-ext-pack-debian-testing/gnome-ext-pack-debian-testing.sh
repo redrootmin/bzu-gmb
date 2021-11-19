@@ -58,6 +58,7 @@ splash_status=`cat /etc/default/grub | grep -ow "splash"`
 if [[ "splash_status" == "" ]]
 then
 echo "${pass_user}" | sudo -S sed -i 's/quiet/quiet splash/g' /etc/default/grub
+echo "${pass_user}" | sudo -S update-grub
 #echo "$pass_user" | sudo -S chmod +x plymouth-set-default-theme
 #bash plymouth-set-default-theme -R debian-darwin
 fi
