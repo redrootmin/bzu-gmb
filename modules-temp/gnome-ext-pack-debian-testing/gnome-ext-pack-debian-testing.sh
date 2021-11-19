@@ -47,14 +47,22 @@ echo "${pass_user}" | sudo -S tar -xpJf "${name_script}.tar.xz"
 cd "${script_dir}/modules-temp/${name_script}/temp/${name_script}"
 
 # установка дополнительного ПО
-#echo "${pass_user}" | sudo -S apt install -f -y --reinstall gnome-session gnome-tweaks chrome-gnome-shell gnome-shell-extensions numix-icon-theme-circle git libglib2.0-dev grub-customizer paprefs pavucontrol
 echo "${pass_user}" | sudo -S apt update
 echo "${pass_user}" | sudo -S apt upgrade
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall chrome-gnome-shell gnome-shell-extensions numix-icon-theme-circle git libglib2.0-dev grub-customizer plymouth-themes-solar paprefs pavucontrol
 
 # устаноавливаем черное logo ubuntu на заставку загрузки
 
-echo "${pass_user}" | sudo -S mv debian-darwin/debian-darwin /usr/share/plymouth/themes/debina-darwin
+#echo "${pass_user}" | sudo -S cp -r debian-darwin/debian-darwin /usr/share/plymouth/themes/debina-darwin
+splash_status=`cat /etc/default/grub | grep -ow "splash"`
+if [[ "splash_status" == "" ]]
+then
+echo "${pass_user}" | sudo -S sed -i 's/quiet/quiet splash/g' /etc/default/grub
+#echo "$pass_user" | sudo -S chmod +x plymouth-set-default-theme
+#bash plymouth-set-default-theme -R debian-darwin
+fi
+
+
 #echo "${pass_user}" | sudo -S update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/ubuntu-darwin/ubuntu-darwin.plymouth 10
 #echo "${pass_user}" | sudo -S echo "2" | sudo update-alternatives --config default.plymouth
 #rm -rf ubuntu-darwin | true
