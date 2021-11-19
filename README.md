@@ -57,6 +57,7 @@ TODO:
 - Add beta49  new functionality, new multimedia modules, customize Ubuntu  - DONE
 - Add in beta50 support eng\rus language
 - Add in beta50 auto-update-system tools
+
 DONATE:
 -----------
 - [Юmoney] https://donate.stream/gamer-station-on-linux
