@@ -23,7 +23,8 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
 version_proton=${module_conf[7]}
 #получение пароля root пользователя
-pass_user="$1"
+pass_user0="$1"
+export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль устанавливается
 tput setaf 2; echo "Установка клиента steam для Linux [https://store.steampowered.com/]. Версия скрипта 1.0, автор: Яцына М.А."
@@ -39,9 +40,6 @@ dpkg -s ${app_name} | grep -ow "installed" > /dev/null
 if [ $? = 0 ];then
 tput setaf 2; echo "${app_name}:installed"
 tput sgr0
-#echo "Testing:${app_name}"
-# 5 секунд теста программы
-#blender & sleep 5;echo "${pass_user}" | sudo -S killall blender
 tput setaf 2; echo "Установка ${app_name} завершена :)"
 tput sgr0
 else tput setaf 1;echo "${name_script}:not installing!"
