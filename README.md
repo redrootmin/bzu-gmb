@@ -12,11 +12,13 @@ Installation Ubuntu\Linux Mint:
 Stable version, you can be downloaded in [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
 Development version
+
 In terminal (CTRL+ALT+T) enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
 ```
 Unstable version (for testing only)
+
 In terminal (CTRL+ALT+T) enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;bash mini_install.sh
@@ -24,8 +26,9 @@ cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redroot
 
 Installation Debian-testing[bookworm]:
 -----------
-debian preconfiguration 
-in terminal enter commands:
+debian preconfiguration
+
+In terminal enter commands:
 ```
 su
 ```
@@ -44,12 +47,14 @@ Reboot Debian!
 Stable version, you can be downloaded in [Releases](https://github.com/redrootmin/bzu-gmb/releases)
 
 Development version
-in terminal enter commands:
+
+In terminal enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;bash mini_install.sh
 ```
-Unstable version (for testing only) 
-in terminal enter commands:
+Unstable version (for testing only)
+
+In terminal enter commands:
 ```
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;bash mini_install.sh
 ```
