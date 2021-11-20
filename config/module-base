@@ -38,6 +38,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 root
+cpu-attacks48.png
+DisableMitigations
+LinuxKernelTools
+Данный скрипт отключит патчи  по устранению уязвимостей в процессорах AMD\Intel, путем добовления в /etc/default/grub флага: mitigations=off
+Яцына М.А.
+cpu-attacks
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
 mesa-oibaf48.png
 Mesa from Oibaf
 OpenDriver
@@ -174,7 +184,7 @@ OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ТРЕБУЕТСЯ: дополнительная конфигурация GRUB
 Яцына М.А.
 corectrl-mint-20
-Linux Mint 20.2
+HODL
 #
 #
 root
