@@ -16,7 +16,7 @@ user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
 linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
-export linuxos_run_bzu_gmb=${linuxos_run_bzu-gmb0}
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
