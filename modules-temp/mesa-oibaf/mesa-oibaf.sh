@@ -15,6 +15,8 @@ version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb=${linuxos_run_bzu-gmb0}
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -25,8 +27,6 @@ version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user0="$1"
 export pass_user="${pass_user0}"
-date_install=`date`
-
 #даем информацию в терминал какой модуль устанавливается
 tput setaf 2; echo "Установка тестового, открытого драйвера Mesa 20.2+ от Oibaf [https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]. Версия скрипта 2.0, автор: Яцына М.А."
 tput sgr0
