@@ -30,17 +30,6 @@ export pass_user="${pass_user0}"
 date_install=`date`
 linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
 linuxos_run_bzu_gmb=${linuxos_run_bzu-gmb0}
-
-polkit_version=`pkaction --version | grep -Eo '[0-9*'.']{1,}'`
-if [[ "${polkit_version}" == "0.105" ]]
-then
-rule_dir_install="/etc/polkit-1/localauthority/50-local.d"
-rule_file_install="90-corectrl.pkla"
-else
-rule_dir_install="/etc/polkit-1/rules.d"
-rule_file_install="90-corectrl.rules"
-fi
-echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}" > /dev/null || rule_file_create="yes"
 export dir_grub_file="/etc/default"
 export grub_file_name="grub"
 readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
