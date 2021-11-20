@@ -33,7 +33,8 @@ tput sgr0
 #запуск основных команд модуля
 cd
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
-echo "${pass_user}" | sudo -S apt install -f -y steam.deb  || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -f -y ./steam.deb  || let "error += 1"
+echo "${pass_user}" | sudo -S rm -f "steam.deb" || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="steam"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
