@@ -57,7 +57,7 @@ mesa-oibaf
 Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 mesa-kisak48.png
 Mesa from Kisak
 OpenDriver
@@ -464,7 +464,7 @@ Graphics
 Pinta - свободно распространяемый графический редактор для создания и обработки растровой графики и частично векторной. Инструменты входящие в GIMP: кривые, уровни, микшер каналов, постеризация, тон-насыщенность, баланс цветов, яркость-контраст, обесцвечивание, удаление искажений, вносимые оптикой, корректировка перспективы,кадрирование фотографий.
 Яцына М.А.
 pinta-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 noroot
@@ -504,7 +504,7 @@ Office
 Thunderbird - бесплатная кроссплатформенная свободно распространяемая программа для работы с электронной почтой и группами новостей, календарём и простой но фукциональной CRM. Thunderbird является составной частью проекта Mozilla. Поддерживает протоколы: SMTP, POP3, IMAP, NNTP, RSS.
 Яцына М.А.
 thunderbird-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 noroot
@@ -514,7 +514,7 @@ Office
 QPDF Tools - это бесплатное программное обеспечение с открытым исходным кодом, с возможностью сжатия, разделения, объединения и поворота ваших PDF-документов.
 Яцына М.А.
 qpdf-tools-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 noroot
