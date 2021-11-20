@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#!/bin/bash
 #creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License
 
@@ -26,18 +28,13 @@ version_proton=${module_conf[7]}
 pass_user0="$1"
 export pass_user="${pass_user0}"
 date_install=`date`
-
-#даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Отключение всех патчтей устранения уязвимостей в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]. Версия скрипта 1.0, автор: Яцына М.А."
-tput sgr0
-
-#объявляем нужные переменные для скрипта
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+linuxos_run_bzu_gmb=${linuxos_run_bzu-gmb0}
 export dir_grub_file="/etc/default"
 export grub_file_name="grub"
 readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
 echo "${pass_user}" | sudo -S cp -p -f "/etc/default/grub" "/etc/default/grub.bak"
-tput setaf 2;echo "сделан бикап файла grub /etc/default/grub.bak"
-tput sgr0
+echo "сделан бикап файла grub /etc/default/grub.bak"
 
 function install_flags_grub_kernel {
 flag_status=`cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2"`
@@ -49,16 +46,19 @@ echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$
 else
 echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2
-echo "флаг $2 добавлен в grub"
+echo "флаг ${amd_full_gpu_control} добавлен в grub"
 tput sgr0
-echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
+cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
 }
 
-#добовление флага отключающего все заплатки для процессоров в grub
-install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
-#обновляем grub
-echo "${pass_user}" | sudo -S update-grub
+#даем информацию в терминал какой модуль устанавливается
+tput setaf 2; echo "Отключение всех патчтей устранения уязвимостей в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]. Версия скрипта 1.0, автор: Яцына М.А."
+tput sgr0
+
+#добовление флага отключающего все заплатки для процессоров
+install_flags_grub_kernel "${grub_flag_base[0]}" "${grub_flag_base[1]}"
+sudo -S update-grub
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2; lscpu | grep "Vulnerability"
@@ -66,7 +66,7 @@ tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
-echo "Подробнее о уязвимостях в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]"	 				  >> "${script_dir}/module_install_log"
+
 
 exit 0
 

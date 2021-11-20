@@ -32,8 +32,8 @@ tput setaf 2; echo "Установка утилиты CoreCtrl 1.х-dev от Jua
 tput sgr0
 
 #объявляем нужные переменные для скрипта
-user_run_script=`cat "${script_dir}/config/user"`
 polkit_version=`pkaction --version | grep -Eo '[0-9*'.']{1,}'`
+
 if [[ "${polkit_version}" == "0.105" ]]
 then
 rule_dir_install="/etc/polkit-1/localauthority/50-local.d"
@@ -59,7 +59,7 @@ echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$
 else
 echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2
-echo "флаг ${amd_full_gpu_control} добавлен в grub"
+echo "флаг $2 добавлен в grub"
 tput sgr0
 echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
