@@ -31,7 +31,7 @@ sudo -S sudo dpkg --add-architecture i386 || true
 sudo -S sudo add-apt-repository -y multiverse || true
 sudo -S apt update -y || true
 sudo -S sudo apt upgrade -y || true
-sudo -S apt install -f -y --reinstall bubblewrap curl gamemode icoutils tar vulkan-tools libvulkan1 libvulkan1:i386 wget zenity zstd steam cabextract || true
+sudo -S apt install -f -y --reinstall bubblewrap curl gamemode icoutils tar vulkan-tools libvulkan1 libvulkan1:i386 wget zenity zstd cabextract || true
 sudo -S sudo apt autoremove || true
 #формируем информацию о том что в итоге установили и показываем в терминал
 #module_installing=`dpkg -s lutris | grep installed` || true
