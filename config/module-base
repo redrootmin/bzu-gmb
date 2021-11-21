@@ -278,7 +278,7 @@ HODL
 #
 #
 root
-port-proton-adons48.png
+port-proton-new-addon48.png
 PortWINE зависимости
 GamingAddons
 PortWINE зависимости это набор пакетов которые обеспечивают поддержку запуска Портов проект PortWINE. ВНИМАНИЕ: без установки этих пакетов работоспособность PortProton и других портов не гарантирована!
@@ -288,7 +288,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 root
-port-proton48.png
+port-proton-new48.png
 PortProton
 GamingApp
 PortProton позволяет использовать версию WINE от Valve (Proton) без Steam и запускать windows игры которые вы например скачали с gog, программа максимально простая в использовании, на официальном сайте разработчика можно найти подробную видео инструкцию
