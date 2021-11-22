@@ -64,7 +64,7 @@ OpenDriver
 Стабильный открытый драйвер для Видеокарт AMD\INTEL, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf
 Яцына М.А.
 mesa-kisak
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
