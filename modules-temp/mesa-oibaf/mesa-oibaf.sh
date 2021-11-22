@@ -60,8 +60,8 @@ tput sgr0
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "для использования функций: Valve ACO(fast work high shaders) и zink(render OpenGL to Vulkan) "	 				  >> "${script_dir}/module_install_log"
-echo "нужно использовать следующие флаги:"	 				  >> "${script_dir}/module_install_log"
+echo "для использования функци zink(render OpenGL to Vulkan) "	 				  >> "${script_dir}/module_install_log"
+echo "нужно использовать следующий флаг:"	 				  >> "${script_dir}/module_install_log"
 echo "для zink: MESA_LOADER_DRIVER_OVERRIDE=zink"	 				  >> "${script_dir}/module_install_log"
 echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
 echo "MESA_LOADER_DRIVER_OVERRIDE=zink %command%"	 				  >> "${script_dir}/module_install_log"
