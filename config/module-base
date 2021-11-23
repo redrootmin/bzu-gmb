@@ -1,5 +1,5 @@
 xanmod48.png
-XanMod
+XanMod-ppa
 LinuxKernel
 Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом многоядерных процессоров и современных видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
@@ -9,7 +9,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 root
 xanmod-latest48.png
-Xanmod-cacule
+Xanmod-cacule-ppa
 LinuxKernel
 Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT. ВИНИМАНИЕ! На офицальном сайте этой сборки ядра не рекомендуют использовать эту версию с видеокартами Nvidia, только классический Xanmod.
 Яцына М.А.
@@ -19,7 +19,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 root
 liquorix-kernel48.png
-Liquorix-Kernel
+Liquorix-Kernel-ppa
 LinuxKernel
 Стабильная версия кастомного ядро Linux, основное отличие от XanMod в более новом планировщике процессов: MuQSS, который по заверению разработчика выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. ВНИМАНИЕ: Вы можете установить Liquorix-Kernel и  Xanmod-Kernel в одну систему. Опции: MuQSS_Process_Scheduler,Preemptible_tree-based_hierarchical_RCU,Hard_Kernel_Preemption,Budget_Fair_Queue,TCP_BBR_Congestion_Control,Binary Builds_For_Popular_Debian_Distros,Distribution_Kernel_Drop-in_Replacement,Minimal_Debugging
 Яцына М.А.
