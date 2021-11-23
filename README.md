@@ -29,15 +29,20 @@ Installation Debian-testing[bookworm]:
 [debian preconfiguration]
 
 In terminal enter commands:
+
+step #1
 ```
 su
 ```
+step #2
 ```
 /sbin/usermod -aG sudo $USER
 ```
+step #3
 ```
 echo "deb http://deb.debian.org/debian/ bookworm main contrib non-free" > /etc/apt/sources.list;echo "deb-src http://deb.debian.org/debian/ bookworm main contrib non-free" >> /etc/apt/sources.list;echo "deb http://security.debian.org/ bookworm/updates main contrib non-free" >> /etc/apt/sources.list;echo "deb-src http://security.debian.org/ bookworm/updates main contrib non-free" >> /etc/apt/sources.list;echo "deb http://ftp.debian.org/debian bookworm-backports main contrib non-free" >> /etc/apt/sources.list;echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free" >> /etc/apt/sources.list;echo "deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free" >> /etc/apt/sources.list
 ```
+step #4
 ```
 sudo apt update -y;sudo apt upgrade -y
 ```
