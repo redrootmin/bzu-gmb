@@ -29,7 +29,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 root
 ubuntu-kernel-lowlatency48.png
-Kernel lowlatency ppa
+Kernel-lowlatency-ppa
 LinuxKernel
 Стабильная версия оригинального ядра Linux для Ubuntu 20.04-20.10 с низкими задержками, основной плюс данной версия ядра в более высокой производительности в нативных играх или мультимедийных программах. Но на практике лучше всего проводить тестирование для конкретной игры или программы, так как возможен и обратный эффект с понижением производительности.
 Яцына М.А.
@@ -49,7 +49,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 mesa-oibaf48.png
-Mesa from Oibaf
+Mesa-from-Oibaf-ppa
 OpenDriver
 Тестовый открытый драйвер для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,ZINK,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Kisak 
 Яцына М.А.
@@ -59,7 +59,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 mesa-kisak48.png
-Mesa from Kisak
+Mesa-from-Kisak-ppa
 OpenDriver
 Стабильный открытый драйвер для Видеокарт AMD\INTEL, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf
 Яцына М.А.
@@ -69,7 +69,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 gamemode48.png
-Feral GameMode
+Feral-GameMode-ppa
 GameTools
 GameMode это утилита от компании Feral Interactive, который на лету изменяет различные системные настройки Linux для достижения максимальной производительности игровых приложений.
 Яцына М.А.
@@ -89,7 +89,7 @@ HODL
 #
 root
 mangohud48.png
-mangohud-ppa
+MangoHud-ppa
 GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.
@@ -109,7 +109,7 @@ HODL
 #
 root
 vkbasalt48.png
-vkbasalt-ppa
+vkBasalt-ppa
 GameTools
 vkBasalt это открытая утилита для наложения различных эффектов на игры где используется Vulkan API, данная утилита является по сути аналогом windows-утилиты ReShade. vkBasalt даже может использовать эффекты которые сделаны специально для ReShade. Утилита совсем новая и ей есть куда расти, в данный момент ее по большей части используют для удаления мыла из игр, где оно сильно заметно, например в разрешении 1280x720p
 Яцына М.А.
@@ -189,7 +189,7 @@ HODL
 #
 root
 psensor48.png
-Psensor
+Psensor-ppa
 Monitoring
 Psensor это утилита для мониторинга сенсоров комплектующих вашего ПК или ноутбука, ее можно назвать аналогом HWmonitor в среде windows, основные плюсы: построение графиков, мониторинг с фиксацией состояний датчиков: в реальном времени, минимальный, максимальный. 
 Яцына М.А.
@@ -199,7 +199,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 inxi48.png
-inxi
+inxi-ppa
 Monitoring
 inxi это консольная утилита для вывода информации о комплектующих ПК или ноутбука, версии ядра, драйвера видеокарты, датчиков температуры и загрузки системы, что бы получить полную информацию нужно открыть терминал: ctrl+alt+t и ввести: inxi -Fxs 
 Яцына М.А.
@@ -219,7 +219,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 root
 cpu-x48.png
-cpu-x
+cpu-x-ppa
 Monitoring
 cpu-x это утилита для вывода информации о процессоре, материнской платы, оперативной памяти, графического процессора и о самой операционной системе. Также имеет встроенный бенчмарк процессора. Являться почти полным аналогом CPU-Z в среде windows
 Яцына М.А.
@@ -239,7 +239,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 root
 steam48.png
-Steam Linux
+Steam-Linux
 GamingApp
 Установка нативного клиента Steam для linux
 Яцына М.А.
@@ -279,7 +279,7 @@ HODL
 #
 root
 port-proton-new-addon48.png
-PortWINE зависимости
+PortWINE-зависимости
 GamingAddons
 PortWINE зависимости это набор пакетов которые обеспечивают поддержку запуска Портов проект PortWINE. ВНИМАНИЕ: без установки этих пакетов работоспособность PortProton и других портов не гарантирована!
 Яцына М.А.
@@ -329,7 +329,7 @@ HODL
 #
 root
 obs-studio48.png
-obs-studio-ppa
+OBS-Studio-ppa
 StreamApp
 OBS Studio является свободным и открытым программным обеспечением, для записи видео с рабочего стола, веб-камеры и проведения онлайн-трасляций. Данная версия устанавливается из официального репозитория вместе с плагином OBS-LINUXBROWSER, являющимся заменой obs-qtwebkit. Теперь плагин основан на Chromium OEM, что добавляет больше совместимости и производительности. OBS-LINUXBROWSER в основном используют для вывода информации о "донатах" на онлайн трансляциях.
 Яцына М.А.
@@ -379,7 +379,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 codium48.png
-vscodium-portable-1.61.1
+VScodium-portable
 Development
 Проект VSCodium это форк Microsoft Visual Studio Code, очень популярного редактора кода со встроенной функцией синхронизации с GitHub, но в этой версии нет  Microsoft  брендинга / телеметрии / лицензионного соглашения Microsoft, вместо него используется лицензия MIT. Готовые бинарные сборки можно скачать на странице проекта в GitHub либо собрать самому из исходников. Данный модуль устанавливает Portable версию, которая имеет скрипт мини установки в систему и хранит все данные пользователя внутри папки VSCodium. Отличное решение для начинающего программиста и профессионала.
 Яцына М.А.
@@ -389,7 +389,7 @@ VSCodium-1.61.1
 #
 noroot
 visualstudiocode48.png
-visual-studio-code-ppa
+Visual-Studio-Code-ppa
 Development
 Microsoft Visual Studio Code - Это очень популярный редактор кода со встроенной функцией синхронизации с GitHub и поддержкой синтаксиса большого числа языков программирования, эта официальная версия из репозитория Microsoft и лицензионным соглашением компании. Готовые бинарные сборки можно скачать на официальном сайте проекта, либо собрать самому из исходников GitHub, версию OSS, без телеметрии / лицензионного соглашения Microsoft
 Яцына М.А.
@@ -399,7 +399,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 godot48.png
-godot-ppa
+Godot-ppa
 Development
 Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.)
 Яцына М.А.
@@ -409,7 +409,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 godot_portable48.png
-godot-portable
+Godot-portable
 Development
 Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.).ВНИМАНИЕ: Данная версия Portable, Godot хранит все настройки пользователя в папке "app/editor_data/", а в папке движка есть скрипт мини установки: mini_install.sh 
 Яцына М.А.
@@ -459,7 +459,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 pinta48.png
-pinta-ppa
+Pinta-ppa
 Graphics
 Pinta - свободно распространяемый графический редактор для создания и обработки растровой графики и частично векторной. Инструменты входящие в GIMP: кривые, уровни, микшер каналов, постеризация, тон-насыщенность, баланс цветов, яркость-контраст, обесцвечивание, удаление искажений, вносимые оптикой, корректировка перспективы,кадрирование фотографий.
 Яцына М.А.
@@ -529,7 +529,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 noroot
 gdebi48.png
-gdebi
+Gdebi-ppa
 GuiDebInstaller
 gdebi это утилита для установки deb пакетов, без участия консоли, она сама установит зависимости, напишет если есть проблемы или пакет не может быть установлен в систему так как не совместим. Отличное решение, кто первично не любит лезть в консоль Linux системы :)
 Яцына М.А.
@@ -539,7 +539,7 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Debian GNU/Linux bookworm/sid experimental
 #
 noroot
 gnome-ext-pack48.png
-GnomeExtensionsPack
+GnomeExtensionsPack2
 GnomeStyle
 GnomeExtensionsPack - это набор скриптов, которые изменяют вид Ubuntu с GNOME3, интерфейс и устанавливают дополнения Gnome3, для более эффективного использования всех возможностей gnome и удобства работы с профессиональным ПО, мультимедиа и играми. ВНИМАНИЕ: скрипт предназначен для только для новой системы и устанавливается в режиме Xorg, если у вас уже настроена и установлена Ubuntu 20.04.x LTS то вы можете столкнуться с глюками и багами и действуете на свой стах и риск! 
 Яцына М.А.
