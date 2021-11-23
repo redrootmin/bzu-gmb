@@ -1,25 +1,25 @@
 xanmod48.png
-XanMod
+XanMod-ppa
 LinuxKernel
 Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом многоядерных процессоров и современных видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-stable
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
 xanmod-latest48.png
-Xanmod-cacule
+Xanmod-cacule-ppa
 LinuxKernel
-Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
+Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT. ВИНИМАНИЕ! На офицальном сайте этой сборки ядра не рекомендуют использовать эту версию с видеокартами Nvidia, только классический Xanmod.
 Яцына М.А.
 xanmod-kernel-latest
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
 liquorix-kernel48.png
-Liquorix-Kernel
+Liquorix-Kernel-ppa
 LinuxKernel
 Стабильная версия кастомного ядро Linux, основное отличие от XanMod в более новом планировщике процессов: MuQSS, который по заверению разработчика выдает отличную производительность в играх, мультимедиа программах и при сильных нагрузках на систему. ВНИМАНИЕ: Вы можете установить Liquorix-Kernel и  Xanmod-Kernel в одну систему. Опции: MuQSS_Process_Scheduler,Preemptible_tree-based_hierarchical_RCU,Hard_Kernel_Preemption,Budget_Fair_Queue,TCP_BBR_Congestion_Control,Binary Builds_For_Popular_Debian_Distros,Distribution_Kernel_Drop-in_Replacement,Minimal_Debugging
 Яцына М.А.
@@ -38,33 +38,43 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 root
+cpu-attacks48.png
+DisableMitigations
+LinuxKernelTools
+Данный скрипт отключит патчи  по устранению уязвимостей в процессорах AMD\Intel, путем добовления в /etc/default/grub флага: mitigations=off
+Яцына М.А.
+cpu-attacks
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
 mesa-oibaf48.png
 Mesa from Oibaf
 OpenDriver
 Тестовый открытый драйвер для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,ZINK,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Kisak 
 Яцына М.А.
 mesa-oibaf
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 mesa-kisak48.png
 Mesa from Kisak
 OpenDriver
 Стабильный открытый драйвер для Видеокарт AMD\INTEL, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf
 Яцына М.А.
 mesa-kisak
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 gamemode48.png
 Feral GameMode
 GameTools
 GameMode это утилита от компании Feral Interactive, который на лету изменяет различные системные настройки Linux для достижения максимальной производительности игровых приложений.
 Яцына М.А.
 feralgamemode
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
@@ -84,7 +94,7 @@ GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.
 mangohud-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -104,7 +114,7 @@ GameTools
 vkBasalt это открытая утилита для наложения различных эффектов на игры где используется Vulkan API, данная утилита является по сути аналогом windows-утилиты ReShade. vkBasalt даже может использовать эффекты которые сделаны специально для ReShade. Утилита совсем новая и ей есть куда расти, в данный момент ее по большей части используют для удаления мыла из игр, где оно сильно заметно, например в разрешении 1280x720p
 Яцына М.А.
 vkbasalt-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -124,7 +134,7 @@ GameTools
 Goverlay это открытая утилита с помощью которой можно создавать конфигурации для MangoHud и vkBasalt, основное отличие удобный интерфейс и предварительная визуализация настроек, Goverlay может сохранять конфигурацию в глобальные настройки MangoHud и vkBasalt, либо в файл настроек, который вы можете использовать индивидуально для нужной вам игры. ТРЕБУЕТСЯ: MangoHud,vkBasalt
 Яцына М.А.
 goverlay-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -134,7 +144,7 @@ OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ТРЕБУЕТСЯ: дополнительная конфигурация GRUB
 Яцына М.А.
 corectrl
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+HODL
 #
 #
 root
@@ -144,10 +154,20 @@ OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ВНИМАНИЕ: Эта экспериментальная версия модуля, которая кроме установки CoreCtrl, добавляет правило для запуска утилиты без запроса пароля супер пользователя и добавляет маску в grub для полного управления питанием и частотами видеокарт АМД которые используют amdgpu в драйвере mesa.
 Яцына М.А.
 corectrl-2
-Ubuntu 20.04.3 LTS Ubuntu 21.10 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10
 #
 #
 root
+corectrl-2-48.png
+Core_CTRL-1.3-dev
+OverClockTools
+CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ВНИМАНИЕ: Эта экспериментальная версия модуля, которая кроме установки CoreCtrl, добавляет правило для запуска утилиты без запроса пароля супер пользователя и добавляет маску в grub для полного управления питанием и частотами видеокарт АМД которые используют amdgpu в драйвере mesa.
+Яцына М.А.
+corectrl-debian-testing
+Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+CoreCtrl-1.3-dev
+#
+noroot
 corectrl48.png
 Corectrl 1.2-dev
 OverClockTools
@@ -164,7 +184,7 @@ OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ТРЕБУЕТСЯ: дополнительная конфигурация GRUB
 Яцына М.А.
 corectrl-mint-20
-Linux Mint 20.2
+HODL
 #
 #
 root
@@ -174,17 +194,17 @@ Monitoring
 Psensor это утилита для мониторинга сенсоров комплектующих вашего ПК или ноутбука, ее можно назвать аналогом HWmonitor в среде windows, основные плюсы: построение графиков, мониторинг с фиксацией состояний датчиков: в реальном времени, минимальный, максимальный. 
 Яцына М.А.
 psensor-all
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 inxi48.png
 inxi
 Monitoring
 inxi это консольная утилита для вывода информации о комплектующих ПК или ноутбука, версии ядра, драйвера видеокарты, датчиков температуры и загрузки системы, что бы получить полную информацию нужно открыть терминал: ctrl+alt+t и ввести: inxi -Fxs 
 Яцына М.А.
 inxi
-Ubuntu 20.04.3 LTS Ubuntu 21.10 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
@@ -194,7 +214,7 @@ Monitoring
 Glances это консольная утилита для мониторинга операционных систем на ядре Linux, вы сможете получить данные о датчика температуры, загрузке системы, запущенных процессов, состояния сети и т.д. Для запуска утилиты в терминале запустите эту команду: glances --enable-plugin sensors
 Mirthless D
 glances
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
@@ -204,7 +224,7 @@ Monitoring
 cpu-x это утилита для вывода информации о процессоре, материнской платы, оперативной памяти, графического процессора и о самой операционной системе. Также имеет встроенный бенчмарк процессора. Являться почти полным аналогом CPU-Z в среде windows
 Яцына М.А.
 cpu-x
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
@@ -214,7 +234,7 @@ GameTools
 xboxdrv это утилита для конфигурирования игровых устройств управления, изначальна была сделана для геймпада консоли Xbox, но в итоге поддерживает достаточно много устройств, утилита консольная, но есть и графическая оболочка для управления.
 Яцына М.А.
 xboxdrv
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
@@ -224,18 +244,18 @@ GamingApp
 Установка нативного клиента Steam для linux
 Яцына М.А.
 steam
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
-protonge48.png
-ProtonGE
+noroot
+protonup-qt48.png
+ProtonUp-Qt
 GameTools
-ProtonGE это кастумная версия Proton для клиента Steam в linux, основной плюсы этой версии: больше поддерживается игр, более новые библиотеки и версии wine,dxvk,vkd3d. Если у Вас что то не запускается через стандартный Steam Proton, эта кастумная версия скорее всего поможет вам с этой проблемой.
+ProtonUp-Qt - Графический менеджер для установки и управления Proton-GE для Steam и Wine-GE для Lutris. Утилита ProtonUp создана AUNaseef, использует Python 3 и Qt 6. Данная версия в формате Appimage и должна заработать на большом кооличестве Linux систем.
 Яцына М.А.
-proton-ge
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
-#
+protonup-qt-appimage
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+ProtonUp-Qt-2.1.1-x86
 #
 noroot
 lutris48.png
@@ -243,7 +263,7 @@ Lutris
 GamingApp
 Lutris это клиент для установки и запуска различных игр в среде десктопных Linux систем, основным отличием его от PlayOnLinux является наибольшая универсальность, с помощью Litris можно запустить windows игры, установить клиенты: steam, epicstore, gog-galaxy, origins, uplay и множество игр с консолей, дополнительно Lutris аккумулирует другие игры и ресурсы найденные в системе у себя в окне запуска, например может взять версию Proton из стим и запустить игру скаченную из gog, либо добавить все игры из steam к себе для запуска. Lutris настоящий игровой комбайн для всего что связанно с играми в Linux системах
 Яцына М.А.
-Lutris
+lutris
 HODL
 #
 #
@@ -258,23 +278,23 @@ HODL
 #
 #
 root
-port-proton-adons48.png
+port-proton-new-addon48.png
 PortWINE зависимости
 GamingAddons
 PortWINE зависимости это набор пакетов которые обеспечивают поддержку запуска Портов проект PortWINE. ВНИМАНИЕ: без установки этих пакетов работоспособность PortProton и других портов не гарантирована!
 Яцына М.А.
 port-proton-adons
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 root
-port-proton48.png
+port-proton-new48.png
 PortProton
 GamingApp
 PortProton позволяет использовать версию WINE от Valve (Proton) без Steam и запускать windows игры которые вы например скачали с gog, программа максимально простая в использовании, на официальном сайте разработчика можно найти подробную видео инструкцию
 Яцына М.А.
 port-proton
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 PortProton-97
 #
 noroot
@@ -284,7 +304,7 @@ Benchmark
 Furmark-Linux это Linux версия популярного теста 3D-графики Furmark (волосатый бублик), данная утилита позволяет проверить работу\сделать замеры производительности графики в API OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), дополнительно в комплекте достаточно тяжелый тест: PixMark Piano. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
 Яцына М.А.
 furmark-linux
-Ubuntu 20.04.3 LTS Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 Furmark-Linux
 #
 noroot
@@ -294,7 +314,7 @@ Benchmark
 Refresh2025 - простая утилита для тестирования работы OpenGL,Vulkan в Linux OS. В Refresh2025 встроен MahgoHud(Portable).
 Яцына М.А.
 refresh2025-benchmark
-Ubuntu 20.04.3 LTS Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 Refresh2025 1.0
 #
 noroot
@@ -314,7 +334,7 @@ StreamApp
 OBS Studio является свободным и открытым программным обеспечением, для записи видео с рабочего стола, веб-камеры и проведения онлайн-трасляций. Данная версия устанавливается из официального репозитория вместе с плагином OBS-LINUXBROWSER, являющимся заменой obs-qtwebkit. Теперь плагин основан на Chromium OEM, что добавляет больше совместимости и производительности. OBS-LINUXBROWSER в основном используют для вывода информации о "донатах" на онлайн трансляциях.
 Яцына М.А.
 obs-studio-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -324,7 +344,7 @@ VideoEditor
 Kdenlive - это нелинейный видеоредактор с открытым исходным кодом на основе Framework MLT и KDE. Разработчики позиционируют программу как полупрофессиональную и стремятся в ближайшем будущем придать Kdenlive черты полноценного профессионального инструмента для видеомонтажа. Есть поддержка всех популярных форматов: FFmpeg, libav, QuickTime, AVI, WMV, MPEG и др., а также поддерживаются разрешения 4:3 и 16:9 для PAL, NTSC и различные стандарты HD, включая HDV и AVCHD. В Kdenlive есть следующие функции: полностью настраиваемое меню и окна редактора, создание многодорожечных проектов, резка клипов\вставка\удаление, эффекты с ключевыми кадрами, множество эффектов и переходов, цветокоррекция, использование звукового микшера, трэкинг и редактирование в режиме прокси
 Яцына М.А.
 kdenlive-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -334,7 +354,7 @@ VideoCapture
 SimpleScreenRecorder - это простой но мощный инструмент для записи\захвата изображения с монитора, подходит для создания обучающих видео, записи прохождения игр и т.д. Основной плюс программы это простота процесса записи, а при правильных настройках она потребляем очень мало ресурсов ПК и может захватывать видео сразу с нескольких мониторов. Из минусов, слабый функционал настройки источников звука и микширования.
 Яцына М.А.
 simple-screen-recorder-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -344,7 +364,7 @@ VideoEditor
 LosslessCut - это мультиплатформенное программное обеспечение, которое используется для обрезки\нарезки\добавления субтитров в аудио и видео файлы без потери качества. LosslessCut работает очень быстро, потому что он делает почти прямое копирование данных, без потери качества и перекодирования. Для всей основной работы используется функционал FFmpeg. С помощью LosslessCut вы можете из длинного видео вырезать  не нужные части (все изменения добавляются как задания), удалить звук, добавить музыку, субтитры и далее перекодировать все в единый файл с поддержкой стандарта для YouTube. ВНИМАНИЕ: это Portable версия в виде Appimage
 Яцына М.А.
 lossless-cut-appimage
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 lossless-cut v3.39.0 
 #
 noroot
@@ -354,7 +374,7 @@ Blender-ppa
 Blender — профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций.
 Яцына М.А.
 blender-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -364,7 +384,7 @@ Development
 Проект VSCodium это форк Microsoft Visual Studio Code, очень популярного редактора кода со встроенной функцией синхронизации с GitHub, но в этой версии нет  Microsoft  брендинга / телеметрии / лицензионного соглашения Microsoft, вместо него используется лицензия MIT. Готовые бинарные сборки можно скачать на странице проекта в GitHub либо собрать самому из исходников. Данный модуль устанавливает Portable версию, которая имеет скрипт мини установки в систему и хранит все данные пользователя внутри папки VSCodium. Отличное решение для начинающего программиста и профессионала.
 Яцына М.А.
 vscodium-portable
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 VSCodium-1.61.1
 #
 noroot
@@ -374,7 +394,7 @@ Development
 Microsoft Visual Studio Code - Это очень популярный редактор кода со встроенной функцией синхронизации с GitHub и поддержкой синтаксиса большого числа языков программирования, эта официальная версия из репозитория Microsoft и лицензионным соглашением компании. Готовые бинарные сборки можно скачать на официальном сайте проекта, либо собрать самому из исходников GitHub, версию OSS, без телеметрии / лицензионного соглашения Microsoft
 Яцына М.А.
 visual-studio-code-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -384,7 +404,7 @@ Development
 Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.)
 Яцына М.А.
 godot-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -394,7 +414,7 @@ Development
 Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.).ВНИМАНИЕ: Данная версия Portable, Godot хранит все настройки пользователя в папке "app/editor_data/", а в папке движка есть скрипт мини установки: mini_install.sh 
 Яцына М.А.
 godot-portable
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 Godot 3.3.4
 #
 noroot
@@ -404,7 +424,7 @@ Development
 Kate (KDE Advanced Text Editor) — текстовый редактор, входящий в состав среды рабочего стола KDE. Распространяется согласно GNU General Public License. Основной плюс данного редактора текста\кода, это огромная поддержка синтаксиса языков программирования, разделение кода на два окна, а также при сохранении, если файл находиться в среде superuser, вас не вылетает ошибка, а запрашивается пароль root :)
 Яцына М.А.
 kate-editor-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -414,7 +434,7 @@ Graphics
 Krita - это очень популярный графический редактор с открытым исходным кодом, разрабатывается преимущественно для художников и фотографов и имеет следующие функции: поддержка графических планшетов, покадровая анимация, создание макетов, создание иллюстраций и комиксов, векторная графика, расширенный набор кистей, функция «мультикисть», большое количество режимов наложения, коррекция фотографий, возможность работы с файлами .psd: открыть\изменить\сохранить, горячие клавиши Photoshop и SAI
 Яцына М.А.
 krita-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -424,7 +444,7 @@ Graphics
 Inkscape - это свободно распространяемый векторный графический редактор и является профессиональным инструментом  для работы с векторной графикой, и часто используется  для создания иллюстраций, иконок, логотипов, диаграмм, карт, а также веб-графики. Inkscape содержит продвинутые инструменты для работы, сравнимые с возможностями Adobe Illustrator, CorelDRAW и Xara Xtreme. Вы можете читать сохранять изображения во многих форматах, включая SVG, AI, EPS, PDF, PS и PNG. Inkscape по умолчанию использует открытый стандарт формата файла SVG. Inkscape включает в себя большой набор инструментов, простой и дружественный интерфейс и поддержку многих языков.
 Яцына М.А.
 inkscape-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -434,7 +454,7 @@ Graphics
 GIMP - свободно распространяемый графический редактор для создания и обработки растровой графики и частично векторной. Инструменты входящие в GIMP: кривые, уровни, микшер каналов, постеризация, тон-насыщенность, баланс цветов, яркость-контраст, обесцвечивание, удаление искажений, вносимые оптикой, корректировка перспективы,кадрирование фотографий.
 Яцына М.А.
 gimp-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -454,7 +474,7 @@ VideoPlayer
 Celluloid  - это простой интерфейс GTK+ для плеера mpv. Он нацелен на простоту использования при сохранении высокого уровня настраиваемости.
 Яцына М.А.
 celluloid-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -464,7 +484,7 @@ AudioEditor
 Audacity - свободный многоплатформенный аудиоредактор звуковых файлов, ориентированный на работу с несколькими дорожками. Audacity обеспечивает выполнение следующих функций:  импорт и экспорт файлов WAV, MP3 (LAME MP3), Vorbis, FLAC и других форматов, запись с микрофона, линейного входа и других источников,   удаление шума по образцу,  эффекты и расширения, воспроизведение множества дорожек одновременно, сведение дорожек, запись с одновременным прослушиванием имеющихся дорожек 
 Яцына М.А.
 audacity-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -474,7 +494,7 @@ AudioPlayer
 Audacious - свободный аудиопроигрыватель и является  форком плеера Beep Media Player 0.9.7.1, который, в свою очередь, является форком XMMS. Широкий набор функций в плеере достигается благодаря плагинам, большая их часть идет в комплекте с плеером. В этот набор входят и плагины для воспроизведения форматов MP3, Ogg Vorbis, FLAC и т.д. Audacious полностью поддерживает скины для Winamp 2.
 Яцына М.А.
 audacious-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -504,7 +524,7 @@ Office
 Simple Scan -  это простая в использовании программа для сканирования, являющееся графическим интерфейсом для SANE, с помощью Simple Scan пользователь легко могут подключать свои сканер к Linux системе и быстро от сканировать изображение/документ в требуемом формате и качестве.
 Яцына М.А.
 simple-scan-ppa
-Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -514,10 +534,10 @@ GuiDebInstaller
 gdebi это утилита для установки deb пакетов, без участия консоли, она сама установит зависимости, напишет если есть проблемы или пакет не может быть установлен в систему так как не совместим. Отличное решение, кто первично не любит лезть в консоль Linux системы :)
 Яцына М.А.
 gdebi
-HODL
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Debian GNU/Linux bookworm/sid experimental
 #
 #
-root
+noroot
 gnome-ext-pack48.png
 GnomeExtensionsPack
 GnomeStyle
@@ -549,12 +569,16 @@ Ubuntu 21.10
 #
 noroot
 gnome-ext-pack48.png
+<<<<<<< HEAD
 Gnome-Extensions-Pack2
+=======
+Gnome-Extensions-Pack3
+>>>>>>> bdae76e61b0ae289dd3b85881afe52abf5bfd652
 GnomeStyle
-GnomeExtensionsPack2 - это набор скриптов, которые изменяют вид вашей Debian-base OS с Gnome 40+, интерфейс и устанавливают дополнения Gnome 40+, для более эффективного использования всех возможностей gnome и удобства работы с профессиональным ПО, мультимедиа и играми. ВНИМАНИЕ: скрипт предназначен для только для новой системы и устанавливается в режиме Xorg, если у вас уже настроена и установлена Debian-base OS + Gnome 40+, то вы можете столкнуться с глюками и багами и действуете на свой стах и риск! 
+GnomeExtensionsPack2 - это набор скриптов, которые изменяют вид вашей Debian-base OS с Gnome 40+, интерфейс и устанавливают дополнения Gnome 40+, для более эффективного использования всех возможностей gnome и удобства работы с профессиональным ПО, мультимедиа и играми. ВНИМАНИЕ: скрипт предназначен для только для новой системы и устанавливается в режиме Xorg, если у вас уже настроена и установлена Debian-testing + Gnome 40+, то вы можете столкнуться с глюками и багами и действуете на свой стах и риск! 
 Яцына М.А.
-gnome-ext-pack-debian
-experimental
+gnome-ext-pack-debian-testing
+Debian GNU/Linux bookworm/sid
 #
 #
 noroot
