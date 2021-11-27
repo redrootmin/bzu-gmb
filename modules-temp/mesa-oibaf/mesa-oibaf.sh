@@ -31,7 +31,7 @@ export pass_user="${pass_user0}"
 tput setaf 2; echo "Установка тестового, открытого драйвера Mesa 20.2+ от Oibaf [https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]. Версия скрипта 2.0, автор: Яцына М.А."
 tput sgr0
 
-if [[ "${linuxos_run_bzu_gmb}" == "Ubuntu" ]] || [[ "${linuxos_run_bzu_gmb}" == "Linux Mint 20.2" ]]
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S add-apt-repository -y ppa:oibaf/graphics-drivers || let "error += 1"
@@ -40,7 +40,7 @@ echo "${pass_user}" | sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd
 echo "${pass_user}" | sudo -S aptitude -y upgrade || let "error += 1"
 fi
 
-if [[ "${linuxos_run_bzu_gmb}" == "Debian GNU/Linux bookworm/sid" ]]
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
 echo "${pass_user}" | sudo -S apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5ABCE68FF4633EA42E219156957D2708A03A4626
 echo "${pass_user}" | sudo -S chmod -Rf 777 /etc/apt/sources.list.d/;echo "${pass_user}" | sudo -S echo "deb http://ppa.launchpad.net/oibaf/graphics-drivers/ubuntu focal main" > /etc/apt/sources.list.d/oibaf-ubuntu-graphics-drivers.list;echo "${pass_user}" | sudo -S echo "deb-src http://ppa.launchpad.net/oibaf/graphics-drivers/ubuntu focal main" >> /etc/apt/sources.list.d/oibaf-ubuntu-graphics-drivers.list;echo "${pass_user}" | sudo -S chmod -Rf 755 /etc/apt/sources.list.d/
