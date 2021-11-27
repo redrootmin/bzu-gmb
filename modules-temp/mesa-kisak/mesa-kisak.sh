@@ -29,10 +29,10 @@ pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка стабильного открытого драйвера Mesa 20.1+ от kisak [https://launchpad.net/~kisak/+archive/ubuntu/kisak-mesa]. Версия скрипта 1.1, автор: Яцына М.А."
+tput setaf 2; echo "Установка стабильного открытого драйвера Mesa 20.1+ от kisak [https://launchpad.net/~kisak/+archive/ubuntu/kisak-mesa]. Версия скрипта 2.0, автор: Яцына М.А."
 tput sgr0
 
-if [[ "${linuxos_run_bzu_gmb}" == "Ubuntu" ]] || [[ "${linuxos_run_bzu_gmb}" == "Linux Mint 20.2" ]]
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S add-apt-repository -y ppa:kisak/kisak-mesa || let "error += 1"
@@ -41,7 +41,7 @@ echo "${pass_user}" | sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd
 echo "${pass_user}" | sudo -S aptitude -y upgrade || let "error += 1"
 fi
 
-if [[ "${linuxos_run_bzu_gmb}" == "Debian GNU/Linux bookworm/sid" ]]
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
 echo "${pass_user}" | sudo -S apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EB8B81E14DA65431D7504EA8F63F0F2B90935439
 echo "${pass_user}" | sudo -S chmod -Rf 777 /etc/apt/sources.list.d/;echo "${pass_user}" | sudo -S echo "deb http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu focal main" > /etc/apt/sources.list.d/kisak-ubuntu-graphics-drivers.list;echo "${pass_user}" | sudo -S echo "deb-src http://ppa.launchpad.net/kisak/kisak-mesa/ubuntu focal main" >> /etc/apt/sources.list.d/kisak-ubuntu-graphics-drivers.list;echo "${pass_user}" | sudo -S chmod -Rf 755 /etc/apt/sources.list.d/

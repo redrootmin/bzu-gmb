@@ -6,35 +6,36 @@
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
 name_script=`echo ${name_script0} | sed "s|.sh||g"`
-
+#echo ${name_script}
 script_dir0=$(cd $(dirname "$0") && pwd); name_cut="/modules-temp/${name_script}"
+#echo ${name_cut}
+#echo ${script_dir0}
 script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
-user_run_script=`cat "${script_dir}/config/user"`
-#загружаем данные о модули и файла конфигурации в массив
-readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
-#echo ${module_conf[*]}
-
-#узнаем в системе какое lowlatency ядро доступно и записываем в переменную
-version_kernel=`apt-cache search linux-lowlatency | grep "image" | sed -r 's/(.+lowlatency).+/\1/' | sed 's/unsigned-//g'`
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
 
-
-#даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка стабильной версии оригинального ядра Linux "${version_kernel}" для Ubuntu 20.04\21.10, Linux Mint 20.2 с низкими задержками. Версия скрипта 1.1, автор: Яцына М.А."
+#даем информацию в терминал какой модуль устанавливается
+tput setaf 2; echo "Установка стабильной версии, кастомного ядра Linux от Liquorix [https://liquorix.net/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
-#запуск основных команд модуля
-sudo -S apt-get update -y
-sudo -S apt-get upgrade -y
-echo "пробуем установить ядро:" ${version_kernel}
-sudo -S apt install -f -y --reinstall linux-lowlatency
 
+#проверяем установлена утилита inxi - информация о низкоуровневом ПО и железе
+#dpkg -s inxi | grep installed > /dev/null || echo 'no install inxi :(' | sudo -S apt install -f -y inxi
+#inxistatus=`dpkg -s inxi | grep installed`
+#echo "INXI" $inxistatus
+
+#запуск основных команд модуля
+sudo -S add-apt-repository ppa:damentz/liquorix -y || let "error += 1"
+sudo -S apt update -y || let "error += 1"
+sudo -S apt install -f -y linux-image-liquorix-amd64 linux-headers-liquorix-amd64 || let "error += 1"
+sudo -S update-grub || let "error += 1"
+sudo -S update-initramfs -u || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2;echo "В вашу систему установлены следующие linux-lowlatency:";tput sgr0;dpkg --list | grep "lowlatency"  | grep -oP 'linux-image(.*)' | grep -Eo '^[^ ]+'
+kernel_installed=`dpkg --list | grep -E -m 1 'linux-image.*liquorix'` || let "error += 1"
+tput setaf 2; echo "Установлено новое ядро:${kernel_installed}"  || let "error += 1"
 #сброс цвета текста в терминале
 tput sgr0
 
