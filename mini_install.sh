@@ -150,3 +150,4 @@ GTK_THEME="Adwaita-dark" zenity --text-info --html --url="https://drive.google.c
 
 #busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0
+#update 05-11-21
