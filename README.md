@@ -1,7 +1,7 @@
 # bzu-gmb
 bzu-gmb is auto-installer linux gaming tools,  development, graphic\video editors for Ubuntu\Linux Mint\Debian testing and other debian-based distributions in experimental mode, written in bash using zenity and yad libraries
 -----------
-<img src="image/bzu-gmb-beta4-7.png" alt="My cool logo"/>
+<img src="image/bzu-gmb49.png" alt="My cool logo"/>
 
 Options
 -----------

@@ -14,13 +14,13 @@ bzu_gmb_status=`cat "${script_dir}/config/status"`
 if [[ "${bzu_gmb_status}" == "experimental" ]]
 then
 linuxos_version="experimental"
-GTK_THEME="Adwaita-dark" zenity --error --ellipsize  --timeout=2 --text="${version} запущен в эксперементальном режиме!"
+GTK_THEME="Adwaita-dark" ${zenity} --error --ellipsize  --timeout=2 --text="${version} запущен в эксперементальном режиме!"
 image1="$imageway1""new-panel-logo-exp-1080.png"
 fi
 
 readarray -t module_base < "${script_dir}/config/module-base"
 let "module_base_num = ${#module_base[@]} - 10"
-select_install='GTK_THEME="Adwaita-dark" yad  --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT --button="Выход:1" --button="Установка:0" '
+select_install='GTK_THEME="Adwaita-dark" ${YAD} --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT --button="Выход:1" --button="Установка:0" '
 
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
@@ -30,6 +30,8 @@ select_install+="FALSE"" "'"'"${script_dir}/icons/${module_base[$i]}"'"'" "'"'"<
 fi
 #echo "${module_base[$i+6]}"
 done
+# создаем файл с полной конфигурацией yad
+echo "${select_install}" >> ${script_dir}/config/yad-module-form
 
 export modules_select=`eval ${select_install}`
 #echo "$modules_select"

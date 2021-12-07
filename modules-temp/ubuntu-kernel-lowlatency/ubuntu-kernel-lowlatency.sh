@@ -31,10 +31,10 @@ sudo -S apt-get update -y
 sudo -S apt-get upgrade -y
 echo "пробуем установить ядро:" ${version_kernel}
 sudo -S apt install -f -y --reinstall linux-lowlatency
+
+
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2
-kernel_instaling=`dpkg -s "${version_kernel}" | grep installed | sed 's/Status://g'`
-echo "Ядро ${version_kernel}: ${kernel_instaling}"
+tput setaf 2;echo "В вашу систему установлены следующие linux-lowlatency:";tput sgr0;dpkg --list | grep "lowlatency"  | grep -oP 'linux-image(.*)' | grep -Eo '^[^ ]+'
 #сброс цвета текста в терминале
 tput sgr0
 

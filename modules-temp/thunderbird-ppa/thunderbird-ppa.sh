@@ -69,3 +69,10 @@ exit 0
 #https://techrocks.ru/2019/01/21/bash-if-statements-tips/
 #https://habr.com/ru/post/511608/
 #https://techrocks.ru/2019/01/21/bash-if-statements-tips/
+
+
+#deb http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main 
+#deb-src http://ppa.launchpad.net/ubuntu-mozilla-security/ppa/ubuntu focal main 
+
+#Signing key:
+ #   1024R/AF316E81A155146718A6FBD7A6DCF7707EBC211F (What is this?) 

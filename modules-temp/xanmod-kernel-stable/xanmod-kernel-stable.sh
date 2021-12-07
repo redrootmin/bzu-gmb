@@ -34,8 +34,7 @@ sudo -S update-grub || let "error += 1"
 sudo -S update-initramfs -u || let "error += 1"
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-kernel_installed=`dpkg --list | grep -E -m 1 'linux-image.*xanmod'` || let "error += 1"
-tput setaf 2; echo "Установлено новое ядро:${kernel_installed}"  || let "error += 1"
+tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;dpkg --list | grep "xanmod"  | grep -oP 'linux-image(.*)' | grep -Eo '^[^ ]+'
 #сброс цвета текста в терминале
 tput sgr0
 
