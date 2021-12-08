@@ -378,8 +378,18 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 noroot
+kron4ek-magica_voxel-logo48.png
+MagicaVoxel-wine
+3D-graphics
+MagicaVoxel - это бесплатный минималистичный 3Д-редактор вокселей с поддержкой GPU и визуализацией трассировки лучей. Чаще всего, этот 3Д-редактор используют для небольших инди-игр с low poly графикой, в стиле Minecraft. Официальной версии для Linux нет, но MagicaVoxel отлично работает из под wine, поэтому в этот модуль интегрирован портативный wine от проекта Kron4ek. ВНИМАНИЕ: После установки MagicaVoxel займет на диске примерно: 1.2Гб (MagicaVoxel+wine+wine_prefix)
+Яцына М.А.
+magica-voxel-wine
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+MagicaVoxel-0.99.6.4-win64
+#
+noroot
 codium48.png
-vscodium-portable-1.61.1
+vscodium-portable
 Development
 Проект VSCodium это форк Microsoft Visual Studio Code, очень популярного редактора кода со встроенной функцией синхронизации с GitHub, но в этой версии нет  Microsoft  брендинга / телеметрии / лицензионного соглашения Microsoft, вместо него используется лицензия MIT. Готовые бинарные сборки можно скачать на странице проекта в GitHub либо собрать самому из исходников. Данный модуль устанавливает Portable версию, которая имеет скрипт мини установки в систему и хранит все данные пользователя внутри папки VSCodium. Отличное решение для начинающего программиста и профессионала.
 Яцына М.А.
