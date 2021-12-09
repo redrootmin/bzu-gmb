@@ -238,6 +238,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 root
+piper48.png
+Piper-ppa
+GameTools
+Piper - это утилита для настройки gaming mouse. Поддерживается настройка: разрешение dpi, назначение кнопок и подсветка. Полный список поддерживаемый моделей можно посмотреть на официальной странице github.
+Яцына М.А.
+piper-ppa
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
 steam48.png
 Steam Linux
 GamingApp
