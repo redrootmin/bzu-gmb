@@ -45,7 +45,7 @@ fi
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
 echo "${pass_user}" | sudo -S apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 45EF41C70818D25B3298D07DD9C845E608C36551
-echo "${pass_user}" | sudo -S chmod -Rf 777 /etc/apt/sources.list.d/;echo "${pass_user}" | sudo -S echo "deb http://ppa.launchpad.net/libratbag-piper/piper-libratbag-git/ubuntu focal main" > /etc/apt/sources.list.d/piper-ppa.list;echo "${pass_user}" | sudo -S echo "ddeb-src http://ppa.launchpad.net/libratbag-piper/piper-libratbag-git/ubuntu focal main" >> /etc/apt/sources.list.d/piper-ppa.list;echo "${pass_user}" | sudo -S chmod -Rf 755 /etc/apt/sources.list.d/
+echo "${pass_user}" | sudo -S chmod -Rf 777 /etc/apt/sources.list.d/;echo "${pass_user}" | sudo -S echo "deb http://ppa.launchpad.net/libratbag-piper/piper-libratbag-git/ubuntu focal main" > /etc/apt/sources.list.d/piper-ppa.list;echo "${pass_user}" | sudo -S echo "deb-src http://ppa.launchpad.net/libratbag-piper/piper-libratbag-git/ubuntu focal main" >> /etc/apt/sources.list.d/piper-ppa.list;echo "${pass_user}" | sudo -S chmod -Rf 755 /etc/apt/sources.list.d/
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S apt update -y
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall  piper || let "error += 1"
