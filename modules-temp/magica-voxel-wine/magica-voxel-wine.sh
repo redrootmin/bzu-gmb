@@ -77,11 +77,11 @@ cd ~/${name_app_folder};chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
-app_name="MagicaVoxel.exe"
-echo "Testing:${version_app}"
-cd "/home/${user_run_script}/${name_app_folder}"
+#app_name="MagicaVoxel.exe"
+#echo "Testing:${version_app}"
+#cd "/home/${user_run_script}/${name_app_folder}"
 echo "Папка установки:/home/${user_run_script}/${name_app_folder}"
-bash -c "/home/${user_run_script}/${name_app_folder}/app/${name_script_start}" & sleep 20;echo "${pass_user}" | sudo -S killall "${app_name}"
+#bash -c "/home/${user_run_script}/${name_app_folder}/app/${name_script_start}" & sleep 20;echo "${pass_user}" | sudo -S killall "${app_name}"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
 else
