@@ -248,6 +248,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 noroot
+key-mapper-app48.png
+Key-mapper-app
+GameTools
+Key Mapper - это простая утилита для назначения(mapping) кнопок вашего геймпада, мышки, клавиатуры на ввод новых значений\команд. Поддерживается: мыши, клавиатуры, геймпады, X11, Wayland, комбинированные кнопки и программируемые макросы. Позволяет сопоставить события, не связанные с клавиатурой (щелчок, джойстик, колесо), клавишам устройств с клавиатурой. 
+Яцына М.А.
+key-mapper-app
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
 steam48.png
 Steam Linux
 GamingApp
