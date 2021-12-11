@@ -358,6 +358,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 noroot
+noisetorch-app48.png
+NoiseTorch-app
+AudioTools
+NoiseTorch - создает виртуальный микрофон с автоматическим шумодавом (звук вашей механической клавиатуры, компьютерных вентиляторов, поездов и т.д.). Который можно использовать в любом приложении для конференц-связи, VOIP, Discord, OBS-studio, для этого просто выберите физический микрофон в NoiseTorch, а в приложении виртуальный микрофон NoiseTorch в качестве входа и можно пользоваться, работает с PulseAudio и PipeWire. В основе NoiseTorch, лежит нейронная сеть RNNoise.
+Яцына М.А.
+noisetorch-app
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
 kdenlive48.png
 Kdenlive-ppa
 VideoEditor
