@@ -38,6 +38,26 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 experimental
 #
 #
 root
+tux-head-48.png
+tuxinvader-kernel-lts-ppa
+LinuxKernel
+Стабильная версия оригинального ядра Linux для Ubuntu 20.04-20.10 с низкими задержками, основной плюс данной версия ядра в более высокой производительности в нативных играх или мультимедийных программах. Но на практике лучше всего проводить тестирование для конкретной игры или программы, так как возможен и обратный эффект с понижением производительности.
+Яцына М.А.
+tuxinvader-kernel-lts-ppa
+Ubuntu 20.04.3 LTS Linux Mint 20.2
+linux-generic-5.10+
+#
+noroot
+tux-head-red48.png
+tuxinvader-kernel-ppa
+LinuxKernel
+Это самая новая версия оригинального ядра Linux для Ubuntu 20.04 или Linux Mint 20.2, автор репозитория не сообщил о какой либо особенности данного ядра. Основной плюс данной сборки, это возможность использовать самую новую версию ядра без каких либо специфический изменений и оптимизаций которые в некоторых случаях, даже вредят операционной системе и программам в ней. 
+Яцына М.А.
+tuxinvader-kernel-ppa
+Ubuntu 20.04.3 LTS Linux Mint 20.2
+linux-generic-5.15+
+#
+noroot
 cpu-attacks48.png
 DisableMitigations
 LinuxKernelTools
