@@ -29,7 +29,7 @@ pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка оригинальной и самой новой версии ядра Linux от tuxinvader [https://launchpad.net/~tuxinvader/+archive/ubuntu/lts-mainline-longterm]. Версия скрипта 1.0b, автор: Яцына М.А."
+tput setaf 2; echo "Установка оригинальной и самой новой версии ядра Linux от tuxinvader [https://launchpad.net/~tuxinvader/+archive/ubuntu/lts-mainline]. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 20.04.3 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Linux Mint" > /dev/null
