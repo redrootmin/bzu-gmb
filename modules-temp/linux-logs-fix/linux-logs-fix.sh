@@ -33,8 +33,8 @@ tput sgr0
 
 
 #Уменьшение размера всех логов в системе до 50М
-echo "${pass_user}" | sudo -S echo "" > /var/log/kern.log
-echo "${pass_user}" | sudo -S echo "" > /var/log/syslog
+#echo "${pass_user}" | sudo -S echo "" > /var/log/kern.log
+#echo "${pass_user}" | sudo -S echo "" > /var/log/syslog
 echo "${pass_user}" | sudo -S service syslog restart
 echo "${pass_user}" | sudo -S journalctl --vacuum-size=100M
 echo "${pass_user}" | sudo -S sed -i 's/#SystemMaxUse=/SystemMaxUse=100M/g'  /etc/systemd/journald.conf
