@@ -68,6 +68,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid ex
 #
 #
 noroot
+fix-logs48.png
+Linux-logs-fix
+LinuxKernelTools
+Linux-logs-fix - это скрипт уменьшает размер всех логов в системе до 100М, такое ограничение связанно с тем, что иногда игры через wine, вызывают незначительные ошибки или тревожные сигналы, которые попадают в логи и как итог все может привести увеличению логов до размеров, к примеру в 15Гб или более.
+Яцына М.А.
+Linux-logs-fix
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
 mesa-oibaf48.png
 Mesa from Oibaf
 OpenDriver
