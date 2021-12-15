@@ -16,3 +16,4 @@ libdrm-amdgpu1
 xserver-xorg-video-amdgpu
 meson
 ninja-build
+pv

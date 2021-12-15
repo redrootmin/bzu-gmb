@@ -46,12 +46,16 @@ fi
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
-echo "${pass_user}" | sudo -S apt-key adv --recv-key --keyserver keyserver.ubuntu.com F4F381638BAEF1C345CC1A8570F3445E637983CC || let "error += 1"
-echo "${pass_user}" | sudo -S chmod -Rf 777 /etc/apt/sources.list.d/;echo "${pass_user}" | sudo -S echo "deb http://ppa.launchpad.net/chrdevs/figma/ubuntu focal main" > /etc/apt/sources.list.d/figma-linux-ppa.list;echo "${pass_user}" | sudo -S echo "deb-src http://ppa.launchpad.net/chrdevs/figma/ubuntu focal main" >> /etc/apt/sources.list.d/figma-linux-ppa.list;echo "${pass_user}" | sudo -S chmod -Rf 755 /etc/apt/sources.list.d/
-#запуск основных команд модуля
-echo "${pass_user}" | sudo -S apt update -y
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall figma-linux || let "error += 1"
-echo "${pass_user}" | sudo -S chmod +x /opt/figma-linux/figma-linux || let "error += 1"
+module_link='https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/figma-linux_0.9.3_linux_amd64.deb.tar.xz'
+module_name_arc="figma-linux_0.9.3_linux_amd64.deb.tar.xz"
+rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+wget "${module_link}" -O "${module_name_arc}" || let "error += 1"
+pv "${module_name_arc}" | tar -xJ 
+echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
+cd
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 fi
 
 

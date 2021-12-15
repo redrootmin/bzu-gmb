@@ -408,6 +408,16 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux
 #
 #
 noroot
+Natron-portable48.png
+Natron-portable
+VideoEditor
+Natron - бесплатная профессиональная программа с открытым исходным кодом, основанная на узлах (node-based) и предназначенная для видеокомпозитинга. в Natron поддерживается большинство открытых и коммерческих плагинов и есть совместимость с OpenFX. Программа проста, функциональна и отлично подойдёт как для постобработки любительских видеороликов, так и для профессионально отснятого материала. ВНИМАНИЕ: это Portable версия программы
+Яцына М.А.
+natron-portable
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Natron-2.4.0
+#
+noroot
 simplescreenrecorder48.png
 SSR-ppa
 VideoCapture
