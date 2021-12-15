@@ -29,7 +29,7 @@ pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Figma лучшего инструмента для проектирования интерфейсов и прототипирования с возможностью организации совместной работы в режиме реального времени [https://github.com/Figma-Linux/figma-linux , https://launchpad.net/~chrdevs/+archive/ubuntu/figma]. Установка Figma осуществлыется через официальный репозиторий разработчиков. Версия скрипта 1.0b, автор: Яцына М.А."
+tput setaf 2; echo "Установка Figma лучшего инструмента для проектирования интерфейсов и прототипирования с возможностью организации совместной работы в режиме реального времени [https://github.com/Figma-Linux/figma-linux , https://launchpad.net/~chrdevs/+archive/ubuntu/figma]. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
