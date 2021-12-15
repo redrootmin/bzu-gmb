@@ -102,6 +102,9 @@ fi
 
 #проверка как завершилась работа установки модулей, если были ошибки, то логи показывать не нужно
 GTK_THEME="Adwaita-dark" zenity --text-info --width=480 --height=680 --title="Лог установки модулей ${version} " --filename="${script_dir}/module_install_log" --editable
+echo "" > "${script_dir}/module_install_log" 
+echo "" > "${script_dir}/config/user"
+echo "" > "${script_dir}/config/yad-module-form"
 
 exit 0
 
