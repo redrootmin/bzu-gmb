@@ -45,25 +45,11 @@ fi
 
 
 #функция для проверки пакетов на установку, если нужно установлевает
-#function install_package {
-#dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
-#package_status=`dpkg -s $1 | grep -oh "installed"`
-#echo "$1:" $package_status
-#}
-
-#загружаем список пакетов из файла в массив
-#readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
-#задем переменной колличество пакетов в массиве
-#packages_number=${#packages_list[@]}
-#обьявляем переменную числовой
-#i=0
-#цикл проверки пакетов из массива
-#while [ $i -lt $packages_number ]
-#do
-#вызов функции для проверки пакетов из массива
-#install_package ${packages_list[$i]} ${pass_user}
-#i=$(($i + 1))
-#done
+function install_package {
+dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+package_status=`dpkg -s $1 | grep -oh "installed"`
+echo "$1:" $package_status
+}
 
 
 #загружаем список операционных систем из файла в массив
@@ -89,7 +75,24 @@ echo "your Linux OS:["$linuxos_version"]"
 echo "${linuxos_version}" > "${script_dir}/config/os-run-script"
 tput sgr0
 
-#
+if echo "${linuxos_version}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_version}" | grep -ow "Mint" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+# включение эксперементального режима для неподдерживаемой системы
 if [[ $linuxos_version == "" ]]
 then
 if experemental_os=$(GTK_THEME="Adwaita-dark" ${zenity} --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 

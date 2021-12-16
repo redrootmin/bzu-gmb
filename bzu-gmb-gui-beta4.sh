@@ -65,7 +65,7 @@ done
 # запуск модуля с правами root в отдельном процессе bash что бы изолировать его от переменной $pass_user где храниться root-пароль пользователя
 echo "$pass_user" | sudo -S echo "==========[${module_name}]==========" >> "${script_dir}/module_install_log"
 if [[ "${module_base[$i+9]}" == "noroot" ]];then
-# даем право за на запуск модуля как скрипт
+# даем право на запуск модуля как скрипт
 #запуск модуля с передачей пароля root пользователя
 echo "$pass_user" | sudo -S chmod +x "${run_module}"
 bash ${run_module} ${pass_user} || let "global_error += 1"

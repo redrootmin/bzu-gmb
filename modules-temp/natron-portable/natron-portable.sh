@@ -63,11 +63,11 @@ cd "/home/${user_run_script}/${name_app_folder}";chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
-app_name="Natron"
-echo "Testing:${version_app}"
-cd "/home/${user_run_script}/${name_app_folder}"
-echo "Папка установки:/home/${user_run_script}/${name_app_folder}"
-bash -c "/home/${user_run_script}/${name_app_folder}/${name_script_start}" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+#app_name="Natron"
+#echo "Testing:${version_app}"
+#cd "/home/${user_run_script}/${name_app_folder}"
+#echo "Папка установки:/home/${user_run_script}/${name_app_folder}"
+#bash -c "/home/${user_run_script}/${name_app_folder}/${name_script_start}" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
 tput setaf 2; echo "Установка утилиты ${name_script} завершена :)"
 tput sgr0
 fi
