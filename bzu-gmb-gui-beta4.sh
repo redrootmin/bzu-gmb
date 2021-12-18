@@ -31,11 +31,14 @@ fi
 #echo "${module_base[$i+6]}"
 done
 # создаем файл с полной конфигурацией yad
-echo "${select_install}" >> ${script_dir}/config/yad-module-form
-
+echo "${select_install}" > ${script_dir}/config/yad-module-form
+#modules_select=""
+while true;do
 export modules_select=`eval ${select_install}`
-#echo "$modules_select"
-
+echo "$modules_select"
+if [[ $modules_select == "" ]];then
+exit 0
+fi
 #сбрасываем log установки в файле: module_install_log
 date_install=`date`
 echo "$pass_user" | sudo -S echo "Лог установки модулей из ${version}, дата установки:${date_install}" > "${script_dir}/module_install_log"
@@ -90,7 +93,6 @@ let "global_error0 += 1"
 fi
 fi
 fi
-
 done
 
 #проверка на глобальные ошибки в модулях, например он вобще не запустился или файлов таких нет.
@@ -99,7 +101,7 @@ if (($global_error > 0));then
 echo "$pass_user" | sudo -S echo "[[[[[[[[[[[[[[[[CRITICAL ERRORS]]]]]]]]]]]]]]]]" >> "${script_dir}/module_install_log"
 echo "$pass_user" | sudo -S echo "Количество критических ошибок в модулях:${global_error}, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 fi
-
+done
 #проверка как завершилась работа установки модулей, если были ошибки, то логи показывать не нужно
 GTK_THEME="Adwaita-dark" zenity --text-info --width=480 --height=680 --title="Лог установки модулей ${version} " --filename="${script_dir}/module_install_log" --editable
 echo "" > "${script_dir}/module_install_log" 
