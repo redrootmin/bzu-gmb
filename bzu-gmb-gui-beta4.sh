@@ -37,6 +37,9 @@ while true;do
 export modules_select=`eval ${select_install}`
 echo "$modules_select"
 if [[ $modules_select == "" ]];then
+echo "" > "${script_dir}/module_install_log" 
+echo "" > "${script_dir}/config/user"
+echo "" > "${script_dir}/config/yad-module-form"
 exit 0
 fi
 #сбрасываем log установки в файле: module_install_log
