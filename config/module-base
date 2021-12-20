@@ -448,6 +448,36 @@ Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux
 #
 #
 noroot
+blender-portable48.png
+Blender-2.83.18-portable
+3D-graphics
+Blender - профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций. ВНИМАНИЕ: эта версия в формате portable
+Яцына М.А.
+blender-28318-portable
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+blender-2.83.18-linux-x64
+#
+noroot
+blender-portable48.png
+Blender-2.93.7-portable
+3D-graphics
+Blender - профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций. ВНИМАНИЕ: эта версия в формате portable
+Яцына М.А.
+blender-2937-portable
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+blender-2.93.7-linux-x64
+#
+noroot
+blender-portable48.png
+Blender-3.0.0-portable
+3D-graphics
+Blender - профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций. ВНИМАНИЕ: эта версия в формате portable
+Яцына М.А.
+blender-300-portable
+Ubuntu 20.04.3 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+blender-3.0.0-linux-x64
+#
+noroot
 kron4ek-magica_voxel-logo48.png
 MagicaVoxel-wine
 3D-graphics
