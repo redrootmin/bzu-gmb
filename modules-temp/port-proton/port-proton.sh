@@ -31,7 +31,7 @@ tput sgr0
 
 #запуск основных команд модуля
 cd "/home/${user_run_script}"
-sudo -u ${user_run_script} wget -c -T 2 "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/${version_proton}" && sh "${version_proton}" -rus
+wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton-97" && sh PortProton-97 -rus
 #формируем информацию о том что в итоге установили и показываем в терминал
 if [ ! -d "/home/${user_run_script}/PortWINE/PortProton/" ];then
 tput setaf 1;echo "PortProton не установился, либо поврежден!" || let "error += 1"
