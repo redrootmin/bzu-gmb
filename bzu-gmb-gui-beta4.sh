@@ -20,7 +20,7 @@ fi
 
 readarray -t module_base < "${script_dir}/config/module-base"
 let "module_base_num = ${#module_base[@]} - 10"
-select_install='GTK_THEME="Adwaita-dark" ${YAD} --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT --button="Выход:1" --button="Установка:0" '
+select_install='GTK_THEME="Adwaita-dark" ${YAD} --center --window-icon="$icon1" --image="$image1" --image-on-top --title="${version}-${linuxos_version}" --center --list --wrap-width=560 --width=256 --height=840 --checklist  --separator=" " --search-column=6 --print-column=3 --column=выбор --column=лого:IMG --column=название:TEXT --column=категория:TEXT --column=описание:TEXT --column=автор:TEXT '
 
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
@@ -30,18 +30,29 @@ select_install+="FALSE"" "'"'"${script_dir}/icons/${module_base[$i]}"'"'" "'"'"<
 fi
 #echo "${module_base[$i+6]}"
 done
+select_install+='--button="update bzu-gmb:0" --button="exit:1" --button="install:2"'
 # создаем файл с полной конфигурацией yad
 echo "${select_install}" > ${script_dir}/config/yad-module-form
 #modules_select=""
 while true;do
-export modules_select=`eval ${select_install}`
-echo "$modules_select"
-if [[ $modules_select == "" ]];then
+modules_select=`eval $select_install`
+select_button="$?"
+
+# включение обнавления
+if [ ${select_button} = 0 ];then
+#bash -c "${script_dir}/manual_update.sh" $pass_user
+echo "обнавляем bzu-gmb!"
+sleep 10
+fi
+
+#проверка на выход из программы
+if [[ $modules_select == "" ]] || [ ${select_button} = 1 ];then
 echo "" > "${script_dir}/module_install_log" 
 echo "" > "${script_dir}/config/user"
 echo "" > "${script_dir}/config/yad-module-form"
 exit 0
 fi
+
 #сбрасываем log установки в файле: module_install_log
 date_install=`date`
 echo "$pass_user" | sudo -S echo "Лог установки модулей из ${version}, дата установки:${date_install}" > "${script_dir}/module_install_log"
@@ -54,7 +65,7 @@ global_error0=0
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
 echo ${modules_select} | grep -ow "${module_base[$i+1]}" > /dev/null
-if [ $? = 0 ];then
+if [ ${select_button} = 2 ];then
 run_module="${script_dir}/modules-temp/${module_base[$i+5]}/${module_base[$i+5]}.sh"
 chmod +x ${run_module}
 
