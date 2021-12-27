@@ -157,8 +157,7 @@ echo "$pass_user" | sudo -S chmod +x "/home/${user_run_script}/.local/share/appl
 #Даем права на главные скрипты утилиты и core-utils
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/libMangoHud.so"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/libMangoHud_dlsym.so"
+echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/pv"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/yad"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
 
