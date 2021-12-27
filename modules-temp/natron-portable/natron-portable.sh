@@ -13,6 +13,15 @@ script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
+
+#Определение расположениея папок для утилит и т.д.
+utils_dir="${script_dir}/core-utils"
+
+#Определение переменныех утилит и скриптов
+YAD="${utils_dir}/yad"
+zenity="${utils_dir}/zenity"
+pv="${utils_dir}/pv"
+
 #объявляем нужные переменные для скрипта
 date_install=`date`
 #загружаем данные о модули и файла конфигурации в массив
@@ -57,7 +66,7 @@ name_app_arhive="natron-portable.tar.xz"
 name_script_start="natron_starter.sh"
 rm -f ${name_app_arhive}
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/natron-portable.tar.xz
-pv  "${name_app_arhive}" | tar -xJ
+${pv}  "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
 cd "/home/${user_run_script}/${name_app_folder}";chmod +x mini_install.sh
 bash mini_install.sh

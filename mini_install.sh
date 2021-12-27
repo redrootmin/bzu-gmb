@@ -33,6 +33,15 @@ name_script_start="bzu-gmb-launcher.sh"
 name_app="${version_bzu_gmb}"
 exec_full="bash -c "${script_dir}"/"${name_script_start}""
 
+
+#Определение расположениея папок для утилит и т.д.
+utils_dir="${script_dir}/core-utils"
+
+#Определение переменныех утилит и скриптов
+YAD="${utils_dir}/yad"
+zenity="${utils_dir}/zenity"
+pv="${utils_dir}/pv"
+
 #pass_user="$1"
 #добовляем переменную с иминем пользователя от имини которого запущен скрипт, да это не обязательно, но не хочу переписывать код ниже :)
 user_run_script="$USER"
@@ -146,7 +155,7 @@ echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/yad"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
 
 #Уведомление пользователя, о том что он устанавил себе на ПК
-GTK_THEME="Adwaita-dark" zenity --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
+GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label="" --timeout=5 --timeout-indicator=bottom 
 
 #busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0

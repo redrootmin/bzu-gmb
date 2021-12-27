@@ -13,6 +13,15 @@ script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
+
+#Определение расположениея папок для утилит и т.д.
+utils_dir="${script_dir}/core-utils"
+
+#Определение переменныех утилит и скриптов
+YAD="${utils_dir}/yad"
+zenity="${utils_dir}/zenity"
+pv="${utils_dir}/pv"
+
 #объявляем нужные переменные для скрипта
 date_install=`date`
 linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
@@ -52,7 +61,7 @@ rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 wget "${module_link}" -O "${module_name_arc}" || let "error += 1"
-pv "${module_name_arc}" | tar -xJ 
+${pv} "${module_name_arc}" | tar -xJ 
 echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"

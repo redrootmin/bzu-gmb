@@ -14,11 +14,11 @@ export version=${version0}
 
 #Определение переменныех утилит и скриптов
 YAD0="${utils_dir}/yad"
-mangohud0="${utils_dir}/./mangohud_portable"
 zenity0="${utils_dir}/zenity"
+pv0="${utils_dir}/pv"
 export YAD=${YAD0}
-export mangohud=${mangohud0}
 export zenity=${zenity0}
+export pv=${pv0}
 
 # получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
 echo "$USER" > "${script_dir}/config/user"

@@ -40,9 +40,8 @@ select_button="$?"
 
 # включение обнавления
 if [ ${select_button} = 0 ];then
-#bash -c "${script_dir}/manual_update.sh" $pass_user
 echo "обнавляем bzu-gmb!"
-sleep 10
+bash "${script_dir}/manual_update.sh" $pass_user
 fi
 
 #проверка на выход из программы
