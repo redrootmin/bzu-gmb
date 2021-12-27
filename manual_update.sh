@@ -152,8 +152,8 @@ cp -f "${script_dir}/${name_desktop_file}" "/home/${user_run_script}/.local/shar
 gio set "${script_dir}/${name_desktop_file}" "metadata::trusted" yes
 gio set "/home/${user_run_script}/.local/share/applications/${name_desktop_file}" "metadata::trusted" yes
 #gio info "${script_dir}/name_desktop_file" | grep "metadata::trusted"
-echo "$pass_user" | sudo -S chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
-
+chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
+chmod +x "${script_dir}/${name_desktop_file}"
 #Даем права на главные скрипты утилиты и core-utils
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
