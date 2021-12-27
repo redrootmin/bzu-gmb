@@ -144,17 +144,17 @@ cp -f "${script_dir}/${name_desktop_file}" "/home/${user_run_script}/.local/shar
 gio set "${script_dir}/${name_desktop_file}" "metadata::trusted" yes
 gio set "/home/${user_run_script}/.local/share/applications/${name_desktop_file}" "metadata::trusted" yes
 #gio info "${script_dir}/name_desktop_file" | grep "metadata::trusted"
-echo "$pass_user" | sudo -S chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
-
+chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
+chmod +x "${script_dir}/${name_desktop_file}"
 #Даем права на главные скрипты утилиты и core-utils
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/pv"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/yad"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
+chmod +x "${script_dir}/bzu-gmb-launcher.sh"
+chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
+chmod +x "${script_dir}/core-utils/pv"
+chmod +x "${script_dir}/core-utils/yad"
+chmod +x "${script_dir}/core-utils/zenity"
 
 #Уведомление пользователя, о том что он устанавил себе на ПК
-GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label="" --timeout=5 --timeout-indicator=bottom 
+GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
 
 #busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0

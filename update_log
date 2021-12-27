@@ -1,0 +1,52 @@
+[buz-gmb 0.491]===================================
+New modules:
+blender-ppa IN PRODUCTION
+krita-ppa IN PRODUCTION
+inkscape-ppa IN PRODUCTION
+gimp-ppa IN PRODUCTION
+pinta-ppa IN PRODUCTION
+kdenlive-ppa IN PRODUCTION
+simple-screen-recorder-ppa IN PRODUCTION
+celluloid-ppa IN PRODUCTION
+audacity-ppa IN PRODUCTION
+audacious-ppa IN PRODUCTION
+thunderbird-ppa IN PRODUCTION
+qpdf-tools-ppa IN PRODUCTION
+simple-scan-ppa IN PRODUCTION
+lossless-cut-appimage IN PRODUCTION
+Refresh2025 IN PRODUCTION
+Furmark-Linux IN PRODUCTION
+
+
+-MagicaVoxel-wine TESTING
+-piper TESTING
+-key-mapper TESTING
+-noisetorch-app TESTING
+-tuxinvader-kernel-lts-ppa TESTING
+-tuxinvader-kernel-ppa TESTING
+-Kernel-log-fix TESTING
+-figma-linux-ppa TESTING
+-Natron-2.4.1-portable TESTING
+-Blender-portable TESTING!
+-icq-new-portable
+-discord-ppa
+-telegram-ppa
+-scrcpy-ppa
+-peek-ppa
+-scribus-ppa
+-firefox-ppa
+-chromium-ppa
+-qbittorent-ppa
+-remmina-ppa
+-timeshift ppa
+-gparted-ppa
+-grub-customizer ppa
+-stacer ppa
+-libstrangle-tools
+
+New functions:
+- manual update
+- reload bzu-gmb after install modules
+- fix mugs
+
+
