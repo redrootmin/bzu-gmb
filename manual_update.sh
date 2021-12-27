@@ -164,6 +164,6 @@ echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
 #GTK_THEME="Adwaita-dark" yad --title="Back to Ubuntu Vanilla" --image-on-top --picture --size=fit --filename="${script_dir}/icons/ubuntu-logo-icon327.png" --width=327 --height=327 --center --inc=256  --text-align=center --text="ТРЕБУЕТСЯ ПЕРЕАГРУЗКА СИСТЕМЫ!" --timeout=5 --timeout-indicator=bottom 
 
 #Уведомление пользователя, о том что он устанавил себе на ПК
-GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершено обновление ${version_bzu_gmb}" --width=640 --height=408  --cancel-label="" --timeout=5 --timeout-indicator=bottom 
+GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершено обновление ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
 
 bash -c /usr/share/bzu-gmb/bzu-gmb/bzu-gmb-launcher.sh
