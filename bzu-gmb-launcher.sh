@@ -99,6 +99,7 @@ if experemental_os=$(GTK_THEME="Adwaita-dark" ${zenity} --question --width=256 -
 then
 echo "experimental" > "${script_dir}/config/status"
 echo $linux_os >> "${script_dir}/config/list-os"
+echo "${linux_os}" > "${script_dir}/config/os-run-script"
 cd ${script_dir}
 ./bzu-gmb-gui-beta4.sh
 else 

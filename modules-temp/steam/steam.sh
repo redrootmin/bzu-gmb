@@ -31,10 +31,28 @@ tput setaf 2; echo "Установка клиента steam для Linux [https:
 tput sgr0
 
 #запуск основных команд модуля
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
+then
+#запуск основных команд модуля
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall steam || let "error += 1"
+fi
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
+then
 cd
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
 echo "${pass_user}" | sudo -S apt install -f -y ./steam.deb  || let "error += 1"
 echo "${pass_user}" | sudo -S rm -f "steam.deb" || let "error += 1"
+fi
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null
+then
+
+fi
+
+
+
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="steam"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
