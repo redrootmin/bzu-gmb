@@ -93,6 +93,7 @@ if (($global_error > $global_error0));then
 echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Критическая ошибка, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 let "global_error0 += 1" 
 fi
+echo "<=========================================================>"
 else
 # даем право за на запуск модуля как скрипт
 echo "$pass_user" | sudo -S chmod +x "${run_module}"
@@ -105,6 +106,7 @@ if (($global_error > $global_error0));then
 echo "$pass_user" | sudo -S echo "в модуле ${module_base[$i+1]}, Критическая ошибка, дата установки:${date_install}" >> "${script_dir}/module_install_log"
 let "global_error0 += 1" 
 fi
+echo "<=========================================================>"
 fi
 fi
 done
