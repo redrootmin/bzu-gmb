@@ -45,6 +45,7 @@ cd
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
 echo "${pass_user}" | sudo -S apt install -f -y ./steam.deb  || let "error += 1"
 echo "${pass_user}" | sudo -S rm -f "steam.deb" || let "error += 1"
+apt install -f -y --reinstall libc6:amd64 libc6:i386 libegl1:amd64 libegl1:i386 libgbm1:amd64 libgbm1:i386 libgl1-mesa-dri:amd64 libgl1-mesa-dri:i386 libgl1:amd64 libgl1:i386 steam-libs-amd64:amd64 steam-libs-i386:i386
 fi
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null;then
