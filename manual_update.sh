@@ -48,7 +48,6 @@ utils_dir="${script_dir}/core-utils"
 #Определение переменныех утилит и скриптов
 YAD="${utils_dir}/yad"
 zenity="${utils_dir}/zenity"
-pv="${utils_dir}/pv"
 
 #pass_user="$1"
 #добовляем переменную с иминем пользователя от имини которого запущен скрипт, да это не обязательно, но не хочу переписывать код ниже :)
@@ -157,7 +156,6 @@ chmod +x "${script_dir}/${name_desktop_file}"
 #Даем права на главные скрипты утилиты и core-utils
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/pv"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/yad"
 echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
 
@@ -165,8 +163,4 @@ echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
 update_log=`cat "${script_dir}/update_log"`
 ${YAD} --list --column=text --no-click --image-on-top --picture --size=fit --image="/usr/share/bzu-gmb/bzu-gmb/image/bzu-gmb-wallpeper-2021-10.png" --width=640 --height=640 --center --inc=256  --text-align=center --title="Завершена установка ${version_bzu_gmb}" --separator=" " --search-column=1 --print-column=1 --wrap-width=560 "$update_log" --no-buttons
 
-bash -c /usr/share/bzu-gmb/bzu-gmb/bzu-gmb-launcher.sh
-
-#GTK_THEME="Adwaita-dark" yad --title="Завершено обновление ${version_bzu_gmb}" --image-on-top --picture --size=fit --filename="${script_dir}/image/bzu-gmb-wallpeper-2021-10.png" --width=327 --height=327 --center --inc=256  --text-align=center --text="ТРЕБУЕТСЯ ПЕРЕАГРУЗКА СИСТЕМЫ!" --timeout=5 --timeout-indicator=bottom 
-#Уведомление пользователя, о том что он устанавил себе на ПК
-#GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершено обновление ${version_bzu_gmb}" --width=640 --height=408  --cancel-label="" --timeout=5 --timeout-indicator=bottom 
+bash -c /usr/share/bzu-gmb/bzu-gmb/bzu-gmb-launcher.sh $pass_user

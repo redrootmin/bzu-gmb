@@ -20,7 +20,6 @@ utils_dir="${script_dir}/core-utils"
 #Определение переменныех утилит и скриптов
 YAD="${utils_dir}/yad"
 zenity="${utils_dir}/zenity"
-pv="${utils_dir}/pv"
 
 
 #объявляем нужные переменные для скрипта
@@ -58,7 +57,7 @@ name_app_arhive="${name_app_folder}.tar.xz"
 name_script_start="magica-voxel_starter.sh"
 rm -f ${name_app_arhive}
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/magica-voxel-wine.tar.xz
-${pv} "${name_app_arhive}" | tar -xJ
+pv "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
 cd ~/${name_app_folder};chmod +x mini_install.sh
 bash mini_install.sh

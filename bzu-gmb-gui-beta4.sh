@@ -37,7 +37,8 @@ echo "${select_install}" > ${script_dir}/config/yad-module-form
 while true;do
 modules_select=`eval $select_install`
 select_button="$?"
-
+echo "$modules_select"
+#sleep 30
 # включение обнавления
 if [ ${select_button} = 0 ];then
 echo "обнавляем bzu-gmb!"
@@ -64,7 +65,7 @@ global_error0=0
 for (( i=0; i <= $module_base_num; i=i+10 ))
 do
 echo ${modules_select} | grep -ow "${module_base[$i+1]}" > /dev/null
-if [ ${select_button} = 2 ];then
+if [ $? = 0 ];then
 run_module="${script_dir}/modules-temp/${module_base[$i+5]}/${module_base[$i+5]}.sh"
 chmod +x ${run_module}
 

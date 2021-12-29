@@ -20,7 +20,6 @@ utils_dir="${script_dir}/core-utils"
 #Определение переменныех утилит и скриптов
 YAD="${utils_dir}/yad"
 zenity="${utils_dir}/zenity"
-pv="${utils_dir}/pv"
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
@@ -66,7 +65,7 @@ name_app_arhive="blender.2-83-18.portable.tar.xz"
 name_script_start="blender_starter.sh"
 rm -f ${name_app_arhive}
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/blender.2-83-18.portable.tar.xz
-${pv}  "${name_app_arhive}" | tar -xJ
+pv "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
 cd "/home/${user_run_script}/${name_app_folder}";chmod +x mini_install.sh
 bash mini_install.sh

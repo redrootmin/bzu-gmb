@@ -40,7 +40,6 @@ utils_dir="${script_dir}/core-utils"
 #Определение переменныех утилит и скриптов
 YAD="${utils_dir}/yad"
 zenity="${utils_dir}/zenity"
-pv="${utils_dir}/pv"
 
 #pass_user="$1"
 #добовляем переменную с иминем пользователя от имини которого запущен скрипт, да это не обязательно, но не хочу переписывать код ниже :)
@@ -149,13 +148,10 @@ chmod +x "${script_dir}/${name_desktop_file}"
 #Даем права на главные скрипты утилиты и core-utils
 chmod +x "${script_dir}/bzu-gmb-launcher.sh"
 chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
-chmod +x "${script_dir}/core-utils/pv"
 chmod +x "${script_dir}/core-utils/yad"
 chmod +x "${script_dir}/core-utils/zenity"
 
 #Уведомление пользователя, о том что он устанавил себе на ПК
 GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
 
-#busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0
-#update 05-11-21
