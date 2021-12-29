@@ -46,9 +46,8 @@ echo "${pass_user}" | sudo -S apt install -f -y ./steam.deb  || let "error += 1"
 echo "${pass_user}" | sudo -S rm -f "steam.deb" || let "error += 1"
 fi
 
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null
-then
-
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null;then
+echo "для manjaro пока нечего нет :("
 fi
 
 

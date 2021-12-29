@@ -67,7 +67,7 @@ echo "your Linux OS:["$linuxos_version"]"
 echo "${linuxos_version}" > "${script_dir}/config/os-run-script"
 tput sgr0
 
-if echo "${linuxos_version}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_version}" | grep -ow "Mint" > /dev/null
+if echo "${linux_os}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_version}" | grep -ow "Mint" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
@@ -83,6 +83,46 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+
+#Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
+then
+echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-debian-book_worm"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+
+#Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+then
+#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-manjaro"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+#install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
 
 # включение эксперементального режима для неподдерживаемой системы
 if [[ $linuxos_version == "" ]]

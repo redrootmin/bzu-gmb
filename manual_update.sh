@@ -126,8 +126,25 @@ i=$(($i + 1))
 done
 fi
 
-# обнуляем статус утилиты, отключаем эксперементальный режим
-echo "" > "${script_dir}/config/status"
+#Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+then
+#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-manjaro"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+#install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
 
 #Создаем ярлык для скрипта
 echo "[Desktop Entry]" > "${script_dir}/${name_desktop_file}"
