@@ -74,8 +74,15 @@ echo "your Linux OS:["$linuxos_version"]"
 #echo "" > "${script_dir}/config/status"
 tput sgr0
 
-#функция для проверки пакетов на установку, если нужно установлевает
+#функция для проверки пакетов на установку в dpkg, если нужно установлевает
 function install_package {
+dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+package_status=`dpkg -s $1 | grep -oh "installed"`
+echo "$1:" $package_status
+}
+
+#функция для проверки пакетов на установку в pacman, если нужно установлевает
+function install_package_pacman {
 dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
 package_status=`dpkg -s $1 | grep -oh "installed"`
 echo "$1:" $package_status
@@ -119,7 +126,7 @@ done
 fi
 
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
 then
 #echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
 #загружаем список пакетов из файла в массив
