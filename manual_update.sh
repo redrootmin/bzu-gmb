@@ -124,8 +124,8 @@ do
 install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
-
 fi
+
 # обнуляем статус утилиты, отключаем эксперементальный режим
 echo "" > "${script_dir}/config/status"
 
