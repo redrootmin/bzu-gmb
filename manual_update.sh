@@ -154,13 +154,13 @@ gio set "/home/${user_run_script}/.local/share/applications/${name_desktop_file}
 chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
 chmod +x "${script_dir}/${name_desktop_file}"
 #Даем права на главные скрипты утилиты и core-utils
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/yad"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
+chmod +x "${script_dir}/bzu-gmb-launcher.sh"
+chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
+chmod +x "${script_dir}/core-utils/yad"
+chmod +x "${script_dir}/core-utils/zenity"
 
 #Уведомление пользователя, о том что нового в этой версии
 update_log=`cat "${script_dir}/update_log"`
 ${YAD} --list --column=text --no-click --image-on-top --picture --size=fit --image="/usr/share/bzu-gmb/bzu-gmb/image/bzu-gmb-wallpeper-2021-10.png" --width=640 --height=640 --center --inc=256  --text-align=center --title="Завершена установка ${version_bzu_gmb}" --separator=" " --search-column=1 --print-column=1 --wrap-width=560 "$update_log" --no-buttons
 
-bash -c /usr/share/bzu-gmb/bzu-gmb/bzu-gmb-launcher.sh $pass_user
+bash /usr/share/bzu-gmb/bzu-gmb/bzu-gmb-launcher.sh $pass_user

@@ -21,17 +21,11 @@ export zenity=${zenity0}
 # получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
 echo "$USER" > "${script_dir}/config/user"
 
-#script_dir0=$(cd $(dirname "$0") && pwd);
-#export script_dir="${script_dir0}"
-#version0=`cat "${script_dir}/config/name_version"`
-#export version="${version0}"
-# получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
-#echo "$USER" > "${script_dir}/config/user"
-# проверка что за система запустила скрипт
-#linuxos=`grep '^PRETTY_NAME' /etc/os-release`
-
-# запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
+# запрос пароля супер пользователя (если его не передал модуль обнавления), который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
+pass_user0=$1
+if [[ "$1" == "" ]];then
 pass_user0=$(GTK_THEME="Adwaita-dark" ${zenity} --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
+fi
 
 if [[ "${pass_user0}" == "" ]]
 then
