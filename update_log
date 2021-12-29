@@ -44,9 +44,12 @@ Furmark-Linux IN PRODUCTION
 -stacer ppa
 -libstrangle-tools
 
+fix bugs in modules:
+steam - smart install for ubuntu\linux mint, debian testing
+
 New functions:
 - manual update
 - reload bzu-gmb after install modules
-- fix mugs
+- fix bugs
 
 
