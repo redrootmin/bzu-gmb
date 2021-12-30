@@ -13,6 +13,12 @@ for i in dev sys proc etc/resolv.conf; do mount --bind -v /$i /chroot/$i; done
 chroot /chroot
 все можно из консоли проверить что с системой, удалить софт, изменить настройки.
 
+#[ДЛЯ КОРРЕКТНОГО УДАЛЕНИЯ OIBAF И УСТАНОВКИ KISAK, НУЖНО ВЫПОЛНИТЬ СЛЕДУЮЩИЕ КОМАНДЫ:]
+sudo apt install ppa-purge
+sudo ppa-purge ppa:oibaf/graphics-drivers
+sudo add-apt-repository ppa:kisak/kisak-mesa
+sudo apt update
+sudo apt upgrade
 
 #[КАК УДАЛИТЬ БИТЫЙ PPA ИЗ КОНСОЛИ]
 #проверям папку с PPA
