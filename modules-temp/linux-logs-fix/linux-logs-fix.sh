@@ -28,45 +28,25 @@ export pass_user="${pass_user0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Отключение всех патчтей устранения уязвимостей в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Уменьшание размера всех логов в системе до 100М [https://ubuntuhandbook.org/index.php/2020/12/clear-systemd-journal-logs-ubuntu/]. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
-#объявляем нужные переменные для скрипта
-export dir_grub_file="/etc/default"
-export grub_file_name="grub"
-readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
-echo "${pass_user}" | sudo -S cp -p -f "/etc/default/grub" "/etc/default/grub.bak"
-tput setaf 2;echo "сделан бикап файла grub /etc/default/grub.bak"
-tput sgr0
 
-function install_flags_grub_kernel {
-flag_status=`cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2"`
-if [[ "${flag_status}" == "$2" ]];then
-tput setaf 3
-echo "флаг $2 уже добавлен в grub" 
-tput sgr0 
-echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
-else
-echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
-tput setaf 2
-echo "флаг $2 добавлен в grub"
-tput sgr0
-echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
-fi
-}
-
-#добовление флага отключающего все заплатки для процессоров в grub
-install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
-#обновляем grub
-echo "${pass_user}" | sudo -S update-grub
+#Уменьшение размера всех логов в системе до 50М
+#echo "${pass_user}" | sudo -S echo "" > /var/log/kern.log
+#echo "${pass_user}" | sudo -S echo "" > /var/log/syslog
+echo "${pass_user}" | sudo -S service syslog restart
+echo "${pass_user}" | sudo -S journalctl --vacuum-size=100M
+echo "${pass_user}" | sudo -S sed -i 's/#SystemMaxUse=/SystemMaxUse=100M/g'  /etc/systemd/journald.conf
+echo "${pass_user}" | sudo -S systemctl daemon-reload
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2; lscpu | grep "Vulnerability"
+tput setaf 2; echo "${pass_user}" | sudo -S cat /etc/systemd/journald.conf | grep "SystemMaxUse"
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
-echo "Подробнее о уязвимостях в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]"	 				  >> "${script_dir}/module_install_log"
+echo "Подробнее о настройке логов [https://ubuntuhandbook.org/index.php/2020/12/clear-systemd-journal-logs-ubuntu/]"	 				  >> "${script_dir}/module_install_log"
 
 exit 0
 

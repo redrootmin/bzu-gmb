@@ -13,6 +13,12 @@ for i in dev sys proc etc/resolv.conf; do mount --bind -v /$i /chroot/$i; done
 chroot /chroot
 все можно из консоли проверить что с системой, удалить софт, изменить настройки.
 
+#[ДЛЯ КОРРЕКТНОГО УДАЛЕНИЯ OIBAF И УСТАНОВКИ KISAK, НУЖНО ВЫПОЛНИТЬ СЛЕДУЮЩИЕ КОМАНДЫ:]
+sudo apt install ppa-purge
+sudo ppa-purge ppa:oibaf/graphics-drivers
+sudo add-apt-repository ppa:kisak/kisak-mesa
+sudo apt update
+sudo apt upgrade
 
 #[КАК УДАЛИТЬ БИТЫЙ PPA ИЗ КОНСОЛИ]
 #проверям папку с PPA
@@ -211,6 +217,12 @@ sudo apt install libx11-dev
 sudo apt install mesa-common-dev
 make
 sudo make install
+# ubuntu 20.04.x for OpenGL\Vulkan
+STRANGLE_VSYNC=1 strangle 35 mangohud vkcube
+#ubuntu 21.10.x for Vulkan only
+STRANGLE_FPS=30 STRANGLE_VKONLY=1 strangle /path/to/game
+STRANGLE_VKONLY=1 STRANGLE_VSYNC=2 strangle /path/to/game
+
 
 
 #[INSTALL NEMO DEFAULT FILE BROWER IN UBUNTU]
@@ -222,15 +234,9 @@ gsettings set org.gnome.desktop.background show-desktop-icons false
 cp -f /usr/share/applications/nemo.desktop /home/$USER/.config/autostart/
 
 
+
 #[ENABLE MULTIPLE SIMULTANEOUS AUDIO OUTPUTS ON PULSEAUDIO IN LINUX + PULSEAUDIO CONTROL]
 sudo apt install paprefs pavucontrol
-
-
-# ubuntu 20.04.x for OpenGL\Vulkan
-STRANGLE_VSYNC=1 strangle 35 mangohud vkcube
-#ubuntu 21.10.x for Vulkan only
-STRANGLE_FPS=30 STRANGLE_VKONLY=1 strangle /path/to/game
-STRANGLE_VKONLY=1 STRANGLE_VSYNC=2 strangle /path/to/game
 
 
 #[XSCREENSAVER,ORIGINAL MATRIX SCREENSAVER]
@@ -569,8 +575,32 @@ https://github.com/OpenRA/OpenRA/releases
 
 
 
+Ну что товарищи Линуксоиды готовы к ночным экспериментам ?)
+Я тут решил монитор разогнать и вроде все получилось!
+думаю теперь как из этого в будущем модуль сделать для bzu-gmb
+а пока все желающие могут закатать рукава и идти в консоль:
+1) Генерируем настройки для разрешения 1920х1080 74 герца (можно больше, если ваш монитор не вырубиться):
+cvt 1920 1080 74
+#я получил следующий выхлоп:
+# 1920x1080 73.95 Hz (CVT) hsync: 83.49 kHz; pclk: 217.75 MHz
+Modeline "1920x1080_74.00" 217.75 1920 2064 2264 2608 1080 1083 1088 1129 -hsync +vsync
+#Далее подставляем эти значения для нового режима:
+xrandr --newmode "1920x1080_74.00" 217.75 1920 2064 2264 2608 1080 1083 1088 1129 -hsync +vsync
+#Теперь нужно узнать к какому выходу подключен монитор
+xrandr
+# Так как у меня их два я получил такое: HDMI-A-0 и DVI-D-0 и подкинул им по очереди новый режим:
+xrandr --addmode HDMI-A-0 1920x1080_74.00
+xrandr --addmode DVI-D-0 1920x1080_74.00
+#если не один из мониторов не погас и выхлоп xrandr, что они тянут 74 герца, можно попробовать и больше (не рекомендую на простых мониторах)
+# Но данные команды работают на время включения системы, после перегруза, нужно снова создавать режим и задействовать его на мониторах...
+# А как это сделать на постоянной основе, домашнее задание :)
 
+п.с. Самые не терпеливые могут поделиться решением в комментариях!
 
+Сергей Митрохин
+video=DP-1:1920x1080@165
+video=HDMI-A-1:1920x1080@74
+Вот этими параметрами к ядру можно не стандартный режим добавить. Возможно даже проще это сделать будет оттуда. Он по умолчанию в голой консоли кстате использоваться будет.
 
 
 

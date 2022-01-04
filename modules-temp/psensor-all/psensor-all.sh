@@ -55,6 +55,7 @@ echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 fi
+
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="psensor"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null

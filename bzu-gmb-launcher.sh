@@ -14,26 +14,18 @@ export version=${version0}
 
 #Определение переменныех утилит и скриптов
 YAD0="${utils_dir}/yad"
-mangohud0="${utils_dir}/./mangohud_portable"
 zenity0="${utils_dir}/zenity"
 export YAD=${YAD0}
-export mangohud=${mangohud0}
 export zenity=${zenity0}
 
 # получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
 echo "$USER" > "${script_dir}/config/user"
 
-#script_dir0=$(cd $(dirname "$0") && pwd);
-#export script_dir="${script_dir0}"
-#version0=`cat "${script_dir}/config/name_version"`
-#export version="${version0}"
-# получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
-#echo "$USER" > "${script_dir}/config/user"
-# проверка что за система запустила скрипт
-#linuxos=`grep '^PRETTY_NAME' /etc/os-release`
-
-# запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
+# запрос пароля супер пользователя (если его не передал модуль обнавления), который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
+pass_user0=$1
+if [[ "$1" == "" ]];then
 pass_user0=$(GTK_THEME="Adwaita-dark" ${zenity} --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
+fi
 
 if [[ "${pass_user0}" == "" ]]
 then
@@ -45,25 +37,11 @@ fi
 
 
 #функция для проверки пакетов на установку, если нужно установлевает
-#function install_package {
-#dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
-#package_status=`dpkg -s $1 | grep -oh "installed"`
-#echo "$1:" $package_status
-#}
-
-#загружаем список пакетов из файла в массив
-#readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
-#задем переменной колличество пакетов в массиве
-#packages_number=${#packages_list[@]}
-#обьявляем переменную числовой
-#i=0
-#цикл проверки пакетов из массива
-#while [ $i -lt $packages_number ]
-#do
-#вызов функции для проверки пакетов из массива
-#install_package ${packages_list[$i]} ${pass_user}
-#i=$(($i + 1))
-#done
+function install_package {
+dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+package_status=`dpkg -s $1 | grep -oh "installed"`
+echo "$1:" $package_status
+}
 
 
 #загружаем список операционных систем из файла в массив
@@ -89,13 +67,71 @@ echo "your Linux OS:["$linuxos_version"]"
 echo "${linuxos_version}" > "${script_dir}/config/os-run-script"
 tput sgr0
 
-#
+if echo "${linux_os}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_version}" | grep -ow "Mint" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
+then
+echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-debian-book_worm"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+
+#Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+then
+#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-manjaro"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+#install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+
+# включение эксперементального режима для неподдерживаемой системы
 if [[ $linuxos_version == "" ]]
 then
 if experemental_os=$(GTK_THEME="Adwaita-dark" ${zenity} --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
 then
 echo "experimental" > "${script_dir}/config/status"
 echo $linux_os >> "${script_dir}/config/list-os"
+echo "${linux_os}" > "${script_dir}/config/os-run-script"
 cd ${script_dir}
 ./bzu-gmb-gui-beta4.sh
 else 

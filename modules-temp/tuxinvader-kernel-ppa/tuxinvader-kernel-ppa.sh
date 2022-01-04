@@ -15,6 +15,8 @@ version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -25,51 +27,35 @@ version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user0="$1"
 export pass_user="${pass_user0}"
-date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Отключение всех патчтей устранения уязвимостей в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка оригинальной и самой новой версии ядра Linux от tuxinvader [https://launchpad.net/~tuxinvader/+archive/ubuntu/lts-mainline]. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
-#объявляем нужные переменные для скрипта
-export dir_grub_file="/etc/default"
-export grub_file_name="grub"
-readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
-echo "${pass_user}" | sudo -S cp -p -f "/etc/default/grub" "/etc/default/grub.bak"
-tput setaf 2;echo "сделан бикап файла grub /etc/default/grub.bak"
-tput sgr0
-
-function install_flags_grub_kernel {
-flag_status=`cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2"`
-if [[ "${flag_status}" == "$2" ]];then
-tput setaf 3
-echo "флаг $2 уже добавлен в grub" 
-tput sgr0 
-echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
-else
-echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
-tput setaf 2
-echo "флаг $2 добавлен в grub"
-tput sgr0
-echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 20.04.3 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Linux Mint" > /dev/null
+then
+#запуск основных команд модуля
+echo "${pass_user}" | sudo -S add-apt-repository ppa:tuxinvader/lts-mainline -y || let "error += 1"
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null ;then
+echo "${pass_user}" | sudo -S apt update -y
 fi
-}
-
-#добовление флага отключающего все заплатки для процессоров в grub
-install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
-#обновляем grub
-echo "${pass_user}" | sudo -S update-grub
+echo "${pass_user}" | sudo -S apt install -f -y linux-generic-5.15* || let "error += 1"
+echo "${pass_user}" | sudo -S update-grub || let "error += 1"
+echo "${pass_user}" | sudo -S update-initramfs -u || let "error += 1"
+fi
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2; lscpu | grep "Vulnerability"
+tput setaf 2;echo "В вашу систему установлены следующие linux ядра:";tput sgr0;dpkg --list | grep "linux"  | grep -oP 'linux-image(.*)' | grep -Eo '^[^ ]+'
+#сброс цвета текста в терминале
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
-echo "Подробнее о уязвимостях в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]"	 				  >> "${script_dir}/module_install_log"
+#Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
+#задержка вывода информации о итогах установки, что бы пользователь мог ознакомиться.
+sleep 3
 
 exit 0
-
 
 #Для создания скрипта использовались следующие ссылки
 #https://techblog.sdstudio.top/blog/google-drive-vstavliaem-priamuiu-ssylku-na-izobrazhenie-sayta
@@ -83,6 +69,4 @@ exit 0
 #https://www.opennet.ru/docs/RUS/bash_scripting_guide/c1833.html
 #https://losst.ru/massivy-bash
 #https://www.shellhacks.com/ru/grep-or-grep-and-grep-not-match-multiple-patterns/
-#https://techrocks.ru/2019/01/21/bash-if-statements-tips/
-#https://habr.com/ru/post/511608/
 #https://techrocks.ru/2019/01/21/bash-if-statements-tips/

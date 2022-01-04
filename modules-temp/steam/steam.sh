@@ -15,6 +15,8 @@ version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -22,6 +24,7 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
 version_proton=${module_conf[7]}
+
 #получение пароля root пользователя
 pass_user0="$1"
 export pass_user="${pass_user0}"
@@ -31,10 +34,26 @@ tput setaf 2; echo "Установка клиента steam для Linux [https:
 tput sgr0
 
 #запуск основных команд модуля
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null;then
+#запуск основных команд модуля
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall steam || let "error += 1"
+fi
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null;then
 cd
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
 echo "${pass_user}" | sudo -S apt install -f -y ./steam.deb  || let "error += 1"
 echo "${pass_user}" | sudo -S rm -f "steam.deb" || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall libc6:amd64 libc6:i386 libegl1:amd64 libegl1:i386 libgbm1:amd64 libgbm1:i386 libgl1-mesa-dri:amd64 libgl1-mesa-dri:i386 libgl1:amd64 libgl1:i386 steam-libs-amd64:amd64 steam-libs-i386:i386
+fi
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null;then
+echo "для manjaro пока нечего нет :("
+fi
+
+
+
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="steam"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null

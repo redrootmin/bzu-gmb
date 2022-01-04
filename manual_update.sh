@@ -8,11 +8,20 @@ tput setaf 1; echo "Этот скрипт не нужно запускать и�
 else
 tput setaf 2; echo "все хорошо этот скрипт не запущен из под root!"
 fi
-
+pass_user="$1"
 #запрос пароля root для установки ПО необходимого для bzu-gmb
+if [[ "${pass_user}" == "" ]]
+then
 read -sp 'Введите Пароль root:' pass_user
 echo " "
-
+else
+echo "обнавляем bzu-gmb!"
+if [ ! -d "/home/${USER}/bzu-gmb-dev" ];then
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;cd;rm -f bzu-gmb*.zip
+else
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/dev.zip -O bzu-gmb-dev.zip;unzip bzu-gmb-dev.zip;cd ~/bzu-gmb-dev;chmod +x mini_install.sh;cd;rm -f bzu-gmb*.zip
+fi
+fi
 
 #проверяем ввел пользователь пароль или нет
 if [[ "${pass_user}" == "" ]]
@@ -32,7 +41,6 @@ name_icon="icons/bzu-gmb-new320.png"
 name_script_start="bzu-gmb-launcher.sh"
 name_app="${version_bzu_gmb}"
 exec_full="bash -c "${script_dir}"/"${name_script_start}""
-
 
 #Определение расположениея папок для утилит и т.д.
 utils_dir="${script_dir}/core-utils"
@@ -74,15 +82,8 @@ echo "your Linux OS:["$linuxos_version"]"
 #echo "" > "${script_dir}/config/status"
 tput sgr0
 
-#функция для проверки пакетов на установку в dpkg, если нужно установлевает
+#функция для проверки пакетов на установку, если нужно установлевает
 function install_package {
-dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
-package_status=`dpkg -s $1 | grep -oh "installed"`
-echo "$1:" $package_status
-}
-
-#функция для проверки пакетов на установку в pacman, если нужно установлевает
-function install_package_pacman {
 dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
 package_status=`dpkg -s $1 | grep -oh "installed"`
 echo "$1:" $package_status
@@ -109,7 +110,7 @@ fi
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
-echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-debian-book_worm"
 #задем переменной колличество пакетов в массиве
@@ -126,7 +127,7 @@ done
 fi
 
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
+if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
 then
 #echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
 #загружаем список пакетов из файла в массив
@@ -144,8 +145,6 @@ i=$(($i + 1))
 done
 fi
 
-# обнуляем статус утилиты, отключаем эксперементальный режим
-echo "" > "${script_dir}/config/status"
 
 #Создаем ярлык для скрипта
 echo "[Desktop Entry]" > "${script_dir}/${name_desktop_file}"
@@ -175,7 +174,8 @@ chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
 chmod +x "${script_dir}/core-utils/yad"
 chmod +x "${script_dir}/core-utils/zenity"
 
-#Уведомление пользователя, о том что он устанавил себе на ПК
-GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
+#Уведомление пользователя, о том что нового в этой версии
+update_log=`cat "${script_dir}/update_log"`
+${YAD} --list --column=text --no-click --image-on-top --picture --size=fit --image="${script_dir}/image/bzu-gmb-wallpeper-2021-10.png" --width=640 --height=640 --center --inc=256  --text-align=center --title="Завершена установка ${version_bzu_gmb}" --separator=" " --search-column=1 --print-column=1 --wrap-width=560 "$update_log" --no-buttons
 
-exit 0
+bash "${script_dir}/bzu-gmb-launcher.sh" $pass_user
