@@ -1,3 +1,32 @@
+
+
+[buz-gmb 0.492]===================================
+-AMD anti tearing (mesa)
+-Nvidia antitearing
+-GWE (overclock nvidia)
+-Nvidia cuda support for blender+
+-icq-new-portable
+-discord-ppa
+-telegram-ppa
+-scrcpy-ppa
+-peek-ppa
+-scribus-ppa
+-firefox-ppa
+-chromium-ppa
+-qbittorent-ppa
+-remmina-ppa
+-timeshift ppa
+-gparted-ppa
+-grub-customizer ppa
+-stacer ppa
+-libstrangle-tools
+
+fix bugs in modules:
+-
+
+New functions:
+- add support Manjaro Gnome
+
 [buz-gmb 0.491]===================================
 New modules:
 blender-ppa IN PRODUCTION
@@ -28,21 +57,6 @@ Furmark-Linux IN PRODUCTION
 -figma-linux-ppa TESTING
 -Natron-2.4.1-portable TESTING
 -Blender-portable TESTING!
--icq-new-portable
--discord-ppa
--telegram-ppa
--scrcpy-ppa
--peek-ppa
--scribus-ppa
--firefox-ppa
--chromium-ppa
--qbittorent-ppa
--remmina-ppa
--timeshift ppa
--gparted-ppa
--grub-customizer ppa
--stacer ppa
--libstrangle-tools
 
 fix bugs in modules:
 steam - smart install for ubuntu\linux mint, debian testing
