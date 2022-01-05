@@ -89,6 +89,13 @@ package_status=`dpkg -s $1 | grep -oh "installed"`
 echo "$1:" $package_status
 }
 
+#функция для проверки пакетов на установку в pacman, если нужно установлевает
+function install_package_pamac {
+pamac list -i | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S pamac install --no-confirm $1
+package_status=`pamac list -i | grep "pv" > /dev/null | echo "installing"`
+echo "$1:" $package_status
+}
+
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Ubuntu" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null
 then
@@ -127,9 +134,9 @@ done
 fi
 
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
 then
-#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-manjaro"
 #задем переменной колличество пакетов в массиве
@@ -140,7 +147,7 @@ i=0
 while [ $i -lt $packages_number ]
 do
 #вызов функции для проверки пакетов из массива
-#install_package ${packages_list[$i]} ${pass_user}
+install_package_pamac ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
