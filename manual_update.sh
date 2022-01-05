@@ -145,6 +145,8 @@ i=$(($i + 1))
 done
 fi
 
+# обнуляем статус утилиты, отключаем эксперементальный режим
+echo "" > "${script_dir}/config/status"
 
 #Создаем ярлык для скрипта
 echo "[Desktop Entry]" > "${script_dir}/${name_desktop_file}"
