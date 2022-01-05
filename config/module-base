@@ -204,7 +204,7 @@ OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ВНИМАНИЕ: Эта экспериментальная версия модуля, которая кроме установки CoreCtrl, добавляет правило для запуска утилиты без запроса пароля супер пользователя и добавляет маску в grub для полного управления питанием и частотами видеокарт АМД которые используют amdgpu в драйвере mesa.
 Яцына М.А.
 corectrl-debian-testing
-Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
 CoreCtrl-1.3-dev
 #
 noroot
