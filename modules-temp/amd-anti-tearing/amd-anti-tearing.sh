@@ -38,7 +38,7 @@ readarray -t x11_commands_all < "${script_dir}/modules-temp/${name_script}/x11-c
 echo "$pass_user" | sudo -S chmod 777 "${dir_x11_file}/${x11_file_name}" || true
 echo "$pass_user" | sudo -S chmod -Rf 777 "${dir_x11_file}" || true
 
-# Проверка что существует папка /usr/share/X11/xorg.conf.d, если нет, создаем ее
+# Проверка что существует папка /etc/X11/xorg.conf.d, если нет, создаем ее
 if [ ! -d "${dir_x11_file}" ]
 then
 echo "$pass_user" | sudo -S mkdir -p "${dir_x11_file}"
