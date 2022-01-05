@@ -1,1 +1,8 @@
 pv
+lib32-mesa
+vulkan-radeon
+mesa-vdpau
+lib32-vulkan-radeon
+lib32-mesa-vdpau
+libva-mesa-driver
+lib32-libva-mesa-driver
