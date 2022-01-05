@@ -175,7 +175,11 @@ fi
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
 then
+<<<<<<< HEAD
 #echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
+=======
+echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
+>>>>>>> fix bug
 echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-manjaro"
