@@ -198,7 +198,7 @@ lscpu | grep "Vulnerability"
 
 #[TEARFREE ON IN AMD]
 (for rx400\500\vega\rx5000\6000)
-sudo nano /usr/share/X11/xorg.conf.d/10-amdgpu.conf
+sudo nano /etc/X11/xorg.conf.d/10-amdgpu.conf
 
 Section "Device"
 Identifier "AMDgpu"
