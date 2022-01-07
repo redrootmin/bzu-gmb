@@ -1,0 +1,70 @@
+[buz-gmb 0.492-pre]===================================
+-AMD anti tearing (mesa) - TESTING!
+-Nvidia antitearing - dev
+-GWE (overclock nvidia) - dev
+-Nvidia cuda support for blender+ - dev
+-icq-new-portable - hold
+-discord-ppa - hold
+-telegram-ppa - hold
+-scrcpy-ppa - hold
+-peek-ppa - hold
+-scribus-ppa - hold
+-firefox-ppa - hold
+-chromium-ppa - hold
+-qbittorent-ppa - hold
+-remmina-ppa - hold
+-timeshift ppa - hold
+-gparted-ppa - hold
+-grub-customizer ppa - hold
+-stacer ppa - hold
+-libstrangle-tools - hold
+
+fix bugs in modules:
+-
+
+UPDATE Modules:
+- Godot to 3.4.2 + upgrade module func.
+
+New functions:
+- add support Manjaro Gnome
+
+[buz-gmb 0.491]===================================
+New modules:
+blender-ppa IN PRODUCTION
+krita-ppa IN PRODUCTION
+inkscape-ppa IN PRODUCTION
+gimp-ppa IN PRODUCTION
+pinta-ppa IN PRODUCTION
+kdenlive-ppa IN PRODUCTION
+simple-screen-recorder-ppa IN PRODUCTION
+celluloid-ppa IN PRODUCTION
+audacity-ppa IN PRODUCTION
+audacious-ppa IN PRODUCTION
+thunderbird-ppa IN PRODUCTION
+qpdf-tools-ppa IN PRODUCTION
+simple-scan-ppa IN PRODUCTION
+lossless-cut-appimage IN PRODUCTION
+Refresh2025 IN PRODUCTION
+Furmark-Linux IN PRODUCTION
+
+
+-MagicaVoxel-wine TESTING
+-piper TESTING
+-key-mapper TESTING
+-noisetorch-app TESTING
+-tuxinvader-kernel-lts-ppa TESTING
+-tuxinvader-kernel-ppa TESTING
+-Kernel-log-fix TESTING
+-figma-linux-ppa TESTING
+-Natron-2.4.1-portable TESTING
+-Blender-portable TESTING!
+
+fix bugs in modules:
+steam - smart install for ubuntu\linux mint, debian testing
+
+New functions:
+- manual update
+- reload bzu-gmb after install modules
+- fix bugs
+
+
