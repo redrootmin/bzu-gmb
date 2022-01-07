@@ -1,5 +1,5 @@
 [buz-gmb 0.492-pre]===================================
--AMD anti tearing (mesa) - dev
+-AMD anti tearing (mesa) - TESTING!
 -Nvidia antitearing - dev
 -GWE (overclock nvidia) - dev
 -Nvidia cuda support for blender+ - dev
@@ -21,6 +21,9 @@
 
 fix bugs in modules:
 -
+
+UPDATE Modules:
+- Godot to 3.4.2 + upgrade module func.
 
 New functions:
 - add support Manjaro Gnome
