@@ -70,7 +70,7 @@ rm -f godot-portable.tar.xz
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/godot-portable.tar.xz
 tar -xpJf "${name_script}.tar.xz"
 rm -f godot-portable.tar.xz
-cd ~/${name_script}/app;chmod +x mini_install.sh
+cd ~/${name_script};chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
@@ -78,7 +78,7 @@ app_name="godot-portable"
 echo "Testing:${version_app}"
 cd "/home/${user_run_script}/${name_script}"
 echo "Папка установки:/home/${user_run_script}/${name_script}"
-bash -c "/home/${user_run_script}/${name_script}/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+bash -c "/home/${user_run_script}/${name_script}/app/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
 tput setaf 2; echo "Установка Игрового движка ${version_app} завершена :)"
 tput sgr0
 else
