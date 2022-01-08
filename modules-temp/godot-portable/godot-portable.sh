@@ -70,7 +70,7 @@ rm -f godot-portable.tar.xz
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/godot-portable.tar.xz
 tar -xpJf "${name_script}.tar.xz"
 rm -f godot-portable.tar.xz
-cd ~/${name_script};chmod +x mini_install.sh
+cd ~/${name_script}/app;chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
