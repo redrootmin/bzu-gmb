@@ -30,7 +30,7 @@ tput setaf 2; echo "Установка Pinta - легковесный кросс
 tput sgr0
 
 #запуск основных команд модуля
-echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:pinta-maintainers/pinta-daily || let "error += 1"
+echo "${pass_user}" | sudo -S add-apt-repository -y  ppa:pinta-maintainers/pinta-stable || let "error += 1"
 echo "${pass_user}" | sudo -S apt update -y
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall pinta || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
