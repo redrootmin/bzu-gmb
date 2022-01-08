@@ -3,7 +3,7 @@
 -Nvidia antitearing - dev
 -GWE (overclock nvidia) - dev
 -Nvidia cuda support for blender+ - dev
--krita-appimage - dev
+-krita-appimage - TESTING!
 -icq-new-portable - hold
 -discord-ppa - hold
 -telegram-ppa - hold
@@ -27,7 +27,7 @@ UPDATE Modules:
 - Godot to 3.4.2 + upgrade module func.
 
 New functions:
-- add support Manjaro Gnome
+- add support Manjaro Gnome (minimal)
 
 [buz-gmb 0.491]===================================
 New modules:
