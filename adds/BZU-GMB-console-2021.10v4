@@ -571,6 +571,10 @@ sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-co
 #[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
 https://github.com/OpenRA/OpenRA/releases
 
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
+echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
+sudo apt-get update
+sudo apt-get install onlyoffice-desktopeditors
 
 
 
@@ -641,6 +645,9 @@ sudo systemctl mask plymouth-quit-wait.service
 #sudo systemctl disable tor@default.service
 sudo systemctl disable smbd.service
 
+systemd-analyze
+systemd-analyze blame
+systemd-analyze critical-chain
 
 
 
