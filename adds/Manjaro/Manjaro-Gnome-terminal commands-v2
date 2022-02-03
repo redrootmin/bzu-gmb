@@ -1,0 +1,67 @@
+sudo pamac upgrade -a --no-confirm
+sudo pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver curl gamemode lib32-gamemode icoutils wget zenity bubblewrap zstd cabextract bc tar steam
+sudo pamac install --no-confirm linux515 linux516 
+
+
+to be EnableAUR
+
+You can do that via terminal with:
+
+sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf
+
+To comment it back
+
+sudo sed -Ei '/EnableAUR/s/^/#/' /etc/pamac.conf
+
+And you can do the same with all the lines that enable or disable something in /etc/pamac.conf
+
+$ sudo pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+$ sudo pacman-key --lsign-key FBA220DFC880C036
+$ sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+Append (adding to the end of the file) to /etc/pacman.conf:
+sudo nano /etc/pacman.conf
+
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist 
+
+
+sudo pamac upgrade -a --no-confirm
+sudo pamac install corectrl
+
+sudo ln -s /usr/lib/libbotan-2.so.18 /usr/lib/libbotan-2.so.19 
+
+pkaction --version
+
+
+Polkit version < 0.106
+Create the file /etc/polkit-1/localauthority/50-local.d/90-corectrl.pkla with the following contents:
+[User permissions]
+Identity=unix-group:your-user-group
+Action=org.corectrl.*
+ResultActive=yes
+
+Polkit version >= 0.106
+Create the file /etc/polkit-1/rules.d/90-corectrl.rules with the following contents:
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.corectrl.helper.init" ||
+         action.id == "org.corectrl.helperkiller.init") &&
+        subject.local == true &&
+        subject.active == true &&
+        subject.isInGroup("your-user-group")) {
+            return polkit.Result.YES;
+    }
+});
+
+
+
+
+
+AntiMicroX
+Arx Liberatis
+Devilution X
+DosBox Staging
+System76 keyboard configurator for Launch
+libstrangle
+MangoHud
+vkbasalt 
