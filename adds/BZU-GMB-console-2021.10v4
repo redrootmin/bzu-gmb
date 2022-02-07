@@ -686,9 +686,6 @@ sudo systemctl disable smbd.service
 
 
 
-
-
-
 https://www.linuxuprising.com/2018/07/anbox-how-to-install-google-play-store.html
 https://www.linuxuprising.com/2021/05/turn-your-tablet-or-phone-into-graphic.html
 https://github.com/ventoy/Ventoy/releases
