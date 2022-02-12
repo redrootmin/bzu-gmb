@@ -23,14 +23,15 @@ Nvidia ppa offical
 https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
-sudo apt install -f nvidia-driver-495
+sudo apt install -f nvidia-driver-470
 
 
+for debian:
 deb http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu focal main 
 deb-src http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu focal main 
-
 Signing key: 4096R/2388FF3BE10A76F638F80723FCAE110B1118213C
-
+sudo apt-get update
+sudo apt install -f nvidia-driver-470
 
 ###CUDA Toolkit###
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
@@ -41,6 +42,12 @@ sudo apt-key add /var/cuda-repo-ubuntu2004-11-5-local/7fa2af80.pub
 sudo apt-get update
 sudo apt-get -y install cuda
 
+###kernel flag###
+sudo nano /etc/default/grub
+#add in GRUB_CMDLINE_LINUX_DEFAULT="
+nvidia-drm.modeset=1
+#save
+sudo update-grub
 
 
 ###GreenWithEnvy###
