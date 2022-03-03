@@ -571,7 +571,10 @@ sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-co
 #[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
 https://github.com/OpenRA/OpenRA/releases
 
-
+CONSOLE EMU:
+#8-bit nes
+sudo apt install fceux
+#
 
 
 
