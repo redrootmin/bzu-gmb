@@ -376,8 +376,9 @@ cat /proc/bus/input/devices
 sudo xboxdrv --evdev /dev/input/event18 --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_Z=x2,ABS_RZ=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_A=a,BTN_B=b,BTN_X=x,BTN_Y=y,BTN_TL=lb,BTN_TR=rb,BTN_TL2=lt,BTN_TR2=rt,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_SELECT=back,BTN_START=start --silent &
 
 # [INSTALL VIRTUALBOX]
-sudo apt install -f virtualbox virtualbox-ext-pack
+sudo apt install -f --reinstall virtualbox virtualbox-ext-pack virtualbox-dkms 
 sudo usermod -aG vboxusers $USER
+
 
 
 # [VIRTUALBOX 1920x1080]
@@ -566,10 +567,18 @@ X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
 
 
 #[INSTALL-BEST-OPEN-LINUX-GAMES]
-sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-common minetest minetest-data warzone2100 warzone2100 warzone2100-data
+sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-common minetest minetest-data warzone2100 warzone2100 warzone2100-data ufoai
 
 #[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
 https://github.com/OpenRA/OpenRA/releases
+
+
+
+
+
+
+
+
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
 echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
@@ -621,6 +630,11 @@ xrandr --output HDMI-A-0 --scale 2x2 & sleep 10;xrandr --output HDMI-A-0 --scale
 xrandr --output HDMI-A-0 --scale 2x2
 ВАЖНО: если у вас программа была запущена до смены разрешения экрана то она будет работать скорее всего не корректно, на gnome все ок с такой фичей, что у остальных не знаю...
 
+
+
+
+
+
 GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
 
 Разберем подробнее за что отвечает каждый параметр:
@@ -648,37 +662,6 @@ sudo systemctl disable smbd.service
 systemd-analyze
 systemd-analyze blame
 systemd-analyze critical-chain
-
-
-
-
-
-
-
-GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
-
-Разберем подробнее за что отвечает каждый параметр:
-
-quiet - вывод, это долго, поэтому говорим ядру что на экран нужно выводить минимум информации
-rootfstype=ext4 - указываем в какую файловую систему отформатирован корень. У меня ext4.
-libahci.ignore_sss=1 - Ignore staggered spinup flag, ускоряет загрузку жестких дисков
-raid=noautodetect - raid я не использую, думаю вы тоже поэтому отключаем.
-selinux=0 - система полномочий selinux на домашней машине тоже ни к чему, без нее будет быстрее.
-plymouth.enable=0 - заставка plymouth тоже занимает много времени, поэтому убираем заставку
-lpj=12053560 - позволяет задать константу loops_per_jiffy, что позволит ядру не вычислять ее каждый раз и сэкономит до 250 миллисекунд. Это значение индивидуально для каждого компьютера.
-
-Чтобы узнать значение последнего параметра выполните:
-
-dmesg | grep 'lpj='
-
-sudo apt install rng-tools
-
-sudo systemctl disable nmbd.service
-sudo systemctl disable ModemManager.service
-sudo systemctl mask plymouth-quit-wait.service
-#sudo systemctl disable tor@default.service
-sudo systemctl disable smbd.service
-
 
 
 
