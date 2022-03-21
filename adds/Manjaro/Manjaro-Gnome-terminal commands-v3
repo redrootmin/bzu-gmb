@@ -124,6 +124,27 @@ Reboot
 
 
 
+pamac install fceux
+pamac install pcsx2
+pamac install epsxe
+pamac install reicast
+sudo pamac install numix-icon-theme
+sudo pamac install pinta
+sudo pamac install wps-office
+sudo pamac install stacer
+sudo pamac install paprefs pavucontrol
+
+
+
+
+
+
+
+
+
+
+
+
 AntiMicroX
 Arx Liberatis
 Devilution X
