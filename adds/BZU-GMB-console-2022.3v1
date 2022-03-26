@@ -452,7 +452,8 @@ sudo apt install kdenlive
 
 #[CONVERT ALL VIDEO FILE *.AVI IN FOLDER TO YOUTUBE CONFORT COMPRESSION AND MP4 FORMAT, RUN IN TERMINAL IN FOLDER]
 for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.avi}.mp4"; done
-
+#stabilize video
+for i in *.mp4; do ffmpeg -i "$i" -vf deshake "stabilized-${i}.mp4"; done
 
 #[INSTALL OBS-STUDIO PPA]
 sudo apt-add-repository ppa:obsproject/obs-studio
