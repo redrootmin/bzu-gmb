@@ -1,5 +1,15 @@
+gnome-ext-pack48.png
+gnome-gui-switcher
+GnomeStyle
+[GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ubuntu 22.04 LTS c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. ВНИМАНИЕ: Утилита на стадии тестирования, вы используете ее на свой страх и риск!
+Яцына М.А.
+gnome-gui-switcher
+Ubuntu 22.04 LTS
+#
+#
+noroot
 xanmod48.png
-XanMod-ppa
+XanMod-stable-ppa
 LinuxKernel
 Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом многоядерных процессоров и современных видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
@@ -9,7 +19,7 @@ Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 2
 #
 root
 xanmod-latest48.png
-Xanmod-cacule-ppa
+Xanmod-latest-ppa
 LinuxKernel
 Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT. ВИНИМАНИЕ! На офицальном сайте этой сборки ядра не рекомендуют использовать эту версию с видеокартами Nvidia, только классический Xanmod.
 Яцына М.А.
@@ -114,7 +124,7 @@ GameTools
 GameMode это утилита от компании Feral Interactive, который на лету изменяет различные системные настройки Linux для достижения максимальной производительности игровых приложений.
 Яцына М.А.
 feralgamemode
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+HODL
 #
 #
 root
@@ -284,7 +294,7 @@ GameTools
 Piper - это утилита для настройки gaming mouse. Поддерживается настройка: разрешение dpi, назначение кнопок и подсветка. Полный список поддерживаемый моделей можно посмотреть на официальной странице github.
 Яцына М.А.
 piper-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -364,7 +374,7 @@ Benchmark
 Furmark-Linux это Linux версия популярного теста 3D-графики Furmark (волосатый бублик), данная утилита позволяет проверить работу\сделать замеры производительности графики в API OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), дополнительно в комплекте достаточно тяжелый тест: PixMark Piano. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
 Яцына М.А.
 furmark-linux
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
 Furmark-Linux
 #
 noroot
@@ -374,7 +384,7 @@ Benchmark
 Refresh2025 - простая утилита для тестирования работы OpenGL,Vulkan в Linux OS. В Refresh2025 встроен MahgoHud(Portable).
 Яцына М.А.
 refresh2025-benchmark
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 Ubuntu 22.04 LTS LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
 Refresh2025 1.0
 #
 noroot
@@ -584,7 +594,7 @@ Graphics
 Inkscape - это свободно распространяемый векторный графический редактор и является профессиональным инструментом  для работы с векторной графикой, и часто используется  для создания иллюстраций, иконок, логотипов, диаграмм, карт, а также веб-графики. Inkscape содержит продвинутые инструменты для работы, сравнимые с возможностями Adobe Illustrator, CorelDRAW и Xara Xtreme. Вы можете читать сохранять изображения во многих форматах, включая SVG, AI, EPS, PDF, PS и PNG. Inkscape по умолчанию использует открытый стандарт формата файла SVG. Inkscape включает в себя большой набор инструментов, простой и дружественный интерфейс и поддержку многих языков.
 Яцына М.А.
 inkscape-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
 #
 #
 noroot
@@ -695,16 +705,6 @@ BackToGnomeVanilla - это небольшой набор комманд, они
 Яцына М.А.
 back-to-gnome-vanilla
 Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS 
-#
-#
-noroot
-gnome-ext-pack48.png
-GnomeExtensionsPack2
-GnomeStyle
-GnomeExtensionsPack2 - это набор скриптов, которые изменяют вид Ubuntu, интерфейс и устанавливают дополнения Gnome 40, для более эффективного использования всех возможностей gnome и удобства работы с профессиональным ПО, мультимедиа и играми. ВНИМАНИЕ: скрипт предназначен для только что установленной системы и устанавливается в режиме Xorg, если у вас уже настроена и установлена Ubuntu 21.10 Ubuntu 22.04 LTS то вы можете столкнуться с глюками и багами и действуете на свой стах и риск! 
-Яцына М.А.
-gnome-ext-pack-2110
-Ubuntu 21.10 Ubuntu 22.04 LTS
 #
 #
 noroot

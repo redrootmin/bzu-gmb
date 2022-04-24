@@ -43,7 +43,7 @@ tput setaf 2; echo "${app_name}:installed"
 tput sgr0
 echo "Testing:${app_name}"
 # 5 секунд теста программы
-kdenlive & sleep 5;echo "${pass_user}" | sudo -S killall kdenlive
+#kdenlive & sleep 5;echo "${pass_user}" | sudo -S killall kdenlive
 tput setaf 2; echo "Установка ${app_name} завершена :)"
 tput sgr0
 else tput setaf 1;echo "${name_script}:not installing!"

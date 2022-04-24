@@ -29,7 +29,7 @@ tput sgr0
 #запуск основных команд модуля
 echo 'deb http://deb.xanmod.org releases main' | sudo -S tee /etc/apt/sources.list.d/xanmod-kernel.list  && wget -qO - https://dl.xanmod.org/gpg.key | sudo -S apt-key add - || let "error += 1"
 sudo -S apt update -y || let "error += 1"
-sudo -S apt install -f -y  linux-xanmod-cacule || let "error += 1"
+sudo -S apt install -f -y  linux-xanmod-edge || let "error += 1"
 sudo -S update-grub || let "error += 1"
 sudo -S update-initramfs -u || let "error += 1"
 

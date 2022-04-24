@@ -39,8 +39,10 @@ fi
 #функция для проверки пакетов на установку, если нужно установлевает
 function install_package {
 dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+#package_status=`dpkg -s $1 | grep -oh "installed"`
+#echo "$1:" $package_status
 package_status=`dpkg -s $1 | grep -oh "installed"`
-echo "$1:" $package_status
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 }
 
 
@@ -67,10 +69,29 @@ echo "your Linux OS:["$linuxos_version"]"
 echo "${linuxos_version}" > "${script_dir}/config/os-run-script"
 tput sgr0
 
-if echo "${linux_os}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_version}" | grep -ow "Mint" > /dev/null
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu2204"
 #задем переменной колличество пакетов в массиве
 packages_number=${#packages_list[@]}
 #обьявляем переменную числовой

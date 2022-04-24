@@ -1,6 +1,6 @@
 #!/bin/bash
-#creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
-# GPL-3.0 License
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
 
 #проверяем что модуль запущен от пользователя root
 #[ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}
@@ -24,30 +24,29 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
-
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Inkscape - свободно распространяемый векторный графический редактор [https://inkscape.org/]. Установка Inkscape осуществлыется через официальный репозиторий Ubuntu. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ubuntu 22.04 LTS c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. Версия скрипта 1.0 beta, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
-echo "${pass_user}" | sudo -S add-apt-repository -y ppa:inkscape.dev/stable-1.1 || let "error += 1"
-echo "${pass_user}" | sudo -S apt update -y
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall inkscape || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-app_name="inkscape"
-dpkg -s ${app_name} | grep -ow "installed" > /dev/null
-if [ $? = 0 ];then
-tput setaf 2; echo "${app_name}:installed"
+version_app="[GGS]gnome-gui-switcher"
+# Проверка установлен [GGS]gnome-gui-switcher или нет в папке пользователя
+if [ ! -d "/home/${user_run_script}/[GGS]gnome-gui-switcher" ]
+then
+tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
-echo "Testing:${app_name}"
-# 5 секунд теста программы
-inkscape & sleep 5;echo "${pass_user}" | sudo -S killall inkscape
-tput setaf 2; echo "Установка ${app_name} завершена :)"
+cd
+rm -f [GGS]gnome-gui-switcher*
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/GGS.gnome-gui-switcher-dev.tar.xz -O [GGS]gnome-gui-switcher-dev.tar.xz
+tar -xJf [GGS]gnome-gui-switcher-dev.tar.xz
+chmod +x "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
+bash "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
+tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
-else tput setaf 1;echo "${name_script}:not installing!"
+else
+tput setaf 1; echo "Утилита ${version_app} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput sgr0
 fi
-tput sgr0
-
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"

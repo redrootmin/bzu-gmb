@@ -45,6 +45,14 @@ echo "обнавляем bzu-gmb!"
 bash "${script_dir}/manual_update.sh" $pass_user
 fi
 
+#проверка на выход из программы
+if [[ $modules_select == "" ]] || [ ${select_button} = 1 ];then
+echo "" > "${script_dir}/module_install_log" 
+echo "" > "${script_dir}/config/user"
+echo "" > "${script_dir}/config/yad-module-form"
+echo "" > "${script_dir}/config/os-run-script"
+exit 0
+fi
 
 #сбрасываем log установки в файле: module_install_log
 date_install=`date`
@@ -103,15 +111,6 @@ echo "<=========================================================>"
 fi
 fi
 
-#проверка на выход из программы
-if [[ $modules_select == "" ]] || [ ${select_button} = 1 ];then
-echo "" > "${script_dir}/module_install_log" 
-echo "" > "${script_dir}/config/user"
-echo "" > "${script_dir}/config/yad-module-form"
-echo "" > "${script_dir}/config/os-run-script"
-exit 0
-fi
-
 done
 
 #проверка на глобальные ошибки в модулях, например он вобще не запустился или файлов таких нет.
@@ -122,10 +121,10 @@ echo "$pass_user" | sudo -S echo "Количество критических о
 fi
 #проверка как завершилась работа установки модулей, если были ошибки, то логи показывать не нужно
 GTK_THEME="Adwaita-dark" zenity --text-info --width=480 --height=680 --title="Лог установки модулей ${version} " --filename="${script_dir}/module_install_log" --editable
+done
 echo "" > "${script_dir}/module_install_log" 
 echo "" > "${script_dir}/config/user"
 echo "" > "${script_dir}/config/yad-module-form"
-done
 
 exit 0
 

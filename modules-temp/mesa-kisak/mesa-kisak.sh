@@ -35,10 +35,18 @@ tput sgr0
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then
 #запуск основных команд модуля
+echo "${pass_user}" | sudo ppa-purge ppa:oibaf/graphics-drivers
 echo "${pass_user}" | sudo -S add-apt-repository -y ppa:kisak/kisak-mesa || let "error += 1"
-echo "${pass_user}" | sudo -S aptitude -y update || error+=1 # нужно только для linuxMint
-echo "${pass_user}" | sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd64 libgl1-mesa-dri:amd64 libglapi-mesa:amd64 libglu1-mesa:amd64 libglx-mesa0:amd64 libllvm10:amd64 libllvm10:i386 libxatracker2:amd64 mesa-utils  mesa-va-drivers:amd64 mesa-vdpau-drivers:amd64 mesa-vulkan-drivers:amd64 mesa-vulkan-drivers:i386 xserver-xorg-video-amdgpu || let "error += 1"
-echo "${pass_user}" | sudo -S aptitude -y upgrade || let "error += 1"
+#echo "${pass_user}" | sudo -S dpkg --purge --force-all libgl1-amber-dri:amd64
+#echo "${pass_user}" | sudo -S dpkg --purge --force-all libgl1-amber-dri
+#echo "${pass_user}" | sudo -S dpkg --purge --force-all libgl1-mesa-dri
+echo "${pass_user}" | sudo -S rm -f /var/cache/apt/archives/*.deb || true
+echo "${pass_user}" | sudo -S apt install -f libgl1-mesa-dri mesa-utils || let "error += 1"
+echo "${pass_user}" | sudo -S apt update -y || let "error += 1"
+echo "${pass_user}" | sudo -S apt upgrade -y || let "error += 1"
+
+#echo "${pass_user}" | sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd64 libgl1-mesa-dri:amd64 libglapi-mesa:amd64 libglu1-mesa:amd64 libglx-mesa0:amd64 libllvm10:amd64 libllvm10:i386 libxatracker2:amd64 mesa-utils  mesa-va-drivers:amd64 mesa-vdpau-drivers:amd64 mesa-vulkan-drivers:amd64 mesa-vulkan-drivers:i386 xserver-xorg-video-amdgpu libgl1-mesa-dri || let "error += 1"
+#echo "${pass_user}" | sudo -S aptitude -y upgrade || let "error += 1"
 fi
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null

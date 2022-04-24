@@ -89,7 +89,7 @@ echo "$1:" $package_status
 }
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "Ubuntu" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
@@ -105,6 +105,64 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
+then
+cd;rm -rf bzu-gmb-temp*;rm -f bzu-gmb-temp*;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/bzu-gmb-temp-v1.tar.xz -O bzu-gmb-temp.tar.xz;tar -xJf bzu-gmb-temp.tar.xz
+# установка дополнительного ПО
+echo "${pass_user}" | sudo -S apt update -y
+echo "${pass_user}" | sudo -S apt upgrade -y
+
+# установка пакетов которых нет в ppa (временно нет)
+dpkg -s "libssl1.1:amd64" | grep installed > /dev/null || echo "no installing libssl1.1:amd64 :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb"
+dpkg -s "grub-customizer" | grep installed > /dev/null || echo "no installing grub-customizer :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/grub-customizer_5.1.0-3_amd64.deb"
+
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu2204"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+#FireFox deb
+sudo snap remove --purge firefox
+sudo add-apt-repository -y ppa:mozillateam/ppa
+#ppa forece!
+echo "Package: firefox*" > "mozillateamppa"
+echo "Pin: release o=LP-PPA-mozillateam" >> "mozillateamppa"
+echo "Pin-Priority: 501" >> "mozillateamppa"
+echo "${pass_user}" | sudo -S cp -f mozillateamppa /etc/apt/preferences.d/
+rm -f mozillateamppa
+echo "${pass_user}" | sudo -S apt update -y
+#sudo apt install firefox-esr
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall firefox
+fi
+
 
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
