@@ -150,14 +150,15 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 #FireFox deb
-sudo snap remove --purge firefox
-sudo add-apt-repository -y ppa:mozillateam/ppa
+echo "${pass_user}" | sudo -S snap remove --purge firefox
+echo "${pass_user}" | sudo -S add-apt-repository -y ppa:mozillateam/ppa
 #ppa forece!
-echo "Package: firefox*" > "mozillateamppa"
-echo "Pin: release o=LP-PPA-mozillateam" >> "mozillateamppa"
-echo "Pin-Priority: 501" >> "mozillateamppa"
+echo "${pass_user}" | sudo -S echo "Package: firefox*" > "mozillateamppa"
+echo "${pass_user}" | sudo -S echo "Pin: release o=LP-PPA-mozillateam" >> "mozillateamppa"
+echo "${pass_user}" | sudo -S echo "Pin-Priority: 501" >> "mozillateamppa"
 echo "${pass_user}" | sudo -S cp -f mozillateamppa /etc/apt/preferences.d/
 rm -f mozillateamppa
+echo "${pass_user}" | sudo -S apt remove firefox -y
 echo "${pass_user}" | sudo -S apt update -y
 #sudo apt install firefox-esr
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall firefox
