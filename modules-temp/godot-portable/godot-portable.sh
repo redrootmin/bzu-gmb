@@ -66,11 +66,12 @@ then
 tput setaf 2; echo "Игровой движек ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-rm -f godot-portable.tar.xz
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/godot-portable.tar.xz
-tar -xpJf "${name_script}.tar.xz"
-rm -f godot-portable.tar.xz
-cd ~/${name_script};chmod +x mini_install.sh
+name_app="godot-portable-3-4-4.tar.xz"
+rm -f godot-portable*
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/$name_app"
+tar -xpJf "$name_app"
+rm -f "$name_app"
+cd ~/godot-portable;chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
