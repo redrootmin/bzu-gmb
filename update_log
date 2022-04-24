@@ -1,3 +1,13 @@
+[buz-gmb 0.493]===================================
+-gnome-gui-switcher - TESTING!
+-godot-portable - UPDATE! (3.4.4)
+-vscodium-portable - UPDATE! (VSCodium-1.66.2)
+-Nvidia antitearing - hold
+-GWE (overclock nvidia) - hold
+-Nvidia cuda support for blender+ - hold
+
+
+
 [buz-gmb 0.492-pre]===================================
 -AMD anti tearing (mesa) - TESTING!
 -Nvidia antitearing - dev
