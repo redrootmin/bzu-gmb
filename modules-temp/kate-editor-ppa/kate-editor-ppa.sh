@@ -1,6 +1,6 @@
 #!/bin/bash
-#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
-# GPL-3.0 License 
+#creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License
 
 #проверяем что модуль запущен от пользователя root
 #[ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}

@@ -1,0 +1,155 @@
+sudo pamac upgrade -a --no-confirm
+
+all-in-one libs+32bit+driver mesa
+sudo pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver curl gamemode lib32-gamemode icoutils wget zenity bubblewrap zstd cabextract bc tar vulkan-tools lib32-p11-kit lib32-libcurl-gnutls libcurl-gnutls lib32-sdl2 lib32-freetype2 lib32-gtk2 lib32-alsa-plugins lib32-libpulse lib32-openal lib32-libudev0 lib32-systemd nss-mdns lib32-nss lib32-glu lib32-dbus libcurl-compat lib32-libcurl-compat
+
+32-bit lib games support:
+sudo pamac install lib32-p11-kit lib32-libcurl-gnutls libcurl-gnutls lib32-sdl2 lib32-freetype2 lib32-gtk2 lib32-alsa-plugins lib32-libpulse lib32-openal lib32-systemd nss-mdns lib32-nss lib32-glu lib32-dbus libcurl-compat lib32-libcurl-compat lib32-libudev0
+
+32-bit lib games support nvidia
+sudo pamac install lib32-nvidia-utils
+
+
+
+sudo pamac install mangohud goverlay
+sudo pamac install --no-confirm steam
+sudo pamac install --no-confirm linux515 linux516 
+
+
+CHAOTIC-AUR ENABLE
+to be EnableAUR
+You can do that via terminal with:
+sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf
+To comment it back
+sudo sed -Ei '/EnableAUR/s/^/#/' /etc/pamac.conf
+And you can do the same with all the lines that enable or disable something in /etc/pamac.conf
+
+$ sudo pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+$ sudo pacman-key --lsign-key FBA220DFC880C036
+$ sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+Append (adding to the end of the file) to /etc/pacman.conf:
+sudo nano /etc/pacman.conf
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist 
+
+sudo pamac upgrade -a --no-confirm
+sudo pamac install corectrl
+sudo ln -s /usr/lib/libbotan-2.so.18 /usr/lib/libbotan-2.so.19 
+
+NO PASSWORD ON START FOR CORECTRL
+pkaction --version
+
+Polkit version < 0.106
+Create the file /etc/polkit-1/localauthority/50-local.d/90-corectrl.pkla with the following contents:
+[User permissions]
+Identity=unix-group:your-user-group
+Action=org.corectrl.*
+ResultActive=yes
+
+Polkit version >= 0.106
+Create the file /etc/polkit-1/rules.d/90-corectrl.rules with the following contents:
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.corectrl.helper.init" ||
+         action.id == "org.corectrl.helperkiller.init") &&
+        subject.local == true &&
+        subject.active == true &&
+        subject.isInGroup("your-user-group")) {
+            return polkit.Result.YES;
+    }
+});
+
+
+
+NVIDIA DRIVER
+
+linux 5.16+
+sudo pamac install linux516-nvidia-470xx
+sudo pamac install linux516-nvidia-390xx
+#driver 510.47.03-0.1+
+sudo pamac install linux516-nvidia 
+
+linux 5.17+
+sudo pamac install linux517-nvidia-470xx
+#driver 510.47.03-0.1+
+sudo pamac install linux517-nvidia
+
+XORG
+
+
+NVIDIA WAYLAND
+Wayland does not play well with proprietary drivers. Currently the biggest issue is that NVIDIA does currently not support Xwayland properly, so apps that require it get software rendering. This includes most games, which are the most common use case for proprietary NVIDIA drivers. This is why GNOME automatically disables Wayland if you have NVIDIA.
+
+However, if this does not deter you, you can use Wayland with NVIDIA drivers. Here is how to do it:
+
+:warning: If not using GNOME, skip to DE (Desktop Environment)-agnostic instructions in Step 4 :
+
+    Edit the /etc/gdm/custom.conf file and comment out the line WaylandEnable=false. The correct file will then look something like this:
+
+# GDM configuration storage
+daemon]
+# Uncomment the line below to force the login screen to use Xorg
+#WaylandEnable=false
+
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+# Uncomment the line below to turn on debugging
+#Enable=true
+
+To force-enable Wayland, disable the udev 21 rule responsible for disabling Wayland in GDM:
+
+sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+
+kms-modifiers must be enabled through gsettings. This can be done with the following command:
+
+gsettings set org.gnome.mutter experimental-features '["kms-modifiers"]'
+
+DE(Desktop Environment)-agnostic instructions begin here
+
+Enable modesetting for nvdia drivers. Follow the instructions in the Arch wiki 658:
+
+    Add the modules nvidia , nvidia_modeset , nvidia_uvm and nvidia_drm to /etc/mkinitcpio.conf and run the command sudo mkinitcpio -P
+    Add the kernel parameter nvidia-drm.modeset=1 to /etc/default/grub and run the command sudo update-grub
+
+Ensure xorg-xwayland, libxcb and egl-wayland are installed:
+
+sudo pamac install lib32-p11-kit lib32-libcurl-gnutls libcurl-gnutls lib32-sdl2 lib32-freetype2 lib32-gtk2 lib32-alsa-plugins lib32-libpulse lib32-openal lib32-nvidia-utils xorg-xwayland libxcb egl-wayland
+
+Reboot
+
+
+
+pamac install fceux
+pamac install pcsx2
+pamac install epsxe
+pamac install reicast
+sudo pamac install numix-icon-theme
+sudo pamac install pinta
+sudo pamac install wps-office
+sudo pamac install stacer
+sudo pamac install paprefs pavucontrol
+
+
+
+
+
+
+
+
+
+
+
+
+AntiMicroX
+Arx Liberatis
+Devilution X
+DosBox Staging
+System76 keyboard configurator for Launch
+libstrangle
+MangoHud
+vkbasalt 

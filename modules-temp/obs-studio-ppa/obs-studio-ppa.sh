@@ -1,6 +1,6 @@
 #!/bin/bash
-#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
-# GPL-3.0 License 
+#creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License
 
 #проверяем что модуль запущен от пользователя root
 #[ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}
@@ -34,6 +34,7 @@ echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/t
 echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 echo "${pass_user}" | sudo -S add-apt-repository -y ppa:obsproject/obs-studio  || let "error += 1"
+echo "${pass_user}" | sudo -S apt update -y
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall ffmpeg obs-studio || let "error += 1"
 # переходим в папку пользователя
 cd

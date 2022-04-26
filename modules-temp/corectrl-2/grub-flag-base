@@ -1,5 +1,5 @@
 GRUB_CMDLINE_LINUX_DEFAULT
-amdgpu.ppfeaturemask=0xffffffff
+amdgpu.ppfeaturemask=0xffffffff 
 GRUB_DEFAULT
 saved
 GRUB_SAVEDEFAULT

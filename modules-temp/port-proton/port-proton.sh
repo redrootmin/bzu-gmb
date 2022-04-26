@@ -30,10 +30,10 @@ tput setaf 2; echo "Установка утилиты для игр PortProton �
 tput sgr0
 
 #запуск основных команд модуля
-cd "/home/${user_run_script}"
-sudo -u ${user_run_script} wget -c -T 2 "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/${version_proton}" && sh "${version_proton}" -rus
+cd
+wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton_1.0" && sh PortProton_1.0 -rus
 #формируем информацию о том что в итоге установили и показываем в терминал
-if [ ! -d "/home/redroot/PortWINE/PortProton/data/user.conf" ];then
+if [ ! -d "/home/${user_run_script}/PortWINE/PortProton" ];then
 tput setaf 1;echo "PortProton не установился, либо поврежден!" || let "error += 1"
 tput sgr0
 else

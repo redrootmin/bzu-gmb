@@ -122,15 +122,12 @@ busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval"
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
 
-tput setaf 2; echo "Установка завершена!"
+tput setaf 2; echo "Установка ${name_script} завершена!"
 tput sgr0
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
-#Добавляем информацию о том как использовать CoreCtrl лог установки
-#echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
-#echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
 exit 0
 
 

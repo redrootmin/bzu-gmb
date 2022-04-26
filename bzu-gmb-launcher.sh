@@ -1,22 +1,35 @@
 #!/bin/bash
 #creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License 
-# определение папки где находиться скрипт и версию скрипта
-script_dir0=$(cd $(dirname "$0") && pwd);
-export script_dir="${script_dir0}"
-version0=`cat "${script_dir}/config/name_version"`
-export version="${version0}"
+
+
+#Определение расположениея папки bzu-gmb и версию
+#main_dir=`echo ${app_dir} | sed 's/\/app\>//g'`
+script_dir0=$(dirname $(readlink -f "$0"))
+utils_dir0="${script_dir0}/core-utils"
+version0=`cat "${script_dir0}/config/name_version"`
+export script_dir=${script_dir0}
+export utils_dir=${utils_dir0}
+export version=${version0}
+
+#Определение переменныех утилит и скриптов
+YAD0="${utils_dir}/yad"
+zenity0="${utils_dir}/zenity"
+export YAD=${YAD0}
+export zenity=${zenity0}
+
 # получение имени пользователя, который запустил скрипт, что бы в будущем модули могли его использовать
 echo "$USER" > "${script_dir}/config/user"
-# проверка что за система запустила скрипт
-#linuxos=`grep '^PRETTY_NAME' /etc/os-release`
 
-# запрос пароля супер пользователя, который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
-pass_user0=$(zenity --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
+# запрос пароля супер пользователя (если его не передал модуль обнавления), который дальше будет поставляться где требуется в качестве глобальной переменной, до конца работы скрипта
+pass_user0=$1
+if [[ "$1" == "" ]];then
+pass_user0=$(GTK_THEME="Adwaita-dark" ${zenity} --entry --width=128 --height=128 --title="Запрос пароля" --text="Для работы скрипта ${version} требуется Ваш пароль superuser(root):" --hide-text)
+fi
 
 if [[ "${pass_user0}" == "" ]]
 then
-zenity --error --text="Пароль не введён"
+GTK_THEME="Adwaita-dark" ${zenity} --error --text="Пароль не введён"
 exit 0
 else 
 export pass_user=${pass_user0}
@@ -26,23 +39,11 @@ fi
 #функция для проверки пакетов на установку, если нужно установлевает
 function install_package {
 dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+#package_status=`dpkg -s $1 | grep -oh "installed"`
+#echo "$1:" $package_status
 package_status=`dpkg -s $1 | grep -oh "installed"`
-echo "$1:" $package_status
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 }
-
-#загружаем список пакетов из файла в массив
-readarray -t packages_list < "${script_dir}/config/packages-for-bzu-gmb"
-#задем переменной колличество пакетов в массиве
-packages_number=${#packages_list[@]}
-#обьявляем переменную числовой
-i=0
-#цикл проверки пакетов из массива
-while [ $i -lt $packages_number ]
-do
-#вызов функции для проверки пакетов из массива
-install_package ${packages_list[$i]} ${pass_user}
-i=$(($i + 1))
-done
 
 
 #загружаем список операционных систем из файла в массив
@@ -65,19 +66,97 @@ i=$(($i + 1))
 done
 tput setaf 2
 echo "your Linux OS:["$linuxos_version"]"
+echo "${linuxos_version}" > "${script_dir}/config/os-run-script"
 tput sgr0
 
-#
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu2204"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
+then
+echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-debian-book_worm"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+
+#Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+then
+#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-manjaro"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+#install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+
+# включение эксперементального режима для неподдерживаемой системы
 if [[ $linuxos_version == "" ]]
 then
-if experemental_os=$(zenity --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
+if experemental_os=$(GTK_THEME="Adwaita-dark" ${zenity} --question --width=256 --height=128 --title='экперементальный режим' --text="Ваша операныонная система [$linux_os] не поддерживается ${version}. Включить эксперементальный режим совместимости с Ubuntu?") 
 then
 echo "experimental" > "${script_dir}/config/status"
 echo $linux_os >> "${script_dir}/config/list-os"
+echo "${linux_os}" > "${script_dir}/config/os-run-script"
 cd ${script_dir}
 ./bzu-gmb-gui-beta4.sh
 else 
-zenity --error --ellipsize  --timeout=5 --text="Данная операционная система $linux_os не совместима с ${version}"
+GTK_THEME="Adwaita-dark" ${zenity} --error --ellipsize  --timeout=5 --text="Данная операционная система $linux_os не совместима с ${version}"
 fi
 
 else
