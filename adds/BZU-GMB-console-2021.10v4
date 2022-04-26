@@ -621,6 +621,7 @@ xrandr --output HDMI-A-0 --scale 2x2 & sleep 10;xrandr --output HDMI-A-0 --scale
 xrandr --output HDMI-A-0 --scale 2x2
 ВАЖНО: если у вас программа была запущена до смены разрешения экрана то она будет работать скорее всего не корректно, на gnome все ок с такой фичей, что у остальных не знаю...
 
+<<<<<<< HEAD
 GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
 
 Разберем подробнее за что отвечает каждый параметр:
@@ -650,6 +651,8 @@ systemd-analyze blame
 systemd-analyze critical-chain
 
 
+=======
+>>>>>>> 0aae55d78e2ad2e9135027e8e03bb82fce4ba8a5
 
 
 
@@ -679,6 +682,9 @@ sudo systemctl mask plymouth-quit-wait.service
 #sudo systemctl disable tor@default.service
 sudo systemctl disable smbd.service
 
+systemd-analyze
+systemd-analyze blame
+systemd-analyze critical-chain
 
 
 
