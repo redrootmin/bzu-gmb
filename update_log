@@ -5,11 +5,26 @@
 -vscodium-portable - UPDATE! (VSCodium-1.66.2)
 -xanmod - UPDATE!
 -mesa-modules - UPDATE!
+
+IN DEVELOPMENT
+-icq-new-portable - hold
+-discord-ppa - hold
+-telegram-ppa - hold
+-scrcpy-ppa - hold
+-peek-ppa - hold
+-scribus-ppa - hold
+-firefox-ppa - hold
+-chromium-ppa - hold
+-qbittorent-ppa - hold
+-remmina-ppa - hold
+-timeshift ppa - hold
+-gparted-ppa - hold
+-grub-customizer ppa - hold
+-stacer ppa - hold
+-libstrangle-tools - hold
 -Nvidia antitearing - hold
 -GWE (overclock nvidia) - hold
 -Nvidia cuda support for blender+ - hold
-
-
 
 [buz-gmb 0.492-pre]===================================
 -AMD anti tearing (mesa) - TESTING!
