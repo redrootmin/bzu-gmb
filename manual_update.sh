@@ -139,18 +139,6 @@ do
 install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
-#FireFox deb
-sudo snap remove --purge firefox
-sudo add-apt-repository -y ppa:mozillateam/ppa
-#ppa forece!
-echo "Package: firefox*" > "mozillateamppa"
-echo "Pin: release o=LP-PPA-mozillateam" >> "mozillateamppa"
-echo "Pin-Priority: 501" >> "mozillateamppa"
-echo "${pass_user}" | sudo -S cp -f mozillateamppa /etc/apt/preferences.d/
-rm -f mozillateamppa
-echo "${pass_user}" | sudo -S apt update -y
-#sudo apt install firefox-esr
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall firefox
 fi
 
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
