@@ -1,0 +1,62 @@
+https://github.com/Try/OpenGothic
+#1
+wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
+sudo apt update
+sudo apt install vulkan-sdk
+#2
+sudo apt install -f --reinstall git cmake g++ glslang-tools libvulkan-dev libasound2-dev libx11-dev libxcursor-dev
+#3
+cd
+git clone --recurse-submodules https://github.com/Try/OpenGothic.git
+#4
+cd OpenGothic
+cmake -B build -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+#5
+make -C build -j12 #number_of_cpucores
+# locate executables at OpenGothic/build/opengothic
+#6
+# копировать папку opengothic в папку с игрой (gothic-2-gold)
+# создать копии библиотек с новыми имменами (что бы не было битых ссылок):
+libphysfs.so.3.1.0 -> libphysfs.so.1
+libphysfs.so.3.1.0 -> libphysfs.so
+libsquish.so.0.0 -> libsquish.so
+#
+# для запуска игры:
+cd <way-to-app-folder>/Gothic-2-Gold/opengothic
+sh Gothic2Notr.sh -g <way-to-app-folder>/Gothic-2-Gold
+
+simple:
+mangohud MANGOHUD_CONFIG=wine,benchmark_percentiles,gpu_name,cpu_temp,gpu_temp,vram,ram,font_size=22,vulkan_driver,wine,gpu_text=rx6700xt,cpu_text=2640v3,arch,gpu_core_clock,gpu_mem_clock,cpu_power,gpu_power,cpu_mhz,resolution,vkbasalt,gamemode,gpu_load_change,cpu_load_change,position=top-right,vsync=3 sh /mnt/steam_data/linux_native_games/Gothic-2-Gold/opengothic/Gothic2Notr_starter.sh -g /mnt/steam_data/linux_native_games/Gothic-2-Gold
+
+
+
+https://github.com/OpenXRay/xray-16/wiki/%5BEN%5D-How-to-build-and-setup-on-Linux
+
+#1
+sudo apt install -f --reinstall git cmake make libglew-dev libopenal-dev libcrypto++-dev libogg-dev libtheora-dev libvorbis-dev libsdl2-dev liblzo2-dev libjpeg-dev libncurses5-dev gcc g++ dpkg-dev
+#2
+git clone https://github.com/OpenXRay/xray-16.git --recurse-submodules
+#3
+cd xray-16 && mkdir bin && cd bin
+#4
+cmake ..
+make -j12 #number_of_cpucores
+#5
+mkdir S.T.A.L.K.E.R.-Call-of-Pripyat
+#6
+#После компиляции скопируйте содержимое каталога xray-16/bin/x64/Release/ в ~/S.T.A.L.K.E.R.-Call-of-Pripyat/bin/
+#Скопируйте каталог gamedata и файл fsgame.ltx из каталога xray-16/res в ~/S.T.A.L.K.E.R.-Call-of-Pripyat/
+#Из xray-16/src/xr_3da/ скопируйте скрипт xr_3da.sh в ~/S.T.A.L.K.E.R.-Call-of-Pripyat/bin.
+#В ~/S.T.A.L.K.E.R.-Call-of-Pripyat/ поместите игровые ресурсы levels, localization, mp, patches, resources
+#7
+cd <way-to-app-folder>/S.T.A.L.K.E.R.-Call-of-Pripyat/bin/
+sh xr_3da.sh -fsltx <way-to-app-folder>/S.T.A.L.K.E.R.-Call-of-Pripyat/fsgame.ltx
+
+#simple: 
+mangohud --dlsym sh /mnt/steam_data/linux_native_games/S.T.A.L.K.E.R.-Call-of-Pripyat/bin/xr_3da.sh -fsltx "/mnt/steam_data/linux_native_games/S.T.A.L.K.E.R.-Call-of-Pripyat/fsgame.ltx"
+
+
+
+
+

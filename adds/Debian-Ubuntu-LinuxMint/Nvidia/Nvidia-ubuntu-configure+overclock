@@ -1,0 +1,69 @@
+
+lts-mainline https://launchpad.net/~tuxinvader/+archive/ubuntu/lts-mainline 
+sudo add-apt-repository ppa:tuxinvader/lts-mainline
+sudo apt-get update
+deb http://ppa.launchpad.net/tuxinvader/lts-mainline/ubuntu focal main 
+deb-src http://ppa.launchpad.net/tuxinvader/lts-mainline/ubuntu focal main 
+
+
+lts-mainline-longterm https://launchpad.net/~tuxinvader/+archive/ubuntu/lts-mainline-longterm
+sudo add-apt-repository ppa:tuxinvader/lts-mainline-longterm
+sudo apt-get update
+deb http://ppa.launchpad.net/tuxinvader/lts-mainline-longterm/ubuntu focal main 
+deb-src http://ppa.launchpad.net/tuxinvader/lts-mainline-longterm/ubuntu focal main 
+
+sudo apt install -f linux-generic-5.15* linux-generic-5.10*
+
+
+https://kernel.ubuntu.com/~kernel-ppa/mainline/
+https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.15.5/
+
+
+Nvidia ppa offical
+https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update
+sudo apt install -f nvidia-driver-470
+
+
+for debian:
+deb http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu focal main 
+deb-src http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu focal main 
+Signing key: 4096R/2388FF3BE10A76F638F80723FCAE110B1118213C
+sudo apt-get update
+sudo apt install -f nvidia-driver-470
+
+###CUDA Toolkit###
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/11.5.1/local_installers/cuda-repo-ubuntu2004-11-5-local_11.5.1-495.29.05-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2004-11-5-local_11.5.1-495.29.05-1_amd64.deb
+sudo apt-key add /var/cuda-repo-ubuntu2004-11-5-local/7fa2af80.pub
+sudo apt-get update
+sudo apt-get -y install cuda
+
+###kernel flag###
+sudo nano /etc/default/grub
+#add in GRUB_CMDLINE_LINUX_DEFAULT="
+nvidia-drm.modeset=1
+#save
+sudo update-grub
+
+
+###GreenWithEnvy###
+https://gitlab.com/leinardi/gwe
+#Install from source code
+sudo apt install -f pkg-config python3-dev libgirepository1.0-dev meson ninja-build appstream-util python3-pip libcairo2-dev libxt-dev gir1.2-dazzle-1.0
+git clone --recurse-submodules -j4 https://gitlab.com/leinardi/gwe.git
+cd gwe
+git checkout release
+sudo -H pip3 install -r requirements.txt
+meson . build --prefix /usr
+ninja -v -C build
+sudo ninja -v -C build install
+
+
+
+
+nvidia-fan-control-linux
+https://github.com/vandabbin/nvidia-fan-control-linux/blob/master/fan-control.sh

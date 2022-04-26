@@ -1,0 +1,1 @@
+cd;rm -rf ubuntu2204*;rm -f ubuntu2204*;rm -f *ubuntu2204;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/ubuntu2204.zip -O ubuntu2204.zip;unzip ubuntu2204.zip;cd ubuntu2204;chmod +x ubuntu-22-04-beta-gnome-extensions-pak.sh;./ubuntu-22-04-beta-gnome-extensions-pak.sh

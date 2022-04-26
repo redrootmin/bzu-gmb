@@ -13,10 +13,7 @@ script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
-#echo ${user_run_script}
-#echo ${script_dir}
-#echo ${name_script}
-#exit 0
+
 #объявляем нужные переменные для скрипта
 date_install=`date`
 #загружаем данные о модули и файла конфигурации в массив
@@ -34,29 +31,6 @@ tput setaf 2; echo "Установка Refresh2025 простой утилиты
 tput sgr0
 
 
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S add-apt-repository -y   || let "error += 1"
-# переходим в папку пользователя
-#cd
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
-# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
-#echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
-#скачиваем архив с плагином и распаковываем его
-#wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
-#создаем папку плагины в конфигурации OBS-studio
-#mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
-#далее распаковываем архив в папку с плагинами OBS-studio
-#tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
-#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
-#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-#echo "${pass_user}" | sudo -S apt install -f -y --reinstall --install-recommends kate breeze || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-#app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
-#tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
-
-
 #запуск основных команд модуля
 # Проверка что существует папка applications, если нет, создаем ее
 if [ ! -d "/home/${user_run_script}/.local/share/applications" ]
@@ -71,7 +45,10 @@ tput setaf 2; echo "Утилита ${version_app} не установлена в
 tput sgr0
 cd
 rm -f refresh2025-benchmark.tar.xz
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark.tar.xz
+rm -f refresh2025-benchmark*.tar.xz
+rm -f refresh2025-benchmark
+rm -f refresh2025-benchmark*
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark-v2.tar.xz
 tar -xpJf "refresh2025-benchmark.tar.xz"
 rm -f refresh2025-benchmark.tar.xz
 cd ~/refresh2025-benchmark;chmod +x mini_install.sh

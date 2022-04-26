@@ -33,6 +33,14 @@ name_script_start="bzu-gmb-launcher.sh"
 name_app="${version_bzu_gmb}"
 exec_full="bash -c "${script_dir}"/"${name_script_start}""
 
+
+#Определение расположениея папок для утилит и т.д.
+utils_dir="${script_dir}/core-utils"
+
+#Определение переменныех утилит и скриптов
+YAD="${utils_dir}/yad"
+zenity="${utils_dir}/zenity"
+
 #pass_user="$1"
 #добовляем переменную с иминем пользователя от имини которого запущен скрипт, да это не обязательно, но не хочу переписывать код ниже :)
 user_run_script="$USER"
@@ -66,15 +74,22 @@ echo "your Linux OS:["$linuxos_version"]"
 #echo "" > "${script_dir}/config/status"
 tput sgr0
 
-#функция для проверки пакетов на установку, если нужно установлевает
+#функция для проверки пакетов на установку в dpkg, если нужно установлевает
 function install_package {
 dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
 package_status=`dpkg -s $1 | grep -oh "installed"`
 echo "$1:" $package_status
 }
 
+#функция для проверки пакетов на установку в pacman, если нужно установлевает
+function install_package_pamac {
+pamac list -i | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S pamac install --no-confirm $1
+package_status=`pamac list -i | grep "pv" > /dev/null | echo "installing"`
+echo "$1:" $package_status
+}
+
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if [[ "${linux_os}" == "Ubuntu" ]] || [[ "${linux_os}" == "Linux Mint 20.2" ]]
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
@@ -91,8 +106,67 @@ i=$(($i + 1))
 done
 fi
 
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
+then
+cd;rm -rf bzu-gmb-temp*;rm -f bzu-gmb-temp*;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/bzu-gmb-temp-v1.tar.xz -O bzu-gmb-temp.tar.xz;tar -xJf bzu-gmb-temp.tar.xz
+# установка дополнительного ПО
+echo "${pass_user}" | sudo -S apt update -y
+echo "${pass_user}" | sudo -S apt upgrade -y
+
+# установка пакетов которых нет в ppa (временно нет)
+dpkg -s "libssl1.1:amd64" | grep installed > /dev/null || echo "no installing libssl1.1:amd64 :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb"
+dpkg -s "grub-customizer" | grep installed > /dev/null || echo "no installing grub-customizer :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/grub-customizer_5.1.0-3_amd64.deb"
+
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-ubuntu2204"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+#FireFox deb
+echo "${pass_user}" | sudo -S snap remove --purge firefox
+echo "${pass_user}" | sudo -S add-apt-repository -y ppa:mozillateam/ppa
+#ppa forece!
+echo "${pass_user}" | sudo -S echo "Package: firefox*" > "mozillateamppa"
+echo "${pass_user}" | sudo -S echo "Pin: release o=LP-PPA-mozillateam" >> "mozillateamppa"
+echo "${pass_user}" | sudo -S echo "Pin-Priority: 501" >> "mozillateamppa"
+echo "${pass_user}" | sudo -S cp -f mozillateamppa /etc/apt/preferences.d/
+rm -f mozillateamppa
+echo "${pass_user}" | sudo -S apt remove firefox -y
+echo "${pass_user}" | sudo -S apt update -y
+#sudo apt install firefox-esr
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall firefox
+fi
+
+
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
-if [[ "${linux_os}" == "Debian GNU/Linux bookworm/sid" ]]
+if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
 echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
 #загружаем список пакетов из файла в массив
@@ -108,10 +182,28 @@ do
 install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
-
-#echo "$pass_user" | sudo -S apt install -f -y --reinstall  software-properties-common dirmngr apt-transport-https lsb-release ca-certificates  inxi gnome-tweaks
-#echo "$pass_user" | sudo -S apt install -f firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
 fi
+
+#Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
+then
+echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
+echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-manjaro"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package_pamac ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
 # обнуляем статус утилиты, отключаем эксперементальный режим
 echo "" > "${script_dir}/config/status"
 
@@ -135,19 +227,15 @@ cp -f "${script_dir}/${name_desktop_file}" "/home/${user_run_script}/.local/shar
 gio set "${script_dir}/${name_desktop_file}" "metadata::trusted" yes
 gio set "/home/${user_run_script}/.local/share/applications/${name_desktop_file}" "metadata::trusted" yes
 #gio info "${script_dir}/name_desktop_file" | grep "metadata::trusted"
-echo "$pass_user" | sudo -S chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
-
+chmod +x "/home/${user_run_script}/.local/share/applications/${name_desktop_file}"
+chmod +x "${script_dir}/${name_desktop_file}"
 #Даем права на главные скрипты утилиты и core-utils
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-launcher.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/libMangoHud.so"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/libMangoHud_dlsym.so"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/yad"
-echo "$pass_user" | sudo -S chmod +x "${script_dir}/core-utils/zenity"
+chmod +x "${script_dir}/bzu-gmb-launcher.sh"
+chmod +x "${script_dir}/bzu-gmb-gui-beta4.sh"
+chmod +x "${script_dir}/core-utils/yad"
+chmod +x "${script_dir}/core-utils/zenity"
 
 #Уведомление пользователя, о том что он устанавил себе на ПК
-GTK_THEME="Adwaita-dark" zenity --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
+GTK_THEME="Adwaita-dark" ${zenity} --text-info --html --url="https://drive.google.com/uc?export=view&id=1LZ_W8JSLBbVdppVHxUFnaXuhVpaszSYE" --title="Завершена установка ${version_bzu_gmb}" --width=640 --height=408  --cancel-label=""
 
-#busctl --user call "org.gnome.Shell" "/org/gnome/Shell" "org.gnome.Shell" "Eval" "s" 'Meta.restart("Restarting…")';
 exit 0
-#update 05-11-21

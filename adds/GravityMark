@@ -1,0 +1,4 @@
+https://tellusim.com/download/GravityMark_1.51.run
+export QT_SELECT=qt4
+sudo apt-get install -f qt5-default
+./GravityMark_1.51.run

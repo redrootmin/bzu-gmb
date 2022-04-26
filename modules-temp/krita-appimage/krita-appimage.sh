@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#!/bin/bash
 #creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License
 
@@ -23,51 +21,54 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[*]} - Все записи в массиве
 #version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
-version_proton=${module_conf[7]}
+version_app=${module_conf[7]}
 #получение пароля root пользователя
-pass_user0="$1"
-export pass_user="${pass_user0}"
-date_install=`date`
-linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
-linuxos_run_bzu_gmb=${linuxos_run_bzu-gmb0}
-export dir_grub_file="/etc/default"
-export grub_file_name="grub"
-readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
-echo "${pass_user}" | sudo -S cp -p -f "/etc/default/grub" "/etc/default/grub.bak"
-echo "сделан бикап файла grub /etc/default/grub.bak"
-
-function install_flags_grub_kernel {
-flag_status=`cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2"`
-if [[ "${flag_status}" == "$2" ]];then
-tput setaf 3
-echo "флаг $2 уже добавлен в grub" 
-tput sgr0 
-echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
-else
-echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
-tput setaf 2
-echo "флаг ${amd_full_gpu_control} добавлен в grub"
-tput sgr0
-cat ${dir_grub_file}/${grub_file_name} | grep "$1"
-fi
-}
+pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Отключение всех патчтей устранения уязвимостей в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка Krita  популярного графического редактора с открытым исходным кодом [https://krita.org/]. Установка Krita осуществлыется в формате Appimage. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
-#добовление флага отключающего все заплатки для процессоров
-install_flags_grub_kernel "${grub_flag_base[0]}" "${grub_flag_base[1]}"
-sudo -S update-grub
+#запуск основных команд модуля
+# Проверка что существует папка applications, если нет, создаем ее
+if [ ! -d "/home/${user_run_script}/.local/share/applications" ]
+then
+mkdir -p "/home/${user_run_script}/.local/share/applications"
+fi
 
-#формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2; lscpu | grep "Vulnerability"
+# Проверка установлен vscodium или нет в папке пользователя
+if [ ! -d "/home/${user_run_script}/krita-appimage" ];then
+tput setaf 2; echo "Графический редактор ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
+cd
+rm -f krita-appimage.tar.xz
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/krita-appimage.tar.xz"
+pv "krita-appimage.tar.xz" | tar -xJ
+rm -f krita-appimage.tar.xz
+cd ~/krita-appimage;chmod +x mini_install.sh
+bash mini_install.sh
+
+# 5 секунд теста программы
+#script_dir=$(cd $(dirname "$0") && pwd);
+#name_app=`cat "${script_dir}/version"`
+#echo "Testing:${version_app}"
+#cd "${script_dir}"
+#echo "Папка установки:${script_dir}"
+#bash -c "${script_dir}/app/krita_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${name_app}"
+#tput setaf 2; echo "Установка Игрового движка ${version_app} завершена :)"
+#tput sgr0
+else
+tput setaf 1; echo "Графический редактор ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput sgr0
+fi
+
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
-
+#Добавляем информацию о том как использовать CoreCtrl лог установки
+#echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
+#echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
 exit 0
 
 

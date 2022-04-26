@@ -7,7 +7,7 @@
 
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
-name_script=`echo ${name_script0} | sed "s|.sh||g"`
+name_script=`echo ${name_script0} | sed 's/\.sh\>//g'`
 script_dir0=$(cd $(dirname "$0") && pwd); name_cut="/modules-temp/${name_script}"
 script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`

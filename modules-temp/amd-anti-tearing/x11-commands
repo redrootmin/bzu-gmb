@@ -1,0 +1,5 @@
+Section "Device"
+Identifier "AMDgpu"
+Option  "DRI" "3"
+Option  "TearFree" "true"
+EndSection

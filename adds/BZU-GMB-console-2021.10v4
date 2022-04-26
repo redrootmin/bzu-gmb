@@ -13,6 +13,12 @@ for i in dev sys proc etc/resolv.conf; do mount --bind -v /$i /chroot/$i; done
 chroot /chroot
 все можно из консоли проверить что с системой, удалить софт, изменить настройки.
 
+#[ДЛЯ КОРРЕКТНОГО УДАЛЕНИЯ OIBAF И УСТАНОВКИ KISAK, НУЖНО ВЫПОЛНИТЬ СЛЕДУЮЩИЕ КОМАНДЫ:]
+sudo apt install ppa-purge
+sudo ppa-purge ppa:oibaf/graphics-drivers
+sudo add-apt-repository ppa:kisak/kisak-mesa
+sudo apt update
+sudo apt upgrade
 
 #[КАК УДАЛИТЬ БИТЫЙ PPA ИЗ КОНСОЛИ]
 #проверям папку с PPA
@@ -192,7 +198,7 @@ lscpu | grep "Vulnerability"
 
 #[TEARFREE ON IN AMD]
 (for rx400\500\vega\rx5000\6000)
-sudo nano /usr/share/X11/xorg.conf.d/10-amdgpu.conf
+sudo nano /etc/X11/xorg.conf.d/10-amdgpu.conf
 
 Section "Device"
 Identifier "AMDgpu"
@@ -211,6 +217,12 @@ sudo apt install libx11-dev
 sudo apt install mesa-common-dev
 make
 sudo make install
+# ubuntu 20.04.x for OpenGL\Vulkan
+STRANGLE_VSYNC=1 strangle 35 mangohud vkcube
+#ubuntu 21.10.x for Vulkan only
+STRANGLE_FPS=30 STRANGLE_VKONLY=1 strangle /path/to/game
+STRANGLE_VKONLY=1 STRANGLE_VSYNC=2 strangle /path/to/game
+
 
 
 #[INSTALL NEMO DEFAULT FILE BROWER IN UBUNTU]
@@ -222,15 +234,9 @@ gsettings set org.gnome.desktop.background show-desktop-icons false
 cp -f /usr/share/applications/nemo.desktop /home/$USER/.config/autostart/
 
 
+
 #[ENABLE MULTIPLE SIMULTANEOUS AUDIO OUTPUTS ON PULSEAUDIO IN LINUX + PULSEAUDIO CONTROL]
 sudo apt install paprefs pavucontrol
-
-
-# ubuntu 20.04.x for OpenGL\Vulkan
-STRANGLE_VSYNC=1 strangle 35 mangohud vkcube
-#ubuntu 21.10.x for Vulkan only
-STRANGLE_FPS=30 STRANGLE_VKONLY=1 strangle /path/to/game
-STRANGLE_VKONLY=1 STRANGLE_VSYNC=2 strangle /path/to/game
 
 
 #[XSCREENSAVER,ORIGINAL MATRIX SCREENSAVER]
@@ -492,7 +498,7 @@ sudo apt update
 sudo apt install qpdftools
 
 
-#[LINUX RDP КЛИЕНТ]
+#[LINUX RDP КЛИЕНТ REMMINA ]
 sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
 sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret  freerdp2-x11 libcacard0 libphodav-2.0-0 libphodav-2.0-common libspice-client-glib-2.0-8 libspice-client-gtk-3.0-5 libusbredirhost1 libusbredirparser1 remmina-plugin-exec remmina-plugin-kwallet remmina-plugin-spice spice-client-glib-usb-acl-helper
 
@@ -565,19 +571,88 @@ sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-co
 #[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
 https://github.com/OpenRA/OpenRA/releases
 
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
+echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
+sudo apt-get update
+sudo apt-get install onlyoffice-desktopeditors
+
+
+
+
+Ну что товарищи Линуксоиды готовы к ночным экспериментам ?)
+Я тут решил монитор разогнать и вроде все получилось!
+думаю теперь как из этого в будущем модуль сделать для bzu-gmb
+а пока все желающие могут закатать рукава и идти в консоль:
+1) Генерируем настройки для разрешения 1920х1080 74 герца (можно больше, если ваш монитор не вырубиться):
+cvt 1920 1080 74
+#я получил следующий выхлоп:
+# 1920x1080 73.95 Hz (CVT) hsync: 83.49 kHz; pclk: 217.75 MHz
+Modeline "1920x1080_74.00" 217.75 1920 2064 2264 2608 1080 1083 1088 1129 -hsync +vsync
+#Далее подставляем эти значения для нового режима:
+xrandr --newmode "1920x1080_74.00" 217.75 1920 2064 2264 2608 1080 1083 1088 1129 -hsync +vsync
+#Теперь нужно узнать к какому выходу подключен монитор
+xrandr
+# Так как у меня их два я получил такое: HDMI-A-0 и DVI-D-0 и подкинул им по очереди новый режим:
+xrandr --addmode HDMI-A-0 1920x1080_74.00
+xrandr --addmode DVI-D-0 1920x1080_74.00
+#если не один из мониторов не погас и выхлоп xrandr, что они тянут 74 герца, можно попробовать и больше (не рекомендую на простых мониторах)
+# Но данные команды работают на время включения системы, после перегруза, нужно снова создавать режим и задействовать его на мониторах...
+# А как это сделать на постоянной основе, домашнее задание :)
+
+п.с. Самые не терпеливые могут поделиться решением в комментариях!
+
+Сергей Митрохин
+video=DP-1:1920x1080@165
+video=HDMI-A-1:1920x1080@74
+Вот этими параметрами к ядру можно не стандартный режим добавить. Возможно даже проще это сделать будет оттуда. Он по умолчанию в голой консоли кстате использоваться будет.
+
+
+как в Linux программно повысить разрешение к примеру с 1920х1080 до 3840х2160.
+Я еще не тестировал игры в такой теме, но думаю это явно будет весело)
+что бы это сделать вам нужно понять какой выход у вашего монитора или ноутбуку и его стандартное разрешение экрана:
+xrandr --current | grep -w connected
+в моем случае (ноутбук) это:
+eDP connected (normal left inverted right x axis y axis)
+HDMI-A-0 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 520mm x 290mm
+И выход: HDMI-A-0
+далее делаем тест на 10 сек, что бы нечего не сломать и т.д. (у команды - - scale\ - - output должно быть два минуса а не один, ебано ВК... ):
+xrandr --output HDMI-A-0 --scale 2x2 & sleep 10;xrandr --output HDMI-A-0 --scale 1x1
+и если все ок, запускам изменение которое будет актуально на время сеанса пользователя:
+xrandr --output HDMI-A-0 --scale 2x2
+ВАЖНО: если у вас программа была запущена до смены разрешения экрана то она будет работать скорее всего не корректно, на gnome все ок с такой фичей, что у остальных не знаю...
 
 
 
 
 
 
+GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
 
+Разберем подробнее за что отвечает каждый параметр:
 
+quiet - вывод, это долго, поэтому говорим ядру что на экран нужно выводить минимум информации
+rootfstype=ext4 - указываем в какую файловую систему отформатирован корень. У меня ext4.
+libahci.ignore_sss=1 - Ignore staggered spinup flag, ускоряет загрузку жестких дисков
+raid=noautodetect - raid я не использую, думаю вы тоже поэтому отключаем.
+selinux=0 - система полномочий selinux на домашней машине тоже ни к чему, без нее будет быстрее.
+plymouth.enable=0 - заставка plymouth тоже занимает много времени, поэтому убираем заставку
+lpj=12053560 - позволяет задать константу loops_per_jiffy, что позволит ядру не вычислять ее каждый раз и сэкономит до 250 миллисекунд. Это значение индивидуально для каждого компьютера.
 
+Чтобы узнать значение последнего параметра выполните:
 
+dmesg | grep 'lpj='
 
+sudo apt install rng-tools
 
+sudo systemctl disable nmbd.service
+sudo systemctl disable ModemManager.service
+sudo systemctl mask plymouth-quit-wait.service
+#sudo systemctl disable tor@default.service
+sudo systemctl disable smbd.service
 
+systemd-analyze
+systemd-analyze blame
+systemd-analyze critical-chain
 
 
 

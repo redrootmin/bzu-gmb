@@ -59,18 +59,18 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/VSCodium" ]
+if [ ! -d "/home/${user_run_script}/vscodium-linux" ]
 then
 tput setaf 2; echo "Редактор  ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-
-cd;wget "https://drive.google.com/uc?export=download&id=1pL6h2e3sirwfKjnhaQcX5U2-5hArtFdK" -O "${name_script}.tar.xz";tar -xpJf "${name_script}.tar.xz";cd ~/VSCodium;chmod +x mini_install.sh;bash mini_install.sh
-else
-tput setaf 1; echo "Редактор  ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
-tput sgr0
-fi
-
+name_app="vscodium-linux-1-66-2.tar.xz"
+rm -f godot-portable*
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/$name_app"
+tar -xpJf "$name_app"
+rm -f "$name_app"
+cd ~/vscodium-linux;chmod +x mini_install.sh
+bash mini_install.sh
 
 app_name="codium"
 #dpkg -s ${app_name} | grep -ow "installed" > /dev/null
@@ -80,14 +80,17 @@ app_name="codium"
 echo "Testing:${version_app}"
 
 # 5 секунд теста программы
-bash -c "/home/${user_run_script}/VSCodium/VSCodium_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+bash -c "/home/${user_run_script}/vscodium-linux/VSCodium_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
 tput setaf 2; echo "Установка редактора текста\кода ${version_app} завершена :)"
 tput sgr0
 #else tput setaf 1;echo "${name_script}:not installing!"
 #fi
 #tput sgr0
 
-
+else
+tput setaf 1; echo "Редактор  ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput sgr0
+fi
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
