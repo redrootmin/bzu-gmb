@@ -40,7 +40,6 @@ if [ ! -d "/home/${user_run_script}/furmark_linux" ]
 then
 tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
-
 cd
 rm -f furmark_linux*.tar.xz
 rm -f furmark_linux
