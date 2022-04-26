@@ -49,8 +49,8 @@ rm -f refresh2025-benchmark*.tar.xz
 rm -f refresh2025-benchmark
 rm -f refresh2025-benchmark*
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark-v2.tar.xz
-tar -xpJf "refresh2025-benchmark.tar.xz"
-rm -f refresh2025-benchmark.tar.xz
+tar -xpJf "refresh2025-benchmark-v2.tar.xz"
+rm -f refresh2025-benchmark-v2.tar.xz
 cd ~/refresh2025-benchmark;chmod +x mini_install.sh
 bash mini_install.sh
 
