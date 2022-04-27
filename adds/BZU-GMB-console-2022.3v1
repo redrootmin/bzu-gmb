@@ -376,8 +376,9 @@ cat /proc/bus/input/devices
 sudo xboxdrv --evdev /dev/input/event18 --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_Z=x2,ABS_RZ=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_A=a,BTN_B=b,BTN_X=x,BTN_Y=y,BTN_TL=lb,BTN_TR=rb,BTN_TL2=lt,BTN_TR2=rt,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_SELECT=back,BTN_START=start --silent &
 
 # [INSTALL VIRTUALBOX]
-sudo apt install -f virtualbox virtualbox-ext-pack
+sudo apt install -f --reinstall virtualbox virtualbox-ext-pack virtualbox-dkms 
 sudo usermod -aG vboxusers $USER
+
 
 
 # [VIRTUALBOX 1920x1080]
@@ -451,7 +452,8 @@ sudo apt install kdenlive
 
 #[CONVERT ALL VIDEO FILE *.AVI IN FOLDER TO YOUTUBE CONFORT COMPRESSION AND MP4 FORMAT, RUN IN TERMINAL IN FOLDER]
 for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.avi}.mp4"; done
-
+#stabilize video
+for i in *.mp4; do ffmpeg -i "$i" -vf deshake "stabilized-${i}.mp4"; done
 
 #[INSTALL OBS-STUDIO PPA]
 sudo apt-add-repository ppa:obsproject/obs-studio
@@ -566,10 +568,18 @@ X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
 
 
 #[INSTALL-BEST-OPEN-LINUX-GAMES]
-sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-common minetest minetest-data warzone2100 warzone2100 warzone2100-data
+sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-common minetest minetest-data warzone2100 warzone2100 warzone2100-data ufoai
 
 #[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
 https://github.com/OpenRA/OpenRA/releases
+
+
+
+
+
+
+
+
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
 echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
@@ -655,7 +665,10 @@ systemd-analyze blame
 systemd-analyze critical-chain
 
 
-
+sudo cvt 1920 1080 60
+sudo xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+sudo xrandr --addmode "Virtual-1" "1920x1080_60.00"
+GRUB_CMDLINE_LINUX_DEFAULT="video=Virtual-1:1920x1080@60 quiet splash apparmor=0 loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=9976896"
 
 
 

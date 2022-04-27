@@ -89,11 +89,45 @@ package_status=`dpkg -s $1 | grep -oh "installed"`
 echo "$1:" $package_status
 }
 
+#функция для проверки пакетов на установку в pacman, если нужно установлевает
+function install_package_pamac {
+pamac list -i | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S pamac install --no-confirm $1
+package_status=`pamac list -i | grep "pv" > /dev/null | echo "installing"`
+echo "$1:" $package_status
+}
+
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "Ubuntu" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+fi
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
+then
+cd;rm -rf bzu-gmb-temp*;rm -f bzu-gmb-temp*;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/bzu-gmb-temp-v1.tar.xz -O bzu-gmb-temp.tar.xz;tar -xJf bzu-gmb-temp.tar.xz
+# установка дополнительного ПО
+echo "${pass_user}" | sudo -S apt update -y
+echo "${pass_user}" | sudo -S apt upgrade -y
+
+# установка пакетов которых нет в ppa (временно нет)
+dpkg -s "libssl1.1:amd64" | grep installed > /dev/null || echo "no installing libssl1.1:amd64 :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb"
+dpkg -s "grub-customizer" | grep installed > /dev/null || echo "no installing grub-customizer :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/grub-customizer_5.1.0-3_amd64.deb"
+
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/packages-ubuntu2204"
 #задем переменной колличество пакетов в массиве
 packages_number=${#packages_list[@]}
 #обьявляем переменную числовой
@@ -127,9 +161,10 @@ done
 fi
 
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
+if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
 then
-#echo "$pass_user" | sudo -S apt update -y;echo "$pass_user" | sudo -S apt upgrade -y
+#echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
+echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-manjaro"
 #задем переменной колличество пакетов в массиве
@@ -140,11 +175,13 @@ i=0
 while [ $i -lt $packages_number ]
 do
 #вызов функции для проверки пакетов из массива
-#install_package ${packages_list[$i]} ${pass_user}
+install_package_pamac ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
 
+# обнуляем статус утилиты, отключаем эксперементальный режим
+echo "" > "${script_dir}/config/status"
 
 #Создаем ярлык для скрипта
 echo "[Desktop Entry]" > "${script_dir}/${name_desktop_file}"

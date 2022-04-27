@@ -7,13 +7,12 @@
 
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
-name_script=`echo ${name_script0} | sed 's/\.sh\>//g'`
+name_script=`echo ${name_script0} | sed "s|.sh||g"`
 script_dir0=$(cd $(dirname "$0") && pwd); name_cut="/modules-temp/${name_script}"
 script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
-
 #объявляем нужные переменные для скрипта
 date_install=`date`
 #загружаем данные о модули и файла конфигурации в массив
@@ -27,9 +26,8 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Refresh2025 простой утилиты для тестирования работы OpenGL,Vulkan в Linux OS [https://github.com/srmojuze/Refresh2025]. Установка Refresh2025 производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка Krita  популярного графического редактора с открытым исходным кодом [https://krita.org/]. Установка Krita осуществлыется в формате Appimage. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
-
 
 #запуск основных команд модуля
 # Проверка что существует папка applications, если нет, создаем ее
@@ -39,31 +37,28 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/refresh2025-benchmark" ]
-then
-tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
+if [ ! -d "/home/${user_run_script}/krita-appimage" ];then
+tput setaf 2; echo "Графический редактор ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-rm -f refresh2025-benchmark.tar.xz
-rm -f refresh2025-benchmark*.tar.xz
-rm -f refresh2025-benchmark
-rm -f refresh2025-benchmark*
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark-v2.tar.xz
-tar -xpJf "refresh2025-benchmark-v2.tar.xz"
-rm -f refresh2025-benchmark-v2.tar.xz
-cd ~/refresh2025-benchmark;chmod +x mini_install.sh
+rm -f krita-appimage.tar.xz
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/krita-appimage.tar.xz"
+pv "krita-appimage.tar.xz" | tar -xJ
+rm -f krita-appimage.tar.xz
+cd ~/krita-appimage;chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
-app_name="refresh2025-benchmark"
+#script_dir=$(cd $(dirname "$0") && pwd);
+#name_app=`cat "${script_dir}/version"`
 #echo "Testing:${version_app}"
-cd "/home/"${user_run_script}"/refresh2025-benchmark/app"
-echo "Папка установки:/home/"${user_run_script}"/refresh2025-benchmark"
-#bash -c "/home/"${user_run_script}"/refresh2025-benchmark/app/refresh2025[opengl]starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "Refresh2025.x86_64"
-tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
-tput sgr0
+#cd "${script_dir}"
+#echo "Папка установки:${script_dir}"
+#bash -c "${script_dir}/app/krita_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${name_app}"
+#tput setaf 2; echo "Установка Игрового движка ${version_app} завершена :)"
+#tput sgr0
 else
-tput setaf 1; echo "Утилита ${version_app} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput setaf 1; echo "Графический редактор ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
 tput sgr0
 fi
 

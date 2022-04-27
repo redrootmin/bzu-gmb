@@ -1,0 +1,1 @@
+cd;rm -rf [GGS]gnome-gui-switcher*;rm -f [GGS]gnome-gui-switcher*;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/GGS.gnome-gui-switcher-dev.tar.xz -O [GGS]gnome-gui-switcher-dev.tar.xz;tar -xJf [GGS]gnome-gui-switcher-dev.tar.xz;cd [GGS]gnome-gui-switcher;chmod +x mini_install.sh;bash mini_install.sh

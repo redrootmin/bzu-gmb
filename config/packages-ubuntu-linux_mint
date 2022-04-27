@@ -6,3 +6,4 @@ python3-tk
 meson
 ninja-build
 pv
+ppa-purge

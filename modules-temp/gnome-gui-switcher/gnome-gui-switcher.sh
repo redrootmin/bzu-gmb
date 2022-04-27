@@ -1,19 +1,18 @@
 #!/bin/bash
-#creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
-# GPL-3.0 License
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
 
 #проверяем что модуль запущен от пользователя root
 #[ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}
 
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
-name_script=`echo ${name_script0} | sed 's/\.sh\>//g'`
+name_script=`echo ${name_script0} | sed "s|.sh||g"`
 script_dir0=$(cd $(dirname "$0") && pwd); name_cut="/modules-temp/${name_script}"
 script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
-
 #объявляем нужные переменные для скрипта
 date_install=`date`
 #загружаем данные о модули и файла конфигурации в массив
@@ -22,44 +21,26 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[*]} - Все записи в массиве
 #version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
-version_app=${module_conf[7]}
+version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
-
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Refresh2025 простой утилиты для тестирования работы OpenGL,Vulkan в Linux OS [https://github.com/srmojuze/Refresh2025]. Установка Refresh2025 производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ubuntu 22.04 LTS c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. Версия скрипта 1.0 beta, автор: Яцына М.А."
 tput sgr0
 
-
 #запуск основных команд модуля
-# Проверка что существует папка applications, если нет, создаем ее
-if [ ! -d "/home/${user_run_script}/.local/share/applications" ]
-then
-mkdir -p "/home/${user_run_script}/.local/share/applications"
-fi
-
-# Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/refresh2025-benchmark" ]
+version_app="[GGS]gnome-gui-switcher"
+# Проверка установлен [GGS]gnome-gui-switcher или нет в папке пользователя
+if [ ! -d "/home/${user_run_script}/[GGS]gnome-gui-switcher" ]
 then
 tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-rm -f refresh2025-benchmark.tar.xz
-rm -f refresh2025-benchmark*.tar.xz
-rm -f refresh2025-benchmark
-rm -f refresh2025-benchmark*
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark-v2.tar.xz
-tar -xpJf "refresh2025-benchmark-v2.tar.xz"
-rm -f refresh2025-benchmark-v2.tar.xz
-cd ~/refresh2025-benchmark;chmod +x mini_install.sh
-bash mini_install.sh
-
-# 5 секунд теста программы
-app_name="refresh2025-benchmark"
-#echo "Testing:${version_app}"
-cd "/home/"${user_run_script}"/refresh2025-benchmark/app"
-echo "Папка установки:/home/"${user_run_script}"/refresh2025-benchmark"
-#bash -c "/home/"${user_run_script}"/refresh2025-benchmark/app/refresh2025[opengl]starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "Refresh2025.x86_64"
+rm -f [GGS]gnome-gui-switcher*
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/GGS.gnome-gui-switcher-dev.tar.xz -O [GGS]gnome-gui-switcher-dev.tar.xz
+tar -xJf [GGS]gnome-gui-switcher-dev.tar.xz
+chmod +x "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
+bash "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
 else
@@ -67,13 +48,9 @@ tput setaf 1; echo "Утилита ${version_app} уже установлена 
 tput sgr0
 fi
 
-
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
-#Добавляем информацию о том как использовать CoreCtrl лог установки
-#echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
-#echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
 exit 0
 
 

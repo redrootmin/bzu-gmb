@@ -1,0 +1,57 @@
+#install addons
+sudo apt install -f --reinstall gnome-session gnome-tweaks chrome-gnome-shell gnome-shell-extensions numix-icon-theme-circle git libglib2.0-dev grub-customizer paprefs pavucontrol gnome-screenshot
+# for ProtonUp-Qt (32bit lib)
+sudo apt install -f libfuse-dev
+
+#FireFox deb
+sudo snap remove --purge firefox
+sudo add-apt-repository ppa:mozillateam/ppa
+sudo apt install -t 'o=LP-PPA-mozillateam' firefox
+#or
+sudo apt install firefox-esr
+#ppa forece!
+sudo gedit /etc/apt/preferences.d/mozillateamppa
+#add
+Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 501
+
+#firefox best addons
+https://www.mozilla.org/ru/firefox/all/#product-desktop-release
+https://addons.mozilla.org/ru/firefox/addon/traduzir-paginas-web/
+https://addons.mozilla.org/ru/firefox/addon/auto-tab-discard/
+https://addons.mozilla.org/ru/firefox/addon/browsec/
+https://addons.mozilla.org/ru/firefox/addon/ublock-origin/
+#firefox gnome extension
+sudo apt install chrome-gnome-shell
+
+#extensions.gnome.org
+Blur my Shell  https://extensions.gnome.org/extension/3193/blur-my-shell/
+https://extensions.gnome.org/extension/2917/bring-out-submenu-of-power-offlogout-button/
+https://extensions.gnome.org/extension/4167/custom-hot-corners-extended/
+https://extensions.gnome.org/extension/517/caffeine/
+https://extensions.gnome.org/extension/3210/compiz-windows-effect/
+https://extensions.gnome.org/extension/1446/transparent-window-moving/
+https://extensions.gnome.org/extension/2236/night-theme-switcher/
+https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/
+https://extensions.gnome.org/extension/1319/gsconnect/
+https://extensions.gnome.org/extension/277/impatience/
+https://extensions.gnome.org/extension/3843/just-perfection/
+https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+https://extensions.gnome.org/extension/19/user-themes/
+https://extensions.gnome.org/extension/4033/x11-gestures/
+https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
+https://extensions.gnome.org/extension/615/appindicator-support/
+https://extensions.gnome.org/extension/4320/asusctl-gex/
+
+
+#mesa-oibaf!
+sudo dpkg --purge --force-all libgl1-amber-dri:amd64
+sudo dpkg --purge --force-all libgl1-amber-dri
+sudo dpkg --purge --force-all libgl1-mesa-dri
+sudo rm /var/cache/apt/archives/libgl1-mesa-dri_22.1~git2204100600.5da8c2~oibaf~j_amd64*
+sudo apt install -f libgl1-mesa-dri
+sudo apt install -f
+
+sudo dpkg --purge --force-all
+

@@ -39,7 +39,7 @@ echo "${pass_user}" | sudo -S add-apt-repository ppa:tuxinvader/lts-mainline -y 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null ;then
 echo "${pass_user}" | sudo -S apt update -y
 fi
-echo "${pass_user}" | sudo -S apt install -f -y linux-generic-5.15* || let "error += 1"
+echo "${pass_user}" | sudo -S apt install -f -y linux-generic-5.16* || let "error += 1"
 echo "${pass_user}" | sudo -S update-grub || let "error += 1"
 echo "${pass_user}" | sudo -S update-initramfs -u || let "error += 1"
 fi

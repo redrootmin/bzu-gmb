@@ -498,7 +498,7 @@ sudo apt update
 sudo apt install qpdftools
 
 
-#[LINUX RDP КЛИЕНТ REMMINA ]
+#[LINUX RDP КЛИЕНТ]
 sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
 sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret  freerdp2-x11 libcacard0 libphodav-2.0-0 libphodav-2.0-common libspice-client-glib-2.0-8 libspice-client-gtk-3.0-5 libusbredirhost1 libusbredirparser1 remmina-plugin-exec remmina-plugin-kwallet remmina-plugin-spice spice-client-glib-usb-acl-helper
 
@@ -571,11 +571,10 @@ sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-co
 #[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
 https://github.com/OpenRA/OpenRA/releases
 
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
-echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
-sudo apt-get update
-sudo apt-get install onlyoffice-desktopeditors
-
+CONSOLE EMU:
+#8-bit nes
+sudo apt install fceux
+#
 
 
 
@@ -653,6 +652,11 @@ sudo systemctl disable smbd.service
 systemd-analyze
 systemd-analyze blame
 systemd-analyze critical-chain
+
+
+
+
+
 
 
 

@@ -1,10 +1,39 @@
+[buz-gmb 0.493]===================================
+-add support Ubuntu 22.04 LTS
+-gnome-gui-switcher - TESTING!
+-godot-portable - UPDATE (3.4.4)
+-vscodium-portable - UPDATE (VSCodium-1.66.2)
+-xanmod - UPDATE
+-mesa-modules - UPDATE
+Refresh2025 - FIX\UPDATE
+Furmark-Linux - FIX\UPDATE
 
+IN DEVELOPMENT
+-icq-new-portable - hold
+-discord-ppa - hold
+-telegram-ppa - hold
+-scrcpy-ppa - hold
+-peek-ppa - hold
+-scribus-ppa - hold
+-firefox-ppa - hold
+-chromium-ppa - hold
+-qbittorent-ppa - hold
+-remmina-ppa - hold
+-timeshift ppa - hold
+-gparted-ppa - hold
+-grub-customizer ppa - hold
+-stacer ppa - hold
+-libstrangle-tools - hold
+-Nvidia antitearing - hold
+-GWE (overclock nvidia) - hold
+-Nvidia cuda support for blender+ - hold
 
-[buz-gmb 0.492]===================================
--AMD anti tearing (mesa) - dev
+[buz-gmb 0.492-pre]===================================
+-AMD anti tearing (mesa) - TESTING!
 -Nvidia antitearing - dev
 -GWE (overclock nvidia) - dev
 -Nvidia cuda support for blender+ - dev
+-krita-appimage - TESTING!
 -icq-new-portable - hold
 -discord-ppa - hold
 -telegram-ppa - hold
@@ -24,8 +53,11 @@
 fix bugs in modules:
 -
 
+UPDATE Modules:
+- Godot to 3.4.2 + upgrade module func.
+
 New functions:
-- add support Manjaro Gnome
+- add support Manjaro Gnome (minimal)
 
 [buz-gmb 0.491]===================================
 New modules:
