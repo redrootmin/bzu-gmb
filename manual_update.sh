@@ -118,13 +118,6 @@ fi
 if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
 then
 cd;rm -rf bzu-gmb-temp*;rm -f bzu-gmb-temp*;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/bzu-gmb-temp-v1.tar.xz -O bzu-gmb-temp.tar.xz;tar -xJf bzu-gmb-temp.tar.xz
-# установка дополнительного ПО
-echo "${pass_user}" | sudo -S apt update -y
-echo "${pass_user}" | sudo -S apt upgrade -y
-
-# установка пакетов которых нет в ppa (временно нет)
-dpkg -s "libssl1.1:amd64" | grep installed > /dev/null || echo "no installing libssl1.1:amd64 :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb"
-dpkg -s "grub-customizer" | grep installed > /dev/null || echo "no installing grub-customizer :(" | echo "${pass_user}" | sudo -S apt install -f -y "/home/$USER/bzu-gmb-temp/grub-customizer_5.1.0-3_amd64.deb"
 
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/packages-ubuntu2204"
