@@ -328,26 +328,6 @@ Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 2
 ProtonUp-Qt-2.1.1-x86
 #
 noroot
-lutris48.png
-Lutris
-GamingApp
-Lutris это клиент для установки и запуска различных игр в среде десктопных Linux систем, основным отличием его от PlayOnLinux является наибольшая универсальность, с помощью Litris можно запустить windows игры, установить клиенты: steam, epicstore, gog-galaxy, origins, uplay и множество игр с консолей, дополнительно Lutris аккумулирует другие игры и ресурсы найденные в системе у себя в окне запуска, например может взять версию Proton из стим и запустить игру скаченную из gog, либо добавить все игры из steam к себе для запуска. Lutris настоящий игровой комбайн для всего что связанно с играми в Linux системах
-Яцына М.А.
-lutris
-HODL
-#
-#
-root
-playonlinux48.png
-PlayOnLinux
-GamingApp
-PlayOnLinux долгое время была заслуженно очень популярной программой для запуска windows игр в Linux системах, так как в ней было удобно управлять версиями wine, устанавливать дополнения в префиксы с играми, архивировать весь префикс с игрой\играми и переносить на другую систему, но на данный момент она устарела и не может нормально работать с dxvk\vkd3d\proton. Ее основной плюс в том сейчас в возможности запуска очень старых игры на старом железе, где современные утилиты или технологии не работают или просто не нужны
-Яцына М.А.
-playonlinux
-HODL
-#
-#
-root
 port-proton-new-addon48.png
 PortWINE зависимости
 GamingAddons
@@ -368,6 +348,16 @@ Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 2
 PortProton-97
 #
 noroot
+gravity-mark48.jpg
+gravity-mark-portable
+Benchmark
+GravityMark - это Benchmark который использует по максимуму возможности современных графических процессоров, путем рендеринга огромного количества объектов в реальном времени с использованием только GPU! Можно легко проводить стресс-тестирование или замеры производительности, есть поддержка всех современных API и Ray Tracing: Linux [Vulkan,OpenGL,OpenGL ES], Windows [Vulkan, OpenGL, DX11, DX12], MacOS [Metal]. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
+Яцына М.А.
+gravity-mark-portable
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+GravityMark[1-53]
+#
+noroot
 furmark48.png
 Furmark-Linux
 Benchmark
@@ -384,7 +374,7 @@ Benchmark
 Refresh2025 - простая утилита для тестирования работы OpenGL,Vulkan в Linux OS. В Refresh2025 встроен MahgoHud(Portable).
 Яцына М.А.
 refresh2025-benchmark
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 Ubuntu 22.04 LTS LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
 Refresh2025 1.0
 #
 noroot
