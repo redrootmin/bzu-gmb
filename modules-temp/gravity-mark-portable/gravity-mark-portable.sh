@@ -2,9 +2,6 @@
 #creator by RedRoot(Yaciyna Mikhail) for GAMER STATION [on linux] and Gaming Community OS Linux
 # GPL-3.0 License
 
-#проверяем что модуль запущен от пользователя root
-#[ "$UID" -eq 0 ] || { zenity --error --text="Этот скрипт нужно запускать из под root!"; exit 1;}
-
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
 name_script=`echo ${name_script0} | sed 's/\.sh\>//g'`
@@ -23,13 +20,13 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
 version_app=${module_conf[7]}
+
 #получение пароля root пользователя
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Refresh2025 простой утилиты для тестирования работы OpenGL,Vulkan в Linux OS [https://github.com/srmojuze/Refresh2025]. Установка Refresh2025 производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка GravityMark это GPU Benchmark в котором есть поддержка всех современных API и Ray Tracing: Vulkan,OpenGL,OpenGL ES [https://gravitymark.tellusim.com/]. Установка GravityMark производиться в формате Portable. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
-
 
 #запуск основных команд модуля
 # Проверка что существует папка applications, если нет, создаем ее
@@ -39,31 +36,29 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/refresh2025-benchmark" ]
+if [ ! -d "/home/${user_run_script}/GravityMark[1-53]portable" ]
 then
-tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
+tput setaf 2; echo "Benchmark ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-rm -f refresh2025-benchmark.tar.xz
-rm -f refresh2025-benchmark*.tar.xz
-rm -f refresh2025-benchmark
-rm -f refresh2025-benchmark*
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/refresh2025-benchmark-v2.tar.xz
-tar -xpJf "refresh2025-benchmark-v2.tar.xz"
-rm -f refresh2025-benchmark-v2.tar.xz
-cd ~/refresh2025-benchmark;chmod +x mini_install.sh
+rm -f GravityMark*.tar.xz
+rm -f GravityMark
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/GravityMark.1-53.portable-v1.tar.xz
+pv "GravityMark.1-53.portable-v1.tar.xz" | tar -xJ
+rm -f GravityMark*.tar.xz
+cd ~/GravityMark[1-53]portable;chmod +x mini_install.sh
 bash mini_install.sh
 
-# 5 секунд теста программы
-app_name="refresh2025-benchmark"
-#echo "Testing:${version_app}"
-cd "/home/"${user_run_script}"/refresh2025-benchmark/app"
-echo "Папка установки:/home/"${user_run_script}"/refresh2025-benchmark"
-#bash -c "/home/"${user_run_script}"/refresh2025-benchmark/app/refresh2025[opengl]starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "Refresh2025.x86_64"
-tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
-tput sgr0
+if [ ! -d "/home/${user_run_script}/GravityMark[1-53]portable" ]
+then
+tput setaf 1; echo "Что то пошло не так Benchmark ${version_app} не установлен :(";tput sgr0
+let "error += 10"
 else
-tput setaf 1; echo "Утилита ${version_app} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput setaf 2; echo "Установка Benchmark ${version_app} завершена :)"
+tput sgr0
+fi
+else
+tput setaf 1; echo "Benchmark ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
 tput sgr0
 fi
 
