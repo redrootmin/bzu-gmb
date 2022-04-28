@@ -588,6 +588,16 @@ Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20
 #
 #
 noroot
+inkscape-appimage48.png
+Inkscape-appimage
+Graphics
+Inkscape - это свободно распространяемый векторный графический редактор и является профессиональным инструментом  для работы с векторной графикой, и часто используется  для создания иллюстраций, иконок, логотипов, диаграмм, карт, а также веб-графики. Inkscape содержит продвинутые инструменты для работы, сравнимые с возможностями Adobe Illustrator, CorelDRAW и Xara Xtreme. Вы можете читать сохранять изображения во многих форматах, включая SVG, AI, EPS, PDF, PS и PNG. Inkscape по умолчанию использует открытый стандарт формата файла SVG. Inkscape включает в себя большой набор инструментов, простой и дружественный интерфейс и поддержку многих языков. ВНИМАНИЕ - Эта версия программы в формате Appimage, но с помощью скрипта она легко интегриуется в систему и может по умолчанию запускать поддерживаемые форматы.
+Яцына М.А.
+inkscape-appimage
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
+Inkscape-1_2b-appimage
+#
+noroot
 gimp48.png
 GIMP-ppa
 Graphics
