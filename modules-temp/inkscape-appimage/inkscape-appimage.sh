@@ -25,7 +25,7 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка GravityMark это GPU Benchmark в котором есть поддержка всех современных API и Ray Tracing: Vulkan,OpenGL,OpenGL ES [https://gravitymark.tellusim.com/]. Установка GravityMark производиться в формате Portable. Версия скрипта 1.0b, автор: Яцына М.А."
+tput setaf 2; echo "Установка Inkscape свободно распространяемого векторного графического редактора, удобен для создания как художественных, так и технических иллюстраций [https://inkscape.org/]. Установка Inkscape производиться в формате AppImage. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
@@ -35,33 +35,32 @@ then
 mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
-# Проверка установлен GravityMark или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/GravityMark[1-53]portable" ]
+# Проверка установлен inkscape-appimage или нет в папке пользователя
+if [ ! -d "/home/${user_run_script}/inkscape-appimage" ]
 then
-tput setaf 2; echo "Benchmark ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
+tput setaf 2; echo "Векторый редактор ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-rm -f GravityMark*.tar.xz
-rm -f GravityMark
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/GravityMark.1-53.portable-v1.tar.xz
-pv "GravityMark.1-53.portable-v1.tar.xz" | tar -xJ
-rm -f GravityMark*.tar.xz
-cd ~/GravityMark[1-53]portable;chmod +x mini_install.sh
+rm -f inkscape-appimage*.tar.xz
+rm -f inkscape-appimage
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/inkscape-appimage-v1.tar.xz
+pv "inkscape-appimage-v1.tar.xz" | tar -xJ
+rm -f inkscape-appimage*.tar.xz
+cd ~/inkscape-appimage;chmod +x mini_install.sh
 bash mini_install.sh
 
-if [ ! -d "/home/${user_run_script}/GravityMark[1-53]portable" ]
+if [ ! -d "/home/${user_run_script}/inkscape-appimage" ]
 then
-tput setaf 1; echo "Что то пошло не так Benchmark ${version_app} не установлен :(";tput sgr0
+tput setaf 1; echo "Что то пошло не так и Векторый редактор ${version_app} не установлен :(";tput sgr0
 let "error += 10"
 else
-tput setaf 2; echo "Установка Benchmark ${version_app} завершена :)"
+tput setaf 2; echo "Установка Векторого редактора ${version_app} завершена :)"
 tput sgr0
 fi
 else
-tput setaf 1; echo "Benchmark ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+tput setaf 1; echo "Векторый редактор ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
 tput sgr0
 fi
-
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
