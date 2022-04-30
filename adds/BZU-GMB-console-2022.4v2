@@ -272,7 +272,7 @@ sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweak
 
 
 #[SOFT TOOLS FOR VIZUAL AND SYSTEM]-[UBUNTU 21.10]
-sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweaks chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev
+sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweaks chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev ubuntu-restricted-extras
 
 
 #[BACK TO UBUNTU GNOME VANILLA IN UBUNTU]-[FOR UBUNTU 20.04.3!]
