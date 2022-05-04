@@ -22,7 +22,7 @@ sudo apt upgrade
 
 #[КАК УДАЛИТЬ БИТЫЙ PPA ИЗ КОНСОЛИ]
 #проверям папку с PPA
-ls -c /etc/apt/sources.list.d
+ls /etc/apt/sources.list.d
 #и удаляем файлы ненужного PPA
 sudo rm -i /etc/apt/sources.list.d/ name / file / .*
 #пример:

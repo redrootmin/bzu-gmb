@@ -67,7 +67,6 @@ linuxos_number=${#linuxos_list[@]}
 linuxos_version=""
 i=0
 #проверяем на совпадение списка систем из файла и системы в которой запущен скрипт
-#linux_os=`cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'`
 linux_os=`cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'`
 while [ $i -lt $linuxos_number ]
 do

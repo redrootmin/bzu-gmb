@@ -44,6 +44,7 @@ echo "${pass_user}" | sudo rm -f /var/cache/apt/archives/*.deb || true
 echo "${pass_user}" | sudo apt install -f libgl1-mesa-dri mesa-utils || let "error += 1"
 echo "${pass_user}" | sudo apt --fix-broken install -f -y
 echo "${pass_user}" | sudo apt upgrade -y
+echo "${pass_user}" | sudo apt autoremove -y
 fi
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
