@@ -314,7 +314,7 @@ GamingApp
 Установка нативного клиента Steam для linux
 Яцына М.А.
 steam
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
 #
 #
 noroot
@@ -324,7 +324,7 @@ GameTools
 ProtonUp-Qt - Графический менеджер для установки и управления Proton-GE для Steam и Wine-GE для Lutris. Утилита ProtonUp создана AUNaseef, использует Python 3 и Qt 6. Данная версия в формате Appimage и должна заработать на большом кооличестве Linux систем.
 Яцына М.А.
 protonup-qt-appimage
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
 ProtonUp-Qt-2.1.1-x86
 #
 noroot
