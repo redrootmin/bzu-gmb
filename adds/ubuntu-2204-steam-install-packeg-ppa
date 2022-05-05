@@ -1,0 +1,86 @@
+gamer@ubuntu2204-vm:~$ sudo apt install -f steam
+[sudo] пароль для gamer: 
+Чтение списков пакетов… Готово
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Будут установлены следующие дополнительные пакеты:
+  curl gcc-12-base:i386 i965-va-driver:i386 intel-media-va-driver:i386
+  krb5-locales libapparmor1:i386 libasound2:i386 libasound2-plugins:i386
+  libasyncns0:i386 libatomic1:i386 libblkid1:i386 libbrotli1:i386 libbsd0:i386
+  libc6:i386 libcairo2:i386 libcap2:i386 libcom-err2:i386 libcrypt1:i386
+  libdatrie1:i386 libdb5.3:i386 libdbus-1-3:i386 libdecor-0-0:i386
+  libdecor-0-plugin-1-cairo:i386 libdrm-amdgpu1:i386 libdrm-intel1:i386
+  libdrm-nouveau2:i386 libdrm-radeon1:i386 libdrm2:i386 libedit2:i386
+  libegl-mesa0:i386 libegl1:i386 libelf1:i386 libexpat1:i386 libffi8:i386
+  libflac8:i386 libfontconfig1:i386 libfreetype6:i386 libfribidi0:i386
+  libgbm1:i386 libgcc-s1:i386 libgcrypt20:i386 libgl1:i386
+  libgl1-mesa-dri:i386 libglapi-mesa:i386 libglib2.0-0:i386 libglvnd0:i386
+  libglx-mesa0:i386 libglx0:i386 libgpg-error-l10n libgpg-error0:i386
+  libgraphite2-3:i386 libgssapi-krb5-2:i386 libharfbuzz0b:i386 libicu70:i386
+  libidn2-0:i386 libigdgmm12:i386 libjack-jackd2-0:i386 libk5crypto3:i386
+  libkeyutils1:i386 libkrb5-3:i386 libkrb5support0:i386 libllvm13:i386
+  liblz4-1:i386 liblzma5:i386 libmd0:i386 libmount1:i386 libnsl2:i386
+  libnss-nis:i386 libnss-nisplus:i386 libogg0:i386 libopus0:i386
+  libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libpangoft2-1.0-0:i386
+  libpciaccess0:i386 libpcre2-8-0:i386 libpcre3:i386 libpixman-1-0:i386
+  libpng16-16:i386 libpulse0:i386 libsamplerate0:i386 libsdl2-2.0-0:i386
+  libselinux1:i386 libsensors5:i386 libsndfile1:i386 libssl3:i386
+  libstdc++6:i386 libsystemd0:i386 libthai0:i386 libtinfo6:i386 libtirpc3:i386
+  libudev1:i386 libunistring2:i386 libuuid1:i386 libva2:i386 libvorbis0a:i386
+  libvorbisenc2:i386 libvulkan1:i386 libwayland-client0:i386
+  libwayland-cursor0:i386 libwayland-egl1:i386 libwayland-server0:i386
+  libx11-6:i386 libx11-xcb1:i386 libxau6:i386 libxcb-dri2-0:i386
+  libxcb-dri3-0:i386 libxcb-glx0:i386 libxcb-present0:i386 libxcb-randr0:i386
+  libxcb-render0:i386 libxcb-shm0:i386 libxcb-sync1:i386 libxcb-xfixes0:i386
+  libxcb1:i386 libxcursor1:i386 libxdmcp6:i386 libxext6:i386 libxfixes3:i386
+  libxi6:i386 libxinerama1:i386 libxkbcommon0:i386 libxml2:i386
+  libxrandr2:i386 libxrender1:i386 libxshmfence1:i386 libxss1:i386
+  libxxf86vm1:i386 libzstd1:i386 mesa-va-drivers:i386 mesa-vulkan-drivers:i386
+  steam-devices va-driver-all:i386 zlib1g:i386
+Предлагаемые пакеты:
+  i965-va-driver-shaders:i386 glibc-doc:i386 locales:i386 rng-tools:i386
+  krb5-doc:i386 krb5-user:i386 jackd2:i386 cryptsetup-bin:i386 opus-tools:i386
+  lm-sensors:i386 libnvidia-gl-390:i386 | libnvidia-gl-470:i386
+  | libnvidia-gl-495:i386 pipewire:i386
+Рекомендуемые пакеты:
+  libgl1-amber-dri:i386
+Следующие НОВЫЕ пакеты будут установлены:
+  curl gcc-12-base:i386 i965-va-driver:i386 intel-media-va-driver:i386
+  krb5-locales libapparmor1:i386 libasound2:i386 libasound2-plugins:i386
+  libasyncns0:i386 libatomic1:i386 libblkid1:i386 libbrotli1:i386 libbsd0:i386
+  libc6:i386 libcairo2:i386 libcap2:i386 libcom-err2:i386 libcrypt1:i386
+  libdatrie1:i386 libdb5.3:i386 libdbus-1-3:i386 libdecor-0-0:i386
+  libdecor-0-plugin-1-cairo:i386 libdrm-amdgpu1:i386 libdrm-intel1:i386
+  libdrm-nouveau2:i386 libdrm-radeon1:i386 libdrm2:i386 libedit2:i386
+  libegl-mesa0:i386 libegl1:i386 libelf1:i386 libexpat1:i386 libffi8:i386
+  libflac8:i386 libfontconfig1:i386 libfreetype6:i386 libfribidi0:i386
+  libgbm1:i386 libgcc-s1:i386 libgcrypt20:i386 libgl1:i386
+  libgl1-mesa-dri:i386 libglapi-mesa:i386 libglib2.0-0:i386 libglvnd0:i386
+  libglx-mesa0:i386 libglx0:i386 libgpg-error-l10n libgpg-error0:i386
+  libgraphite2-3:i386 libgssapi-krb5-2:i386 libharfbuzz0b:i386 libicu70:i386
+  libidn2-0:i386 libigdgmm12:i386 libjack-jackd2-0:i386 libk5crypto3:i386
+  libkeyutils1:i386 libkrb5-3:i386 libkrb5support0:i386 libllvm13:i386
+  liblz4-1:i386 liblzma5:i386 libmd0:i386 libmount1:i386 libnsl2:i386
+  libnss-nis:i386 libnss-nisplus:i386 libogg0:i386 libopus0:i386
+  libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libpangoft2-1.0-0:i386
+  libpciaccess0:i386 libpcre2-8-0:i386 libpcre3:i386 libpixman-1-0:i386
+  libpng16-16:i386 libpulse0:i386 libsamplerate0:i386 libsdl2-2.0-0:i386
+  libselinux1:i386 libsensors5:i386 libsndfile1:i386 libssl3:i386
+  libstdc++6:i386 libsystemd0:i386 libthai0:i386 libtinfo6:i386 libtirpc3:i386
+  libudev1:i386 libunistring2:i386 libuuid1:i386 libva2:i386 libvorbis0a:i386
+  libvorbisenc2:i386 libvulkan1:i386 libwayland-client0:i386
+  libwayland-cursor0:i386 libwayland-egl1:i386 libwayland-server0:i386
+  libx11-6:i386 libx11-xcb1:i386 libxau6:i386 libxcb-dri2-0:i386
+  libxcb-dri3-0:i386 libxcb-glx0:i386 libxcb-present0:i386 libxcb-randr0:i386
+  libxcb-render0:i386 libxcb-shm0:i386 libxcb-sync1:i386 libxcb-xfixes0:i386
+  libxcb1:i386 libxcursor1:i386 libxdmcp6:i386 libxext6:i386 libxfixes3:i386
+  libxi6:i386 libxinerama1:i386 libxkbcommon0:i386 libxml2:i386
+  libxrandr2:i386 libxrender1:i386 libxshmfence1:i386 libxss1:i386
+  libxxf86vm1:i386 libzstd1:i386 mesa-va-drivers:i386 mesa-vulkan-drivers:i386
+  steam:i386 steam-devices va-driver-all:i386 zlib1g:i386
+Обновлено 0 пакетов, установлено 135 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+Необходимо скачать 77,8 MB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 282 MB.
+
+
+sudo apt install -f curl gcc-12-base:i386 i965-va-driver:i386 intel-media-va-driver:i386 krb5-locales libapparmor1:i386 libasound2:i386 libasound2-plugins:i386 libasyncns0:i386 libatomic1:i386 libblkid1:i386 libbrotli1:i386 libbsd0:i386 libc6:i386 libcairo2:i386 libcap2:i386 libcom-err2:i386 libcrypt1:i386 libdatrie1:i386 libdb5.3:i386 libdbus-1-3:i386 libdecor-0-0:i386 libdecor-0-plugin-1-cairo:i386 libdrm-amdgpu1:i386 libdrm-intel1:i386 libdrm-nouveau2:i386 libdrm-radeon1:i386 libdrm2:i386 libedit2:i386 libegl-mesa0:i386 libegl1:i386 libelf1:i386 libexpat1:i386 libffi8:i386 libflac8:i386 libfontconfig1:i386 libfreetype6:i386 libfribidi0:i386 libgbm1:i386 libgcc-s1:i386 libgcrypt20:i386 libgl1:i386 libgl1-mesa-dri:i386 libglapi-mesa:i386 libglib2.0-0:i386 libglvnd0:i386 libglx-mesa0:i386 libglx0:i386 libgpg-error-l10n libgpg-error0:i386 libgraphite2-3:i386 libgssapi-krb5-2:i386 libharfbuzz0b:i386 libicu70:i386 libidn2-0:i386 libigdgmm12:i386 libjack-jackd2-0:i386 libk5crypto3:i386 libkeyutils1:i386 libkrb5-3:i386 libkrb5support0:i386 libllvm13:i386 liblz4-1:i386 liblzma5:i386 libmd0:i386 libmount1:i386 libnsl2:i386 libnss-nis:i386 libnss-nisplus:i386 libogg0:i386 libopus0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libpangoft2-1.0-0:i386 libpciaccess0:i386 libpcre2-8-0:i386 libpcre3:i386 libpixman-1-0:i386 libpng16-16:i386 libpulse0:i386 libsamplerate0:i386 libsdl2-2.0-0:i386 libselinux1:i386 libsensors5:i386 libsndfile1:i386 libssl3:i386 libstdc++6:i386 libsystemd0:i386 libthai0:i386 libtinfo6:i386 libtirpc3:i386 libudev1:i386 libunistring2:i386 libuuid1:i386 libva2:i386 libvorbis0a:i386 libvorbisenc2:i386 libvulkan1:i386 libwayland-client0:i386 libwayland-cursor0:i386 libwayland-egl1:i386 libwayland-server0:i386 libx11-6:i386 libx11-xcb1:i386 libxau6:i386 libxcb-dri2-0:i386 libxcb-dri3-0:i386 libxcb-glx0:i386 libxcb-present0:i386 libxcb-randr0:i386 libxcb-render0:i386 libxcb-shm0:i386 libxcb-sync1:i386 libxcb-xfixes0:i386 libxcb1:i386 libxcursor1:i386 libxdmcp6:i386 libxext6:i386 libxfixes3:i386 libxi6:i386 libxinerama1:i386 libxkbcommon0:i386 libxml2:i386 libxrandr2:i386 libxrender1:i386 libxshmfence1:i386 libxss1:i386 libxxf86vm1:i386 libzstd1:i386 mesa-va-drivers:i386 mesa-vulkan-drivers:i386 steam:i386 steam-devices va-driver-all:i386 zlib1g:i386

@@ -6,8 +6,10 @@
 -vscodium-portable - UPDATE (VSCodium-1.66.2)
 -xanmod - UPDATE
 -mesa-modules - UPDATE
-Refresh2025 - FIX\UPDATE
-Furmark-Linux - FIX\UPDATE
+-refresh2025 - FIX\UPDATE
+-furmark-Linux - FIX\UPDATE
+-steam - add support Manjaro!
+-mini-install - UPDATE Manjaro packeg!
 
 IN DEVELOPMENT
 -icq-new-portable - hold

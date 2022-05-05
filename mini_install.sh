@@ -177,8 +177,10 @@ fi
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
 then
+echo "$pass_user" | sudo -S sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf
 echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
-echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
+#echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver
+echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver curl gamemode lib32-gamemode icoutils wget zenity bubblewrap zstd cabextract bc tar vulkan-tools lib32-p11-kit lib32-libcurl-gnutls libcurl-gnutls lib32-sdl2 lib32-freetype2 lib32-gtk2 lib32-alsa-plugins lib32-libpulse lib32-openal lib32-libudev0 lib32-systemd nss-mdns lib32-nss lib32-glu lib32-dbus libcurl-compat lib32-libcurl-compat libxcrypt-compat lib32-libxcrypt lib32-gconf gconf lib32-libldap
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-manjaro"
 #задем переменной колличество пакетов в массиве

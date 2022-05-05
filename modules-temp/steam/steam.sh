@@ -49,7 +49,9 @@ echo "${pass_user}" | sudo -S apt install -f -y --reinstall libc6:amd64 libc6:i3
 fi
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null;then
-echo "для manjaro пока нечего нет :("
+echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
+echo "$pass_user" | sudo -S pamac install --no-confirm steam steam-native steam-native-runtime
+echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver curl gamemode lib32-gamemode icoutils wget zenity bubblewrap zstd cabextract bc tar vulkan-tools lib32-p11-kit lib32-libcurl-gnutls libcurl-gnutls lib32-sdl2 lib32-freetype2 lib32-gtk2 lib32-alsa-plugins lib32-libpulse lib32-openal lib32-libudev0 lib32-systemd nss-mdns lib32-nss lib32-glu lib32-dbus libcurl-compat lib32-libcurl-compat libxcrypt-compat lib32-libxcrypt lib32-gconf gconf lib32-libldap
 fi
 
 
