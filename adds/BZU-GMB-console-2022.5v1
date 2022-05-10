@@ -54,7 +54,8 @@ sudo apt-get -f install
 
 #[ПРОБЛЕМЫ ЗАВИСИМОСТЕЙ И ПРИНУДИТЕЛЬНОЕ УДАЛЕНИЕ ПАКЕТА] 
 sudo dpkg --remove --force-remove-reinstreq <package>
-
+#or
+sudo dpkg --purge --force-all <package>
 
 #[МОНИТРОВАНИЕ ОТДЕЛЬНЫХ ПАПОК\ДИСКОВ]
 ###заходим в файл /etc/fstab и добовляем нужный вариант, ниже примеры)###
@@ -110,6 +111,14 @@ sudo tune2fs -m 1 /dev/sda1
 sudo tune2fs -m 0 /dev/sda1 
 #но не рекомендую делать на системном диске меньше: 1%#
 #можно применять на дисках где уже есть инфо, нечего плохого не случиться, проверено!#
+
+#XTRADEB APPLICATIONS
+#https://xtradeb.net/category/apps/
+#https://launchpad.net/~xtradeb/+archive/ubuntu/apps/+packages
+sudo add-apt-repository ppa:xtradeb/apps
+sudo apt update
+#sudo apt install -f czkawka chromium firefox fotoxx freefilesync gparted soundconverter synergy virt-manager youtube-dl 
+
 
 
 #[ENCFS -EASY WAY TO ENCRYPT FOLDERS IN PC OR CLOUD STORAGE]
@@ -271,7 +280,7 @@ sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweak
 
 
 #[SOFT TOOLS FOR VIZUAL AND SYSTEM]-[UBUNTU 21.10]
-sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweaks chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev
+sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweaks chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev ubuntu-restricted-extras
 
 
 #[BACK TO UBUNTU GNOME VANILLA IN UBUNTU]-[FOR UBUNTU 20.04.3!]
@@ -376,8 +385,9 @@ cat /proc/bus/input/devices
 sudo xboxdrv --evdev /dev/input/event18 --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_Z=x2,ABS_RZ=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_A=a,BTN_B=b,BTN_X=x,BTN_Y=y,BTN_TL=lb,BTN_TR=rb,BTN_TL2=lt,BTN_TR2=rt,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_SELECT=back,BTN_START=start --silent &
 
 # [INSTALL VIRTUALBOX]
-sudo apt install -f virtualbox virtualbox-ext-pack
+sudo apt install -f --reinstall virtualbox virtualbox-ext-pack virtualbox-dkms 
 sudo usermod -aG vboxusers $USER
+
 
 
 # [VIRTUALBOX 1920x1080]
@@ -451,7 +461,8 @@ sudo apt install kdenlive
 
 #[CONVERT ALL VIDEO FILE *.AVI IN FOLDER TO YOUTUBE CONFORT COMPRESSION AND MP4 FORMAT, RUN IN TERMINAL IN FOLDER]
 for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.avi}.mp4"; done
-
+#stabilize video
+for i in *.mp4; do ffmpeg -i "$i" -vf deshake "stabilized-${i}.mp4"; done
 
 #[INSTALL OBS-STUDIO PPA]
 sudo apt-add-repository ppa:obsproject/obs-studio
@@ -498,7 +509,7 @@ sudo apt update
 sudo apt install qpdftools
 
 
-#[LINUX RDP КЛИЕНТ]
+#[LINUX RDP КЛИЕНТ REMMINA ]
 sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
 sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret  freerdp2-x11 libcacard0 libphodav-2.0-0 libphodav-2.0-common libspice-client-glib-2.0-8 libspice-client-gtk-3.0-5 libusbredirhost1 libusbredirparser1 remmina-plugin-exec remmina-plugin-kwallet remmina-plugin-spice spice-client-glib-usb-acl-helper
 
@@ -564,17 +575,53 @@ User Themes https://extensions.gnome.org/extension/19/user-themes/
 Workspace Indicator https://extensions.gnome.org/extension/21/workspace-indicator/
 X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
 
+#[UBUNTU 22.04, GNOME 42, GNOME EXTENSIONS]:
+Add to Desktop https://extensions.gnome.org/extension/3240/add-to-desktop/
+Applications Menu https://extensions.gnome.org/extension/6/applications-menu/
+Applications Overview Tooltip https://extensions.gnome.org/extension/1071/applications-overview-tooltip/
+Bluetooth Quick Connect https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+Blur my Shell https://extensions.gnome.org/extension/3193/blur-my-shell/
+Bring Out Submenu Of Power Off/Logout Button  https://extensions.gnome.org/extension/2917/bring-out-submenu-of-power-offlogout-button/
+Compiz windows effect https://extensions.gnome.org/extension/3210/compiz-windows-effect/ 
+Dash to Panel https://extensions.gnome.org/extension/1160/dash-to-panel/
+Desktop Cube https://extensions.gnome.org/extension/4648/desktop-cube/
+Desktop Icons NG (DING) https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/
+Espresso https://extensions.gnome.org/extension/4135/espresso/
+GSConnect https://extensions.gnome.org/extension/1319/gsconnect/
+Transparent Window Moving https://extensions.gnome.org/extension/1446/transparent-window-moving/
+Sound Input & Output Device Chooser https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+Panel Date Format https://extensions.gnome.org/extension/1462/panel-date-format/
+No overview at start-up https://extensions.gnome.org/extension/4099/no-overview/
+Material Shell https://extensions.gnome.org/extension/3357/material-shell/
+Just Perfection https://extensions.gnome.org/extension/3843/just-perfection/
+Impatience https://extensions.gnome.org/extension/277/impatience/
+Tray Icons: Reloaded https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
+Workspace Indicator https://extensions.gnome.org/extension/21/workspace-indicator/
+X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
+sudo add-apt-repository ppa:touchegg/stable
+sudo apt update
+sudo apt install touchegg
+
 
 #[INSTALL-BEST-OPEN-LINUX-GAMES]
-sudo apt install -f supertuxkart supertux supertux-data 0ad 0ad-data 0ad-data-common minetest minetest-data warzone2100 warzone2100 warzone2100-data
+#MEGA PACK XTRADEB GAMES
+#https://xtradeb.net/category/play/
+#https://launchpad.net/~xtradeb/+archive/ubuntu/play
+sudo add-apt-repository ppa:xtradeb/play
+sudo apt-get update 
+sudo apt install -f eduke32  etlegacy minetest minetest-data flightgear gameplayfootball gzdoom  openra redeclipse simgear stepmania stuntrally urbanterror tsc xonotic vdrift wesnoth-1.14 terasology openttd megamario speed-dreams supertux supertuxkart 0ad warsow warzone2100 xonotic wesnoth urbanterror ufoai
 
-#[OpenRA (Tiberian Dawn,Red Alert,Dune 2000) AppImage]
-https://github.com/OpenRA/OpenRA/releases
 
-CONSOLE EMU:
-#8-bit nes
-sudo apt install fceux
-#
+
+
+
+
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
+echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
+sudo apt-get update
+sudo apt-get install onlyoffice-desktopeditors
+
 
 
 
@@ -654,11 +701,8 @@ systemd-analyze blame
 systemd-analyze critical-chain
 
 
-
-
-
-
-
+#EXEMPLE[FROM REDROOT]:
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff mitigations=off rootfstype=ext4 libahci.ignore_sss=1 raid=noautodetect selinux=0 lpj=4988258 loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 apparmor=1 security=apparmor"
 
 
 
