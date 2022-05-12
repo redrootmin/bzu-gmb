@@ -35,6 +35,7 @@ if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linu
 then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo ppa-purge ppa:kisak/kisak-mesa
+echo "${pass_user}" | sudo update -y || true
 echo "${pass_user}" | sudo add-apt-repository ppa:oibaf/graphics-drivers -y
 echo "${pass_user}" | sudo update -y || true
 echo "${pass_user}" | sudo dpkg --purge --force-all libgl1-amber-dri:amd64
