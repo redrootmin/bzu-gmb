@@ -34,24 +34,17 @@ tput sgr0
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then
 #запуск основных команд модуля
-echo "${pass_user}" | sudo ppa-purge ppa:kisak/kisak-mesa
-echo "${pass_user}" | sudo update -y || true
-echo "${pass_user}" | sudo add-apt-repository ppa:oibaf/graphics-drivers -y
-echo "${pass_user}" | sudo update -y || true
-echo "${pass_user}" | sudo dpkg --purge --force-all libgl1-amber-dri:amd64
-echo "${pass_user}" | sudo dpkg --purge --force-all libgl1-amber-dri
-echo "${pass_user}" | sudo dpkg --purge --force-all libgl1-mesa-dri
-echo "${pass_user}" | sudo dpkg --purge --force-all mesa-vulkan-drivers:amd64 mesa-vulkan-drivers:i386
-echo "${pass_user}" | sudo rm -f /var/cache/apt/archives/*.deb || true
-echo "${pass_user}" | sudo apt install -f libgl1-mesa-dri mesa-utils vulkan-tools || let "error += 1"
-echo "${pass_user}" | sudo apt --fix-broken install -f -y
-echo "${pass_user}" | sudo update -y || true
-echo "${pass_user}" | sudo apt upgrade -y
-echo "${pass_user}" | sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd64 libgl1-mesa-dri:amd64 libglapi-mesa:amd64 libglu1-mesa:amd64 libglx-mesa0:amd64 libllvm10:amd64 libllvm10:i386 libxatracker2:amd64 mesa-utils  mesa-va-drivers:amd64 mesa-vdpau-drivers:amd64 mesa-vulkan-drivers:amd64 mesa-vulkan-drivers:i386 xserver-xorg-video-amdgpu || let "error += 1"
-echo "${pass_user}" | sudo apt --fix-broken install -f -y
-echo "${pass_user}" | sudo apt autoremove -y
-echo "${pass_user}" | sudo apt autoclean -y
-echo "${pass_user}" | sudo apt clean -y
+echo "${pass_user}" | sudo -S ppa-purge ppa:kisak/kisak-mesa
+echo "${pass_user}" | sudo -S update -y || true
+echo "${pass_user}" | sudo -S apt upgrade -y
+echo "${pass_user}" | sudo -S add-apt-repository ppa:oibaf/graphics-drivers -y
+echo "${pass_user}" | sudo -S update -y || true
+echo "${pass_user}" | sudo -S apt upgrade -y
+echo "${pass_user}" | sudo -S aptitude -y install libegl-mesa0:amd64 libgbm1:amd64 libgl1-mesa-dri:amd64 libglapi-mesa:amd64 libglu1-mesa:amd64 libglx-mesa0:amd64 libllvm14:amd64 libllvm14:i386 libxatracker2:amd64 mesa-utils  mesa-va-drivers:amd64 mesa-vdpau-drivers:amd64 mesa-vulkan-drivers:amd64 mesa-vulkan-drivers:i386 xserver-xorg-video-amdgpu libgl1-mesa-dri:i386 vulkan-tools || let "error += 1"
+echo "${pass_user}" | sudo -S apt --fix-broken install -f -y
+echo "${pass_user}" | sudo -S apt autoremove -y
+echo "${pass_user}" | sudo -S apt autoclean -y
+echo "${pass_user}" | sudo -S apt clean -y
 fi
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
