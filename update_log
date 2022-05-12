@@ -5,7 +5,7 @@
 -godot-portable - UPDATE (3.4.4)
 -vscodium-portable - UPDATE (VSCodium-1.66.2)
 -xanmod - UPDATE
--mesa-modules - UPDATE
+-mesa-modules - UPDATE and fix for 22.*
 -refresh2025 - FIX\UPDATE
 -furmark-Linux - FIX\UPDATE
 -steam - add support Manjaro!
