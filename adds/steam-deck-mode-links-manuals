@@ -40,6 +40,15 @@ gamescope -r 30 -- %command%
 # Run the game at 1080p, but scale output to a fullscreen 3440×1440 pillarboxed ultrawide window
 gamescope -w 1920 -h 1080 -W 3440 -H 1440 -b -- %command%
 
+#gamescope -U -w 1280 -h 720 -W 1920 -H 1080 -f -- env "/home/gamer/PortWINE/PortProton/data/scripts/start.sh" "/mnt/steam-data/win_games/GodOfWar/GoW.exe"
+
+#gamescope -U -w 960 -h 540 -W 1280 -H 720 -f -- env "/home/gamer/PortWINE/PortProton/data/scripts/start.sh" "/mnt/steam-data/win_games/GodOfWar/GoW.exe"
+
+#gamescope -w 960 -h 540 -W 1920 -H 1080 -f -U -- env "/home/gamer/PortWINE/PortProton/data/scripts/start.sh" "/mnt/steam-data/win_games/GodOfWar/GoW.exe"
+
+#gamescope -w 960 -h 540 -W 1920 -H 1080 -b -- env "/home/gamer/PortWINE/PortProton/data/scripts/start.sh" "/mnt/steam-data/win_games/GodOfWar/GoW.exe"
+
+#gamescope -w 960 -h 540 -W 1920 -H 1080 -b -U -- env "/home/gamer/PortWINE/PortProton/data/scripts/start.sh" "/mnt/steam-data/win_games/GodOfWar/GoW.exe"
 
 /bin/steam-deck-mode
 /usr/share/xsessions/steam-deck-mode.desktop
