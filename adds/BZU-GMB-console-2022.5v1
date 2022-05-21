@@ -395,6 +395,15 @@ xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -
 xrandr --addmode Virtual1 1920x1080
 xrandr --output Virtual1 --mode 1920x1080
 
+# [КОМАНДЫ УСТАНОВКИ QEMU-KVM ДЛЯ UBUNTU 20.04.3+]
+sudo apt install -f qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager libvirglrenderer-dev libvirglrenderer-dev libvirglrenderer1 virgl-server
+sudo gpasswd -a $USER libvirt
+sudo systemctl status libvirtd
+#reboot
+#а тут можно почитать о настройке virt-manager + VirtIO :
+#https://losst.ru/ustanovka-kvm-ubuntu-16-04
+#https://ryan.himmelwright.net/post/virtio-3d-vms/
+
 
 #[REMOVE DEFAULT FIREFOX SNAP, AND INSTALL BACK THE CLASSIC DEB PACKAGE]
 sudo snap remove --purge firefox
