@@ -121,6 +121,13 @@ i=$(($i + 1))
 done
 echo "${pass_user}" | sudo -S systemctl enable xow && echo "${pass_user}" | sudo -S systemctl start xow
 echo "${pass_user}" | sudo -S systemctl start ananicy
+
+# Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
+if [ ! -d "/usr/share/themes/Adwaita-dark" ]
+then
+cd "/usr/share/themes"
+echo "${pass_user}" | sudo -S tar -xpJf "${script_dir}/core-utils/Adwaita-dark.tar.xz"
+fi
 fi
 #=====================================================================================
 
