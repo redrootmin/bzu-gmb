@@ -4,7 +4,7 @@ GnomeStyle
 [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ubuntu 22.04 LTS c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. ВНИМАНИЕ: Утилита на стадии тестирования, вы используете ее на свой страх и риск!
 Яцына М.А.
 gnome-gui-switcher
-Ubuntu 22.04 LTS
+Ubuntu 22.04 LTS ROSA Fresh Desktop 12.2
 #
 #
 noroot
@@ -24,7 +24,7 @@ LinuxKernel
 Версия кастомного ядра Linux XanMod с высокой отзывчивостью (для современных процессоров), оптимизированное для десктопных Linux операционных систем с учетом современных многоядерных процессоров и видеокарт, на выходе больше производительности в играх и программах активно использующих графику. ВНИМАНИЕ: Некоторые драйверы устройств могут быть не совместимы с самыми новыми версиями ядра Linux, поэтому вы можете установить оба ядра Xanmod. Опции: Low-Latency,BFQ_I/O_Scheduler,ZSTD_kernel,Clear_Linux_patchs,Wine\Proton_Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT. ВИНИМАНИЕ! На офицальном сайте этой сборки ядра не рекомендуют использовать эту версию с видеокартами Nvidia, только классический Xanmod.
 Яцына М.А.
 xanmod-kernel-latest
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 root
@@ -74,7 +74,7 @@ LinuxKernelTools
 Данный скрипт отключит патчи  по устранению уязвимостей в процессорах AMD\Intel, путем добовления в /etc/default/grub флага: mitigations=off
 Яцына М.А.
 cpu-attacks
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -84,7 +84,7 @@ LinuxKernelTools
 Linux-logs-fix - это скрипт фиксирует размер всех логов в системе до 100М, такое ограничение связанно с тем, что иногда игры через wine, вызывают незначительные ошибки или тревожные сигналы, которые попадают в логи и как итог все может привести увеличению логов до размеров, к примеру в 15Гб или более.
 Яцына М.А.
 linux-logs-fix
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -114,7 +114,7 @@ OpenDriverFix
 AMD anti-tearing - Данный скрипт задействует опцию TearFree в видеокартах АМД для Х11, которая контролирует предотвращение разрывов (anti tearing) с помощью аппаратного механизма в видеокарте. ВНИМАНИЕ: не используете данный скрипт в виртуальных машинах и с видеокартами Nvidia!
 Яцына М.А.
 amd-anti-tearing
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -214,7 +214,7 @@ OverClockTools
 CoreCtrl это утилита для разгона и андервольтинга видеокарт AMD и оптимизации работы процессоров Intel\AMD, совместима с видеокартами VEGA56\64. ВНИМАНИЕ: Эта экспериментальная версия модуля, которая кроме установки CoreCtrl, добавляет правило для запуска утилиты без запроса пароля супер пользователя и добавляет маску в grub для полного управления питанием и частотами видеокарт АМД которые используют amdgpu в драйвере mesa.
 Яцына М.А.
 corectrl-debian-testing
-Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 CoreCtrl-1.3-dev
 #
 noroot
@@ -244,7 +244,7 @@ Monitoring
 Psensor это утилита для мониторинга сенсоров комплектующих вашего ПК или ноутбука, ее можно назвать аналогом HWmonitor в среде windows, основные плюсы: построение графиков, мониторинг с фиксацией состояний датчиков: в реальном времени, минимальный, максимальный. 
 Яцына М.А.
 psensor-all
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -254,7 +254,7 @@ Monitoring
 inxi это консольная утилита для вывода информации о комплектующих ПК или ноутбука, версии ядра, драйвера видеокарты, датчиков температуры и загрузки системы, что бы получить полную информацию нужно открыть терминал: ctrl+alt+t и ввести: inxi -Fxs 
 Яцына М.А.
 inxi
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 root
@@ -264,7 +264,7 @@ Monitoring
 Glances это консольная утилита для мониторинга операционных систем на ядре Linux, вы сможете получить данные о датчика температуры, загрузке системы, запущенных процессов, состояния сети и т.д. Для запуска утилиты в терминале запустите эту команду: glances --enable-plugin sensors
 Mirthless D
 glances
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 #
 #
 root
@@ -314,7 +314,7 @@ GamingApp
 Установка нативного клиента Steam для linux
 Яцына М.А.
 steam
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -324,7 +324,7 @@ GameTools
 ProtonUp-Qt - Графический менеджер для установки и управления Proton-GE для Steam и Wine-GE для Lutris. Утилита ProtonUp создана AUNaseef, использует Python 3 и Qt 6. Данная версия в формате Appimage и должна заработать на большом кооличестве Linux систем.
 Яцына М.А.
 protonup-qt-appimage
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 ProtonUp-Qt-2.1.1-x86
 #
 noroot
@@ -344,7 +344,7 @@ GamingApp
 PortProton позволяет использовать версию WINE от Valve (Proton) без Steam и запускать windows игры которые вы например скачали с gog, программа максимально простая в использовании, на официальном сайте разработчика можно найти подробную видео инструкцию
 Яцына М.А.
 port-proton
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 PortProton-97
 #
 noroot
@@ -354,7 +354,7 @@ Benchmark
 GravityMark - это Benchmark который использует по максимуму возможности современных графических процессоров, путем рендеринга огромного количества объектов в реальном времени с использованием только GPU! Можно легко проводить стресс-тестирование или замеры производительности, есть поддержка всех современных API и Ray Tracing: Linux [Vulkan,OpenGL,OpenGL ES], Windows [Vulkan, OpenGL, DX11, DX12], MacOS [Metal]. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
 Яцына М.А.
 gravity-mark-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 GravityMark[1-53]
 #
 noroot
@@ -364,7 +364,7 @@ Benchmark
 Furmark-Linux это Linux версия популярного теста 3D-графики Furmark (волосатый бублик), данная утилита позволяет проверить работу\сделать замеры производительности графики в API OpenGL 2.x/3.x/4.x и ZINK(OpenGL to Vulkan), дополнительно в комплекте достаточно тяжелый тест: PixMark Piano. ВАЖНО: в данной версии теста эксперементально вшиты следующие утилиты в режиме Portable: YAD, Mangohud
 Яцына М.А.
 furmark-linux
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 Furmark-Linux
 #
 noroot
@@ -374,7 +374,7 @@ Benchmark
 Refresh2025 - простая утилита для тестирования работы OpenGL,Vulkan в Linux OS. В Refresh2025 встроен MahgoHud(Portable).
 Яцына М.А.
 refresh2025-benchmark
-Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.4 LTS Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 Refresh2025 1.0
 #
 noroot
@@ -394,7 +394,7 @@ StreamApp
 OBS Studio является свободным и открытым программным обеспечением, для записи видео с рабочего стола, веб-камеры и проведения онлайн-трасляций. Данная версия устанавливается из официального репозитория вместе с плагином OBS-LINUXBROWSER, являющимся заменой obs-qtwebkit. Теперь плагин основан на Chromium OEM, что добавляет больше совместимости и производительности. OBS-LINUXBROWSER в основном используют для вывода информации о "донатах" на онлайн трансляциях.
 Яцына М.А.
 obs-studio-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -404,7 +404,7 @@ AudioTools
 NoiseTorch - создает виртуальный микрофон с автоматическим шумодавом (звук вашей механической клавиатуры, компьютерных вентиляторов, поездов и т.д.). Который можно использовать в любом приложении для конференц-связи, VOIP, Discord, OBS-studio, для этого просто выберите физический микрофон в NoiseTorch, а в приложении виртуальный микрофон NoiseTorch в качестве входа и можно пользоваться, работает с PulseAudio и PipeWire. В основе NoiseTorch, лежит нейронная сеть RNNoise.
 Яцына М.А.
 noisetorch-app
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -414,7 +414,7 @@ VideoEditor
 Kdenlive - это нелинейный видеоредактор с открытым исходным кодом на основе Framework MLT и KDE. Разработчики позиционируют программу как полупрофессиональную и стремятся в ближайшем будущем придать Kdenlive черты полноценного профессионального инструмента для видеомонтажа. Есть поддержка всех популярных форматов: FFmpeg, libav, QuickTime, AVI, WMV, MPEG и др., а также поддерживаются разрешения 4:3 и 16:9 для PAL, NTSC и различные стандарты HD, включая HDV и AVCHD. В Kdenlive есть следующие функции: полностью настраиваемое меню и окна редактора, создание многодорожечных проектов, резка клипов\вставка\удаление, эффекты с ключевыми кадрами, множество эффектов и переходов, цветокоррекция, использование звукового микшера, трэкинг и редактирование в режиме прокси
 Яцына М.А.
 kdenlive-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -424,7 +424,7 @@ VideoEditor
 Natron - бесплатная профессиональная программа с открытым исходным кодом, основанная на узлах (node-based) и предназначенная для видеокомпозитинга. в Natron поддерживается большинство открытых и коммерческих плагинов и есть совместимость с OpenFX. Программа проста, функциональна и отлично подойдёт как для постобработки любительских видеороликов, так и для профессионально отснятого материала. ВНИМАНИЕ: это Portable версия программы
 Яцына М.А.
 natron-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 Natron-2.4.1
 #
 noroot
@@ -434,7 +434,7 @@ VideoCapture
 SimpleScreenRecorder - это простой но мощный инструмент для записи\захвата изображения с монитора, подходит для создания обучающих видео, записи прохождения игр и т.д. Основной плюс программы это простота процесса записи, а при правильных настройках она потребляем очень мало ресурсов ПК и может захватывать видео сразу с нескольких мониторов. Из минусов, слабый функционал настройки источников звука и микширования.
 Яцына М.А.
 simple-screen-recorder-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -444,7 +444,7 @@ VideoEditor
 LosslessCut - это мультиплатформенное программное обеспечение, которое используется для обрезки\нарезки\добавления субтитров в аудио и видео файлы без потери качества. LosslessCut работает очень быстро, потому что он делает почти прямое копирование данных, без потери качества и перекодирования. Для всей основной работы используется функционал FFmpeg. С помощью LosslessCut вы можете из длинного видео вырезать  не нужные части (все изменения добавляются как задания), удалить звук, добавить музыку, субтитры и далее перекодировать все в единый файл с поддержкой стандарта для YouTube. ВНИМАНИЕ: это Portable версия в виде Appimage
 Яцына М.А.
 lossless-cut-appimage
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 lossless-cut v3.39.0 
 #
 noroot
@@ -454,7 +454,7 @@ Blender-ppa
 Blender — профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций.
 Яцына М.А.
 blender-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -464,7 +464,7 @@ Blender-2.83.18-portable
 Blender - профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций. ВНИМАНИЕ: эта версия в формате portable
 Яцына М.А.
 blender-28318-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 blender-2.83.18-linux-x64
 #
 noroot
@@ -474,7 +474,7 @@ Blender-2.93.7-portable
 Blender - профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций. ВНИМАНИЕ: эта версия в формате portable
 Яцына М.А.
 blender-2937-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 blender-2.93.7-linux-x64
 #
 noroot
@@ -484,7 +484,7 @@ Blender-3.0.0-portable
 Blender - профессиональное свободное и открытое программное обеспечение для создания трёхмерной компьютерной графики, включающее в себя средства моделирования, скульптинга, анимации, симуляции, рендеринга, постобработки и монтажа видео со звуком, компоновки с помощью «узлов», а также создания 2D-анимаций. ВНИМАНИЕ: эта версия в формате portable
 Яцына М.А.
 blender-300-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 blender-3.0.0-linux-x64
 #
 noroot
@@ -494,7 +494,7 @@ MagicaVoxel-wine
 MagicaVoxel - это бесплатный минималистичный 3Д-редактор вокселей с поддержкой GPU и визуализацией трассировки лучей. Чаще всего, этот 3Д-редактор используют для небольших инди-игр с low poly графикой, в стиле Minecraft. Официальной версии для Linux нет, но MagicaVoxel отлично работает из под wine, поэтому в этот модуль интегрирован портативный wine от проекта Kron4ek. ВНИМАНИЕ: После установки MagicaVoxel займет на диске примерно: 1.2Гб (MagicaVoxel+wine+wine_prefix)
 Яцына М.А.
 magica-voxel-wine
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 MagicaVoxel-0.99.6.4-win64
 #
 noroot
@@ -504,7 +504,7 @@ Development
 Проект VSCodium это форк Microsoft Visual Studio Code, очень популярного редактора кода со встроенной функцией синхронизации с GitHub, но в этой версии нет  Microsoft  брендинга / телеметрии / лицензионного соглашения Microsoft, вместо него используется лицензия MIT. Готовые бинарные сборки можно скачать на странице проекта в GitHub либо собрать самому из исходников. Данный модуль устанавливает Portable версию, которая имеет скрипт мини установки в систему и хранит все данные пользователя внутри папки VSCodium. Отличное решение для начинающего программиста и профессионала.
 Яцына М.А.
 vscodium-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 VSCodium-1.66.2
 #
 noroot
@@ -524,7 +524,7 @@ Development
 Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.)
 Яцына М.А.
 godot-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -534,7 +534,7 @@ Development
 Godot Engine - открытый кроссплатформенный 2D и 3D игровой движок под лицензией MIT, который разрабатывается сообществом Godot Engine Community. Он может экспортировать игровые проекты на ПК, консоли, мобильные и веб-платформы. Godot - самодостаточная среда для разработки игр и позволяет разработчикам создавать проекты с нуля, не пользуясь более никакими инструментами, за исключением тех, которые необходимы для создания игрового контента (элементы графики, музыкальные треки и т. д.).ВНИМАНИЕ: Данная версия Portable, Godot хранит все настройки пользователя в папке "app/editor_data/", а в папке движка есть скрипт мини установки: mini_install.sh 
 Яцына М.А.
 godot-portable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid  Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 Godot 3.4.2
 #
 noroot
@@ -564,7 +564,7 @@ Graphics
 Krita - это очень популярный графический редактор с открытым исходным кодом, разрабатывается преимущественно для художников и фотографов и имеет следующие функции: поддержка графических планшетов, покадровая анимация, создание макетов, создание иллюстраций и комиксов, векторная графика, расширенный набор кистей, функция «мультикисть», большое количество режимов наложения, коррекция фотографий, возможность работы с файлами .psd: открыть\изменить\сохранить, горячие клавиши Photoshop и SAI
 Яцына М.А.
 krita-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -574,7 +574,7 @@ Graphics
 Krita - это очень популярный графический редактор с открытым исходным кодом, разрабатывается преимущественно для художников и фотографов и имеет следующие функции: поддержка графических планшетов, покадровая анимация, создание макетов, создание иллюстраций и комиксов, векторная графика, расширенный набор кистей, функция «мультикисть», большое количество режимов наложения, коррекция фотографий, возможность работы с файлами .psd: открыть\изменить\сохранить, горячие клавиши Photoshop и SAI. ВНИМАНИЕ: это посути portable версия программы в формате Appimage
 Яцына М.А.
 krita-appimage
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 krita-5.0.2-x86_64.appimage
 #
 noroot
@@ -584,7 +584,7 @@ Graphics
 Inkscape - это свободно распространяемый векторный графический редактор и является профессиональным инструментом  для работы с векторной графикой, и часто используется  для создания иллюстраций, иконок, логотипов, диаграмм, карт, а также веб-графики. Inkscape содержит продвинутые инструменты для работы, сравнимые с возможностями Adobe Illustrator, CorelDRAW и Xara Xtreme. Вы можете читать сохранять изображения во многих форматах, включая SVG, AI, EPS, PDF, PS и PNG. Inkscape по умолчанию использует открытый стандарт формата файла SVG. Inkscape включает в себя большой набор инструментов, простой и дружественный интерфейс и поддержку многих языков.
 Яцына М.А.
 inkscape-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
@@ -594,7 +594,7 @@ Graphics
 Inkscape - это свободно распространяемый векторный графический редактор и является профессиональным инструментом  для работы с векторной графикой, и часто используется  для создания иллюстраций, иконок, логотипов, диаграмм, карт, а также веб-графики. Inkscape содержит продвинутые инструменты для работы, сравнимые с возможностями Adobe Illustrator, CorelDRAW и Xara Xtreme. Вы можете читать сохранять изображения во многих форматах, включая SVG, AI, EPS, PDF, PS и PNG. Inkscape по умолчанию использует открытый стандарт формата файла SVG. Inkscape включает в себя большой набор инструментов, простой и дружественный интерфейс и поддержку многих языков. ВНИМАНИЕ - Эта версия программы в формате Appimage, но с помощью скрипта она легко интегриуется в систему и может по умолчанию запускать поддерживаемые форматы.
 Яцына М.А.
 inkscape-appimage
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux ROSA Fresh Desktop 12.2 experimental
 Inkscape-1_2b-appimage
 #
 noroot
@@ -614,7 +614,7 @@ Graphics
 Pinta - свободно распространяемый графический редактор для создания и обработки растровой графики и частично векторной. Инструменты входящие в GIMP: кривые, уровни, микшер каналов, постеризация, тон-насыщенность, баланс цветов, яркость-контраст, обесцвечивание, удаление искажений, вносимые оптикой, корректировка перспективы,кадрирование фотографий.
 Яцына М.А.
 pinta-ppa
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot

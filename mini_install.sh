@@ -80,13 +80,49 @@ dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2
 package_status=`dpkg -s $1 | grep -oh "installed"`
 echo "$1:" $package_status
 }
-
+#=====================================================================================
 #функция для проверки пакетов на установку в pacman, если нужно установлевает
 function install_package_pamac {
 pamac list -i | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S pamac install --no-confirm $1
 package_status=`pamac list -i | grep "pv" > /dev/null | echo "installing"`
 echo "$1:" $package_status
 }
+#=====================================================================================
+#функция для проверки пакетов на установку в rpm, если нужно установлевает
+function install_package_rpm {
+rpm -qa | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S dnf install -y $1
+package_status=`rpm -qa | grep "$1" > /dev/null | echo "installing"`
+echo "$1:$package_status"
+}
+
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+# установка  обновление системы
+echo "${pass_user}" | sudo -S dnf install -y rosa-repos-testing
+echo "${pass_user}" | sudo -S dnf update -y
+echo "${pass_user}" | sudo -S dnf distro-sync -y
+echo "${pass_user}" | sudo -S dnf autoremove -y
+echo "${pass_user}" | sudo -S dnf clean -y
+echo "${pass_user}" | sudo -S usermod -aG wheel $USER
+echo "${pass_user}" | sudo -S dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski gimp kmahjongg kmines klines kpat
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-rosa"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package_rpm ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+echo "${pass_user}" | sudo -S systemctl enable xow && echo "${pass_user}" | sudo -S systemctl start xow
+echo "${pass_user}" | sudo -S systemctl start ananicy
+fi
+#=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
@@ -111,8 +147,9 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+#=====================================================================================
 
-#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+#Проверяем какая система запустила bzu-gmb, если Ubuntu22\Linux Mint21 устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
 then
 cd;rm -rf bzu-gmb-temp*;rm -f bzu-gmb-temp*;wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/bzu-gmb-temp-v1.tar.xz -O bzu-gmb-temp.tar.xz;tar -xJf bzu-gmb-temp.tar.xz
@@ -153,7 +190,7 @@ echo "${pass_user}" | sudo -S apt install -f -y --reinstall firefox
 echo "${pass_user}" | sudo -S apt autoremove -y
 echo "${pass_user}" | sudo -S apt clean -y
 fi
-
+#=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
@@ -173,6 +210,7 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+#=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Manjaro" > /dev/null
@@ -195,6 +233,7 @@ install_package_pamac ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+#=====================================================================================
 
 # обнуляем статус утилиты, отключаем эксперементальный режим
 echo "" > "${script_dir}/config/status"
