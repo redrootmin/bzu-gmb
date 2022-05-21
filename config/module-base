@@ -27,7 +27,7 @@ xanmod-kernel-latest
 Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid ROSA Fresh Desktop 12.2 experimental
 #
 #
-root
+noroot
 liquorix-kernel48.png
 Liquorix-Kernel-ppa
 LinuxKernel

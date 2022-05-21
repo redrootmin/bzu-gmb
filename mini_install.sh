@@ -133,7 +133,7 @@ fi
 #=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Linux Mint 20.3" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
 then
 # установка  обновление системы
 echo "${pass_user}" | sudo -S apt update -y
