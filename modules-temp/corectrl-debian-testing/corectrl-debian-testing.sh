@@ -67,18 +67,27 @@ echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
 }
 
+function install_flags_grub_kernel_rosa {
+flag_status=`cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2"`
+if [[ "${flag_status}" == "$2" ]];then
+tput setaf 3
+echo "флаг $2 уже добавлен в grub" 
+tput sgr0 
+echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
+else
+echo "${pass_user}" | sudo -S sed -i '0,/'$1'='/ s//'$1'=''$2' /' ${dir_grub_file}/${grub_file_name}
+tput setaf 2
+echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2" > /dev/null | echo "флаг $2 добавлен в grub" | tput sgr0 | echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
+fi
+}
 #Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
 # установка  обновление системы
-echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf distro-sync -y
-echo "${pass_user}" | sudo -S dnf autoremove -y
-echo "${pass_user}" | sudo -S dnf clean -y
 echo "${pass_user}" | sudo -S dnf install -y corectrl
 
 #добовление маски в файл grub для полного управления питанием и частотами в драйвере amdgpu
-install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
+install_flags_grub_kernel_rosa ${grub_flag_base[0]} ${grub_flag_base[1]}
 echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2;echo "В вашу систему установлены следующие версия CoreCtrl:";tput sgr0;rpm -qa | grep "corectrl"
@@ -141,7 +150,7 @@ else
 tput setaf 3
 echo "файл правила запуска corectrl без sudo уже создан"
 tput sgr0
-cat "${rule_dir_install}/${rule_file_install}"
+echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
 fi
 else
 if [[ "${rule_file_create}" == "yes" ]]
@@ -160,7 +169,7 @@ echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
 tput setaf 2
 echo "файл правила запуска corectrl без sudo создан!"
 tput sgr0
-cat "${rule_dir_install}/${rule_file_install}"
+echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
 fi
 fi
 

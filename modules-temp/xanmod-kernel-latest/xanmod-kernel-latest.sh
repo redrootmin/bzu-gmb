@@ -38,7 +38,6 @@ if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/nul
 then
 # установка  обновление системы
 echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf distro-sync -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean -y
 echo "[kernel-xanmod-x86_64]

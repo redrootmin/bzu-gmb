@@ -101,7 +101,6 @@ then
 # установка  обновление системы
 echo "${pass_user}" | sudo -S dnf install -y rosa-repos-testing
 echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf distro-sync -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean -y
 echo "${pass_user}" | sudo -S usermod -aG wheel $USER
