@@ -26,7 +26,8 @@ version_proton=${module_conf[7]}
 pass_user0="$1"
 export pass_user="${pass_user0}"
 date_install=`date`
-
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #даем информацию в терминал какой модуль устанавливается
 tput setaf 2; echo "Отключение всех патчтей устранения уязвимостей в процессорах [https://unix.stackexchange.com/questions/554908/disable-spectre-and-meltdown-mitigations/565516#565516]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
@@ -47,11 +48,22 @@ echo "флаг $2 уже добавлен в grub"
 tput sgr0 
 echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
 else
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+echo "${pass_user}" | sudo -S sed -i '0,/'$1'=\x27/ s//'$1'=\x27'$2' /' ${dir_grub_file}/${grub_file_name}
+tput setaf 2
+echo "флаг $2 добавлен в grub"
+tput sgr0
+echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
+
+else
 echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2
 echo "флаг $2 добавлен в grub"
 tput sgr0
 echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
+fi
+
 fi
 }
 

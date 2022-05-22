@@ -75,7 +75,7 @@ echo "флаг $2 уже добавлен в grub"
 tput sgr0 
 echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
 else
-echo "${pass_user}" | sudo -S sed -i '0,/'$1'='/ s//'$1'=''$2' /' ${dir_grub_file}/${grub_file_name}
+echo "${pass_user}" | sudo -S sed -i '0,/'$1'=\x27/ s//'$1'=\x27'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2
 echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep -oh "$2" > /dev/null | echo "флаг $2 добавлен в grub" | tput sgr0 | echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
