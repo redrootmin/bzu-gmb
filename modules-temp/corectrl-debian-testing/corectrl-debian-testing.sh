@@ -91,7 +91,8 @@ echo "${pass_user}" | sudo -S dnf install -y corectrl
 install_flags_grub_kernel_rosa ${grub_flag_base[0]} ${grub_flag_base[1]}
 echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2;echo "В вашу систему установлены следующие версия CoreCtrl:";tput sgr0;rpm -qa | grep "corectrl"
+tput setaf 2
+corectrl_status="В вашу систему установлены следующие версия CoreCtrl:";rpm -qa | grep "corectrl" > /dev/null || corectrl_status="ОШИБКА: CoreCtrl не установлен!" | tput setaf 3; echo "$corectrl_status"; rpm -qa | grep "corectrl"
 #сброс цвета текста в терминале
 tput sgr0
 
