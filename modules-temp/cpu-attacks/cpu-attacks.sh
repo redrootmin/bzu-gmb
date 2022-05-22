@@ -54,6 +54,8 @@ echo "${pass_user}" | sudo -S sed -i '0,/'$1'=\x27/ s//'$1'=\x27'$2' /' ${dir_gr
 tput setaf 2
 status_flag="флаг $2 добавлен в grub";cat /etc/default/grub | grep -wo "mitigations=off" > /dev/null || status="ОШИБКА:флаг $2 не добавлен в grub!" | tput setaf 3;echo "$status_flag"
 tput sgr0
+#обновляем grub
+echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
 echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 
 else
@@ -61,6 +63,8 @@ echo "${pass_user}" | sudo -S sed -i '0,/'$1'="/ s//'$1'="'$2' /' ${dir_grub_fil
 tput setaf 2
 status_flag="флаг $2 добавлен в grub";cat /etc/default/grub | grep -wo "mitigations=off" > /dev/null || status="ОШИБКА:флаг $2 не добавлен в grub!" | tput setaf 3;echo "$status_flag"
 tput sgr0
+#обновляем grub
+echo "${pass_user}" | sudo -S update-grub
 echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
 
@@ -69,8 +73,7 @@ fi
 
 #добовление флага отключающего все заплатки для процессоров в grub
 install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
-#обновляем grub
-echo "${pass_user}" | sudo -S update-grub
+
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2; lscpu | grep "Vulnerability"
