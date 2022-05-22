@@ -35,17 +35,6 @@ else
 export pass_user=${pass_user0}
 fi
 
-
-#функция для проверки пакетов на установку, если нужно установлевает
-function install_package {
-dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
-#package_status=`dpkg -s $1 | grep -oh "installed"`
-#echo "$1:" $package_status
-package_status=`dpkg -s $1 | grep -oh "installed"`
-tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
-}
-
-
 #загружаем список операционных систем из файла в массив
 readarray -t linuxos_list < "${script_dir}/config/list-os"
 #создаем цикл где будет проверяться согласно данных из файла в какой системе запущен скрипт
@@ -69,7 +58,58 @@ echo "your Linux OS:["$linuxos_version"]"
 echo "${linuxos_version}" > "${script_dir}/config/os-run-script"
 tput sgr0
 
-#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+#функция для проверки пакетов dpkg на установку, если нужно установлевает
+function install_package {
+dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
+#package_status=`dpkg -s $1 | grep -oh "installed"`
+#echo "$1:" $package_status
+package_status=`dpkg -s $1 | grep -oh "installed"`
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
+}
+#=====================================================================================
+#функция для проверки пакетов на установку в pacman, если нужно установлевает
+function install_package_pamac {
+pamac list -i | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S pamac install --no-confirm $1
+package_status=`pamac list -i | grep "pv" > /dev/null | echo "installing"`
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
+}
+#=====================================================================================
+#функция для проверки пакетов на установку в rpm, если нужно установлевает
+function install_package_rpm {
+rpm -qa | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S dnf install -y $1
+package_status=`rpm -qa | grep "$1" > /dev/null | echo "installing"`
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
+}
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+#загружаем список пакетов из файла в массив
+readarray -t packages_list < "${script_dir}/config/packages-rosa"
+#задем переменной колличество пакетов в массиве
+packages_number=${#packages_list[@]}
+#обьявляем переменную числовой
+i=0
+#цикл проверки пакетов из массива
+while [ $i -lt $packages_number ]
+do
+#вызов функции для проверки пакетов из массива
+install_package_rpm ${packages_list[$i]} ${pass_user}
+i=$(($i + 1))
+done
+
+# Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
+if [ ! -d "/usr/share/themes/Adwaita-dark/gtk-3.0" ]
+then
+echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/usr/share/themes"
+echo "${pass_user}" | sudo -S tar -xpJf "${script_dir}/core-utils/Adwaita-dark.tar.xz"
+fi
+fi
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu22\Linux Mint21 устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Mint" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
 then
 #загружаем список пакетов из файла в массив
@@ -86,6 +126,7 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+#=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
@@ -104,6 +145,7 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
+#=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Debian устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
@@ -123,7 +165,7 @@ install_package ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
-
+#=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Manjaro устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "manjaro" > /dev/null
@@ -139,11 +181,11 @@ i=0
 while [ $i -lt $packages_number ]
 do
 #вызов функции для проверки пакетов из массива
-#install_package ${packages_list[$i]} ${pass_user}
+install_package_pamac ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
 fi
-
+#=====================================================================================
 
 # включение эксперементального режима для неподдерживаемой системы
 if [[ $linuxos_version == "" ]]

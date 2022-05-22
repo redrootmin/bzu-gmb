@@ -13,8 +13,11 @@ script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
+user_run_script_group=$(id -gn)
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -25,7 +28,6 @@ version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user0="$1"
 export pass_user="${pass_user0}"
-date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
 tput setaf 2; echo "Установка утилиты CoreCtrl 1.х-dev от Juan Palacios [https://gitlab.com/corectrl/corectrl]. Версия скрипта 2.0, автор: Яцына М.А."
@@ -65,6 +67,29 @@ echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 fi
 }
 
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+# установка  обновление системы
+echo "${pass_user}" | sudo -S dnf update -y
+echo "${pass_user}" | sudo -S dnf distro-sync -y
+echo "${pass_user}" | sudo -S dnf autoremove -y
+echo "${pass_user}" | sudo -S dnf clean -y
+echo "${pass_user}" | sudo -S dnf install -y corectrl
+
+#добовление маски в файл grub для полного управления питанием и частотами в драйвере amdgpu
+install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
+echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
+#формируем информацию о том что в итоге установили и показываем в терминал
+tput setaf 2;echo "В вашу систему установлены следующие версия CoreCtrl:";tput sgr0;rpm -qa | grep "corectrl"
+#сброс цвета текста в терминале
+tput sgr0
+fi
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null || echo "${linux_os}" | grep -ow "Linux Mint 20.3" > /dev/null
+then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S killall corectrl || true
 echo "${pass_user}" | sudo -S add-apt-repository -y ppa:ernstp/mesarc  || let "error += 1"
@@ -83,6 +108,20 @@ tar -xpJf "${module_name_arc}"
 echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+
+#добовление маски в файл grub для полного управления питанием и частотами в драйвере amdgpu
+install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
+echo "${pass_user}" | sudo -S update-grub
+#формируем информацию о том что в итоге установили и показываем в терминал
+mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
+tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем CoreCtrl!"  || let "error += 1"
+echo "${pass_user}" | sudo -S dpkg --list | echo "Установлена утилита:"`grep "CoreCtrl" | sed s/"ii"//g`
+#сброс цвета текста в терминале
+tput sgr0
+fi
+#=====================================================================================
+
+
 #создание файла с правилом запуска corectrl без запроса пароля
 if [[ "${polkit_version}" == "0.105" ]]
 then
@@ -104,18 +143,29 @@ echo "файл правила запуска corectrl без sudo уже соз�
 tput sgr0
 cat "${rule_dir_install}/${rule_file_install}"
 fi
+else
+if [[ "${rule_file_create}" == "yes" ]]
+then
+cd "${script_dir}/modules-temp/${name_script}"
+echo "polkit.addRule(function(action, subject) {
+    if ((action.id == "org.corectrl.helper.init" ||
+         action.id == "org.corectrl.helperkiller.init") &&
+        subject.local == true &&
+        subject.active == true &&
+        subject.isInGroup("$user_run_script_group")) {
+            return polkit.Result.YES;
+    }
+});" > ${rule_file_install}
+echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
+tput setaf 2
+echo "файл правила запуска corectrl без sudo создан!"
+tput sgr0
+cat "${rule_dir_install}/${rule_file_install}"
+fi
 fi
 
-#добовление маски в файл grub для полного управления питанием и частотами в драйвере amdgpu
-install_flags_grub_kernel ${grub_flag_base[0]} ${grub_flag_base[1]}
 
-echo "${pass_user}" | sudo -S update-grub
-#формируем информацию о том что в итоге установили и показываем в терминал
-mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем CoreCtrl!"  || let "error += 1"
-echo "${pass_user}" | sudo -S dpkg --list | echo "Установлена утилита:"`grep "CoreCtrl" | sed s/"ii"//g`
-#сброс цвета текста в терминале
-tput sgr0
+
 #тестовый запуск CoreCtrl
 corectrl & sleep 5;sudo -S killall corectrl
 

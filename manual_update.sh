@@ -85,21 +85,21 @@ tput sgr0
 function install_package {
 dpkg -s $1 | grep installed > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S apt install -f -y $1
 package_status=`dpkg -s $1 | grep -oh "installed"`
-echo "$1:" $package_status
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 }
 
 #функция для проверки пакетов на установку в pacman, если нужно установлевает
 function install_package_pamac {
 pamac list -i | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S pamac install --no-confirm $1
 package_status=`pamac list -i | grep "pv" > /dev/null | echo "installing"`
-echo "$1:" $package_status
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 }
 #=====================================================================================
 #функция для проверки пакетов на установку в rpm, если нужно установлевает
 function install_package_rpm {
 rpm -qa | grep "$1" > /dev/null || echo "no installing $1 :(" | echo "$2" | sudo -S dnf install -y $1
 package_status=`rpm -qa | grep "$1" > /dev/null | echo "installing"`
-echo "$1:$package_status"
+tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 }
 
 #Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
