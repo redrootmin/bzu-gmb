@@ -106,6 +106,7 @@ echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean -y
 echo "${pass_user}" | sudo -S usermod -aG wheel $USER
 echo "${pass_user}" | sudo -S dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski gimp kmahjongg kmines klines kpat
+echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad meson ninja git grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch supertux
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-rosa"
 #задем переменной колличество пакетов в массиве
