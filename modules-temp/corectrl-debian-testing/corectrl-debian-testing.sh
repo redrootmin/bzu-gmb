@@ -93,6 +93,30 @@ echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
 tput setaf 2;echo "В вашу систему установлены следующие версия CoreCtrl:";tput sgr0;rpm -qa | grep "corectrl"
 #сброс цвета текста в терминале
 tput sgr0
+
+#создание файла с правилом запуска corectrl без запроса пароля
+rule_dir_install="/etc/polkit-1/localauthority/50-local.d"
+rule_file_install="90-corectrl.pkla"
+
+if [[ "${rule_file_create}" == "yes" ]]
+then
+cd "${script_dir}/modules-temp/${name_script}"
+echo "[User permissions]" > ${rule_file_install}
+echo "Identity=unix-group:${user_run_script}" >> ${rule_file_install}
+echo "Action=org.corectrl.*" >> ${rule_file_install}
+echo "ResultActive=yes" >> ${rule_file_install}
+echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
+tput setaf 2
+echo "файл правила запуска corectrl без sudo создан!"
+tput sgr0
+cat "${rule_dir_install}/${rule_file_install}"
+else
+tput setaf 3
+echo "файл правила запуска corectrl без sudo уже создан"
+tput sgr0
+echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
+fi
+
 fi
 #=====================================================================================
 
@@ -127,9 +151,6 @@ tput setaf 2; echo "Установлен драйвер:${mesa_version}, тес�
 echo "${pass_user}" | sudo -S dpkg --list | echo "Установлена утилита:"`grep "CoreCtrl" | sed s/"ii"//g`
 #сброс цвета текста в терминале
 tput sgr0
-fi
-#=====================================================================================
-
 
 #создание файла с правилом запуска corectrl без запроса пароля
 if [[ "${polkit_version}" == "0.105" ]]
@@ -172,6 +193,10 @@ tput sgr0
 echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
 fi
 fi
+
+fi
+#=====================================================================================
+
 
 
 
