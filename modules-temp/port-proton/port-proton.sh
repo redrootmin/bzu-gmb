@@ -15,6 +15,8 @@ version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -30,6 +32,10 @@ tput setaf 2; echo "Установка утилиты для игр PortProton �
 tput sgr0
 
 #запуск основных команд модуля
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
+then
+#запуск основных команд модуля
 cd
 wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton_1.0" && sh PortProton_1.0 -rus
 #формируем информацию о том что в итоге установили и показываем в терминал
@@ -40,6 +46,47 @@ else
 tput setaf 2;echo "PortProton установилен успешно!"
 tput sgr0
 fi
+fi
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null;then
+#запуск основных команд модуля
+cd
+wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton_1.0" && sh PortProton_1.0 -rus
+#формируем информацию о том что в итоге установили и показываем в терминал
+if [ ! -d "/home/${user_run_script}/PortWINE/PortProton" ];then
+tput setaf 1;echo "PortProton не установился, либо поврежден!" || let "error += 1"
+tput sgr0
+else
+tput setaf 2;echo "PortProton установилен успешно!"
+tput sgr0
+fi
+fi
+#=====================================================================================
+
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null
+then
+#запуск основных команд модуля
+cd
+wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton_1.0" && sh PortProton_1.0 -rus
+#формируем информацию о том что в итоге установили и показываем в терминал
+if [ ! -d "/home/${user_run_script}/PortWINE/PortProton" ];then
+tput setaf 1;echo "PortProton не установился, либо поврежден!" || let "error += 1"
+tput sgr0
+else
+tput setaf 2;echo "PortProton установилен успешно!"
+tput sgr0
+fi
+fi
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+echo "$pass_user" | sudo -S dnf install -y portproton
+fi
+#=====================================================================================
+
+
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 

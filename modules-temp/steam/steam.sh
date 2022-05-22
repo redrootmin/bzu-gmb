@@ -35,7 +35,8 @@ tput sgr0
 
 #запуск основных команд модуля
 
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null;then
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
+then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall steam || let "error += 1"
 fi
@@ -47,26 +48,34 @@ echo "${pass_user}" | sudo -S apt install -f -y ./steam.deb  || let "error += 1"
 echo "${pass_user}" | sudo -S rm -f "steam.deb" || let "error += 1"
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall libc6:amd64 libc6:i386 libegl1:amd64 libegl1:i386 libgbm1:amd64 libgbm1:i386 libgl1-mesa-dri:amd64 libgl1-mesa-dri:i386 libgl1:amd64 libgl1:i386 steam-libs-amd64:amd64 steam-libs-i386:i386
 fi
+#=====================================================================================
 
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null;then
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "manjaro" > /dev/null
+then
 echo "$pass_user" | sudo -S pamac upgrade -a --no-confirm
 echo "$pass_user" | sudo -S pamac install --no-confirm steam steam-native steam-native-runtime
 echo "$pass_user" | sudo -S pamac install --no-confirm lib32-mesa vulkan-radeon mesa-vdpau lib32-vulkan-radeon lib32-mesa-vdpau libva-mesa-driver lib32-libva-mesa-driver curl gamemode lib32-gamemode icoutils wget zenity bubblewrap zstd cabextract bc tar vulkan-tools lib32-p11-kit lib32-libcurl-gnutls libcurl-gnutls lib32-sdl2 lib32-freetype2 lib32-gtk2 lib32-alsa-plugins lib32-libpulse lib32-openal lib32-libudev0 lib32-systemd nss-mdns lib32-nss lib32-glu lib32-dbus libcurl-compat lib32-libcurl-compat libxcrypt-compat lib32-libxcrypt lib32-gconf gconf lib32-libldap
 fi
+#=====================================================================================
 
-
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+echo "$pass_user" | sudo -S dnf reinstall -y steam
+fi
+#=====================================================================================
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-app_name="steam"
-dpkg -s ${app_name} | grep -ow "installed" > /dev/null
-if [ $? = 0 ];then
-tput setaf 2; echo "${app_name}:installed"
-tput sgr0
-tput setaf 2; echo "Установка ${app_name} завершена :)"
-tput sgr0
-else tput setaf 1;echo "${name_script}:not installing!"
-fi
-tput sgr0
+#app_name="steam"
+#dpkg -s ${app_name} | grep -ow "installed" > /dev/null
+#if [ $? = 0 ];then
+#tput setaf 2; echo "${app_name}:installed"
+#tput sgr0
+#tput setaf 2; echo "Установка ${app_name} завершена :)"
+#tput sgr0
+#else tput setaf 1;echo "${name_script}:not installing!"
+#fi
+#tput sgr0
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику

@@ -99,10 +99,9 @@ tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
 # установка  обновление системы
-echo "${pass_user}" | sudo -S dnf install -y rosa-repos-testing
 echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf autoremove -y
-echo "${pass_user}" | sudo -S dnf clean -y
+#echo "${pass_user}" | sudo -S dnf autoremove -y
+#echo "${pass_user}" | sudo -S dnf clean -y
 echo "${pass_user}" | sudo -S usermod -aG wheel $USER
 echo "${pass_user}" | sudo -S dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski gimp kmahjongg kmines klines kpat
 echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad meson ninja git grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch supertux
