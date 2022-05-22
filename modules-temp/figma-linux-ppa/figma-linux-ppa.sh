@@ -39,6 +39,25 @@ export pass_user="${pass_user0}"
 #даем информацию в терминал какой модуль устанавливается
 tput setaf 2; echo "Установка Figma лучшего инструмента для проектирования интерфейсов и прототипирования с возможностью организации совместной работы в режиме реального времени [https://github.com/Figma-Linux/figma-linux , https://launchpad.net/~chrdevs/+archive/ubuntu/figma]. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
+#https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_x86_64.rpm
+
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+cd
+wget https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_x86_64.rpm
+echo "${pass_user}" | sudo -S dnf install -y figma-linux_0.10.0_linux_x86_64.rpm
+rm -f figma-linux_0.10.0_linux_x86_64.rpm
+
+#формируем информацию о том что в итоге установили и показываем в терминал
+app="figma-linux"
+tput setaf 2
+package_status="-y install $app"
+rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет $app установлен!"
+rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет $app не получилось установить :(";tput sgr0
+fi
+#=====================================================================================
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then

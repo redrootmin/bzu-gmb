@@ -60,6 +60,20 @@ if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linu
 then
 #запуск основных команд модуля
 sudo -S apt install -f -y --reinstall psensor || let "error += 1"
+#формируем информацию о том что в итоге установили и показываем в терминал
+app_name="psensor"
+dpkg -s ${app_name} | grep -ow "installed" > /dev/null
+if [ $? = 0 ];then
+tput setaf 2; echo "${app_name}:installed"
+tput sgr0
+echo "Testing:${app_name}"
+# 5 секунд теста программы
+psensor & sleep 5;echo "${pass_user}" | sudo -S killall psensor
+tput setaf 2; echo "Установка ${app_name} завершена :)"
+tput sgr0
+else tput setaf 1;echo "${name_script}:не установлено!"
+fi
+tput sgr0
 fi
 #=====================================================================================
 
@@ -75,9 +89,6 @@ tar -xpJf "${module_name_arc}"
 echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-fi
-#=====================================================================================
-
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="psensor"
 dpkg -s ${app_name} | grep -ow "installed" > /dev/null
@@ -92,6 +103,10 @@ tput sgr0
 else tput setaf 1;echo "${name_script}:не установлено!"
 fi
 tput sgr0
+fi
+#=====================================================================================
+
+
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
