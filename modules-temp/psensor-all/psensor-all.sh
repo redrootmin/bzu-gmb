@@ -36,11 +36,32 @@ export pass_user="${pass_user0}"
 tput setaf 2; echo "Установка утилиты Psensor для мониторинга оборудования [https://wpitchoune.net/psensor/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+# установка  обновление системы
+#echo "${pass_user}" | sudo -S dnf update -y
+#echo "${pass_user}" | sudo -S dnf distro-sync -y
+#echo "${pass_user}" | sudo -S dnf autoremove -y
+#echo "${pass_user}" | sudo -S dnf clean packages
+echo "${pass_user}" | sudo -S dnf install -y psensor
+
+#формируем информацию о том что в итоге установили и показываем в терминал
+app="psensor"
+tput setaf 2
+package_status="-y install $app"
+rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет $app установлен!"
+rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет $app не получилось установить :(";tput sgr0
+fi
+#=====================================================================================
+
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then
 #запуск основных команд модуля
 sudo -S apt install -f -y --reinstall psensor || let "error += 1"
 fi
+#=====================================================================================
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null
 then
@@ -55,6 +76,7 @@ echo "${pass_user}" | sudo -S apt install -f -y ./*.deb
 cd
 echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 fi
+#=====================================================================================
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 app_name="psensor"

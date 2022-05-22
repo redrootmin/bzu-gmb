@@ -38,10 +38,10 @@ tput sgr0
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
 # установка  обновление системы
-echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf distro-sync -y
-echo "${pass_user}" | sudo -S dnf autoremove -y
-echo "${pass_user}" | sudo -S dnf clean packages
+#echo "${pass_user}" | sudo -S dnf update -y
+#echo "${pass_user}" | sudo -S dnf distro-sync -y
+#echo "${pass_user}" | sudo -S dnf autoremove -y
+#echo "${pass_user}" | sudo -S dnf clean packages
 echo "${pass_user}" | sudo -S dnf install -y steam
 
 #формируем информацию о том что в итоге установили и показываем в терминал
@@ -49,7 +49,7 @@ app="steam"
 tput setaf 2
 package_status="-y install $app"
 rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
-echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет:$app установлен!"
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет $app установлен!"
 rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет $app не получилось установить :(";tput sgr0
 
 fi

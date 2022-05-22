@@ -15,6 +15,8 @@ version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -29,6 +31,31 @@ pass_user="$1"
 tput setaf 2; echo "Установка Blender - программное обеспечение для создания трёхмерной компьютерной графики [https://www.blender.org/]. Установка Blender осуществлыется через официальный репозиторий Ubuntu. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
+#запуск основных команд модуля
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+# установка  обновление системы
+#echo "${pass_user}" | sudo -S dnf update -y
+#echo "${pass_user}" | sudo -S dnf distro-sync -y
+#echo "${pass_user}" | sudo -S dnf autoremove -y
+#echo "${pass_user}" | sudo -S dnf clean packages
+echo "${pass_user}" | sudo -S dnf install -y blender
+
+#формируем информацию о том что в итоге установили и показываем в терминал
+app="blender"
+tput setaf 2
+package_status="-y install $app"
+rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет $app установлен!"
+rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет $app не получилось установить :(";tput sgr0
+
+fi
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu/Linux Mint устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
+then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S apt install -f -y --reinstall blender || let "error += 1"
 #формируем информацию о том что в итоге установили и показываем в терминал
@@ -45,6 +72,9 @@ tput sgr0
 else tput setaf 1;echo "${name_script}:not installing!"
 fi
 tput sgr0
+fi
+#=====================================================================================
+
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику

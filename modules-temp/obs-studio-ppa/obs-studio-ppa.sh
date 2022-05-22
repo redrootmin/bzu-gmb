@@ -15,6 +15,8 @@ version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -30,18 +32,19 @@ tput setaf 2; echo "Установка открытой программы дл�
 tput sgr0
 
 #запуск основных команд модуля
-echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-echo "${pass_user}" | sudo -S add-apt-repository -y ppa:obsproject/obs-studio  || let "error += 1"
-echo "${pass_user}" | sudo -S apt update -y
-echo "${pass_user}" | sudo -S apt install -f -y --reinstall ffmpeg obs-studio || let "error += 1"
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+# установка  обновление системы
+#echo "${pass_user}" | sudo -S dnf update -y
+#echo "${pass_user}" | sudo -S dnf distro-sync -y
+#echo "${pass_user}" | sudo -S dnf autoremove -y
+#echo "${pass_user}" | sudo -S dnf clean packages
+echo "${pass_user}" | sudo -S dnf install -y obs-studio cmake libGConf2_4 wget
+
 # переходим в папку пользователя
 cd
-echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
-
 # УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
-echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
 #скачиваем архив с плагином и распаковываем его
 wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
 #создаем папку плагины в конфигурации OBS-studio
@@ -50,6 +53,46 @@ mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
 tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
 #после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
 #как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
+
+#формируем информацию о том что в итоге установили и показываем в терминал
+app="obs-studio"
+tput setaf 2
+package_status="-y install $app"
+rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет $app установлен!"
+rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет $app не получилось установить :(";tput sgr0
+
+fi
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu/Linux Mint устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
+then
+#запуск основных команд модуля
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
+echo "${pass_user}" | sudo -S add-apt-repository -y ppa:obsproject/obs-studio  || let "error += 1"
+echo "${pass_user}" | sudo -S apt update -y
+echo "${pass_user}" | sudo -S apt install -f -y --reinstall ffmpeg obs-studio || let "error += 1"
+
+# переходим в папку пользователя
+cd
+echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
+
+# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
+echo "${pass_user}" | sudo -S apt install -y cmake libgconf-2-4
+#скачиваем архив с плагином и распаковываем его
+wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
+#создаем папку плагины в конфигурации OBS-studio
+mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
+#далее распаковываем архив в папку с плагинами OBS-studio
+tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
+#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
+#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
+fi
+#=====================================================================================
+
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"

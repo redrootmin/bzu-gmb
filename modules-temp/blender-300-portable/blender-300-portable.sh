@@ -23,6 +23,8 @@ zenity="${utils_dir}/zenity"
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
 #примеры считывания массива с данными
@@ -34,7 +36,7 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Blender[3-0-0]portable - программное обеспечение для создания трёхмерной компьютерной графики [https://www.blender.org/]. Установка Blender осуществлыется в формате Portable. Версия скрипта 1.0b, автор: Яцына М.А."
+tput setaf 2; echo "Установка Blender[3-1-2]portable - программное обеспечение для создания трёхмерной компьютерной графики [https://www.blender.org/]. Установка Blender осуществлыется в формате Portable. Версия скрипта 1.0b, автор: Яцына М.А."
 tput sgr0
 
 
@@ -60,11 +62,11 @@ else
 tput setaf 2; echo "3Dредактор ${name_script} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-name_app_folder="blender[3-0-0]portable"
-name_app_arhive="blender.3-0-0.portable.tar.xz"
+name_app_folder="blender[3-1-2]portable"
+name_app_arhive="blender.3-1-2.portable.tar.xz"
 name_script_start="blender_starter.sh"
 rm -f ${name_app_arhive}
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/blender.3-0-0.portable.tar.xz
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/blender.3-1-2.portable.tar.xz
 pv "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
 cd "/home/${user_run_script}/${name_app_folder}";chmod +x mini_install.sh
