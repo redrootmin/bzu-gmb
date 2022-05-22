@@ -33,6 +33,21 @@ tput sgr0
 
 #запуск основных команд модуля
 
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+echo "$pass_user" | sudo -S dnf install -y portproton
+
+#формируем информацию о том что в итоге установили и показываем в терминал
+app="portproton"
+tput setaf 2
+package_status="-y install $app"
+rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет:$app установлен!"
+rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет $app не получилось установить :(";tput sgr0
+fi
+#=====================================================================================
+
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
 then
 #запуск основных команд модуля
@@ -79,12 +94,6 @@ fi
 fi
 #=====================================================================================
 
-#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
-then
-echo "$pass_user" | sudo -S dnf install -y portproton
-fi
-#=====================================================================================
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику

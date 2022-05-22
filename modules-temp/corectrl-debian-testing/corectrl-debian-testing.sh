@@ -85,16 +85,23 @@ fi
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
 # установка  обновление системы
-echo "${pass_user}" | sudo -S dnf install -y corectrl
+echo "${pass_user}" | sudo -S dnf update -y
+echo "${pass_user}" | sudo -S dnf distro-sync -y
+echo "${pass_user}" | sudo -S dnf autoremove -y
+echo "${pass_user}" | sudo -S dnf clean packages
+echo "${pass_user}" | sudo -S dnf reinstall -y corectrl
 
 #добовление маски в файл grub для полного управления питанием и частотами в драйвере amdgpu
 install_flags_grub_kernel_rosa ${grub_flag_base[0]} ${grub_flag_base[1]}
 echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
+
 #формируем информацию о том что в итоге установили и показываем в терминал
+app="corectrl"
 tput setaf 2
-corectrl_status="В вашу систему установлены следующие версия CoreCtrl:";rpm -qa | grep "corectrl" > /dev/null || corectrl_status="ОШИБКА: CoreCtrl не установлен!" | tput setaf 3; echo "$corectrl_status"; rpm -qa | grep "corectrl"
-#сброс цвета текста в терминале
-tput sgr0
+package_status="-y install $app"
+rpm -qa | grep "$app" > /dev/null || package_status="-y reinstall $app" | tput setaf 3
+echo "${pass_user}" | sudo -S dnf $package_status;package_info="Пакет:$app установлен!"
+rpm -qa | grep "$app" > /dev/null || tput setaf 3 | package_info="ВНИМАНИЕ: пакет:$app не получилось установить :(";tput sgr0
 
 #создание файла с правилом запуска corectrl без запроса пароля
 rule_dir_install="/etc/polkit-1/localauthority/50-local.d"
