@@ -115,7 +115,7 @@ cat "${rule_dir_install}/${rule_file_install}"
 
 rule_dir_install="/etc/polkit-1/rules.d"
 rule_file_install="90-corectrl.rules"
-cho "polkit.addRule(function(action, subject) {
+echo "polkit.addRule(function(action, subject) {
     if ((action.id == "org.corectrl.helper.init" ||
          action.id == "org.corectrl.helperkiller.init") &&
         subject.local == true &&
