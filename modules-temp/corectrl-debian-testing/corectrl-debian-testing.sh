@@ -104,7 +104,7 @@ if [[ "${rule_file_create}" == "yes" ]]
 then
 cd "${script_dir}/modules-temp/${name_script}"
 echo "[User permissions]" > ${rule_file_install}
-echo "Identity=unix-group:${user_run_script}" >> ${rule_file_install}
+echo "Identity=unix-group:$user_run_script_group" >> ${rule_file_install}
 echo "Action=org.corectrl.*" >> ${rule_file_install}
 echo "ResultActive=yes" >> ${rule_file_install}
 echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
@@ -112,6 +112,20 @@ tput setaf 2
 echo "файл правила запуска corectrl без sudo создан!"
 tput sgr0
 cat "${rule_dir_install}/${rule_file_install}"
+
+rule_dir_install="/etc/polkit-1/rules.d"
+rule_file_install="90-corectrl.rules"
+cho "polkit.addRule(function(action, subject) {
+    if ((action.id == "org.corectrl.helper.init" ||
+         action.id == "org.corectrl.helperkiller.init") &&
+        subject.local == true &&
+        subject.active == true &&
+        subject.isInGroup("$user_run_script_group")) {
+            return polkit.Result.YES;
+    }
+});" > ${rule_file_install}
+echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
+
 else
 tput setaf 3
 echo "файл правила запуска corectrl без sudo уже создан"
