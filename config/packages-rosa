@@ -16,6 +16,5 @@ grub-customizer
 libfuse2-devel
 libfuse3-devel
 libssl1.1
-libglib2.0-devel
 neofetch
 supertux
