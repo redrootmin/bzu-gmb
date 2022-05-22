@@ -45,6 +45,7 @@ rule_dir_install="/etc/polkit-1/rules.d"
 rule_file_install="90-corectrl.rules"
 fi
 echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}" > /dev/null || rule_file_create="yes"
+
 export dir_grub_file="/etc/default"
 export grub_file_name="grub"
 readarray -t grub_flag_base < "${script_dir}/modules-temp/${name_script}/grub-flag-base"
@@ -97,7 +98,7 @@ tput sgr0
 #создание файла с правилом запуска corectrl без запроса пароля
 rule_dir_install="/etc/polkit-1/localauthority/50-local.d"
 rule_file_install="90-corectrl.pkla"
-
+echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}" > /dev/null || rule_file_create="yes"
 if [[ "${rule_file_create}" == "yes" ]]
 then
 cd "${script_dir}/modules-temp/${name_script}"
