@@ -116,15 +116,15 @@ echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
 
 rule_dir_install="/etc/polkit-1/rules.d"
 rule_file_install="90-corectrl.rules"
-echo "polkit.addRule(function(action, subject) {
+echo 'polkit.addRule(function(action, subject) {
     if ((action.id == "org.corectrl.helper.init" ||
          action.id == "org.corectrl.helperkiller.init") &&
         subject.local == true &&
         subject.active == true &&
-        subject.isInGroup("$user_run_script_group")) {
+        subject.isInGroup("'$user_run_script_group'")) {
             return polkit.Result.YES;
     }
-});" > ${rule_file_install}
+});' > ${rule_file_install}
 echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
 tput setaf 2
 echo "${rule_dir_install}/${rule_file_install}"

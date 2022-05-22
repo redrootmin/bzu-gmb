@@ -100,8 +100,8 @@ if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
 # установка  обновление системы
 echo "${pass_user}" | sudo -S dnf update -y
-#echo "${pass_user}" | sudo -S dnf autoremove -y
-#echo "${pass_user}" | sudo -S dnf clean -y
+echo "${pass_user}" | sudo -S dnf distro-sync -y
+echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S usermod -aG wheel $USER
 echo "${pass_user}" | sudo -S dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski gimp kmahjongg kmines klines kpat
 echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad meson ninja git grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch supertux
@@ -120,7 +120,7 @@ i=$(($i + 1))
 done
 echo "${pass_user}" | sudo -S systemctl enable xow && echo "${pass_user}" | sudo -S systemctl start xow
 echo "${pass_user}" | sudo -S systemctl start ananicy
-
+echo "${pass_user}" | sudo -S dnf clean packages
 # Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
 if [ ! -d "/usr/share/themes/Adwaita-dark/gtk-3.0" ]
 then
