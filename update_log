@@ -1,3 +1,29 @@
+[buz-gmb 0.494]===================================
+-add minimal support ROSA Fresh Desktop 12.2
+-xanmod - UPDATE for ROSA
+-CoreCtrl - UPDATE for ROSA
+-DisableMitigations - UPDATE for ROSA
+
+IN DEVELOPMENT
+-icq-new-portable - hold
+-discord-ppa - hold
+-telegram-ppa - hold
+-scrcpy-ppa - hold
+-peek-ppa - hold
+-scribus-ppa - hold
+-firefox-ppa - hold
+-chromium-ppa - hold
+-qbittorent-ppa - hold
+-remmina-ppa - hold
+-timeshift ppa - hold
+-gparted-ppa - hold
+-grub-customizer ppa - hold
+-stacer ppa - hold
+-libstrangle-tools - hold
+-Nvidia antitearing - hold
+-GWE (overclock nvidia) - hold
+-Nvidia cuda support for blender+ - hold
+
 [buz-gmb 0.493]===================================
 -add support Ubuntu 22.04 LTS
 -gnome-gui-switcher - TESTING!
