@@ -109,9 +109,10 @@ echo "Action=org.corectrl.*" >> ${rule_file_install}
 echo "ResultActive=yes" >> ${rule_file_install}
 echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
 tput setaf 2
-echo "файл правила запуска corectrl без sudo создан!"
+echo "файлы правила запуска corectrl без sudo были созданы!"
+echo "${rule_dir_install}/${rule_file_install}"
 tput sgr0
-cat "${rule_dir_install}/${rule_file_install}"
+echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
 
 rule_dir_install="/etc/polkit-1/rules.d"
 rule_file_install="90-corectrl.rules"
@@ -125,7 +126,10 @@ echo "polkit.addRule(function(action, subject) {
     }
 });" > ${rule_file_install}
 echo "${pass_user}" | sudo -S mv "${rule_file_install}" "${rule_dir_install}"
-
+tput setaf 2
+echo "${rule_dir_install}/${rule_file_install}"
+tput sgr0
+echo "${pass_user}" | sudo -S cat "${rule_dir_install}/${rule_file_install}"
 else
 tput setaf 3
 echo "файл правила запуска corectrl без sudo уже создан"
