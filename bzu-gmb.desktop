@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=bzu-gmb 0.493
+Name=bzu-gmb 0.494
 Comment=bzu-gmb is auto-installer linux gaming tools for debian-based distributions
 Categories=Utility;System;
 Exec=bash -c /usr/share/bzu-gmb/bzu-gmb/bzu-gmb-launcher.sh

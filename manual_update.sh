@@ -250,6 +250,6 @@ chmod +x "${script_dir}/core-utils/zenity"
 
 #Уведомление пользователя, о том что нового в этой версии
 update_log=`cat "${script_dir}/update_log"`
-${YAD} --list --column=text --no-click --image-on-top --picture --size=fit --image="${script_dir}/image/bzu-gmb-wallpeper-2021-10.png" --width=640 --height=640 --center --inc=256  --text-align=center --title="Завершена установка ${version_bzu_gmb}" --separator=" " --search-column=1 --print-column=1 --wrap-width=560 "$update_log" --no-buttons
+GTK_THEME="Adwaita-dark" ${YAD} --list --column=text --no-click --image-on-top --picture --size=fit --image="${script_dir}/image/bzu-gmb-wallpeper-2021-10.png" --width=640 --height=640 --center --inc=256  --text-align=center --title="Завершена установка ${version_bzu_gmb}" --separator=" " --search-column=1 --print-column=1 --wrap-width=560 "$update_log" --no-buttons
 
 bash "${script_dir}/bzu-gmb-launcher.sh" $pass_user
