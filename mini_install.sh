@@ -138,7 +138,6 @@ wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/Adwaita
 cd "/usr/share/themes"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/Adwaita-dark.tar.xz"
 fi
-fi
 
 # Проверка что существует папка c иконки numix-icons , если нет, создаем ее
 if [ ! -d "/usr/share/icons/Numix" ]
@@ -148,7 +147,6 @@ cd "/home/$USER/bzu-gmb-temp"
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-numix-icons.tar.xz"
 cd "/usr/share/icons"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-numix-icons.tar.xz"
-fi
 fi
 
 # Проверка что существует папки c обоями redroot wallpapers , если нет, создаем ее
@@ -160,7 +158,7 @@ wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-gn
 cd "/usr/share"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-gnome-wallpapers-v1.tar.xz"
 fi
-fi
+
 ##################################################################################
 # подключение игровой репы: rosa_gaming
 echo "[rosa_gaming]
@@ -206,6 +204,7 @@ echo "${pass_user}" | sudo -S systemctl enable xow && echo "${pass_user}" | sudo
 echo "${pass_user}" | sudo -S systemctl start ananicy
 echo "${pass_user}" | sudo -S dnf clean packages
 
+fi
 #=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
