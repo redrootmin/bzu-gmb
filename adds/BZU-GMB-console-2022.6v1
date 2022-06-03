@@ -13,6 +13,18 @@ for i in dev sys proc etc/resolv.conf; do mount --bind -v /$i /chroot/$i; done
 chroot /chroot
 все можно из консоли проверить что с системой, удалить софт, изменить настройки.
 
+#[ПРОПАЛИ СТАНДАРТНЫЕ ПАПКИ ПОЛЬЗОВАТЕЛЯ]
+#Нужно проверить пути в файле: /HOME/$USER/.config/user-dirs.dirs
+#Стандартно должно быть так:
+XDG_DESKTOP_DIR="$HOME/Рабочий стол"
+XDG_DOWNLOAD_DIR="$HOME/Загрузки"
+XDG_TEMPLATES_DIR="$HOME/Шаблоны"
+XDG_PUBLICSHARE_DIR="$HOME/Общедоступные"
+XDG_DOCUMENTS_DIR="$HOME/Документы"
+XDG_MUSIC_DIR="$HOME/Музыка"
+XDG_PICTURES_DIR="$HOME/Изображения"
+XDG_VIDEOS_DIR="$HOME/Видео"
+
 #[ДЛЯ КОРРЕКТНОГО УДАЛЕНИЯ OIBAF И УСТАНОВКИ KISAK, НУЖНО ВЫПОЛНИТЬ СЛЕДУЮЩИЕ КОМАНДЫ:]
 sudo apt install ppa-purge
 sudo ppa-purge ppa:oibaf/graphics-drivers

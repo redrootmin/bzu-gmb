@@ -98,15 +98,97 @@ tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 #Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
 if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
-# установка  обновление системы
-echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf distro-sync -y
-echo "${pass_user}" | sudo -S dnf autoremove -y
+###############################################################################
+# проверка наличия системных папок bzu-gmb
+# Проверка что существует папка applications, если нет, создаем ее
+if [ ! -d "/home/${USER}/.local/share/applications" ]
+then
+mkdir -p "/home/${USER}/.local/share/applications"
+fi
+# Проверка что существует папка autostart, если нет, создаем ее
+if [ ! -d "/home/${USER}/.config/autostart" ]
+then
+mkdir -p "/home/${USER}/.config/autostart"
+fi
+# Проверка что существует папка bzu-gmb-utils, если нет, создаем ее
+if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils" ]
+then
+mkdir -p "/home/${USER}/.local/share/bzu-gmb-utils"
+ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
+fi
+# Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
+if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
+then
+mkdir -p "/home/${USER}/.local/share/bzu-gmb-apps"
+ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+fi
+# Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
+if [ ! -d "/home/${USER}/bzu-gmb-temp" ]
+then
+mkdir -p "/home/${USER}/bzu-gmb-temp"
+fi
+###############################################################################
+# установка темы/иконок/обои
+# Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
+if [ ! -d "/usr/share/themes/Adwaita-dark/gnome-shell" ]
+then
+echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/home/$USER/bzu-gmb-temp"
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/Adwaita-dark.tar.xz"
+cd "/usr/share/themes"
+echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/Adwaita-dark.tar.xz"
+fi
+fi
+
+# Проверка что существует папка c иконки numix-icons , если нет, создаем ее
+if [ ! -d "/usr/share/icons/Numix" ]
+then
+#echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/home/$USER/bzu-gmb-temp"
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-numix-icons.tar.xz"
+cd "/usr/share/icons"
+echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-numix-icons.tar.xz"
+fi
+fi
+
+# Проверка что существует папки c обоями redroot wallpapers , если нет, создаем ее
+if [ ! -d "/usr/share/backgrounds" ]
+then
+#echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/home/$USER/bzu-gmb-temp"
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-gnome-wallpapers-v1.tar.xz"
+cd "/usr/share"
+echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-gnome-wallpapers-v1.tar.xz"
+fi
+fi
+##################################################################################
+# подключение игровой репы: rosa_gaming
+echo "[rosa_gaming]
+name=rosa_gaming
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[rosa_gaming-i686]
+name=mesa-git-i686
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/rosa_gaming.repo
+echo "${pass_user}" | sudo -S mv -f /tmp/rosa_gaming.repo /etc/yum.repos.d
+##################################################################################
+# решение проблем с правами пользователей
+#echo "${pass_user}" | sudo -S sed -i '0,/'%wheel'/ s//'#%wheel' /' /etc/sudoers
 echo "${pass_user}" | sudo -S usermod -aG wheel $USER
+##################################################################################
+# установка  обновление системы
+echo "${pass_user}" | sudo -S dnf --refresh distrosync -y
+echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski kmahjongg kmines klines kpat
 echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad meson ninja git grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64  libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686 supertux
-echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad meson ninja git grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64  libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686 supertux
-echo "${pass_user}" | sudo -S dnf distro-sync -y
+echo "${pass_user}" | sudo -S dnf autoremove -y
+##################################################################################
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-rosa"
 #задем переменной колличество пакетов в массиве
@@ -123,14 +205,7 @@ done
 echo "${pass_user}" | sudo -S systemctl enable xow && echo "${pass_user}" | sudo -S systemctl start xow
 echo "${pass_user}" | sudo -S systemctl start ananicy
 echo "${pass_user}" | sudo -S dnf clean packages
-# Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
-if [ ! -d "/usr/share/themes/Adwaita-dark/gtk-3.0" ]
-then
-echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
-cd "/usr/share/themes"
-echo "${pass_user}" | sudo -S tar -xpJf "${script_dir}/core-utils/Adwaita-dark.tar.xz"
-fi
-fi
+
 #=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
