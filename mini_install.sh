@@ -101,64 +101,64 @@ then
 ###############################################################################
 # проверка наличия системных папок bzu-gmb
 # Проверка что существует папка applications, если нет, создаем ее
-if [ ! -d "/home/${USER}/.local/share/applications" ]
-then
+ if [ ! -d "/home/${USER}/.local/share/applications" ]
+ then
 mkdir -p "/home/${USER}/.local/share/applications"
-fi
+ fi
 # Проверка что существует папка autostart, если нет, создаем ее
-if [ ! -d "/home/${USER}/.config/autostart" ]
-then
+ if [ ! -d "/home/${USER}/.config/autostart" ]
+ then
 mkdir -p "/home/${USER}/.config/autostart"
-fi
+ fi
 # Проверка что существует папка bzu-gmb-utils, если нет, создаем ее
-if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils" ]
-then
+ if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils" ]
+ then
 mkdir -p "/home/${USER}/.local/share/bzu-gmb-utils"
 ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
-fi
+ fi
 # Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
-if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
-then
+ if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
+ then
 mkdir -p "/home/${USER}/.local/share/bzu-gmb-apps"
 ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
-fi
+ fi
 # Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
-if [ ! -d "/home/${USER}/bzu-gmb-temp" ]
-then
+ if [ ! -d "/home/${USER}/bzu-gmb-temp" ]
+ then
 mkdir -p "/home/${USER}/bzu-gmb-temp"
-fi
+ fi
 ###############################################################################
 # установка темы/иконок/обои для GNOME
-if [ -e /usr/bin/gnome-shell ];then
+ if [ -e /usr/bin/gnome-shell ];then
 # Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
-if [ ! -d "/usr/share/themes/Adwaita-dark/gnome-shell" ]
-then
+  if [ ! -d "/usr/share/themes/Adwaita-dark/gnome-shell" ]
+  then
 echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
 cd "/home/$USER/bzu-gmb-temp"
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/Adwaita-dark.tar.xz"
 cd "/usr/share/themes"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/Adwaita-dark.tar.xz"
-fi
+  fi
 
 # Проверка что существует папка c иконки numix-icons , если нет, создаем ее
-if [ ! -d "/usr/share/icons/Numix" ]
-then
+  if [ ! -d "/usr/share/icons/Numix" ]
+  then
 #echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
 cd "/home/$USER/bzu-gmb-temp"
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-numix-icons.tar.xz"
 cd "/usr/share/icons"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-numix-icons.tar.xz"
-fi
+  fi
 
 # Проверка что существует папки c обоями redroot wallpapers , если нет, создаем ее
-if [ ! -d "/usr/share/backgrounds" ]
-then
+  if [ ! -d "/usr/share/backgrounds" ]
+  then
 #echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
 cd "/home/$USER/bzu-gmb-temp"
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-gnome-wallpapers-v1.tar.xz"
 cd "/usr/share"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-gnome-wallpapers-v1.tar.xz"
-fi
+  fi
 
 fi
 
@@ -186,9 +186,9 @@ echo "${pass_user}" | sudo -S usermod -aG wheel $USER
 # установка  обновление системы
 echo "${pass_user}" | sudo -S dnf --refresh distrosync -y
 echo "${pass_user}" | sudo -S dnf update -y
-if [ -e /usr/bin/gnome-shell ];then
+ if [ -e /usr/bin/gnome-shell ];then
 echo "${pass_user}" | sudo -S dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski kmahjongg kmines klines kpat
-fi
+ fi
 echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad meson ninja git grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64  libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686 supertux
 echo "${pass_user}" | sudo -S dnf autoremove -y
 ##################################################################################

@@ -98,13 +98,33 @@ Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 2
 #
 #
 noroot
+mesa-devel-fidel48.png
+Mesa-Devel-Fidel
+OpenDriver
+Тестовая версия открытого драйвера Mesa (devel) для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,ZINK,Gallium HUD,Vulkan Overlay,Vulkan RT (+GCN). Данну версию собирает Автор проекта PortProton (castro_fidel), в рамках иництативы ROSA GAMING. ВНИМАНИЕ: Данная версия больше предназначина для новых GPU AMD(RDNA+)/INTEL(ARCH+) и тестирования новых фукнций драйвера (Vulkan RT GCN,ZINK,VENUS). Установка этой версии драйвера Mesa, удаляет все другие. При ошибках и багах просто установите версию Mesa Git Fidel 
+Яцына М.А.
+mesa-devel-fidel
+ROSA Fresh Desktop 12.2 experimental
+#
+#
+noroot
 mesa-kisak48.png
 Mesa from Kisak
 OpenDriver
-Стабильный открытый драйвер для Видеокарт AMD\INTEL, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf
+Стабильный открытый драйвер для Видеокарт AMD\INTEL, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Gallium HUD,Vulkan Overlay. ВНИМАНИЕ: не выбирается вместе с Mesa from Oibaf
 Яцына М.А.
 mesa-kisak
 Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid experimental
+#
+#
+noroot
+mesa-git-fidel48.png
+Mesa-Git-Fidel
+OpenDriver
+Стабильная версия открытого драйвера Mesa (Git) для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Gallium HUD,Vulkan Overlay,Vulkan RT. данну версию собирает Автор проекта PortProton (castro_fidel), в рамках иництативы ROSA GAMING. ВНИМАНИЕ: Данная версия больше предназначина для старых GPU AMD/INTEL/Nvidia и стабильной работы в профессиональном ПО. Установка этой версии драйвера Mesa, удаляет все другие. При ошибках и багах попробуйте установить версию Mesa Devel Fidel 
+Яцына М.А.
+mesa-git-fidel
+ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
