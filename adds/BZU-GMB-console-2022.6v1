@@ -689,11 +689,14 @@ xrandr --output HDMI-A-0 --scale 2x2
 ВАЖНО: если у вас программа была запущена до смены разрешения экрана то она будет работать скорее всего не корректно, на gnome все ок с такой фичей, что у остальных не знаю...
 
 
+Как ограничить число ядер в Linux?
+Иногда для тестов очень хочется отключить все ядра, кроме одного, ибо очень сильно мешает ряду тестов :)
+
+Чтобы оставить в системе 1 ядро / процессор на Linux необходимо в /etc/grub.conf (/boot/grub/menu.lst) добавить "maxcpus=1" к списку опций ядра и перезагрузиться.
 
 
 
-
-GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4 libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
 
 Разберем подробнее за что отвечает каждый параметр:
 

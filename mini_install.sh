@@ -9,6 +9,9 @@ else
 tput setaf 2; echo "все хорошо этот скрипт не запущен из под root!"
 fi
 
+
+
+
 #запрос пароля root для установки ПО необходимого для bzu-gmb
 read -sp 'Введите Пароль root:' pass_user
 echo " "
