@@ -1,0 +1,6 @@
+LAST DRIVER FOR GCN1 (HD7970)
+https://github.com/GPUOpen-Drivers/AMDVLK/releases/tag/v-2021.Q2.5
+
+FOR GRUB
+# for HD7970 
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff modprobe.blacklist=radeon radeon.si_support=0 radeon.cik_support=0 amdgpu.si_support=1 amdgpu.cik_support=1 radeon.audio=1 mitigations=off"
