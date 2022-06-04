@@ -8,7 +8,8 @@ tput setaf 1; echo "Этот скрипт не нужно запускать и�
 else
 tput setaf 2; echo "все хорошо этот скрипт не запущен из под root!"
 fi
-
+#собираем данные о том в какой папке находиться bzu-gmb
+script_dir=$(cd $(dirname "$0") && pwd);
 
 
 
@@ -26,8 +27,7 @@ sleep 5
 exit 0
 fi
 
-#собираем данные о том в какой папке находиться bzu-gmb
-script_dir=$(cd $(dirname "$0") && pwd);
+#системные переменные bzu-gmb
 version_bzu_gmb=`cat "${script_dir}/config/name_version"`
 app_dir="${script_dir}/modules-temp"
 name_desktop_file="bzu-gmb.desktop"
