@@ -93,7 +93,7 @@ echo "${pass_user}" | sudo -S dnf reinstall -y corectrl
 
 #добовление маски в файл grub для полного управления питанием и частотами в драйвере amdgpu
 install_flags_grub_kernel_rosa ${grub_flag_base[0]} ${grub_flag_base[1]}
-echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
+echo "${pass_user}" | sudo -S grub2-mkconfig -o /boot/grub2/grub.cfg
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 app="corectrl"

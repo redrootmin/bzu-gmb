@@ -55,7 +55,7 @@ tput setaf 2
 status_flag="флаг $2 добавлен в grub";cat /etc/default/grub | grep -wo "mitigations=off" > /dev/null || status="ОШИБКА:флаг $2 не добавлен в grub!" | tput setaf 3;echo "$status_flag"
 tput sgr0
 #обновляем grub
-echo "${pass_user}" | sudo -S grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
+echo "${pass_user}" | sudo -S grub2-mkconfig -o /boot/grub2/grub.cfg
 echo "${pass_user}" | sudo -S cat ${dir_grub_file}/${grub_file_name} | grep "$1"
 
 else
