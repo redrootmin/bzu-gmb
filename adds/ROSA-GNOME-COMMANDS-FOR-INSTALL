@@ -1,0 +1,60 @@
+#Обновление системы после установки:
+sudo dnf update
+=============================================================================================
+#решение проблемы с массовыми файлами только на чтение от других линукс систем
+#sudo nano /etc/sudoers 
+#%wheel ALL=(ALL) ALL
+sudo usermod -aG wheel $USER
+======================================================================================
+#Добавить права для всех, на диски у которых ограниченный доступ:
+sudo chmod -R ugo+rwx /path/to/disk
+#sample: sudo chmod -R ugo+rwx /media/gamer/usb-data64
+======================================================================================
+#Удаляем всё лишнее:
+sudo dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski gimp kmahjongg kmines klines kpat
+======================================================================================
+sudo dnf install portproton steam ananicy neofetch krita krita-plugin-gmic
+=============================================================================================
+Включаем поддержку xbox usb dongle:
+sudo dnf install xow libusb-compat0.1_4
+sudo systemctl enable xow && sudo systemctl start xow
+=============================================================================================
+Установка XanMod ядра - (https://forum.rosalinux.ru/viewtopic.php?f=58&t=10295):
+
+echo "[kernel-xanmod-x86_64]
+name=kernel with XanMod patch
+baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/repository/rosa2021.1/x86_64/kernel_xanmod/release/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+priority=0" > /tmp/kernel-xanmod-x86_64.repo
+sudo mv /tmp/kernel-xanmod-x86_64.repo /etc/yum.repos.d
+sudo dnf update && sudo dnf install task-kernel-xanmod
+=============================================================================================
+Обновление MESA fidel (mesa-git-22.x):
+
+echo "[mesa-git]
+name=mesa-git
+baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa-git-i686]
+name=mesa-git-i686
+baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-git.repo
+sudo mv /tmp/mesa-git.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+sudo dnf reinstall '*xorg*' 'mesa*' 'libx*' 'libX*' 'fontconfig*'
+sudo dnf install -y vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64  libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686
+=============================================================================================
+#AMD TEARFREE XORG
+echo 'Section "Device"
+Identifier "AMDgpu"
+Option  "DRI" "3"
+Option  "TearFree" "true"
+EndSection' > /tmp/10-amdgpu.conf
+sudo mv /tmp/10-amdgpu.conf /etc/X11/xorg.conf.d/
+=============================================================================================

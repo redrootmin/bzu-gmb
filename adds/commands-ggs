@@ -1,0 +1,62 @@
+sudo -S killall -3 gnome-shell
+gnome-extensions list
+gnome-extensions list --enabled
+gnome-extensions list --disabled
+gnome-extensions list --enabled > gnome-extensions-list-enable
+gnome-extensions list > gnome-extensions-list
+gnome-extensions enable [uuid]
+gnome-extensions disable [uuid]
+dconf dump /org/gnome/shell/extensions/ > extensions.conf
+dconf dump / > dconf_full.conf
+dconf reset -f /org/gnome/shell/extensions/
+dconf load /org/gnome/shell/extensions/ < extensions.conf
+#gsettings set org.gnome.shell disable-extension-version-validation true
+#gsettings set org.gnome.shell disable-extension-version-validation false
+#readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
+#примеры считывания массива с данными
+#version_kernel=${module_conf[*]} - Все записи в массиве
+#version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
+#version_kernel=${module_conf[7]} - Определенная запись в массиве
+#for i in *.mp4; do ffmpeg -i "$i" -vf deshake "stabilized-${i}.mp4"; done
+readarray -t ge_list < "gnome-extensions-list-all";for (( i=0; i <= (${#ge_list[*]}-1); i=i+1 ));do gnome-extensions disable "${ge_list[$i]}";done
+
+readarray -t ge_list < "gnome-extensions-list-enable";for (( i=0; i <= (${#ge_list[*]}-1); i=i+1 ));do gnome-extensions enable "${ge_list[$i]}";done
+
+readarray -t ge_list < "gnome-extensions-list-ubuntu2004-default";for (( i=0; i <= (${#ge_list[*]}-1); i=i+1 ));do gnome-extensions enable "${ge_list[$i]}";done
+
+
+gsettings set org.gnome.desktop.background picture-uri-dark file:////usr/share/backgrounds/42.jpg
+gsettings set org.gnome.desktop.background picture-uri file:////usr/share/backgrounds/42.jpg
+
+gsettings get org.gnome.desktop.interface color-scheme
+gsettings get org.gnome.desktop.interface gtk-theme
+gsettings get org.gnome.desktop.wm.preferences theme
+
+dconf read /org/gnome/shell/favorite-apps
+dconf write /org/gnome/shell/favorite-apps "['bzu-gmb.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'org.corectrl.corectrl.desktop', 'psensor.desktop', 'pavucontrol.desktop', 'org.gnome.Terminal.desktop', 'gnome-system-monitor.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Screenshot.desktop', 'steam.desktop', 'steam-deck-mode-desktop.desktop']"
+
+gsettings set org.gnome.mutter attach-modal-dialogs false
+
+#!/bin/bash
+#creator by RedRoot(Yacyna Mehail) for GAMER STATION [on linux] and Gaming Community OS Linux
+# GPL-3.0 License 
+
+#Определение расположениея папки bzu-gmb и версию
+#main_dir=`echo ${app_dir} | sed 's/\/app\>//g'`
+script_dir0=$(dirname $(readlink -f "$0"))
+utils_dir0="${script_dir0}/core-utils"
+version0=`cat "${script_dir0}/config/name_version"`
+export script_dir=${script_dir0}
+export utils_dir=${utils_dir0}
+export version=${version0}
+
+#Определение переменныех утилит и скриптов
+YAD0="${utils_dir}/yad"
+zenity0="${utils_dir}/zenity"
+export YAD=${YAD0}
+export zenity=${zenity0}
+
+
+GTK_THEME="Adwaita-dark" ${YAD} --title="Back to Ubuntu Vanilla" --image-on-top --picture --size=fit --filename="${script_dir}/icons/debian-logo-icon327.png" --width=327 --height=327 --center --inc=256  --text-align=center --text="ТРЕБУЕТСЯ ПЕРЕАГРУЗКА СИСТЕМЫ!" --timeout=5 --timeout-indicator=bottom 
+
+

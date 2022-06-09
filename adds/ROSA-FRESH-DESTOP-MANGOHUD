@@ -1,0 +1,7 @@
+##MANGOHUD BUILD FOR ROSA FRESH DESKTOP 12.2
+sudo dnf install git meson ninja gcc gcc-c++ cmake.i686 cmake glibc-devel dbus-devel glslang vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64 libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686
+git clone --recurse-submodules https://github.com/flightlessmango/MangoHud.git
+cd MangoHud
+meson build -Dwith_xnvctrl=disabled
+ninja -C build install
+

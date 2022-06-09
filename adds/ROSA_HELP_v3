@@ -1,0 +1,126 @@
+Удаляем всё лишнее:
+sudo dnf remove gimp kmahjongg kmines klines kpat (игры и GIMP)
+=============================================================================================
+Подключение репозитория rosa_gaming
+
+echo "[rosa_gaming]
+name=rosa_gaming
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[rosa_gaming-i686]
+name=mesa-git-i686
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/rosa_gaming.repo
+sudo mv /tmp/rosa_gaming.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+=============================================================================================
+sudo dnf install portproton steam ananicy neofetch krita termhelper discord
+=============================================================================================
+Устанавливаем и запускаем pipewire
+
+sudo dnf install pipewire
+systemctl start --user pipewire-pulse.service
+=============================================================================================
+Включаем поддержку xbox usb dongle:
+sudo dnf install xow libusb-compat0.1_4
+sudo systemctl enable xow && sudo systemctl start xow
+=============================================================================================
+Внешний вид:
+sudo dnf install kvantum
+
+настроить файловый менеджер (включить миниатюры для exe файлов)
+отключить индексацию поиска
+=============================================================================================
+Установка XanMod ядра - (https://forum.rosalinux.ru/viewtopic.php?f=58&t=10295):
+
+echo "[kernel-xanmod-x86_64]
+name=kernel with XanMod patch
+baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/repository/rosa2021.1/x86_64/kernel_xanmod/release/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+priority=0" > /tmp/kernel-xanmod-x86_64.repo
+sudo mv /tmp/kernel-xanmod-x86_64.repo /etc/yum.repos.d
+sudo dnf update && sudo dnf install task-kernel-xanmod
+=============================================================================================
+Для включения тестинга: (не использую в REOS)
+dnf install rosa-repos-testing
+=============================================================================================
+Обновление KDE - (https://forum.rosalinux.ru/viewtopic.php?p=108121#p108121):
+
+echo "[kde5]
+name=kde5
+baseurl=http://abf-downloads.rosalinux.ru/kde5_backports_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999" > /tmp/kde5_backports.repo
+sudo mv /tmp/kde5_backports.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+=============================================================================================
+Обновление MESA-GIT (FIDEL)
+
+echo "[mesa-git]
+name=mesa-git
+baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa-git-i686]
+name=mesa-git-i686
+baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-git.repo
+sudo mv /tmp/mesa-git.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+=============================================================================================
+Обновление MESA-DEVEL (FIDEL)
+
+echo "[mesa_devel_x86-64]
+name=mesa_devel_x86-64
+baseurl=http://abf-downloads.rosalinux.ru/mesa_devel_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa_devel_i686]
+name=mesa_devel_i686
+baseurl=http://abf-downloads.rosalinux.ru/mesa_devel_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-git.repo
+sudo mv /tmp/mesa-git.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+=============================================================================================
+#решение проблемы с массовыми файлами только на чтение от других линукс систем
+
+#sudo nano /etc/sudoers
+#%wheel ALL=(ALL) ALL
+sudo usermod -aG wheel $USER
+======================================================================================
+#Добавить права для всех, на диски у которых ограниченный доступ:
+
+sudo chmod -R ugo+rwx /path/to/disk
+#sample: sudo chmod -R ugo+rwx /media/gamer/usb-data64
+#%wheel ALL=(ALL) ALL
+sudo usermod -aG wheel $USER
+======================================================================================
+#AMD TEARFREE XORG
+
+echo "Section "Device"
+Identifier "AMDgpu"
+Option  "DRI" "3"
+Option  "TearFree" "true"
+EndSection" > /tmp/10-amdgpu.conf
+sudo mv /tmp/10-amdgpu.conf /etc/X11/xorg.conf.d/
+======================================================================================
+Если возникают проблемы с репозиториями, то можно переключиться на Яндекс зеркало:
+
+sudo sed -i -e 's,mirror.rosalab.ru,mirror.yandex.ru,g' /etc/yum.repos.d/*
+======================================================================================
+Настройки для ABF.IO:
+
+sudo dnf in abf spectool git
+======================================================================================
