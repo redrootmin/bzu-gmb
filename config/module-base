@@ -159,13 +159,13 @@ HODL
 #
 root
 mangohud48.png
-MangoHud-v0.6.7-1
+MangoHud-git
 GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.
 mangohud
 ROSA Fresh Desktop 12.2
-#
+MangoHud-v0.6.7-1
 #
 noroot
 mangohud48.png

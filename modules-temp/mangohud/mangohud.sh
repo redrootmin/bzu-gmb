@@ -9,13 +9,16 @@ fi
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
 name_script=`echo ${name_script0} | sed "s|.sh||g"`
-#echo ${name_script}
 script_dir0=$(cd $(dirname "$0") && pwd); name_cut="/modules-temp/${name_script}"
-#echo ${name_cut}
-#echo ${script_dir0}
 script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
+
+#примеры считывания массива с данными
+#version_kernel=${module_conf[*]} - Все записи в массиве
+#version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
+#version_kernel=${module_conf[7]} - Определенная запись в массиве
+version_mangohud=${module_conf[7]}
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
@@ -26,7 +29,7 @@ pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка открытой утилиты MangoHud-v0.6.7-1 от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.2, автор: Яцына М.А."
+tput setaf 2; echo "Установка открытой утилиты $version_mangohud от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.2, автор: Яцына М.А."
 tput sgr0
 
 Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
