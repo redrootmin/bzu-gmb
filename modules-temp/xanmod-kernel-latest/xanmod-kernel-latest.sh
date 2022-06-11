@@ -58,7 +58,7 @@ fi
 #=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Linux Mint 20.2" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 21.10" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Linux Mint 20.3" > /dev/null
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 21.10" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
 then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S echo 'deb http://deb.xanmod.org releases main' > /etc/apt/sources.list.d/xanmod-kernel.list && wget -qO - https://dl.xanmod.org/gpg.key | echo "${pass_user}" | sudo -S apt-key add - || let "error += 1"

@@ -15,11 +15,45 @@ version="${version0}"
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
+linuxos_run_bzu_gmb0=`cat "${script_dir}/config/os-run-script"`
+export linuxos_run_bzu_gmb="${linuxos_run_bzu_gmb0}"
+#получение пароля root пользователя
+pass_user0="$1"
+export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка открытой утилиты MangoHud 0.6.1 от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.1, автор: Яцына М.А."
+tput setaf 2; echo "Установка открытой утилиты MangoHud-v0.6.7-1 от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.2, автор: Яцына М.А."
 tput sgr0
 
+Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+then
+# Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
+ if [ ! -d "/home/${USER}/bzu-gmb-temp" ]
+ then
+mkdir -p "/home/${USER}/bzu-gmb-temp"
+ fi
+cd "/home/${USER}/bzu-gmb-temp/"
+echo "${pass_user}" | sudo -S dnf install -y inxi xow libusb-compat0.1_4 paprefs pavucontrol ananicy p7zip python3 zenity yad grub-customizer libfuse2-devel libfuse3-devel libssl1.1 neofetch git meson ninja gcc gcc-c++ cmake.i686 cmake glibc-devel dbus-devel glslang vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64 libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686
+git clone --recurse-submodules https://github.com/flightlessmango/MangoHud.git
+cd MangoHud
+meson build -Dwith_xnvctrl=disabled
+echo "${pass_user}" | sudo -S ninja -C build install
+mangohud_install="true"
+mangohud vkcube || $mangohud_install="false"& mangohud glxgears || $mangohud_install="false"& sleep 5;killall vkcube || true ;killall glxgears || true
+
+#формируем информацию о том что в итоге установили и показываем в терминал
+tput setaf 2
+echo "$mangohud_install" | grep "true" > /dev/null | echo "Mangohud установлен успешно!"
+echo "$mangohud_install" | grep "true" > /dev/null || tput setaf 1 | echo "Mangohud не установлен :("
+#сброс цвета текста в терминале
+tput sgr0
+fi
+#=====================================================================================
+
+#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 21.10" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
+then
 #запуск основных команд модуля
 sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
 sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
@@ -38,6 +72,15 @@ tput setaf 2; echo "Установлен драйвер:${mesa_version}, тес�
 tput sgr0
 # 5 секунд теста mangohud
 mangohud glxgears | sleep 5 | exit 0
+fi
+#=====================================================================================
+
+
+
+
+
+
+
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"

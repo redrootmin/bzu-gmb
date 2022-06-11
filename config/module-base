@@ -4,7 +4,17 @@ GnomeStyle
 [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ubuntu 22.04 LTS c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. ВНИМАНИЕ: Утилита на стадии тестирования, вы используете ее на свой страх и риск!
 Яцына М.А.
 gnome-gui-switcher
-Ubuntu 22.04 LTS ROSA Fresh Desktop 12.2
+Ubuntu 22.04 LTS
+#
+#
+noroot
+gnome-ext-pack48.png
+gnome-gui-switcher
+GnomeStyle
+[GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ROSA Fresh Desktop c рабочим столом gnome41+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. ВНИМАНИЕ: Утилита на стадии тестирования, вы используете ее на свой страх и риск!
+Яцына М.А.
+gnome-gui-switcher
+HODL
 #
 #
 noroot
@@ -149,15 +159,15 @@ HODL
 #
 root
 mangohud48.png
-MangoHud-v0.6.1
+MangoHud-v0.6.7-1
 GameTools
 MangoHud это открытая утилита для мониторинга в реальном времени, состояния железа и показателей производительности ПК под управлением ОС Linux, оснавана на Vulkan Overlay, но имеет куда больший функционал и совместима с видеокартами Intel\AMD и Nvidia(Vulkan Only), процессорами Intel\AMD.
 Яцына М.А.
 mangohud
-HODL
+ROSA Fresh Desktop 12.2
 #
 #
-root
+noroot
 mangohud48.png
 mangohud-ppa
 GameTools
