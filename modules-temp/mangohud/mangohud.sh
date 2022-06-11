@@ -48,6 +48,12 @@ cd MangoHud
 meson build -Dwith_xnvctrl=disabled
 echo "${pass_user}" | sudo -S ninja -C build install
 
+# Проверка что существует папка MangoHud, если нет, создаем ее
+ if [ ! -d "/home/${USER}/.config/MangoHud" ]
+ then
+mkdir -p "/home/${USER}/.config/MangoHud"
+ fi
+cp -f "${script_dir}/adds/MangoHud.conf" "/home/${USER}/.config/MangoHud"
 #формируем информацию о том что в итоге установили и показываем в терминал
 mangohud_install="no"
     if [ -e /bin/mangohud ];then
