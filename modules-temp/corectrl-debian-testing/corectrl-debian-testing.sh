@@ -148,7 +148,7 @@ fi
 #=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null || echo "${linux_os}" | grep -ow "Linux Mint 20.2" > /dev/null || echo "${linux_os}" | grep -ow "Linux Mint 20.3" > /dev/null
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "Debian GNU/Linux bookworm/sid" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Linux Mint 20.2" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Linux Mint 20.3" > /dev/null
 then
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S killall corectrl || true
