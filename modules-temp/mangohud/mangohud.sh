@@ -43,15 +43,21 @@ git clone --recurse-submodules https://github.com/flightlessmango/MangoHud.git
 cd MangoHud
 meson build -Dwith_xnvctrl=disabled
 echo "${pass_user}" | sudo -S ninja -C build install
-mangohud_install="true"
-mangohud vkcube || $mangohud_install="false"& mangohud glxgears || $mangohud_install="false"& sleep 5;killall vkcube || true ;killall glxgears || true
+mangohud_install="yes"
+mangohud vkcube& mangohud glxgears || $mangohud_install="no"& sleep 5;killall vkcube || true ;killall glxgears || true
 
 #формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2
-echo "$mangohud_install" | grep "true" > /dev/null | echo "Mangohud установлен успешно!"
-echo "$mangohud_install" | grep "true" > /dev/null || tput setaf 1 | echo "Mangohud не установлен :("
-#сброс цвета текста в терминале
-tput sgr0
+mangohud_install="no"
+    if [ -e /bin/mangohud ];then
+     mangohud vkcube& mangohud glxgears& sleep 5;killall vkcube;killall glxgears
+     mangohud_install="yes"
+    fi
+        if echo "$mangohud_install" | grep "yes" > /dev/null;then
+         tput setaf 2;echo "Mangohud установлен успешно!";tput sgr0
+        else
+         tput setaf 1;echo "Mangohud не установлен :(";tput sgr0
+        fi
+
 fi
 #=====================================================================================
 
