@@ -144,7 +144,7 @@ fi
 #=====================================================================================
 
 #Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Linux Mint 20.3" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
+if echo "${linux_os}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linux_os}" | grep -ow "Linux Mint 20" > /dev/null || echo "${linux_os}" | grep -ow "Ubuntu 21.10" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-ubuntu-linux_mint"
