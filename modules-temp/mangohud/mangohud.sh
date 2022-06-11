@@ -32,7 +32,7 @@ export pass_user="${pass_user0}"
 tput setaf 2; echo "Установка открытой утилиты $version_mangohud от flightlessmango [https://github.com/flightlessmango/MangoHud/releases]. Версия скрипта 1.2, автор: Яцына М.А."
 tput sgr0
 
-Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
 then
 # Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
@@ -56,7 +56,7 @@ mkdir -p "/home/${USER}/.config/MangoHud"
 cp -f "${script_dir}/adds/MangoHud.conf" "/home/${USER}/.config/MangoHud"
 #формируем информацию о том что в итоге установили и показываем в терминал
 mangohud_install="no"
-    if [ -e /bin/mangohud ];then
+    if [ -e /usr/local/bin/mangohud ];then
      mangohud vkcube& mangohud glxgears& sleep 5;killall vkcube;killall glxgears
      mangohud_install="yes"
     fi
