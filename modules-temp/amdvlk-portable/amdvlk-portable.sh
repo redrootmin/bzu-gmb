@@ -50,7 +50,7 @@ tput sgr0
 wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/amdvlk_portable-v1.tar.xz
 pv "amdvlk_portable-v1.tar.xz" | tar -xJ
 rm -f amdvlk_portable-v1.tar.xz
-cd ~/amdvlk_portable;chmod +x mini_install.sh
+cd "/home/${USER}/.local/share/bzu-gmb-utils/amdvlk_portable";chmod +x mini_install.sh
 bash mini_install.sh
 
 if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils/amdvlk_portable" ]
