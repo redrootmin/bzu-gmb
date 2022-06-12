@@ -138,6 +138,16 @@ ROSA Fresh Desktop 12.2 experimental
 #
 #
 noroot
+amdvlk48.png
+amdvlk-portable
+OpenDriver
+Стабильная версия открытого драйвера Vulkan - AMDVLK для Видеокарт AMD (GCN1-RDNA2), есть аппаратная поддержка: Vulkan 1.3+, Vulkan 1.2(GCN1). даннaя версия в форамате portable, и сделана в рамках инициативы ROSA GAMING. ВНИМАНИЕ: после установки для запуска нужно использовать следующие комманды: amdvlk /way/to/Vulkan app , amdvlk-test , amdvlk-gcn1 /way/to/Vulkan app , amdvlk-gcn1-test
+Яцына М.А.
+amdvlk-portable
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Linux Mint 20.2 Linux Mint 20.3 Debian GNU/Linux bookworm/sid Manjaro Linux ROSA Fresh Desktop 12.2 experimental
+AMDVLK v-2022.Q2.2_v-2021.Q2.5
+#
+noroot
 amd-anti-tearing48.png
 AMD-anti-tearing
 OpenDriverFix
