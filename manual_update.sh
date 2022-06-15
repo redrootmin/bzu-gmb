@@ -161,7 +161,6 @@ ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
  else
    if [ ! -d "/home/$USER/bzu-gmb-apps" ];then
 ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
-echo "ярлыка небыло, создаем его"
   fi
  fi
 # Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
