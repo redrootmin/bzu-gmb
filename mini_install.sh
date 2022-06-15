@@ -112,18 +112,33 @@ mkdir -p "/home/${USER}/.local/share/applications"
  if [ ! -d "/home/${USER}/.config/autostart" ]
  then
 mkdir -p "/home/${USER}/.config/autostart"
+else
+ if [ -e /home/${USER}/.config/autostart/gnome-desktop-icons-touch.desktop ] || [ -e /home/${USER}/.config/autostart/gnome-desktop-icons.desktop ];then
+ rm -f /home/${USER}/.config/autostart/gnome-desktop-icons-touch.desktop
+ rm -f /home/${USER}/.config/autostart/gnome-desktop-icons.desktop
  fi
+fi
 # Проверка что существует папка bzu-gmb-utils, если нет, создаем ее
  if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils" ]
  then
 mkdir -p "/home/${USER}/.local/share/bzu-gmb-utils"
 ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
+ else
+   if [ ! -d "/home/$USER/bzu-gmb-utils" ];then
+ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
+echo "ярлыка небыло, создаем его"
+  fi
  fi
 # Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
  if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
  then
 mkdir -p "/home/${USER}/.local/share/bzu-gmb-apps"
 ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+ else
+   if [ ! -d "/home/$USER/bzu-gmb-apps" ];then
+ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+echo "ярлыка небыло, создаем его"
+  fi
  fi
 # Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
  if [ ! -d "/home/${USER}/bzu-gmb-temp" ]

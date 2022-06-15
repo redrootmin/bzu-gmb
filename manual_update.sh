@@ -130,16 +130,84 @@ do
 install_package_rpm ${packages_list[$i]} ${pass_user}
 i=$(($i + 1))
 done
-#echo "${pass_user}" | sudo -S systemctl enable xow && echo "${pass_user}" | sudo -S systemctl start xow
-#echo "${pass_user}" | sudo -S systemctl start ananicy
 
-# Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
-if [ ! -d "/usr/share/themes/Adwaita-dark/gtk-3.0" ]
-then
-echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
-cd "/usr/share/themes"
-echo "${pass_user}" | sudo -S tar -xpJf "${script_dir}/core-utils/Adwaita-dark.tar.xz"
+###############################################################################
+# проверка наличия системных папок bzu-gmb
+# Проверка что существует папка applications, если нет, создаем ее
+ if [ ! -d "/home/${USER}/.local/share/applications" ]
+ then
+mkdir -p "/home/${USER}/.local/share/applications"
+ fi
+# Проверка что существует папка autostart, если нет, создаем ее
+ if [ ! -d "/home/${USER}/.config/autostart" ]
+ then
+mkdir -p "/home/${USER}/.config/autostart"
+else
+ if [ -e /home/${USER}/.config/autostart/gnome-desktop-icons-touch.desktop ] || [ -e /home/${USER}/.config/autostart/gnome-desktop-icons.desktop ];then
+ rm -f /home/${USER}/.config/autostart/gnome-desktop-icons-touch.desktop
+ rm -f /home/${USER}/.config/autostart/gnome-desktop-icons.desktop
+ fi
 fi
+# Проверка что существует папка bzu-gmb-utils, если нет, создаем ее
+ if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils" ]
+ then
+mkdir -p "/home/${USER}/.local/share/bzu-gmb-utils"
+ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
+ else
+   if [ ! -d "/home/$USER/bzu-gmb-utils" ];then
+ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
+echo "ярлыка небыло, создаем его"
+  fi
+ fi
+# Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
+ if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
+ then
+mkdir -p "/home/${USER}/.local/share/bzu-gmb-apps"
+ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+ else
+   if [ ! -d "/home/$USER/bzu-gmb-apps" ];then
+ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+echo "ярлыка небыло, создаем его"
+  fi
+ fi
+# Проверка что существует папка bzu-gmb-temp, если нет, создаем ее
+ if [ ! -d "/home/${USER}/bzu-gmb-temp" ]
+ then
+mkdir -p "/home/${USER}/bzu-gmb-temp"
+ fi
+###############################################################################
+# установка темы/иконок/обои для GNOME
+ if [ -e /usr/bin/gnome-shell ];then
+# Проверка что существует папка c темой Adwaita-dark , если нет, создаем ее
+  if [ ! -d "/usr/share/themes/Adwaita-dark/gnome-shell" ]
+  then
+echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/home/$USER/bzu-gmb-temp"
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/Adwaita-dark.tar.xz"
+cd "/usr/share/themes"
+echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/Adwaita-dark.tar.xz"
+  fi
+
+# Проверка что существует папка c иконки numix-icons , если нет, создаем ее
+  if [ ! -d "/usr/share/icons/Numix" ]
+  then
+#echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/home/$USER/bzu-gmb-temp"
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-numix-icons.tar.xz"
+cd "/usr/share/icons"
+echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-numix-icons.tar.xz"
+  fi
+
+# Проверка что существует папки c обоями redroot wallpapers , если нет, создаем ее
+  if [ ! -d "/usr/share/backgrounds" ]
+  then
+#echo "${pass_user}" | sudo -S rm -rf "/usr/share/themes/Adwaita-dark"
+cd "/home/$USER/bzu-gmb-temp"
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/rosa-gnome-wallpapers-v1.tar.xz"
+cd "/usr/share"
+echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-gnome-wallpapers-v1.tar.xz"
+  fi
+
 fi
 #=====================================================================================
 
