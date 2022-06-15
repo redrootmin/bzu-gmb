@@ -133,11 +133,6 @@ done
 
 ###############################################################################
 # проверка наличия системных папок bzu-gmb
-# Проверка что существует папка applications, если нет, создаем ее
- if [ ! -d "/home/${USER}/.local/share/applications" ]
- then
-mkdir -p "/home/${USER}/.local/share/applications"
- fi
 # Проверка что существует папка autostart, если нет, создаем ее
  if [ ! -d "/home/${USER}/.config/autostart" ]
  then
@@ -156,7 +151,6 @@ ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
  else
    if [ ! -d "/home/$USER/bzu-gmb-utils" ];then
 ln -s /home/$USER/.local/share/bzu-gmb-utils /home/$USER/bzu-gmb-utils
-echo "ярлыка небыло, создаем его"
   fi
  fi
 # Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
@@ -208,6 +202,7 @@ cd "/usr/share"
 echo "${pass_user}" | sudo -S tar -xpJf "/home/$USER/bzu-gmb-temp/rosa-gnome-wallpapers-v1.tar.xz"
   fi
 
+fi
 fi
 #=====================================================================================
 
