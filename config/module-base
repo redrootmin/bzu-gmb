@@ -9,6 +9,16 @@ Ubuntu 22.04 LTS
 #
 noroot
 gnome-ext-pack48.png
+gnome-gui-switcher-v2
+GnomeStyle
+[GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ROSA FRASH DESKTOP c рабочим столом gnome41+? с помощью готовых профилей:Ubuntu,macos,rosa(b/w),RedRoot. ВНИМАНИЕ: Утилита на стадии тестирования, вы используете ее на свой страх и риск!
+Яцына М.А.
+gnome-gui-switcher-rosa
+Linux ROSA Fresh Desktop 12.2
+#
+#
+noroot
+gnome-ext-pack48.png
 gnome-gui-switcher
 GnomeStyle
 [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ROSA Fresh Desktop c рабочим столом gnome41+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. ВНИМАНИЕ: Утилита на стадии тестирования, вы используете ее на свой страх и риск!
