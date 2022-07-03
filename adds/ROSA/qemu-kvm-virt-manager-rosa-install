@@ -1,0 +1,28 @@
+sudo dnf install virt-manager virt-manager-common qemu.x86_64 qemu.i686 qemu-common.x86_64 qemu-common.i686 qemu-device-display-virtio-gpu.x86_64 qemu-device-display-virtio-gpu.i686 qemu-device-display-virtio-gpu-pci.x86_64 qemu-device-display-virtio-gpu-pci.i686 qemu-kvm
+
+
+https://stunpix.com/post/ubuntu-shares-tips-n-tricks/
+sudo gedit /etc/qemu/bridge.conf
+allow virbr0
+
+sudo dnf install samba
+sudo usermod -aG sambashare $USER
+sudo gedit  /etc/samba/smb.conf
+ [global]
+workgroup = WORKGROUP
+map to guest = Bad Password
+ 
+[KVM_SHARE]
+    comment = Public Folder for KVM/QEMU VMs
+    path = /mnt/ssd480_data/KVM_SHARE
+    public = yes
+    writable = yes
+    read only = no
+    guest ok = yes
+    create mask = 0777
+    directory mask = 0777
+    force create mode = 0777
+    force directory mode = 0777
+    
+sudo systemctl restart smb
+

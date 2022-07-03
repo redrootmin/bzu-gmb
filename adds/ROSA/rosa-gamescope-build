@@ -1,0 +1,22 @@
+sudo dnf install lib64xxf86vm-devel libxxf86vm-devel lib64xres-devel libxres-devel wayland-protocols-devel lib64xkbcommon-devel lib64xkbcommon-x11-devel libxkbcommon-devel libxkbcommon-x11-devel lib64SDL2_2.0_0 libSDL2_2.0_0 lib64SDL2-devel libinput10 x11-driver-input-libinput libinput.i686 libinput.i686
+dnf download libinput-devel
+libinput-devel-1.20.0-1-rosa2021.1.i686.rpm
+git clone https://github.com/Plagman/gamescope.git 
+cd gamescope
+meson build/
+
+
+
+
+
+
+
+
+
+
+
+
+https://pagure.io/gamescope-copr-packaging/c/67dfd93550e1398ba47c72e1a0c4735e42b522d1?branch=master
+gsettings set org.gnome.software packaging-format-preference "['RPM', 'flatpak']"
+
+
