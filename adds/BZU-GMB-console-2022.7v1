@@ -1,0 +1,784 @@
+ЭТО СПИСОК\ИСТРУКЦИЯ С НАБОРОМ НАСТРОЕК\УТИЛИТ\ПРОГРАММ ДЛЯ ОПТИМИЗАЦИИ ОС UBUNTU 20.04+ С ВИДЕОКАРТАМИ AMD ДЛЯ ИГР\МУЛЬТИМЕДИА ПРОГРАММ\ПРОФЕССИОНАЛЬНЫХ РЕДАКТОРОВ
+
+
+0. OPTIMIZATION\DIAGNOSTIC UBUNTU
+
+#[ВОССТАНОВЛЕНИ СИСТЕМЫ\ОБНАВЛЕНИЕ И Т.Д. С ПОМОЩЬЮ chroot]
+#загружаемся в лайф систему, смотрим на каком диске не рабочая система и далее подключаем ее для ремонта в консоль
+sudo fdisk -l
+sudo -i
+mkdir /chroot
+mount /dev/sdXX /chroot
+for i in dev sys proc etc/resolv.conf; do mount --bind -v /$i /chroot/$i; done
+chroot /chroot
+все можно из консоли проверить что с системой, удалить софт, изменить настройки.
+
+#[ПРОПАЛИ СТАНДАРТНЫЕ ПАПКИ ПОЛЬЗОВАТЕЛЯ]
+#Нужно проверить пути в файле: /HOME/$USER/.config/user-dirs.dirs
+#Стандартно должно быть так:
+XDG_DESKTOP_DIR="$HOME/Рабочий стол"
+XDG_DOWNLOAD_DIR="$HOME/Загрузки"
+XDG_TEMPLATES_DIR="$HOME/Шаблоны"
+XDG_PUBLICSHARE_DIR="$HOME/Общедоступные"
+XDG_DOCUMENTS_DIR="$HOME/Документы"
+XDG_MUSIC_DIR="$HOME/Музыка"
+XDG_PICTURES_DIR="$HOME/Изображения"
+XDG_VIDEOS_DIR="$HOME/Видео"
+
+#[ДЛЯ КОРРЕКТНОГО УДАЛЕНИЯ OIBAF И УСТАНОВКИ KISAK, НУЖНО ВЫПОЛНИТЬ СЛЕДУЮЩИЕ КОМАНДЫ:]
+sudo apt install ppa-purge
+sudo ppa-purge ppa:oibaf/graphics-drivers
+sudo add-apt-repository ppa:kisak/kisak-mesa
+sudo apt update
+sudo apt upgrade
+
+#[КАК УДАЛИТЬ БИТЫЙ PPA ИЗ КОНСОЛИ]
+#проверям папку с PPA
+ls /etc/apt/sources.list.d
+#и удаляем файлы ненужного PPA
+sudo rm -i /etc/apt/sources.list.d/ name / file / .*
+#пример:
+sudo rm -i /etc/apt/sources.list.d/jonathonf-ubuntu-ffmpeg-4*
+# при удалении у вас буду спрашивать о каждом файле, отвечаем стандартно как и во всех linuxOS "y"
+#[ЕСЛИ ПРИ УСТАНОВКЕ ИЛИ ОБНОВЛЕНИЯХ ПО, СИСТЕМА ПИШЕТ: E: НЕ УДАЛОСЬ ПОЛУЧИТЬ ДОСТУП К ФАЙЛУ БЛОКИРОВКИ /VAR/LIB/DPKG/LOCK - OPEN (11: РЕСУРС ВРЕМЕННО НЕДОСТУПЕН)]
+то делаем так:
+sudo fuser -vki /var/lib/dpkg/lock
+sudo rm /var/lib/dpkg/lock
+sudo dpkg --configure -a
+sudo apt autoclean
+sudo apt autoremove
+sudo apt --fix-broken install -y
+sudo apt update
+sudo apt upgrade
+
+#[E: ПАКЕТ <ИМЯ ПАКЕТА> НУЖДАЕТСЯ В ПЕРЕУСТАНОВКЕ, НО НАЙТИ АРХИВ ДЛЯ НЕГО НЕ УДАЛОСЬ]
+Если у вас выводится такая строка то это решение для вас.
+Для решения этой проблемы нужно стереть информацию от этом пакете в файле /var/lib/dpkg/status.
+Отредактируйте файл:
+sudo gedit /var/lib/dpkg/status
+Нажмите на CTRL+F.
+И ввести название проблемного пакета.
+Удалить весь блок информации о пакете.
+ВНИМАНИЕ: Не удалите ничего лишнего!
+Сохраните файл.
+Введите:
+sudo apt-get -f install
+
+#[ПРОБЛЕМЫ ЗАВИСИМОСТЕЙ И ПРИНУДИТЕЛЬНОЕ УДАЛЕНИЕ ПАКЕТА] 
+sudo dpkg --remove --force-remove-reinstreq <package>
+#or
+sudo dpkg --purge --force-all <package>
+
+#[МОНИТРОВАНИЕ ОТДЕЛЬНЫХ ПАПОК\ДИСКОВ]
+###заходим в файл /etc/fstab и добовляем нужный вариант, ниже примеры)###
+###Монтирование корневых каталогов (что бы знать UUID,видите в терминале: ls -l /dev/disk/by-uuid)###
+UUID=9c7aa67e-703c-4d93-a8e6-ed6b721c5e8f / ext4 errors=remount-ro 0 1
+####Постоянное монтирование дисков, также можно это делать в каталоге /mnt/ вместо /media/*###
+/dev/sda5 /media/redroot/disk_d ext4 defaults 0 1
+/dev/sdd1 /media/redroot/games ext4 defaults 0 1
+###Постоянное монтирование отдельных папок###
+/mnt/home/Документы /home/redroot/Документы ext4 bind,x-gvfs-hide 0 0
+/mnt/home/Загрузки /home/redroot/Загрузки ext4 bind,x-gvfs-hide 0 0
+###если папка скрытая###
+/mnt/vm-disk/.vmware /home/redroot/.vmware ext4 bind,x-gvfs-hide 0 0
+/mnt/games/.PlayOnLinux /home/redroot/.PlayOnLinux ext4 bind,x-gvfs-hide 0 0
+###если в названии пробел добовляем "\40"###
+/mnt/games/GOG\040Games /home/redroot/GOG\040Games ext4 bind,x-gvfs-hide 0 0
+/mnt/home/VirtualBox\040VMs /home/redroot/VirtualBox\040VMs ext4 bind,x-gvfs-hide 0 0
+###Монтирование папки с полными правами###
+/media/disk_F/butterfly /media/disk_D/butterfly bind rw,uid=33,gid=33,file_mode=0777,dir_mode=0777,bind 0 0
+###Монтирование сетевых папок windows с правами, логин + пароль###
+//192.168.0.150/backUp/1cbase /home/cloud/win_share cifs auto,_netdev,rw,uid=1000,gid=1000,user=linux,password=Ubuntu,codepage=cp1251,iocharset=utf8,file_mode=0777,dir_mode=0777 0 0
+
+#[SWAP CREATE]
+sudo fallocate -l 4g /home/4GiB.swap
+sudo chmod 600 /home/4GiB.swap # даем спец права на файл
+sudo mkswap /home/4GiB.swap # форматируем файл для свопа
+sudo swapon /home/4GiB.swap # задействуем файл как своп
+echo '/home/4GiB.swap swap swap defaults 0 0' | sudo tee -a /etc/fstab
+free -h # for test
+
+
+#[RAM + HDD\SSD OPTIMIZATION]
+echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.vfs_cache_pressure=1000" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.dirty_background_ratio = 50" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.dirty_ratio = 80" | sudo tee -a /etc/sysctl.conf
+
+
+#[BOOST FILE SYSTEM EXT4] 
+sudo nano /etc/fstab
+#and add ",noatime,nodiratime,nobarrier"
+semple: UUID=5a18c97e-bd40-4b55-a2c8-ab7da4cf20f0 / ext4 errors=remount-ro,noatime,nodiratime,nobarrier 0 1
+#INFO https://qna.habr.com/q/427095
+###free reserve space in EXT4###
+
+
+#[КОМАНДУ КОТОРАЯ УМЕНЬШАЕТ РЕЗЕРВИРОВАНИЕ МЕСТА EXT4]
+#по умочлчанию EXT4 резервирует 5% места на диске#
+#резервирование можно уменьшить или вообще отключить# 
+sudo tune2fs -m 1 /dev/sda1
+###sda1 - это имя диска, на котором отключем резервирование, что бы проверить какие диске есть в системе, их имена, точки монтирования введи в консоли это: df -h | grep sd ###
+#цифра 1 это процент резервирования (1%), можно поставить 0 если диск логический без системы, пример:#
+sudo tune2fs -m 0 /dev/sda1 
+#но не рекомендую делать на системном диске меньше: 1%#
+#можно применять на дисках где уже есть инфо, нечего плохого не случиться, проверено!#
+
+#[ВКЛЮЧЕНИЕ TRIM ПО РАСПИСАНИЮ]
+Команда TRIM позволяет поддерживать SSD-накопитель в форме, вовремя помечая неиспользуемые блоки. В Ubuntu можно прописать в планировщике еженедельную команду TRIM
+заходим в
+sudo nano /etc/cron.weekly/fstrim
+и добавляем это:
+#!/bin/sh
+# trim all mounted file systems which support it
+/sbin/fstrim --all || true
+exit 0
+
+
+#XTRADEB APPLICATIONS
+#https://xtradeb.net/category/apps/
+#https://launchpad.net/~xtradeb/+archive/ubuntu/apps/+packages
+sudo add-apt-repository ppa:xtradeb/apps
+sudo apt update
+#sudo apt install -f czkawka chromium firefox fotoxx freefilesync gparted soundconverter synergy virt-manager youtube-dl 
+
+
+
+#[ENCFS -EASY WAY TO ENCRYPT FOLDERS IN PC OR CLOUD STORAGE]
+sudo apt install -f encfs
+#MANUAL: https://vitux.com/how-to-encrypt-cloud-storage-with-encfs-on-ubuntu/
+
+
+#[УСТАНОВКА ПО ДЛЯ ЧИСТКИ ОТ МУСОРА И МОНИТОРИНГА  СИСТЕМЫ Stacer]
+sudo apt  install stacer
+
+
+#[BAOBAB - АНАЛИЗ СВОБОДНОГО МЕСТА НА ДИСКЕ]
+sudo apt install baobab
+
+
+#[NSTALL GPARTED - DISK EDITOR]
+sudo apt install gparted
+
+
+#[MONITORING TOOLS]
+sudo add-apt-repository ppa:jonmagon/kdiskmark
+sudo apt-get install wavemon cpu-x psensor gsmartcontrol kdiskmark
+
+
+#[OPTIMIZATION SOUND CARD]
+Открываем
+sudo gedit /etc/pulse/daemon.conf
+#Находим строки и заменяем
+resample-method = speex-float-1 на resample-method = src-sinc-medium-quality
+default-sample-format = s16le на default-sample-format = s32le
+default-sample-rate = 44100 на default-sample-rate = 192000
+alternate-sample-rate = 48000 на alternate-sample-rate = 192000
+#Если перед строками стоят ; или # - удаляем эти знаки.
+#Нажимаем в редакторе сохранить и выходим.
+#Открываем
+sudo gedit /usr/share/alsa/alsa.conf
+#Находим строку и заменяем
+defaults.pcm.dmix.rate 192000
+#Нажимаем в редакторе сохранить и выходим.
+Перезагружаемся!
+ЕСЛИ ПОЯВИЛСЯ ПРОТИВНЫЙ СРИП\СКРЕЖЕТ В ЗВУКЕ
+# Открываем sudo gedit /etc/pulse/daemon.conf
+#Находим строку и заменяем
+realtime-scheduling = yes и меняем на realtime-scheduling = no
+# Если перед строками стоят ; или # - удаляем эти знаки.
+
+
+#[GRUB CUSTOMIZER GUI]
+sudo apt install grub-customizer
+
+
+# [TO SEE THE MENU WITH KERNELS IN GRUB, YOU NEED TO MAKE CHANGES TO IT]
+   sudo nano /etc/default/grub
+#add lines to the GRUB settings file, or modify command flags!
+   GRUB_DEFAULT="saved"
+   GRUB_SAVEDEFAULT=true
+   GRUB_HIDDEN_TIMEOUT="120"
+   GRUB_TIMEOUT="5"
+   GRUB_TIMEOUT_STYLE="menu"
+#save
+   sudo update-grub
+   sudo update-initramfs -u
+
+
+#[TORN OFF MELTDOWN\SPECTRE+]
+sudo nano /etc/default/grub
+###FOR KERNEL 5.1.13+###
+# => GRUB_CMDLINE_LINUX_DEFAULT="quiet splash ...." + mitigations=off
+#sample
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off"
+#save
+###FOR KERNEL 5.1.12-###
+# => GRUB_CMDLINE_LINUX_DEFAULT="quiet splash ...." + noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off mitigations=off
+#sample
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off mitigations=off"
+#save
+sudo update-grub
+sudo update-initramfs -u
+#reboot
+#for check
+lscpu | grep "Vulnerability"
+#Vulnerable\Not affected\disabled - Good!
+#Mitigation - bad :(
+###more info: https://itsecforu.ru/2020/03/27/%F0%9F%91%BE-%D0%BA%D0%B0%D0%BA-%D0%BE%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C-%D0%BC%D0%B5%D1%80%D1%8B-%D0%BF%D0%BE-%D1%83%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D1%8E-%D1%83%D1%8F/
+
+
+#[TEARFREE ON IN AMD]
+(for rx400\500\vega\rx5000\6000)
+sudo nano /etc/X11/xorg.conf.d/10-amdgpu.conf
+
+Section "Device"
+Identifier "AMDgpu"
+Option  "DRI" "3"
+Option  "TearFree" "true"
+EndSection
+
+
+#[LIBSTRANGLE FORCE VSYNC FOR NATIVE OPENGL\VULKAN GAMES]
+#https://gitlab.com/torkel104/libstrangle
+git clone https://gitlab.com/torkel104/libstrangle
+cd libstrangle 
+sudo apt-get install gcc-multilib
+sudo apt install g++ g++-multilib
+sudo apt install libx11-dev
+sudo apt install mesa-common-dev
+make
+sudo make install
+# ubuntu 20.04.x for OpenGL\Vulkan
+STRANGLE_VSYNC=1 strangle 35 mangohud vkcube
+#ubuntu 21.10.x for Vulkan only
+STRANGLE_FPS=30 STRANGLE_VKONLY=1 strangle /path/to/game
+STRANGLE_VKONLY=1 STRANGLE_VSYNC=2 strangle /path/to/game
+
+
+
+#[INSTALL NEMO DEFAULT FILE BROWER IN UBUNTU]
+sudo apt-get install nemo
+# default nemo
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+gsettings set org.gnome.desktop.background show-desktop-icons false
+# autostart nemo in booting system or ubuntu use nautilus as default :(
+cp -f /usr/share/applications/nemo.desktop /home/$USER/.config/autostart/
+
+
+
+#[ENABLE MULTIPLE SIMULTANEOUS AUDIO OUTPUTS ON PULSEAUDIO IN LINUX + PULSEAUDIO CONTROL]
+sudo apt install paprefs pavucontrol
+# error in paprefs on  Pipewire?  use on boot: pactl load-module module-combine-sink
+
+#[XSCREENSAVER,ORIGINAL MATRIX SCREENSAVER]
+sudo apt install xscreensaver xscreensaver-gl xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
+
+
+#[HOW TO INSTALL TOUCHPAD INDICATOR]
+sudo add-apt-repository ppa:atareao/atareao
+sudo apt install touchpad-indicator
+
+
+#[GNOME SHELL X11GESTURES EXTENSION]
+https://extensions.gnome.org/extension/4033/x11-gestures/ 
+sudo add-apt-repository ppa:touchegg/stable
+sudo apt update
+sudo apt install touchegg
+
+
+#[RUS NAMES FINE IN ARHIVE CREATED IN WINDOWS]
+cd
+wget "https://drive.google.com/uc?export=download&id=1YLEmV7Ki1q86cBdFmmDh2sffx0s_uZO-" -O p7zip-oemcp.tar.xz
+tar -xpJf "p7zip-oemcp.tar.xz" -C "$HOME"
+sudo apt remove p7zip-rar
+sudo dpkg -i p7zip-oemcp.deb
+
+#[INSTALL IN UBUNTU MSCORE FONTS]
+sudo apt install -f --reinstall ttf-mscorefonts-installer
+
+
+#[SOFT TOOLS FOR VIZUAL AND SYSTEM]-[UBUNTU 20.04.x] 
+sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweak-tool chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev ubuntu-restricted-extras
+
+
+#[SOFT TOOLS FOR VIZUAL AND SYSTEM]-[UBUNTU 21.10]
+sudo apt install -f  --reinstall gnome-session gnome-session-wayland gnome-tweaks chrome-gnome-shell gnome-shell-extensions plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle git libglib2.0-dev ubuntu-restricted-extras
+
+
+#[BACK TO UBUNTU GNOME VANILLA IN UBUNTU]-[FOR UBUNTU 20.04.3!]
+sudo apt install -f -y --reinstall gnome-session ubuntu-gnome-default-settings plymouth-theme-ubuntu-gnome-logo numix-icon-theme-circle vanilla-gnome-default-settings ubuntu-gnome-desktop gnome-tweaks libglib2.0-dev grub-customizer psensor inxi;sudo apt -y remove ubuntu-session;gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark;gsettings set org.gnome.desktop.interface icon-theme Numix-Circle;gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close";wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/ubuntu-logo-icon.png;sudo cp -f ubuntu-logo-icon.png /usr/share/icons/hicolor/256x256/apps/; sudo rm -f ubuntu-logo-icon.png;gsettings set org.gnome.desktop.background picture-uri file:////usr/share/backgrounds/ubuntu-gnome/sochi_krasnaya_polyana_mountains_by_alexander_lyubavin.jpg;sudo reboot
+###Ubuntu - login screen: Change-Gdm-Background script Version 3.3###
+https://c-nergy.be/blog/?p=17145
+
+
+#UBUNTU 20.04.X\21.04\21.10 [MESA LATEST DEV FROM OIBAF: https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers]
+   Options: Mesa 20.2+ dev, Valve ACO, Intel iris, Vulkan Overlay, Zink
+   Update: Auto
+   Install:
+   sudo add-apt-repository ppa:oibaf/graphics-drivers
+   sudo apt update
+   sudo apt upgrade
+
+
+#LINUX MINT 20.2 [Mesa stable from kisak: https://launchpad.net/~kisak/+archive/ubuntu/kisak-mesa]
+   Options: Mesa 20.1+ , Valve ACO, Intel iris, Vulkan Overlay
+   Update: Auto
+   Install:
+   sudo add-apt-repository ppa:kisak/kisak-mesa
+   sudo apt update
+   sudo apt upgrade   
+
+
+# [CORECTRL 1.2+ FOR OVERCLOCKING\UNDERVOLTING GPU AMD]: 
+   Support: rx 4xx\5xx series \ vega 64\56 \ rx5xxxx
+   Update: Manual
+   Install:
+   sudo add-apt-repository -y ppa:ernstp/mesarc
+   sudo apt update -y
+   sudo apt install -f corectrl
+   sudo rm /etc/apt/sources.list.d/ernstp-ubuntu-mesarc*.list
+   sudo rm /etc/apt/sources.list.d/ernstp-ubuntu-mesarc*.list.save
+   sudo apt update -y
+   sudo apt upgrade
+   sudo nano /etc/default/grub
+# => GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" + amdgpu.ppfeaturemask=0xffffffff + mitigations=off(TORN OFF MELTDOWN\SPECTRE+)]
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff mitigations=off"
+# for HD7970 
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff modprobe.blacklist=radeon radeon.si_support=0 radeon.cik_support=0 amdgpu.si_support=1 amdgpu.cik_support=1 radeon.audio=1 mitigations=off"
+# ctrl+0 (save), ctrl+x(quit)
+   sudo update-grub
+   sudo update-initramfs -u
+# error on start\ not work? install package: sudo apt install --reinstall -f -y libqt5charts5 libqt5charts5-dev qttools5-dev libkf5auth-dev libkf5archive-dev libbotan-2-dev qtdeclarative5-dev qml-module-qtquick-controls qml-module-qt-labs-platform qml-module-qtcharts libgl1-mesa-dev mesa-common-dev
+
+
+#[XANMOD KERNEL: https://xanmod.org]
+   Options:  Low-Latency, BFQ I/O Scheduler, ZSTD kernel, Clear Linux patchs, Wine / Proton Fsync, 
+   BMQ Process Scheduler, Aufs,PREEMPT_RT
+   Update: Auto
+   Install: 
+   echo 'deb http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list  && wget -qO - https://dl.xanmod.org/gpg.key | sudo apt-key add -
+   sudo apt update
+# for install LTS Kernel (5.6+)
+   sudo apt install linux-xanmod
+# for install Latest Kernel (5.7+)
+   sudo apt install linux-xanmod-edge
+   Update: Manual
+   Download from Download XanMod Kernel and install: https://sourceforge.net/projects/xanmod/files/
+   sudo dpkg -i linux-image-*xanmod*.deb linux-headers-*xanmod*.deb
+WORNING: Vega 11\8 + CoreCtrl work only XanMod Kernel 5.5.17
+#LATEST KERNEL XANMOD + lowlatency
+sudo apt install  linux-xanmod-cacule 
+
+
+
+#[LIQUORIX KERNEL: https://liquorix.net/]
+   Options: MuQSS Scheduler, High Resolution Scheduling, Hard Kernel Preemption, low latency.
+   Install:
+   sudo add-apt-repository ppa:damentz/liquorix
+   sudo apt-get update
+   sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64
+   
+#[UBUNTU INSTALL LOWLATENCY LINUX KERNEL FROM ORIGINAL PPA]
+sudo apt install linux-lowlatency
+#download manuality: https://kernel.ubuntu.com/~kernel-ppa/mainline/
+
+
+#UBUNTU 20.04.x\21.04\21.10 ONLY! [MANGOHUD, GOVERLAY, VKBASALT PPA]
+sudo add-apt-repository ppa:flexiondotorg/mangohud
+sudo apt update
+sudo apt install -f goverlay mangohud vkbasalt
+
+
+#[PORTPROTON – позволяет использовать версию WINE от Valve (Proton) без Steam даже для новичка в нашей любимой системе! Включает в себя набор скриптов совмещенных с самим wine-proton и множество уже настроенных оптимизаций для вашего удобства  запуска программ и игр под Linux] 
+sudo dpkg --add-architecture i386 
+sudo add-apt-repository multiverse
+sudo apt update && sudo apt upgrade
+sudo apt install bubblewrap curl gamemode icoutils tar vulkan-tools libvulkan1 libvulkan1:i386 wget zenity zstd steam cabextract
+#Обычная установка:
+wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton-97" && sh PortProton-97
+
+#Тихая установка:
+wget -c "https://github.com/Castro-Fidel/PortWINE/raw/master/portwine_install_script/PortProton-97" && sh PortProton-97 -rus
+
+
+#[IPEGA-CONFIG-GAMEPAD-FOR-STEAM]
+sudo apt-get install xboxdrv
+cat /proc/bus/input/devices
+sudo xboxdrv --evdev /dev/input/event18 --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_Z=x2,ABS_RZ=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_A=a,BTN_B=b,BTN_X=x,BTN_Y=y,BTN_TL=lb,BTN_TR=rb,BTN_TL2=lt,BTN_TR2=rt,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_SELECT=back,BTN_START=start --silent &
+
+# [INSTALL VIRTUALBOX]
+sudo apt install -f --reinstall virtualbox virtualbox-ext-pack virtualbox-dkms 
+sudo usermod -aG vboxusers $USER
+
+
+
+# [VIRTUALBOX 1920x1080]
+xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode Virtual1 1920x1080
+xrandr --output Virtual1 --mode 1920x1080
+
+# [КОМАНДЫ УСТАНОВКИ QEMU-KVM ДЛЯ UBUNTU 20.04.3+]
+sudo apt install -f qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager libvirglrenderer-dev libvirglrenderer-dev libvirglrenderer1 virgl-server
+sudo gpasswd -a $USER libvirt
+sudo systemctl status libvirtd
+#reboot
+#а тут можно почитать о настройке virt-manager + VirtIO :
+#https://losst.ru/ustanovka-kvm-ubuntu-16-04
+#https://ryan.himmelwright.net/post/virtio-3d-vms/
+
+
+#[REMOVE DEFAULT FIREFOX SNAP, AND INSTALL BACK THE CLASSIC DEB PACKAGE]
+sudo snap remove --purge firefox
+sudo apt install -f firefox firefox-locale-ru
+
+
+#[THUNDERBIRD - INSTALL BEST LINUX MAIL CLIENT]
+sudo apt install -f thunderbird thunderbird-locale-ru
+
+
+#[INSTALL CHROMIUM PPA]
+sudo add-apt-repository ppa:xtradeb/apps
+sudo apt install chromium
+
+
+#[QBITTORENT FOR UBUNTU]
+sudo apt install -f qbittorrent
+
+
+#[INSTALL KRITA - FREE AND OPEN SOURCE GRAPHICS EDITOR]
+sudo add-apt-repository ppa:kritalime/ppa
+sudo apt install krita
+
+
+#[INSTALL INKSCAPE - FREE AND OPEN SOURCE VECTOR GRAPHICS EDITOR]
+sudo add-apt-repository ppa:inkscape.dev/stable
+sudo apt update
+sudo apt install inkscape
+
+
+#[INSTALL PINTA  - FREE AND OPEN SOURCE GRAPHICS EDITOR]
+sudo add-apt-repository ppa:pinta-maintainers/pinta-daily
+sudo apt install -f pinta
+
+
+#[INSTALL BLENDER - 3D MODELLER]
+sudo add-apt-repository ppa:savoury1/blender
+sudo apt update
+sudo apt install blender
+
+
+#[INSTALL GODOT - FULL 2D AND 3D GAME ENGINE WITH EDITOR]
+sudo apt install -f --reinstall godot*
+
+
+#[CELLULOID - VIDEO PLAYER]
+sudo add-apt-repository ppa:xuzhen666/gnome-mpv
+sudo apt install -f celluloid
+
+
+#[AUDACITY - AUDIO EDITOR + AUDACIOUS PLAYER]
+sudo add-apt-repository ppa:ubuntuhandbook1/audacity
+sudo apt install audacity audacious
+
+
+#[INSTALL KDENLIVE PPA]
+#install Kdenlive development (only eng)
+sudo add-apt-repository ppa:kdenlive/kdenlive-master
+sudo apt install -f kdenlive
+#install stable rus
+sudo add-apt-repository ppa:kdenlive/kdenlive-stable
+sudo apt install kdenlive
+
+
+#[CONVERT ALL VIDEO FILE *.AVI IN FOLDER TO YOUTUBE CONFORT COMPRESSION AND MP4 FORMAT, RUN IN TERMINAL IN FOLDER]
+for i in *.avi; do ffmpeg -i "$i" -c:a aac -b:a 128k -c:v libx264 -crf 20 "${i%.avi}.mp4"; done
+#stabilize video
+for i in *.mp4; do ffmpeg -i "$i" -vf deshake "stabilized-${i}.mp4"; done
+
+#[INSTALL OBS-STUDIO PPA]
+sudo apt-add-repository ppa:obsproject/obs-studio
+sudo apt-get update
+sudo apt-get install ffmpeg obs-studio
+УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER, замена obs-qtwebkit, основан на Chromium OEM
+sudo apt install cmake libgconf-2-4
+#скачиваем архив с плагином и распаковываем его: https://github.com/bazukas/obs-linuxbrowser/releases
+или скачиваем в консоли
+wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
+#создаем папку плагины в конфигурации OBS-studio
+mkdir -p $HOME/.config/obs-studio/plugins
+#далее распаковываем архив в папку с плагинами OBS-studio
+tar xfvz linuxbrowser*.tgz -C $HOME/.config/obs-studio/plugins/
+#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
+#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
+
+
+#[SIMPLESCREENRECORDER - PROGRAM TO RECORD SCREEN FOR GAMES AND SOFTWARE]
+sudo apt install -f simplescreenrecorder
+
+
+#[INSTALL KATE EDITOR FOR PROGRAMMERS]
+sudo apt install --install-recommends kate
+
+
+#[INSTALL VISUAL STUDIO CODE ON UBUNTU]
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+sudo apt update
+sudo apt install -f -y git software-properties-common apt-transport-https wget code 
+#instal dev version
+sudo apt install -f -y git software-properties-common apt-transport-https wget code-insiders
+#ВАЖНО!
+#Visual Studio Code собирает данные об использовании (телеметрию) и отправляет их в Microsoft, но эта функция является отключаемой (опция File > Preferences > Settings, «telemetry.enableTelemetry»)
+#изменить язык редактора: нажимаем Ctrl+Shift+P, вводим "display", ввыбрать язык или Install additional languages, для установки нового
+
+
+#[QPDF TOOLS - УТИЛИТА ДЛЯ ИЗМЕНЕНИЯ PDF ФАЙЛОВ, А КОНКРЕТНО ДЛЯ: СЖАТИЯ ФАЙЛА, ВЫРЕЗКИ СТРАНИЦ, ИЗМЕНЕНИЯ РАСПОЛОЖЕНИЯ И ПОВОРОТ]
+sudo add-apt-repository ppa:silash35/qpdftools
+sudo apt update
+sudo apt install qpdftools
+
+
+#[LINUX RDP КЛИЕНТ REMMINA ]
+sudo apt-add-repository ppa:remmina-ppa-team/remmina-next
+sudo apt install remmina remmina-plugin-rdp remmina-plugin-secret  freerdp2-x11 libcacard0 libphodav-2.0-0 libphodav-2.0-common libspice-client-glib-2.0-8 libspice-client-gtk-3.0-5 libusbredirhost1 libusbredirparser1 remmina-plugin-exec remmina-plugin-kwallet remmina-plugin-spice spice-client-glib-usb-acl-helper
+
+
+#[BLANKET - ИМЕТАЦИЯ РАЗЛИЧНЫХ ШУМОВ]
+sudo add-apt-repository ppa:apandada1/blanket
+sudo apt install blanket
+
+
+#[UBUNTU 20.04.3, GNOME 3.36.8, GNOME EXTENSIONS]:
+Add to Desktop: https://extensions.gnome.org/extension/3240/add-to-desktop/
+Applications Overview Tooltip: https://extensions.gnome.org/extension/1071/applications-overview-tooltip/
+Auto Move Windows https://extensions.gnome.org/extension/16/auto-move-windows/
+Bluetooth quick connect https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+Blyr https://extensions.gnome.org/extension/1251/blyr/
+Bring Out Submenu Of Power Off/Logout Button https://extensions.gnome.org/extension/2917/bring-out-submenu-of-power-offlogout-button/
+Caffeine https://extensions.gnome.org/extension/517/caffeine/
+Clipboard Indicator https://extensions.gnome.org/extension/779/clipboard-indicator/
+Clock Override (%a %b %d %R) https://extensions.gnome.org/extension/1206/clock-override/
+Dash to Panel https://extensions.gnome.org/extension/1160/dash-to-panel/
+Desktop Icons NG (DING) https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/
+Disable Screen Shield https://extensions.gnome.org/extension/672/disable-screen-shield/
+Fullscreen On New Workspace (for notebook) https://extensions.gnome.org/extension/1502/fullscreen-on-new-workspace/
+GameMode https://extensions.gnome.org/extension/1852/gamemode/
+GSConnect https://extensions.gnome.org/extension/1319/gsconnect/
+Hide Dash X https://extensions.gnome.org/extension/805/hide-dash/
+Horizontal workspaces https://extensions.gnome.org/extension/2141/horizontal-workspaces/
+Impatience (boosting GNOME, 0,30) https://extensions.gnome.org/extension/277/impatience/
+More columns in applications view https://extensions.gnome.org/extension/1305/more-columns-in-applications-view/
+No Topleft Hot Corner https://extensions.gnome.org/extension/118/no-topleft-hot-corner/
+OpenWeather https://extensions.gnome.org/extension/750/openweather/
+Panel OSD https://extensions.gnome.org/extension/708/panel-osd/
+Removable Drive Menu https://extensions.gnome.org/extension/7/removable-drive-menu/
+Sound Input & Output Device Chooser https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+Three Finger Window Move (wayland, for notebook) https://extensions.gnome.org/extension/2164/three-finger-window-move/
+Tweaks & Extensions in System Menu https://extensions.gnome.org/extension/1653/tweaks-in-system-menu/
+User Themes https://extensions.gnome.org/extension/19/user-themes/
+Workspaces Thumbnails https://extensions.gnome.org/extension/2557/workspaces-thumbnails/
+X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
+
+#[UBUNTU 21.10, GNOME 40, GNOME EXTENSIONS]:
+Add to Desktop https://extensions.gnome.org/extension/3240/add-to-desktop/
+Applications Overview Tooltip https://extensions.gnome.org/extension/1071/applications-overview-tooltip/
+Auto Move Windows  https://extensions.gnome.org/extension/16/auto-move-windows/
+Big Avatar https://extensions.gnome.org/extension/3488/big-avatar/
+Bluetooth quick connect https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+Blur my Shell  https://extensions.gnome.org/extension/3193/blur-my-shell/
+Bring Out Submenu Of Power Off/Logout Button https://extensions.gnome.org/extension/2917/bring-out-submenu-of-power-offlogout-button/
+Caffeine https://extensions.gnome.org/extension/517/caffeine/
+Compiz windows effect https://extensions.gnome.org/extension/3210/compiz-windows-effect/
+Dash to Panel https://extensions.gnome.org/extension/1160/dash-to-panel/
+Desktop Icons NG (DING) https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/
+GameMode https://extensions.gnome.org/extension/1852/gamemode/
+GSConnect https://extensions.gnome.org/extension/1319/gsconnect/
+Impatience https://extensions.gnome.org/extension/277/impatience/
+Just Perfection https://extensions.gnome.org/extension/3843/just-perfection/
+OpenWeather https://extensions.gnome.org/extension/750/openweather/
+Panel Date Format https://extensions.gnome.org/extension/3465/panel-date-format/
+Panel OSD https://extensions.gnome.org/extension/708/panel-osd/
+Removable Drive Menu https://extensions.gnome.org/extension/7/removable-drive-menu/
+Sound Input & Output Device Chooser https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+User Themes https://extensions.gnome.org/extension/19/user-themes/
+Workspace Indicator https://extensions.gnome.org/extension/21/workspace-indicator/
+X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
+
+#[UBUNTU 22.04, GNOME 42, GNOME EXTENSIONS]:
+Add to Desktop https://extensions.gnome.org/extension/3240/add-to-desktop/
+Applications Menu https://extensions.gnome.org/extension/6/applications-menu/
+Applications Overview Tooltip https://extensions.gnome.org/extension/1071/applications-overview-tooltip/
+Bluetooth Quick Connect https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+Blur my Shell https://extensions.gnome.org/extension/3193/blur-my-shell/
+Bring Out Submenu Of Power Off/Logout Button  https://extensions.gnome.org/extension/2917/bring-out-submenu-of-power-offlogout-button/
+Compiz windows effect https://extensions.gnome.org/extension/3210/compiz-windows-effect/ 
+Dash to Panel https://extensions.gnome.org/extension/1160/dash-to-panel/
+Desktop Cube https://extensions.gnome.org/extension/4648/desktop-cube/
+Desktop Icons NG (DING) https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/
+Espresso https://extensions.gnome.org/extension/4135/espresso/
+GSConnect https://extensions.gnome.org/extension/1319/gsconnect/
+Transparent Window Moving https://extensions.gnome.org/extension/1446/transparent-window-moving/
+Sound Input & Output Device Chooser https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+Panel Date Format https://extensions.gnome.org/extension/1462/panel-date-format/
+No overview at start-up https://extensions.gnome.org/extension/4099/no-overview/
+Material Shell https://extensions.gnome.org/extension/3357/material-shell/
+Just Perfection https://extensions.gnome.org/extension/3843/just-perfection/
+Impatience https://extensions.gnome.org/extension/277/impatience/
+Tray Icons: Reloaded https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
+Workspace Indicator https://extensions.gnome.org/extension/21/workspace-indicator/
+X11 Gestures https://extensions.gnome.org/extension/4033/x11-gestures/
+sudo add-apt-repository ppa:touchegg/stable
+sudo apt update
+sudo apt install touchegg
+
+
+#[INSTALL-BEST-OPEN-LINUX-GAMES]
+#MEGA PACK XTRADEB GAMES
+#https://xtradeb.net/category/play/
+#https://launchpad.net/~xtradeb/+archive/ubuntu/play
+sudo add-apt-repository ppa:xtradeb/play
+sudo apt-get update 
+sudo apt install -f eduke32  etlegacy minetest minetest-data flightgear gameplayfootball gzdoom  openra redeclipse simgear stepmania stuntrally urbanterror tsc xonotic vdrift wesnoth-1.14 terasology openttd megamario speed-dreams supertux supertuxkart 0ad warsow warzone2100 xonotic wesnoth urbanterror ufoai
+
+
+
+
+
+
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
+echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
+sudo apt-get update
+sudo apt-get install onlyoffice-desktopeditors
+
+
+
+
+Ну что товарищи Линуксоиды готовы к ночным экспериментам ?)
+Я тут решил монитор разогнать и вроде все получилось!
+думаю теперь как из этого в будущем модуль сделать для bzu-gmb
+а пока все желающие могут закатать рукава и идти в консоль:
+1) Генерируем настройки для разрешения 1920х1080 74 герца (можно больше, если ваш монитор не вырубиться):
+cvt 1920 1080 74
+#я получил следующий выхлоп:
+# 1920x1080 73.95 Hz (CVT) hsync: 83.49 kHz; pclk: 217.75 MHz
+Modeline "1920x1080_74.00" 217.75 1920 2064 2264 2608 1080 1083 1088 1129 -hsync +vsync
+#Далее подставляем эти значения для нового режима:
+xrandr --newmode "1920x1080_74.00" 217.75 1920 2064 2264 2608 1080 1083 1088 1129 -hsync +vsync
+#Теперь нужно узнать к какому выходу подключен монитор
+xrandr
+# Так как у меня их два я получил такое: HDMI-A-0 и DVI-D-0 и подкинул им по очереди новый режим:
+xrandr --addmode HDMI-A-0 1920x1080_74.00
+xrandr --addmode DVI-D-0 1920x1080_74.00
+#если не один из мониторов не погас и выхлоп xrandr, что они тянут 74 герца, можно попробовать и больше (не рекомендую на простых мониторах)
+# Но данные команды работают на время включения системы, после перегруза, нужно снова создавать режим и задействовать его на мониторах...
+# А как это сделать на постоянной основе, домашнее задание :)
+
+п.с. Самые не терпеливые могут поделиться решением в комментариях!
+
+Сергей Митрохин
+video=DP-1:1920x1080@165
+video=HDMI-A-1:1920x1080@74
+Вот этими параметрами к ядру можно не стандартный режим добавить. Возможно даже проще это сделать будет оттуда. Он по умолчанию в голой консоли кстате использоваться будет.
+
+
+как в Linux программно повысить разрешение к примеру с 1920х1080 до 3840х2160.
+Я еще не тестировал игры в такой теме, но думаю это явно будет весело)
+что бы это сделать вам нужно понять какой выход у вашего монитора или ноутбуку и его стандартное разрешение экрана:
+xrandr --current | grep -w connected
+в моем случае (ноутбук) это:
+eDP connected (normal left inverted right x axis y axis)
+HDMI-A-0 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 520mm x 290mm
+И выход: HDMI-A-0
+далее делаем тест на 10 сек, что бы нечего не сломать и т.д. (у команды - - scale\ - - output должно быть два минуса а не один, ебано ВК... ):
+xrandr --output HDMI-A-0 --scale 2x2 & sleep 10;xrandr --output HDMI-A-0 --scale 1x1
+и если все ок, запускам изменение которое будет актуально на время сеанса пользователя:
+xrandr --output HDMI-A-0 --scale 2x2
+ВАЖНО: если у вас программа была запущена до смены разрешения экрана то она будет работать скорее всего не корректно, на gnome все ок с такой фичей, что у остальных не знаю...
+
+
+Как ограничить число ядер в Linux?
+Иногда для тестов очень хочется отключить все ядра, кроме одного, ибо очень сильно мешает ряду тестов :)
+
+Чтобы оставить в системе 1 ядро / процессор на Linux необходимо в /etc/grub.conf (/boot/grub/menu.lst) добавить "maxcpus=1" к списку опций ядра и перезагрузиться.
+
+
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4 libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=12053560"
+
+Разберем подробнее за что отвечает каждый параметр:
+
+quiet - вывод, это долго, поэтому говорим ядру что на экран нужно выводить минимум информации
+rootfstype=ext4 - указываем в какую файловую систему отформатирован корень. У меня ext4.
+libahci.ignore_sss=1 - Ignore staggered spinup flag, ускоряет загрузку жестких дисков
+raid=noautodetect - raid я не использую, думаю вы тоже поэтому отключаем.
+selinux=0 - система полномочий selinux на домашней машине тоже ни к чему, без нее будет быстрее.
+plymouth.enable=0 - заставка plymouth тоже занимает много времени, поэтому убираем заставку
+lpj=12053560 - позволяет задать константу loops_per_jiffy, что позволит ядру не вычислять ее каждый раз и сэкономит до 250 миллисекунд. Это значение индивидуально для каждого компьютера.
+
+Чтобы узнать значение последнего параметра выполните:
+
+dmesg | grep 'lpj='
+
+sudo apt install rng-tools
+
+sudo systemctl disable nmbd.service
+sudo systemctl disable ModemManager.service
+sudo systemctl mask plymouth-quit-wait.service
+#sudo systemctl disable tor@default.service
+sudo systemctl disable smbd.service
+
+systemd-analyze
+systemd-analyze blame
+systemd-analyze critical-chain
+
+
+#EXEMPLE[FROM REDROOT]:
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff mitigations=off rootfstype=ext4 libahci.ignore_sss=1 raid=noautodetect selinux=0 lpj=4988258 loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 apparmor=1 security=apparmor"
+
+
+
+
+
+https://www.linuxuprising.com/2018/07/anbox-how-to-install-google-play-store.html
+https://www.linuxuprising.com/2021/05/turn-your-tablet-or-phone-into-graphic.html
+https://github.com/ventoy/Ventoy/releases
+https://github.com/storm-devs/storm-engine
+
+How To Enable Hibernation On Ubuntu (When Using A Swap File)
+https://www.linuxuprising.com/2021/08/how-to-enable-hibernation-on-ubuntu.html
+
+Quick App Launcher Ulauncher Has New Release Which Fixes Crashes Due To GTK4 Incompatibility, Improves Fuzzy Matching
+https://www.linuxuprising.com/2021/08/quick-app-launcher-ulauncher-has-new.html
+
+PDF Mix Tool 1.0 Released With Overhauled Interface, PDF Metadata Editing And Qt6 Support
+https://www.linuxuprising.com/2021/06/pdf-mix-tool-10-released-with.html
+
+GNOME: How To Disable The Touchpad When A Mouse Is Plugged In And While Typing
+https://www.linuxuprising.com/2021/06/gnome-how-to-disable-touchpad-when.html
+
+Replace ‘Activities’ with System Logo Menu in Gnome (Ubuntu, Fedora, CentOS)
+https://ubuntuhandbook.org/index.php/2021/08/replace-activities-system-logo-menu-gnome/
+
+https://www.libreoffice.org/download/appimage/
+
+Enable Hardware Video Acceleration (VA-API) For Firefox in Ubuntu 20.04 / 18.04 & Higher
+https://ubuntuhandbook.org/index.php/2021/08/enable-hardware-video-acceleration-va-api-for-firefox-in-ubuntu-20-04-18-04-higher/
+
+How to Install Kdenlive 21.08 in Ubuntu 21.10 via PPA
+https://ubuntuhandbook.org/index.php/2021/08/install-kdenlive-2108-ubuntu-21-10-ppa/
+
+Install Shutter Screenshot Tool in Ubuntu 20.04/21.04 via Official PPA
+https://ubuntuhandbook.org/index.php/2021/08/nstall-shutter-ubuntu-20-04-official-ppa/
+
+Video Trimmer – A Stupid Simple App to Cut a Clip Out of a Video in Linux
+https://ubuntuhandbook.org/index.php/2021/08/video-trimmer-stupid-simple-app-cut-clip-video-linux/
+
+0 A.D. Alpha 25 Released! Implement Single Player Campaigns [Ubuntu PPA]
+https://ubuntuhandbook.org/index.php/2021/08/0-a-d-alpha-25-implement-single-player-campaigns/
+
+Enable Ubuntu 16.04 Unity Style Login Screen in Ubuntu 20.04 & Higher
+https://ubuntuhandbook.org/index.php/2021/08/ubuntu-16-04-style-login-screen/
