@@ -737,7 +737,7 @@ systemd-analyze critical-chain
 
 
 #EXEMPLE[FROM REDROOT]:
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff mitigations=off rootfstype=ext4 libahci.ignore_sss=1 raid=noautodetect selinux=0 lpj=4988258 loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 apparmor=1 security=apparmor"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet rootfstype=ext4  libahci.ignore_sss=1 raid=noautodetect selinux=0 plymouth.enable=0 lpj=2595412 amdgpu.ppfeaturemask=0xffffffff mitigations=off loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 apparmor=0 security=apparmor"
 
 
 
