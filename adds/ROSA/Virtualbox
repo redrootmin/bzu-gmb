@@ -1,0 +1,15 @@
+sudo dnf install virtualbox
+sudo usermod -aG vboxusers $USER
+
+
+
+#[Test-devel-builds]
+https://www.virtualbox.org/wiki/Testbuilds
+
+#[error start test build app]
+Create-scritp-file:
+#!/bin/bash
+export QT_SCREEN_SCALE_FACTORS=1
+export QT_SCALE_FACTOR=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+exec virtualbox
