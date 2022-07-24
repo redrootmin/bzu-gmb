@@ -1,0 +1,23 @@
+Analog sticks not centered with evdev pad handler
+
+When using the evdev pad handler on Linux, some users may encounter cases where the analog sticks of the controller are not centered but stuck in the corner of the movement zone. This issue occurs when incorrect drivers are used for the controller.
+
+Usually, analog sticks have a range from -x to +x while triggers use only a positive range from 0 to +x. However, some controllers use positive ranges for analog sticks as well which does not directly work with RPCS3's implementation. Hence, the following workaround is required:
+
+Navigate to ~/.config/rpcs3/ and open evdev_positive_axis.yml. If this file does not exist in the directory, create it.
+Change the following lines from false to true:
+
+Before
+        ABS_X:  false
+        ABS_Y:  false
+        ABS_RX: false
+        ABS_RY: false
+
+        	
+After
+        ABS_X:  true
+        ABS_Y:  true
+        ABS_RX: true
+        ABS_RY: true
+
+This is not an exhaustive list of options available. Users are requested to toggle other options as required by their specific controller or driver. 
