@@ -46,7 +46,7 @@ ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
 echo "ярлыка небыло, создаем его"
   fi
  fi
-cd "/home/${USER}/.local/share/bzu-gmb-apps"
+cd "/home/${user_run_script}/bzu-gmb-apps/"
 rm -f [GGS]gnome-gui-switcher*
 wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zip -O [GGS]gnome-gui-switcher-rosa.zip
 unzip [GGS]gnome-gui-switcher-rosa.zip
