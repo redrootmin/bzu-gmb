@@ -22,7 +22,7 @@ echo "обнавляем bzu-gmb!"
 if [ ! -d "/home/${USER}/bzu-gmb-rosa" ];then
 cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/unstable.zip -O bzu-gmb-unstable.zip;unzip bzu-gmb-unstable.zip;cd ~/bzu-gmb-unstable;chmod +x mini_install.sh;cd;rm -f bzu-gmb*.zip
 else
-cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zip -O bzu-gmb-rosa.zip;unzip bzu-gmb-rosa.zip;cd ~/bzu-gmb-rosa;chmod +x mini_install.sh;cd;rm -f bzu-gmb-rosa.zip
+cd;rm -rf bzu-gmb*;rm -f bzu-gmb*;rm -f *bzu-gmb;wget https://github.com/redrootmin/bzu-gmb/archive/refs/heads/rosa.zip -O bzu-gmb-rosa.zip;unzip bzu-gmb-rosa.zip;cd ~/bzu-gmb-rosa;chmod +x mini_install.sh;cd;rm -f bzu-gmb-rosa.zip
 fi
 fi
 
