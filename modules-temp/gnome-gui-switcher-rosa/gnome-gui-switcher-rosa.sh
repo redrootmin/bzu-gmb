@@ -35,10 +35,22 @@ if [ ! -d "/home/${user_run_script}/[GGS]gnome-gui-switcher" ]
 then
 tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
-cd
+# Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
+ if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
+ then
+mkdir -p "/home/${USER}/.local/share/bzu-gmb-apps"
+ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+ else
+   if [ ! -d "/home/$USER/bzu-gmb-apps" ];then
+ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
+echo "ярлыка небыло, создаем его"
+  fi
+ fi
+cd "/home/${USER}/.local/share/bzu-gmb-apps"
 rm -f [GGS]gnome-gui-switcher*
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/GGS.gnome-gui-switcher-dev.tar.xz -O [GGS]gnome-gui-switcher-dev.tar.xz
-tar -xJf [GGS]gnome-gui-switcher-dev.tar.xz
+wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zip -O [GGS]gnome-gui-switcher-rosa.zip
+unzip [GGS]gnome-gui-switcher-rosa.zip
+rm -f [GGS]gnome-gui-switcher*
 chmod +x "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
 bash "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
