@@ -1,8 +1,0 @@
-как правильно получить точное разрешение экрана в консоли (полезно для создания софта):
-xdpyinfo -display :0.0 | grep dimensions | egrep -o "[0-9]+x[0-9]+ pixels" | egrep -o "[0-9]+x[0-9]+"
-
-Как точно узнать название вашей системы:
-cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'
-
-Как получить список всех Linux ядер установленных в систему Debian-base (включая остатки пакетов от ядер)
-dpkg -l | grep "linux" | grep "rc linux" | cut -d " " -f 3
