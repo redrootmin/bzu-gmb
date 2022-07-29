@@ -29,9 +29,9 @@ tput setaf 2; echo "Установка [GGS]gnome-gui-switcher - это утил
 tput sgr0
 
 #запуск основных команд модуля
-version_app="[GGS]gnome-gui-switcher"
+version_app="[GGS]gnome-gui-switcher-rosa"
 # Проверка установлен [GGS]gnome-gui-switcher или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/[GGS]gnome-gui-switcher" ]
+if [ ! -d "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa" ]
 then
 tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
@@ -51,8 +51,8 @@ rm -f [GGS]gnome-gui-switcher*
 wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zip -O [GGS]gnome-gui-switcher-rosa.zip
 unzip [GGS]gnome-gui-switcher-rosa.zip
 rm -f [GGS]gnome-gui-switcher-rosa.zip
-chmod +x "/home/${user_run_script}/gnome-gui-switcher-rosa/mini_install.sh"
-bash "/home/${user_run_script}/gnome-gui-switcher-rosa/mini_install.sh"
+chmod +x "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa/mini_install.sh"
+bash "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa/mini_install.sh"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
 else
