@@ -51,8 +51,8 @@ rm -f [GGS]gnome-gui-switcher*
 wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zip -O [GGS]gnome-gui-switcher-rosa.zip
 unzip [GGS]gnome-gui-switcher-rosa.zip
 rm -f [GGS]gnome-gui-switcher*
-chmod +x "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
-bash "/home/${user_run_script}/[GGS]gnome-gui-switcher/mini_install.sh"
+chmod +x "/home/${user_run_script}/gnome-gui-switcher-rosa/mini_install.sh"
+bash "/home/${user_run_script}/gnome-gui-switcher-rosa/mini_install.sh"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
 else
