@@ -1,0 +1,2 @@
+sudo dnf config-manager add-repo=http://abf-downloads.rosalinux.ru/gnome_backport_personal/repository/rosa2021.1/x86_64/main/release
+gpgcheck=0

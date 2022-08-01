@@ -421,6 +421,7 @@ Option "RegistryDwords" "PerfLevelSrc=0x2222"
 Option "TripleBuffer" "True"
 Option "Coolbits" "28"
 EndSection
+
 Section "Screen"
 Identifier "Screen0"
 Device "Device0"
