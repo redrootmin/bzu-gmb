@@ -15,3 +15,5 @@ cost=1000" > /tmp/x11_backports_personal.repo
 sudo mv /tmp/x11_backports_personal.repo /etc/yum.repos.d
 
 sudo dnf --refresh --nobest distrosync
+
+sudo dnf install lib64gstvaapi0.10-devel vlc-plugin-vaapi gstreamer0.10-vaapi gstreamer1.0-vaapi lib64gstvaapi0.10_0 vaapi-driver-vdpau lib64vdpau_va_gl1
