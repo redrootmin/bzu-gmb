@@ -1,0 +1,18 @@
+1 файл конфигурации - https://raw.githubusercontent.com/libretro/RetroArch/master/retroarch.cfg
+2 все ядра - https://buildbot.libretro.com/stable/1.10.1/linux/x86_64/RetroArch_cores.7z
+3 настройка меню:
+https://www.ixbt.com/live/games/okno-v-detstvo-obzor-i-testirovanie-retroarch-v-2022-godu.html
+https://lifehacker.ru/retroarch-nastrojka-ispolzovanie/
+https://tutorybird.ru/howto/kak-nastroit-retroarch-elitnyj-universalny/
+https://www.resetera.com/threads/guide-for-retroarch-on-steam-deck.568729/
+4 геймпад - выбрать SDL2
+5 настройка выхода входа из игр в настройках ввода, найти настройки горячих клавиш
+6 сканирование игр и отображение всех папок - добавить команду: 
+STEAM_COMPAT_MOUNTS=/run/media:/media:/mnt:/home:/opt:/srv %command%
+7 настройка видео, оптимизация под приставки - выбрать в разрешенгии full, и метод gl
+8 запуск игр: черекз плей листы, который предворительно нужно сканировать
+9 фильтры с эмитацией элт экранов - https://www.emu-land.net/forum/index.php?topic=81133.0
+10 сайты с играми: 
+https://www.emu-land.net/
+https://retro-game.ru/sega/147-sbornik-igr-dlya-sega.html
+
