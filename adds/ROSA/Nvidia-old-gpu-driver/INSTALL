@@ -1,0 +1,31 @@
+FAQ SITE: https://www.if-not-true-then-false.com/2020/inttf-nvidia-patcher/
+
+Установка драйверов Nvidia для старых карт с новыми ядрами:
+
+#1 установка необходимых пакетов
+sudo dnf install wget patch
+
+#2 создание временной папки
+cd
+mkdir NVIDIA
+cd NVIDIA
+
+#3 скачивание скрипта для преобразования драйвера
+wget -O inttf-nvidia-patcher.sh https://nvidia.if-not-true-then-false.com/patcher/inttf-nvidia-patcher.sh
+
+4# даем права на исполнение скрипта
+chmod +x inttf-nvidia-patcher.sh
+
+5# смотрим команды скрипта
+./inttf-nvidia-patcher.sh
+#--- inttf NVIDIA patcher ---
+#script usage: inttf-nvidia-patcher.sh [-h] [-v 340.108, 418.113 or 435.21]
+#Example: Get and patch NVIDIA 340.108 for kernel 5.19, 5.18 / 5.17 / 5.16 / 5.15 / 5.14 / 5.13 / 5.12 / 5.11 / 5.10
+
+6# пример скачивания и преобразования/патчинга драйвера 340 для новых ядер Линукс
+./inttf-nvidia-patcher.sh -v 340.108
+
+#7 install установка драйвера
+
+sudo ./NVIDIA-Linux-x86_64-340.108-patched-kernel-5.18.run
+
