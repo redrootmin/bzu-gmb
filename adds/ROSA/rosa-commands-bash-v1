@@ -1,0 +1,27 @@
+#1
+sudo dd if=/dev/sda of=/dev/sdb bs=64K conv=noerror,sync
+Здесь:
+
+    sdb- это пункт назначения
+    sda- исходный жесткий диск
+    bs- это команда размера блока, соответствующая 64 КБ
+    conv = нет ошибки, синхронизациясинхронизирует ввод-вывод и в случае ошибки не останавливается.
+
+Значение по умолчанию для настроек 64 КБ составляет 512 байт, что относительно мало. В качестве условия лучше включить 64К или 128К. С другой стороны, передача небольшого блока более надежна.
+
+#2
+lsusb
+echo options usb-storage quirks=174c:5136:u | sudo tee /etc/modprobe.d/blacklist_uas.conf
+sudo update-initramfs -u
+sudo reboot
+
+#3
+как правильно получить точное разрешение экрана в консоли (полезно для создания софта):
+xdpyinfo -display :0.0 | grep dimensions | egrep -o "[0-9]+x[0-9]+ pixels" | egrep -o "[0-9]+x[0-9]+"
+#4
+Как точно узнать название вашей системы:
+cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"//g'
+#5
+Как получить список всех Linux ядер установленных в систему Debian-base (включая остатки пакетов от ядер)
+dpkg -l | grep "linux" | grep "rc linux" | cut -d " " -f 3
+
