@@ -52,6 +52,7 @@ wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zi
 unzip [GGS]gnome-gui-switcher-rosa.zip
 rm -f [GGS]gnome-gui-switcher-rosa.zip
 chmod +x "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa/mini_install.sh"
+echo "gnome-gui-switcher-rosa" > "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa/config/install-version"
 bash "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa/mini_install.sh"
 tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
 tput sgr0
