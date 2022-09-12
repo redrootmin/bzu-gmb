@@ -1,3 +1,48 @@
+[buz-gmb 0.495RC1]===================================
+ГОТОВО
+
+ТЕСТИРУЕТСЯ
+
+В РАЗРАБОТКЕ
+-gnome-gui-switcher - на обнавлении
+-mesa-переключатель
+-репа Бакпорт - добавление
+-amdvlk-portable (gcn1-rdna2) - на обнавлении
+-Mesa-Devel-Fidel for ROSA  - на обнавлении
+-Mesa-Git-Fidel for ROSA - на обнавлении
+-Nvidia antitearing - добавление
+-Nvidia cuda support for blender+ добавление
+-xanmod - на обнавлении
+-wallpapers from redroot in ROSA gnome-settings - на обнавлении
+-GWE (overclock nvidia) - добавление
+-libstrangle-tools - добавление
+-Mangohud-git - на обнавлении
+-ProtonUp-Qt - на обнавлении
+-vscodium-portable - на обнавлении
+-godot-portable - на обнавлении (3.5)
+-obs-studio-ppa - на обнавлении
+-NoiseTorch-app - на обнавлении
+-Kdenlive-appimage - на обнавлении
+-Natron-portable - - на обнавлении
+-Lossless-Cut-appimage - на обнавлении
+-Blender-3.3-portable - добавление
+-MagicaVoxel-wine - на обнавлении
+-gravity-mark-portable - на обнавлении
+-Krita-appimage - на обнавлении
+-Inkscape-appimage - на обнавлении
+-remmina-ppa - добавление
+-timeshift ppa - добавление
+-gparted-ppa - добавление
+-grub-customizer ppa - добавление
+-stacer ppa - добавление
+-icq-new-portable - добавление
+-discord-ppa - добавление
+-scribus-ppa - добавление
+-firefox-ppa - добавление
+-chromium-ppa - добавление
+-qbittorent-ppa - добавление
+
+
 [buz-gmb 0.494]===================================
 -add amdvlk-portable (gcn1-rdna2) - TESTING!
 -Mangohud-git - UPDATE for ROSA
