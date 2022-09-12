@@ -5,8 +5,10 @@
 
 В РАЗРАБОТКЕ
 -gnome-gui-switcher - на обнавлении
--mesa-переключатель
--репа Бакпорт - добавление
+-mesa-переключатель - добавление
+-gamepad-bе-service - добавление
+-steam-deck-mode - добавление
+-репа backports-rosa - добавление
 -amdvlk-portable (gcn1-rdna2) - на обнавлении
 -Mesa-Devel-Fidel for ROSA  - на обнавлении
 -Mesa-Git-Fidel for ROSA - на обнавлении
