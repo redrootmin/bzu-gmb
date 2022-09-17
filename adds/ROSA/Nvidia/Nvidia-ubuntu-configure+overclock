@@ -1,0 +1,27 @@
+###kernel flag###
+sudo nano /etc/default/grub
+#add in GRUB_CMDLINE_LINUX_DEFAULT="
+nvidia-drm.modeset=1
+#save
+sudo update-grub
+
+
+###GreenWithEnvy###
+https://gitlab.com/leinardi/gwe
+#Install from source code
+#sudo apt install -f pkg-config python3-dev libgirepository1.0-dev meson ninja-build appstream-util python3-pip libcairo2-dev libxt-dev gir1.2-dazzle-1.0
+sudo dnf install python3-pip
+python3-pip rx peewee injector py3nvml
+git clone --recurse-submodules -j4 https://gitlab.com/leinardi/gwe.git
+cd gwe
+git checkout release
+sudo -H pip3 install -r requirements.txt
+meson . build --prefix /usr
+ninja -v -C build
+sudo ninja -v -C build install
+
+
+
+
+nvidia-fan-control-linux
+https://github.com/vandabbin/nvidia-fan-control-linux/blob/master/fan-control.sh
