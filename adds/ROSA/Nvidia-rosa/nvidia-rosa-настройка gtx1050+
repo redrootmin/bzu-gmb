@@ -43,7 +43,7 @@ sudo cp -f 90-nvidia.conf /usr/share/X11/xorg.conf.d
 https://gitlab.com/leinardi/gwe
 #Install from source code
 #sudo apt install -f pkg-config python3-dev libgirepository1.0-dev meson ninja-build appstream-util python3-pip libcairo2-dev libxt-dev gir1.2-dazzle-1.0
-sudo dnf install python3-pip
+sudo dnf install python3-pip python3-gi-cairo
 python3-pip rx peewee injector py3nvml
 git clone --recurse-submodules -j4 https://gitlab.com/leinardi/gwe.git
 cd gwe
