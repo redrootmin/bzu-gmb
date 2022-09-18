@@ -1,0 +1,99 @@
+sudo nano /etc/default/grub
+GRUB_DISABLE_RECOVERY=false
+sudo update-grub2
+
+
+echo "[x11_backports_personal-x86-64]
+name=x11_backports_personal-x86-64
+baseurl=http://abf-downloads.rosalinux.ru/x11_backports_personal/repository/rosa2021.1/x86_64/main/release
+gpgcheck=0
+enabled=1
+cost=999
+
+[x11_backports_personal-i686]
+name=x11_backports_personal-i686
+baseurl=http://abf-downloads.rosalinux.ru/x11_backports_personal/repository/rosa2021.1/x86_64/main/release
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/x11_backports_personal.repo
+
+sudo mv /tmp/x11_backports_personal.repo /etc/yum.repos.d
+
+sudo dnf --refresh --nobest distrosync
+
+sudo dnf install lib64gstvaapi0.10-devel vlc-plugin-vaapi gstreamer0.10-vaapi gstreamer1.0-vaapi lib64gstvaapi0.10_0 vaapi-driver-vdpau lib64vdpau_va_gl1
+
+
+sudo dnf install kernel-5.17-generic-devel kernel-5.17-generic kernel-5.17-generic-doc kernel-5.17-generic-uml kernel-5.17-generic-uml-modules kernel-5.17-rosa-flow-abi task-kernel-5.17-generic
+
+sudo dnf install kernel-modules-nvidia470-5.17.11-2-generic kernel-source-nvidia470 nvidia470-doc-html nvidia470-dracut dkms-nvidia470 nvidia470-blacklist nvidia470-core nvidia470-cuda-opencl nvidia470-devel nvidia-cuda-toolkit nvidia-cuda-toolkit-devel python3-pycuda
+
+###kernel flag###
+sudo nano /etc/default/grub
+#add in GRUB_CMDLINE_LINUX_DEFAULT="
+nvidia-drm.modeset=1
+#save
+sudo update-grub2
+
+sudo cp -f 90-nvidia.conf /usr/share/X11/xorg.conf.d
+
+
+
+###GreenWithEnvy###
+https://gitlab.com/leinardi/gwe
+#Install from source code
+#sudo apt install -f pkg-config python3-dev libgirepository1.0-dev meson ninja-build appstream-util python3-pip libcairo2-dev libxt-dev gir1.2-dazzle-1.0
+sudo dnf install python3-pip
+python3-pip rx peewee injector py3nvml
+git clone --recurse-submodules -j4 https://gitlab.com/leinardi/gwe.git
+cd gwe
+git checkout release
+sudo -H pip3 install -r requirements.txt
+meson . build --prefix /usr
+ninja -v -C build
+sudo ninja -v -C build install
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Установка:
+ dkms-nvidia470         x86_64 470.129.06-5 x11_backports_personal-x86-64 9.0 k
+ kernel-modules-nvidia470-5.17.11-2-generic
+                        x86_64 5.17.11-2    mirror-rosa-x86_64-main        33 M
+ kernel-source-nvidia470
+                        x86_64 470.129.06-5 x11_backports_personal-x86-64  24 M
+ nvidia470-blacklist    x86_64 470.129.06-5 x11_backports_personal-x86-64 7.0 k
+ nvidia470-core         x86_64 470.129.06-5 x11_backports_personal-x86-64 196 M
+ nvidia470-cuda-opencl  x86_64 470.129.06-5 x11_backports_personal-x86-64  39 M
+ nvidia470-devel        x86_64 470.129.06-5 x11_backports_personal-x86-64 9.8 k
+ nvidia470-doc-html     x86_64 470.129.06-5 x11_backports_personal-x86-64 166 k
+ nvidia470-dracut       x86_64 470.129.06-5 x11_backports_personal-x86-64 7.3 k
+Установка зависимостей:
+ auto-krokodil-filesystem
+                        noarch 0.9-1        mirror-rosa-x86_64-main       7.5 k
+ dkms                   noarch 2.8.3-4      mirror-rosa-x86_64-main        63 k
+ egl-wayland            x86_64 1.1.9-2      mirror-rosa-x86_64-main       9.3 k
+ kernel-5.15-generic-devel
+                        x86_64 5.15.43-2    mirror-rosa-x86_64-main        18 M
+ kernel-modules-nvidia470-5.15.43-2-generic
+                        x86_64 5.15.43-2    mirror-rosa-x86_64-main        34 M
+Установка слабых зависимостей:
+ nvidia-additional-settings
+                        noarch 1-6          mirror-rosa-x86_64-main       7.0 k
+
+
