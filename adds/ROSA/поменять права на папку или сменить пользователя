@@ -1,0 +1,3 @@
+sudo chown -R gamer:gamer '/mnt/steam_data/SteamLibrary_linux_test_new'
+sudo chmod -R 777 '/mnt/steam_data/SteamLibrary_linux_test_new'
+
