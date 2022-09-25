@@ -1,0 +1,227 @@
+##MANGOHUD BUILD FOR ROSA FRESH DESKTOP 12.2
+sudo dnf install git meson ninja gcc gcc-c++ cmake.i686 cmake glibc-devel dbus-devel glslang
+git clone --recurse-submodules https://github.com/flightlessmango/MangoHud.git
+cd MangoHud
+meson build -Dwith_xnvctrl=disabled
+ninja -C build install
+=====================================================================================
+#решение проблемы с массовыми файлами только на чтение от других линукс систем
+#sudo nano /etc/sudoers 
+#%wheel ALL=(ALL) ALL
+sudo usermod -aG wheel $USER
+======================================================================================
+#Добавить права для всех, на диски у которых ограниченный доступ:
+sudo chmod -R ugo+rwx /path/to/disk
+#sample: sudo chmod -R ugo+rwx /media/gamer/usb-data64
+======================================================================================
+#Удаляем всё лишнее:
+sudo dnf remove -y gnome-robots four-in-a-row gnuchess aislerior gnome-chess gnome-mahjongg gnome-sudoku gnome-tetravex iagno lightsoff tail five-or-more gnome-klotski gimp kmahjongg kmines klines kpat
+sudo dnf install -y vulkan.x86_64 vulkan.i686 lib64vulkan-devel.x86_64 lib64vulkan-intel-devel.x86_64 lib64vulkan1.x86_64  libvulkan-devel.i686 libvulkan-intel-devel.i686 libvulkan1.i686
+=============================================================================================
+Обновление системы после установки:
+sudo dnf update
+======================================================================================
+Для включения тестовых реп:
+sudo dnf install -y rosa-repos-testing
+sudo dnf update -y
+=============================================================================================
+sudo dnf install portproton steam ananicy neofetch krita
+=============================================================================================
+Устанавливаем pipewire и удаляем pulseaudio
+sudo dnf install pipewire
+sudo dnf remove pulseaudio
+systemctl start --user pipewire-pulse.service
+=============================================================================================
+Включаем поддержку xbox usb dongle:
+sudo dnf install xow libusb-compat0.1_4
+sudo systemctl enable xow && sudo systemctl start xow
+=============================================================================================
+Внешний вид:
+sudo dnf install kvantum
+
+настроить файловый менеджер (включить миниатюры для exe файлов)
+отключить индексацию поиска
+=============================================================================================
+Установка XanMod ядра - (https://forum.rosalinux.ru/viewtopic.php?f=58&t=10295):
+
+echo "[kernel-xanmod-x86_64]
+name=kernel with XanMod patch
+baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/repository/rosa2021.1/x86_64/kernel_xanmod/release/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+priority=0" > /tmp/kernel-xanmod-x86_64.repo
+sudo mv /tmp/kernel-xanmod-x86_64.repo /etc/yum.repos.d
+sudo dnf update && sudo dnf install task-kernel-xanmod
+=============================================================================================
+Для включения тестинга: (не использую в REOS)
+sudo dnf install rosa-repos-testing
+=============================================================================================
+Обновление MESA fidel (mesa-git-22.x):
+
+echo "[mesa-git]
+name=mesa-git
+baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa-git-i686]
+name=mesa-git-i686
+baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-git.repo
+sudo mv /tmp/mesa-git.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+sudo dnf reinstall '*xorg*' 'mesa*' 'libx*' 'libX*' 'fontconfig*'
+=============================================================================================
+#AMD TEARFREE XORG
+echo "Section "Device"
+Identifier "AMDgpu"
+Option  "DRI" "3"
+Option  "TearFree" "true"
+EndSection" > /tmp/10-amdgpu.conf
+sudo mv /tmp/10-amdgpu.conf /etc/X11/xorg.conf.d/
+
+=============================================================================================
+
+
+Сборка Mesa Git: (пока собирается только 64-битная версия) https://gist.github.com/Venemo/a9483106565df3a83fc67a411191edbd
+
+?  sudo dnf remove lib64llvm-devel
+
+sudo dnf install git meson ninja gcc gcc-c++ cmake.i686 cmake glibc-devel valgrind-devel.i686 valgrind-devel bison flex vulkan* vulkan*.i686 libdrm-devel libdrm-devel.i686 libvdpau-devel libvdpau-devel.i686 libomxil-bellagio-devel libomxil-bellagio-devel.i686 zlib-devel  wayland*-devel wayland-protocols-devel libX*-devel libX*-devel.i686 libunwind-devel libunwind-devel.i686 libxshmfence-devel libxshmfence-devel.i686 lm_sensors-devel expat-devel libzstd-devel libzstd-devel.i686 libxcb-devel.i686 libxcb-devel glslang* glslang*.i686 python3-mako lib64vdpau-devel libzstd-devel libdrm_amdgpu1 lib64drm_amdgpu1 libdrm-common libdrm-common.i686 lib64drm-devel lib64elf-devel lib64wayland-devel lib64xfixes-devel libxfixes-devel lib64xshmfence-devel lib64xxf86vm-devel libxxf86vm-devel libxrandr-devel lib64xrandr-devel libd3dadapter9-devel lib64d3dadapter9-devel libvulkan-devel lib64vulkan-devel lib64python3-devel llvm-devel
+
+mkdir -p ~/Projects
+cd ~/Projects
+git clone https://gitlab.freedesktop.org/mesa/mesa.git
+
+# Enter the mesa root directory
+cd mesa
+# Configure the build with meson (Mesa 64bit)
+meson build64 --libdir lib64 --prefix /usr/share/mesa-dev -Ddri-drivers= -Dgallium-drivers=radeonsi,swrast,iris,zink,virgl -Dvulkan-drivers=intel,amd,virtio-experimental -Dgallium-nine=true -Dosmesa=false -Dbuildtype=release
+ulimit -n 4096 && ninja -C build64 install
+
+
+
+mkdir -p ~/.local/share/meson/cross
+echo "[binaries]
+c='gcc'
+cpp='g++'
+ar='ar'
+strip='strip'
+pkgconfig='i686-redhat-linux-gnu-pkg-config'
+llvm-config='/usr/bin/llvm-config'
+
+[properties]
+c_args=['-m32', '-march=native']
+c_link_args=['-m32']
+cpp_args=['-m32', '-march=native']
+cpp_link_args=['-m32']
+
+[host_machine]
+system='linux'
+cpu_family='x86'
+cpu='x86'
+endian='little'" > ~/.local/share/meson/cross/gcc-i686
+
+# Configure the build with meson (Mesa 32bit)
+cd ~/Projects/mesa
+#amd only
+meson --reconfigure build64 --libdir lib64 --prefix /usr/share/mesa-amd-dev -Ddri-drivers= -Dgallium-drivers=radeonsi,swrast,zink -Dvulkan-drivers=amd -Dgallium-nine=true -Dosmesa=false -Dbuildtype=release
+ulimit -n 4096 && ninja -C build64 install
+
+
+
+
+
+
+#!/bin/sh
+
+MESA=$HOME/mesa \
+LD_LIBRARY_PATH=$MESA/lib64:$MESA/lib:$LD_LIBRARY_PATH \
+LIBGL_DRIVERS_PATH=$MESA/lib64/dri:$MESA/lib/dri \
+VK_ICD_FILENAMES=$MESA/share/vulkan/icd.d/radeon_icd.x86_64.json:$MESA/share/vulkan/icd.d/radeon_icd.x86.json \
+D3D_MODULE_PATH=$MESA/lib64/d3d/d3dadapter9.so.1:$MESA/lib/d3d/d3dadapter9.so.1 \
+    exec "$@"
+
+Don't forget to add executable permissions to the script:
+
+chmod +x ~/mesa-run.sh
+
+Now you can run your games like:
+
+~/mesa-run.sh vkcube
+
+
+
+
+#BUILD IN FEDORA
+sudo dnf install git meson ninja-build gcc gcc-c++ cmake.i686 cmake.x86_64 glibc-devel.i686 glibc-devel.x86_64 valgrind-devel.i686 valgrind-devel.x86_64 bison flex vulkan*.x86_64 vulkan*.i686 libdrm-devel.x86_64 libdrm-devel.i686 libvdpau-devel.x86_64 libvdpau-devel.i686 libva-devel.x86_64 libva-devel.i686 libomxil-bellagio-devel.x86_64 libomxil-bellagio-devel.i686 zlib-devel.x86_64 zlib-devel.i686 llvm-devel.x86_64 llvm-devel.i686 elfutils-libelf-devel.x86_64 elfutils-libelf-devel.i686 wayland*-devel.x86_64 wayland*-devel.i686 wayland-protocols-devel libX*-devel.x86_64 libX*-devel.i686 libunwind-devel.x86_64 libunwind-devel.i686 libxshmfence-devel.x86_64 libxshmfence-devel.i686 lm_sensors-devel.x86_64 lm_sensors-devel.i686 expat-devel.x86_64 expat-devel.i686 libzstd-devel.x86_64 libzstd-devel.i686 pkgconf-pkg-config.i686 pkgconf-pkg-config.x86_64 libffi-devel.i686 libffi-devel.x86_64 libxcb-devel.i686 libxcb-devel.x86_64 glslang inxi
+
+mkdir -p ~/Projects
+cd ~/Projects
+git clone https://gitlab.freedesktop.org/mesa/mesa.git
+cd mesa
+meson build64 --libdir lib64 --prefix /usr/share/mesa-dev -Ddri-drivers= -Dgallium-drivers=radeonsi,swrast,iris,zink,virgl -Dvulkan-drivers=intel,amd,virtio-experimental -Dgallium-nine=true -Dosmesa=false -Dbuildtype=release
+ulimit -n 4096 && ninja -C build64 install
+
+#amd only
+meson --reconfigure build64 --libdir lib64 --prefix /usr/share/mesa-amd-dev -Ddri-drivers= -Dgallium-drivers=radeonsi,swrast,zink -Dvulkan-drivers=amd -Dgallium-nine=true -Dosmesa=false -Dbuildtype=release
+ulimit -n 4096 && ninja -C build64 install
+
+mkdir -p ~/.local/share/meson/cross
+echo "[binaries]
+c='gcc'
+cpp='g++'
+ar='ar'
+strip='strip'
+pkgconfig='i686-redhat-linux-gnu-pkg-config'
+llvm-config='/usr/bin/llvm-config'
+
+[properties]
+c_args=['-m32', '-march=native']
+c_link_args=['-m32']
+cpp_args=['-m32', '-march=native']
+cpp_link_args=['-m32']
+
+[host_machine]
+system='linux'
+cpu_family='x86'
+cpu='x86'
+endian='little'" > ~/.local/share/meson/cross/gcc-i686
+
+meson build32 --cross-file gcc-i686 --libdir lib --prefix /usr/share/mesa-dev -Ddri-drivers= -Dgallium-drivers=radeonsi,swrast,iris,zink,virgl -Dvulkan-drivers=intel,amd,virtio-experimental -Dgallium-nine=true -Dosmesa=false -Dbuildtype=release
+ulimit -n 4096 && ninja -C build32 install
+
+#amd only
+meson --reconfigure build32 --cross-file gcc-i686 --libdir lib --prefix /usr/share/mesa-amd-dev -Ddri-drivers= -Dgallium-drivers=radeonsi,swrast,zink -Dvulkan-drivers=amd -Dgallium-nine=true -Dosmesa=false -Dbuildtype=release
+ulimit -n 4096 && ninja -C build32 install
+
+Running custom install script '/usr/bin/python3 /home/gamer/Projects/mesa/bin/install_megadrivers.py /home/gamer/Projects/mesa/build32/src/gallium/targets/dri/libgallium_dri.so /home/gamer/mesa-amd/lib/dri radeonsi_dri.so swrast_dri.so kms_swrast_dri.so zink_dri.so'
+Running custom install script '/usr/bin/python3 /home/gamer/Projects/mesa/bin/install_megadrivers.py /home/gamer/Projects/mesa/build32/src/gallium/targets/vdpau/libvdpau_gallium.so.1.0.0 lib/vdpau libvdpau_radeonsi.so.1.0.0'
+Running custom install script '/usr/bin/python3 /home/gamer/Projects/mesa/bin/install_megadrivers.py /home/gamer/Projects/mesa/build32/src/gallium/targets/va/libgallium_drv_video.so lib/dri radeonsi_drv_video.so'
+
+#https://www.collabora.com/news-and-blog/blog/2021/11/26/venus-on-qemu-enabling-new-virtual-vulkan-driver/
+git clone -b qemu-venus https://gitlab.freedesktop.org/Fahien/mesa.git
+
+cd mesa
+
+meson build                                   \
+  -Dprefix=/usr                               \
+  -Ddri3=enabled                              \
+  -Dglx=dri                                   \
+  -Degl=enabled                               \
+  -Dgbm=enabled                               \
+  -Dgallium-vdpau=disabled                    \
+  -Dgallium-vs=disabled                       \
+  -Dvalgrind=disabled                         \
+  -Dbuildtype=debugoptimized                  \
+  -Ddri-drivers=[]                            \
+  -Dgallium-drivers=swrast,virgl              \
+  -Dvulkan-drivers=swrast,virtio-experimental \
+  -Dvulkan-layers=device-select
+
+ninja -C build install
+
+inxi -G | grep -m1 "driver:" | grep -ow "virtio"
