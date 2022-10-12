@@ -135,5 +135,7 @@ Vulkan
 2 - Traditional vsync with framerate capped to refresh rate.
 3 - Adaptive vsync with tearing at low framerates.
 
+MESA_LOADER_DRIVER_OVERRIDE=zink mesa-git %command%
+MESA_LOADER_DRIVER_OVERRIDE=zink mesa-git %command%
 
 
