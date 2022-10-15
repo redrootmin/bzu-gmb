@@ -1,0 +1,6 @@
+https://www.vmware.com/ru/products/workstation-player/workstation-player-evaluation.html
+"Испытайте Workstation 16.0 Player для Linux"
+sudo ./VMware-Player-Full-*.bundle
+
+sudo CPATH=/usr/src/$(uname -r)/include/linux vmware-modconfig --console --install-all
+
