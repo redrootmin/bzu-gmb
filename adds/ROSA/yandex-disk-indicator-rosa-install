@@ -1,7 +1,7 @@
-#устанвока нужных пакетов
-sudo dnf install lib64gtk+-devel.x86_64 lib64gtk+1.2.x86_64 lib64gtk+2.0-devel.x86_64 lib64gtk+2.0_0.x86_64 lib64gtk+3.0-devel.x86_64 lib64gtk+3_0.x86_64 lib64gtk-gir3.0.x86_64 lib64gtk-modules3.0.x86_64 python3-pip python3-gobject python3-gobject-devel python3-gobject3-devel lib64appindicator3-gir0.1.x86_64 git wget
+#устанвока  через репозиторий
+sudo dnf install lib64gtk+-devel.x86_64 lib64gtk+1.2.x86_64 lib64gtk+2.0-devel.x86_64 lib64gtk+2.0_0.x86_64 lib64gtk+3.0-devel.x86_64 lib64gtk+3_0.x86_64 lib64gtk-gir3.0.x86_64 lib64gtk-modules3.0.x86_64 python3-pip python3-gobject python3-gobject-devel python3-gobject3-devel lib64appindicator3-gir0.1.x86_64 git wget yandex-disk yandex-disk-indicator
 
-#устанвока
+#устанвока git
 cd
 git clone https://github.com/slytomcat/yandex-disk-indicator.git
 cd /yandex-disk-indicator/build
@@ -13,7 +13,7 @@ sudo rpm -i yandex-disk-0.1.6.1080-1.fedora.x86_64.rpm
 
 
 
-#Обновить yandex-disk-indicator
+#Обновить yandex-disk-indicator git
 wget -O /usr/bin/yandex-disk-indicator https://raw.githubusercontent.com/slytomcat/yandex-disk-indicator/master/yandex-disk-indicator.py
 chmod a+x /usr/bin/yandex-disk-indicator
 
