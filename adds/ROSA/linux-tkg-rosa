@@ -1,0 +1,34 @@
+как собрать linux tkg kernel на роса.
+вводим в терминале sudi dnf install git make gcc*
+вводим git clone https://github.com/Frogging-Family/linux-tkg.git
+cd linux-tkg
+./install.sh install
+
+нажимаем 5 (grneric)
+потом 0 (ядро 6,0)
+потом 2
+потом 0
+потом цифру в зависимости от вашего процессора
+потом 2
+потом 0
+потом 5
+потом 2
+потом n
+еще раз n
+потом 0
+после завершения установки соблашаемся на установку Y
+
+затем вводим в терминале sudo dnf install nautilus
+
+sudo nautilus
+
+открываем папку boot
+Копируем часть имени initrd-6.0.0-tkg-bmq начиная с - и далее.
+даем полное имя файлу vmlinuz так чтоб получилось vmlinuz-6.0.0-tkg-bmq
+
+обновляем grub
+sudo update-grub2
+
+перегружаемся и во время загрузки в доп параметрах выбираем новое ядро)
+
+schedtool, flex, bison, lib64elfutils-static-devel
