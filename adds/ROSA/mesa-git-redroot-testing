@@ -1,16 +1,16 @@
-Обновление MESA-GIT (REDROOT)
+# mesa-redroot-stable
 
 echo "[mesa-redroot-stable-x86_64]
-name=mesa-git
+name=mesa-redroot-stable-x86_64
 baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4168027/x86_64/main/release/
 gpgcheck=0
 enabled=1
 cost=999
 
 [mesa-redroot-stable-i686]
-name=mesa-git-i686
+name=mesa-redroot-stable-i686
 baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4168028/i686/main/release/
 gpgcheck=0
 enabled=1
-cost=1000" > /tmp/mesa-git-redroot.repo
-sudo mv /tmp/mesa-git-redroot.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
+cost=1000" > /tmp/mesa-redroot-stable.repo
+sudo mv /tmp/mesa-redroot-stable.repo /etc/yum.repos.d && sudo dnf --refresh distrosync

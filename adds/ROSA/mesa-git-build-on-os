@@ -33,7 +33,7 @@ meson build64 --libdir lib64 \
        -D gallium-extra-hud=true \
        -D gallium-nine=true \
        -D gallium-omx=bellagio \
-       -D gallium-opencl=icd \
+       -D gallium-opencl=disabled \
        -D gallium-va=enabled \
        -D gallium-vdpau=enabled \
        -D gallium-xa=enabled \
@@ -54,6 +54,9 @@ meson build64 --libdir lib64 \
        -D buildtype=release \
        -D prefix=/usr \
        -D sysconfdir=/etc \
+       -Dgallium-rusticl=true \
+       -Dllvm=enabled \
+       -Drust_std=2021 \
        -D buildtype=release
 
 ulimit -n 4096 && ninja -C build64 install
