@@ -124,7 +124,7 @@ OpenDriver
 Тестовая версия открытого драйвера Mesa (devel) для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.2+,Valve ACO,ZINK,Gallium HUD,Vulkan Overlay,Vulkan RT (+GCN). Данну версию собирает Автор проекта PortProton (castro_fidel), в рамках иництативы ROSA GAMING. ВНИМАНИЕ: Данная версия больше предназначина для новых GPU AMD(RDNA+)/INTEL(ARCH+) и тестирования новых фукнций драйвера (Vulkan RT GCN,ZINK,VENUS). Установка этой версии драйвера Mesa, удаляет все другие. При ошибках и багах просто установите версию Mesa Git Fidel 
 Яцына М.А.
 mesa-devel-fidel
-ROSA Fresh Desktop 12.2 experimental
+#HODL
 #
 #
 noroot
@@ -144,7 +144,17 @@ OpenDriver
 Стабильная версия открытого драйвера Mesa (Git) для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Gallium HUD,Vulkan Overlay,Vulkan RT. данну версию собирает Автор проекта PortProton (castro_fidel), в рамках иництативы ROSA GAMING. ВНИМАНИЕ: Данная версия больше предназначина для старых GPU AMD/INTEL/Nvidia и стабильной работы в профессиональном ПО. Установка этой версии драйвера Mesa, удаляет все другие. При ошибках и багах попробуйте установить версию Mesa Devel Fidel 
 Яцына М.А.
 mesa-git-fidel
-ROSA Fresh Desktop 12.2 experimental
+#HODL
+#
+#
+noroot
+mesa-redroot-stable48.png
+Mesa-Redroot-Stable
+OpenDriver
+Стабильная версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,HUD: Gallium HUD,Vulkan Overlay. Данну версия экперементально сибирается для проекта bzu-gmb, 
+Яцына М.А.
+mesa-redroot-stable
+ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3 experimental
 #
 #
 noroot

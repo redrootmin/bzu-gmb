@@ -26,39 +26,39 @@ pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка стабильного открытого драйвера Mesa 22.1+ от Автора проект PortProton (castro_fidel) [https://portwine-linux.ru/port-proton-linux/].Версия скрипта 1b, автор-скрипта: Яцына М.А."
+tput setaf 2; echo "Установка стабильного открытого драйвера Mesa 22.2+. Версия скрипта 1b, автор-скрипта: Яцына М.А."
 tput sgr0
 
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.3" > /dev/null
 then
- if [ -e /etc/yum.repos.d/mesa-git-fidel.repo ];then
-tput setaf 3;echo "Репозитарий: mesa-git-fidel.repo, уже установлен, просто обнавляем систему";tput sgr0
+ if [ -e /etc/yum.repos.d/mesa-redroot-stable.repo ];then
+tput setaf 3;echo "Репозитарий: mesa-redroot-stable.repo, уже установлен, просто обнавляем систему";tput sgr0
 echo "${pass_user}" | sudo -S dnf --refresh distrosync -y
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean packages
  else
 #запуск основных команд модуля
-echo "${pass_user}" | sudo -S rm -f "/etc/yum.repos.d/mesa-git.repo"
-echo "${pass_user}" | sudo -S rm -f "/etc/yum.repos.d/mesa-devel-fidel.repo"
+echo "${pass_user}" | sudo -S rm -f /etc/yum.repos.d/mesa*
+#echo "${pass_user}" | sudo -S rm -f "/etc/yum.repos.d/mesa-devel-fidel.repo"
 echo "${pass_user}" | sudo -S dnf --refresh distrosync -y
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean packages
-echo "[mesa-git]
-name=mesa-git
-baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/x86_64/main/release/
+echo "[mesa-redroot-stable-x86_64]
+name=mesa-redroot-stable-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4168027/x86_64/main/release/
 gpgcheck=0
 enabled=1
 cost=999
 
-[mesa-git-i686]
-name=mesa-git-i686
-baseurl=http://abf-downloads.rosalinux.ru/castro_fidel_personal/repository/rosa2021.1/i686/main/release/
+[mesa-redroot-stable-i686]
+name=mesa-redroot-stable-i686
+baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4168028/i686/main/release/
 gpgcheck=0
 enabled=1
-cost=1000" > /tmp/mesa-git-fidel.repo
-echo "${pass_user}" | sudo -S mv /tmp/mesa-git-fidel.repo /etc/yum.repos.d
+cost=1000" > /tmp/mesa-redroot-stable.repo
+echo "${pass_user}" | sudo -S mv /tmp/mesa-redroot-stable.repo /etc/yum.repos.d
 echo "${pass_user}" | sudo -S dnf --refresh distrosync
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
