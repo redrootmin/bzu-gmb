@@ -151,7 +151,7 @@ noroot
 mesa-redroot-stable48.png
 Mesa-Redroot-Stable
 OpenDriver
-Стабильная версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,HUD: Gallium HUD,Vulkan Overlay. Данну версия экперементально сибирается для проекта bzu-gmb, 
+Стабильная версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,HUD: Gallium HUD,Vulkan Overlay. Данну версия экперементально сибирается для проекта bzu-gmb. 
 Яцына М.А.
 mesa-redroot-stable
 ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3 experimental
