@@ -58,10 +58,11 @@ bash mini_install.sh
 
 # 5 секунд теста программы
 app_name="godot-portable"
+app_run="cat ${app_install}/${name_script}/version"
 echo "Testing:${version_app}"
 cd "${app_install}/${name_script}"
 echo "Папка установки:${app_install}/${name_script}"
-bash -c "${app_install}/${name_script}/app/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+bash -c "${app_install}/${name_script}/app/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_run}"
 tput setaf 2; echo "Установка Игрового движка ${version_app} завершена :)"
 tput sgr0
 else
