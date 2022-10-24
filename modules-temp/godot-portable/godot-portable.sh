@@ -24,34 +24,10 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 version_app=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
-
+app_install="/home/${user_run_script}/.local/share/bzu-gmb-apps"
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка Godot Engine - открытого кроссплатформенного 2D и 3D игрового движка под лицензией MIT [https://godotengine.org/]. Установка Godot Engine производиться в формате Portable. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка Godot Engine - открытого кроссплатформенного 2D и 3D игрового движка под лицензией MIT [https://godotengine.org/]. Установка Godot Engine производиться в формате Portable. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
-
-
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S add-apt-repository -y   || let "error += 1"
-# переходим в папку пользователя
-#cd
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
-# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
-#echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
-#скачиваем архив с плагином и распаковываем его
-#wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
-#создаем папку плагины в конфигурации OBS-studio
-#mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
-#далее распаковываем архив в папку с плагинами OBS-studio
-#tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
-#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
-#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-#echo "${pass_user}" | sudo -S apt install -f -y --reinstall --install-recommends kate breeze || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-#app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
-#tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
-
 
 #запуск основных команд модуля
 # Проверка что существует папка applications, если нет, создаем ее
@@ -60,26 +36,32 @@ then
 mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
+# Проверка что существует папка applications, если нет, создаем ее
+if [ ! -d "${app_install}" ]
+then
+mkdir -p "${app_install}"
+fi
+
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/godot-portable" ]
+if [ ! -d "/home/${user_run_script}/.local/share/bzu-gmb-apps/godot-portable" ]
 then
 tput setaf 2; echo "Игровой движек ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
-cd
-name_app="godot-portable-3-4-4.tar.xz"
+cd "${app_install}"
+name_app="godot-portable-3-5-1.tar.xz"
 rm -f godot-portable*
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/$name_app"
 tar -xpJf "$name_app"
 rm -f "$name_app"
-cd ~/godot-portable;chmod +x mini_install.sh
+cd godot-portable;chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
 app_name="godot-portable"
 echo "Testing:${version_app}"
-cd "/home/${user_run_script}/${name_script}"
-echo "Папка установки:/home/${user_run_script}/${name_script}"
-bash -c "/home/${user_run_script}/${name_script}/app/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+cd "${app_install}/${name_script}"
+echo "Папка установки:${app_install}/${name_script}"
+bash -c "${app_install}/${name_script}/app/godot_starter.sh" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
 tput setaf 2; echo "Установка Игрового движка ${version_app} завершена :)"
 tput sgr0
 else
