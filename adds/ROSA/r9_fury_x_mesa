@@ -1,0 +1,22 @@
+/etc/X11/xorg.conf.d/20-amdgpu.conf
+
+Section "Device"
+     Identifier "AMD"
+     Driver "amdgpu"
+     Option "EnablePageFlip" "off"
+     Option "TearFree" "false"
+EndSection
+
+
+
+R9 390 series poor performance and/or instability
+
+If you experience issues [5] with a AMD R9 390 series graphics card, set radeon.cik_support=0 radeon.si_support=0 amdgpu.cik_support=1 amdgpu.si_support=1 amdgpu.dc=1 as kernel parameters to force the use of amdgpu driver instead of radeon.
+
+If it still does not work, try disabling DPM, by setting the kernel parameters to: radeon.cik_support=0 radeon.si_support=0 amdgpu.cik_support=1 amdgpu.si_support=1 
+
+
+
+Issues with power management / dynamic re-activation of a discrete amdgpu graphics card
+
+If you encounter issues similar to [9], you can workaround the issue by setting the kernel parameter amdgpu.runpm=0, which prevents the dGPU from being powered down dynamically at runtime. 
