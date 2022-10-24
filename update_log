@@ -6,15 +6,13 @@
 -godot-portable - на обнавлении (3.5.1)
 -Mangohud-git - на обнавлении
 -репа mesa-redroot-stable - добавление
+-amdvlk-portable (gcn1-rdna2) - на обнавлении
 
 В РАЗРАБОТКЕ
 -gnome-gui-switcher - на обнавлении
 -mesa-переключатель - добавление
 -gamepad-bt-service - добавление
 -steam-deck-mode - добавление
--amdvlk-portable (gcn1-rdna2) - на обнавлении
--Mesa-Devel-Fidel for ROSA  - на обнавлении
--Mesa-Git-Fidel for ROSA - на обнавлении
 -Nvidia antitearing - добавление
 -Nvidia cuda support for blender+ добавление
 -xanmod - на обнавлении

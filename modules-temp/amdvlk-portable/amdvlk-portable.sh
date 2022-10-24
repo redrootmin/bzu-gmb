@@ -47,9 +47,9 @@ if [ ! -d "/home/${USER}/.local/share/bzu-gmb-utils/amdvlk_portable" ]
 then
 tput setaf 2; echo "Драйвер Vulkan ${version_app} не установлен в папку пользователя /home/${USER}/.local/share/bzu-gmb-utils, поэтому можно устанавливать :)"
 tput sgr0
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/amdvlk_portable-v1.tar.xz
-pv "amdvlk_portable-v1.tar.xz" | tar -xJ
-rm -f amdvlk_portable-v1.tar.xz
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/amdvlk_portable-v2.tar.xz
+pv "amdvlk_portable-v2.tar.xz" | tar -xJ
+rm -f amdvlk_portable-v2.tar.xz
 cd "/home/${USER}/.local/share/bzu-gmb-utils/amdvlk_portable";chmod +x mini_install.sh
 bash mini_install.sh
 
