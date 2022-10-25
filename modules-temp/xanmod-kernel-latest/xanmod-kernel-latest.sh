@@ -48,7 +48,7 @@ skip_if_unavailable=1
 gpgcheck=0
 priority=0" > /tmp/kernel-xanmod-x86_64.repo
 echo "${pass_user}" | sudo -S mv /tmp/kernel-xanmod-x86_64.repo /etc/yum.repos.d
-echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y task-kernel-xanmod
+echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y task-kernel-xanmod kernel-xanmod-devel kernel-xanmod-rosa-flow-abi kernel-modules-nvidia515-5.18-xanmod kernel-xanmod-uml kernel-xanmod-uml-modules task-kernel-xanmod
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;rpm -qa | grep "kernel-xanmod-rosa"
