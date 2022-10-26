@@ -3,34 +3,34 @@
 
 
 ТЕСТИРУЕТСЯ
--godot-portable - на обнавлении (3.5.1)
--Mangohud-git - на обнавлении
+-godot-portable - на обновлении (3.5.1)
+-Mangohud-git - на обновлении
 -репа mesa-redroot-stable - добавление
--amdvlk-portable (gcn1-rdna2) - на обнавлении
+-amdvlk-portable (gcn1-rdna2) - на обновлении
+-xanmod - на обновлении
 
 В РАЗРАБОТКЕ
--gnome-gui-switcher - на обнавлении
+-gnome-gui-switcher - на обновлении
 -mesa-переключатель - добавление
 -gamepad-bt-service - добавление
 -steam-deck-mode - добавление
 -Nvidia antitearing - добавление
--Nvidia cuda support for blender+ добавление
--xanmod - на обнавлении
--wallpapers from redroot in ROSA gnome-settings - на обнавлении
+-Nvidia driver + cuda support for blender+ добавление
+-wallpapers from redroot in ROSA gnome-settings - на обновлении
 -GWE (overclock nvidia) - добавление
 -libstrangle-tools - добавление
--ProtonUp-Qt - на обнавлении
--vscodium-portable - на обнавлении
--obs-studio-ppa - на обнавлении
--NoiseTorch-app - на обнавлении
--Kdenlive-appimage - на обнавлении
--Natron-portable - - на обнавлении
--Lossless-Cut-appimage - на обнавлении
+-ProtonUp-Qt - на обновлении
+-vscodium-portable - на обновлении
+-obs-studio-ppa - на обновлении
+-NoiseTorch-app - на обновлении
+-Kdenlive-appimage - на обновлении
+-Natron-portable - - на обновлении
+-Lossless-Cut-appimage - на обновлении
 -Blender-3.3-portable - добавление
--MagicaVoxel-wine - на обнавлении
--gravity-mark-portable - на обнавлении
--Krita-appimage - на обнавлении
--Inkscape-appimage - на обнавлении
+-MagicaVoxel-wine - на обновлении
+-gravity-mark-portable - на обновлении
+-Krita-appimage - на обновлении
+-Inkscape-appimage - на обновлении
 -remmina-ppa - добавление
 -timeshift ppa - добавление
 -gparted-ppa - добавление

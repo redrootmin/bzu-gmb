@@ -1,5 +1,5 @@
 как собрать linux tkg kernel на роса.
-вводим в терминале sudi dnf install git make gcc*
+вводим в терминале sudo dnf install git make gcc* schedtool flex bison lib64elfutils-static-devel
 вводим git clone https://github.com/Frogging-Family/linux-tkg.git
 cd linux-tkg
 ./install.sh install
@@ -29,6 +29,3 @@ sudo nautilus
 обновляем grub
 sudo update-grub2
 
-перегружаемся и во время загрузки в доп параметрах выбираем новое ядро)
-
-schedtool, flex, bison, lib64elfutils-static-devel
