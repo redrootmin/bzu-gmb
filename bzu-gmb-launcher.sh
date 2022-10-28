@@ -82,8 +82,8 @@ tput setaf 3;echo -n "$1:";tput setaf 2;echo "$package_status";tput sgr 0
 }
 #=====================================================================================
 
-#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
-if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.x устанавливаем нужные пакеты
+if echo "${linux_os}" | grep -ow "ROSA Fresh Desktop" > /dev/null
 then
 #загружаем список пакетов из файла в массив
 readarray -t packages_list < "${script_dir}/config/packages-rosa"
