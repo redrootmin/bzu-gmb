@@ -48,7 +48,7 @@ echo "флаг $2 уже добавлен в grub"
 tput sgr0 
 echo "${pass_user}" | sudo -S cat "${dir_grub_file}/${grub_file_name}" | grep "$2"
 else
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop" > /dev/null
 then
 echo "${pass_user}" | sudo -S sed -i '0,/'$1'=\x27/ s//'$1'=\x27'$2' /' ${dir_grub_file}/${grub_file_name}
 tput setaf 2

@@ -33,8 +33,8 @@ tput sgr0
 
 #запуск основных команд модуля
 
-#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.2 устанавливаем нужные пакеты
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null
+#Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.x устанавливаем нужные пакеты
+if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop" > /dev/null
 then
 echo "$pass_user" | sudo -S dnf install -y portproton
 

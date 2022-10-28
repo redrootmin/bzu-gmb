@@ -18,36 +18,20 @@ version="${version0}"
 date_install=`date`
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка утилиты GameMode от Feral Interactive [https://github.com/FeralInteractive/gamemode]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка утилиты cpu-x для вывода информации о процессоре, материнской платы, оперативной памяти, графического процессора и о самой операционной системе [https://x0rg.github.io/CPU-X/]. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
 
-#Проверяем какая система запустила bzu-gmb, если Ubuntu/Linux Mint устанавливаем нужные пакеты
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null
-then
 #запуск основных команд модуля
-sudo -S apt install -f -y --reinstall gamemode || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-#формируем информацию о том что в итоге установили и показываем в терминал
-mesa_version=`inxi -G | grep "Mesa"`  || let "error += 1"
-tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем Feral GameMode!"  || let "error += 1"
-gamemoderun
-#сброс цвета текста в терминале
-tput sgr0
-#=====================================================================================
+sudo -S dnf install -y cpu-x || let "error += 1"
 
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop" > /dev/null
-then
-# установка  обновление системы
-sudo -S dnf install -y gamemode
-
-app_name="gamemode"
+app_name="cpu-x"
 rpm -qa | grep -ow "${app_name}" > /dev/null
 if [ $? = 0 ];then
 tput setaf 2; echo "${app_name}:installed"
 tput sgr0
 echo "Testing:${app_name}"
 # 5 секунд теста программы
-sudo -S "${app_name}" vkcube & sleep 3;sudo -S killall "${app_name}"
+sudo -S cpu-x & sleep 3;sudo -S killall cpu-x
 tput setaf 2; echo "Установка ${app_name} завершена :)"
 tput sgr0
 else tput setaf 1;echo "${name_script}:not installing!"
@@ -55,21 +39,17 @@ fi
 tput sgr0
 fi
 
-fi
-#=====================================================================================
-
-
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
 #Добавляем информацию о изменении флагов в файле настройки GRUB в лог установки
-echo "для использования Feral GameMode:"	 				  >> "${script_dir}/module_install_log"
-echo "gamoderun /way/to/app"	 				  >> "${script_dir}/module_install_log"
+#echo "для использования Feral GameMode:"	 				  >> "${script_dir}/module_install_log"
+#echo "gamoderun /way/to/app"	 				  >> "${script_dir}/module_install_log"
 
-echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
-echo "gamemoderun %command%"	 				  >> "${script_dir}/module_install_log"
-echo "Подробнее о командах и функциях тут: https://github.com/FeralInteractive/gamemode"	 				  >> "${script_dir}/module_install_log"
+#echo "например в steam:"	 				  >> "${script_dir}/module_install_log"
+#echo "gamemoderun %command%"	 				  >> "${script_dir}/module_install_log"
+#echo "Подробнее о командах и функциях тут: https://github.com/FeralInteractive/gamemode"	 				  >> "${script_dir}/module_install_log"
 
 
 #задержка вывода информации о итогах установки, что бы пользователь мог ознакомиться.
