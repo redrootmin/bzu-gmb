@@ -1,0 +1,8 @@
+echo "[linux-xanmod-edge]
+name=linux-xanmod-edge
+baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/container/4168995/x86_64/kernel_6_0_xanmod/release/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+priority=0" > /tmp/linux-xanmod-edge.repo
+sudo mv /tmp/linux-xanmod-edge.repo /etc/yum.repos.d
