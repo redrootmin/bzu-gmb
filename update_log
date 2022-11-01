@@ -3,6 +3,7 @@
 
 
 ТЕСТИРУЕТСЯ
+-vscodium-portable - (обнавлено до VSCodium-linux-x64-1.72.2.22289)
 -обновление до ROSA Fresh Desktop 12.3
 -godot-portable - обновлено до 3.5.1
 -Mangohud-git - устранен баг с ошибкой сборки, добавлены пакеты в установку, для решения проблемы
@@ -21,7 +22,6 @@
 -GWE (overclock nvidia) - добавление
 -libstrangle-tools - добавление
 -ProtonUp-Qt - на обновлении
--vscodium-portable - на обновлении
 -obs-studio-ppa - на обновлении
 -NoiseTorch-app - на обновлении
 -Kdenlive-appimage - на обновлении

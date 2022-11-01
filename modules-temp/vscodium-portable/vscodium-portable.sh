@@ -26,31 +26,9 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка редактора текста\кода ${version_app},Распространяется согласно MIT License  [https://vscodium.com/]. Редактора устанавливается в виде Portable версии, в папку пользователя ${user_run_script}. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка редактора текста\кода ${version_app},Распространяется согласно MIT License  [https://vscodium.com/]. Редактора устанавливается в виде Portable версии, в папку пользователя ${user_run_script}. Версия скрипта 1.5, автор: Яцына М.А."
 tput sgr0
 
-#запуск основных команд модуля
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S add-apt-repository -y   || let "error += 1"
-# переходим в папку пользователя
-#cd
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
-# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
-#echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
-#скачиваем архив с плагином и распаковываем его
-#wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
-#создаем папку плагины в конфигурации OBS-studio
-#mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
-#далее распаковываем архив в папку с плагинами OBS-studio
-#tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
-#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
-#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-#echo "${pass_user}" | sudo -S apt install -f -y --reinstall --install-recommends kate breeze || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-#app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
-#tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
 
 # Проверка что существует папка applications, если нет, создаем ее
 if [ ! -d "/home/${user_run_script}/.local/share/applications" ]
@@ -64,7 +42,7 @@ then
 tput setaf 2; echo "Редактор  ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
 cd
-name_app="vscodium-linux-1-66-2.tar.xz"
+name_app="vscodium-portable-1-72-2-x.tar.xz"
 rm -f godot-portable*
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/$name_app"
 tar -xpJf "$name_app"
