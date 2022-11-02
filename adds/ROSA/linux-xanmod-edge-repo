@@ -6,3 +6,5 @@ skip_if_unavailable=1
 gpgcheck=0
 priority=0" > /tmp/linux-xanmod-edge.repo
 sudo mv /tmp/linux-xanmod-edge.repo /etc/yum.repos.d
+sudo dnf -y --refresh distrosync 
+sudo dnf install kernel-6.0-xanmod kernel-6.0-xanmod-devel kernel-6.0-xanmod-uml kernel-6.0-xanmod-uml-modules kernel-modules-nvidia515-6.0-xanmod

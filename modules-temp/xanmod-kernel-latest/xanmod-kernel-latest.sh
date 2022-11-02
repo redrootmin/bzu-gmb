@@ -40,15 +40,15 @@ then
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean -y
-echo "[kernel-xanmod-x86_64]
-name=kernel with XanMod patch
-baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/repository/rosa2021.1/x86_64/kernel_xanmod/release/
+echo "[linux-xanmod-edge]
+name=linux-xanmod-edge
+baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/container/4168995/x86_64/kernel_6_0_xanmod/release/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
-priority=0" > /tmp/kernel-xanmod-x86_64.repo
-echo "${pass_user}" | sudo -S mv /tmp/kernel-xanmod-x86_64.repo /etc/yum.repos.d
-echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y task-kernel-xanmod kernel-xanmod-devel kernel-xanmod-rosa-flow-abi kernel-modules-nvidia515-5.18-xanmod kernel-xanmod-uml kernel-xanmod-uml-modules task-kernel-xanmod
+priority=0" > /tmp/linux-xanmod-edge.repo
+echo "${pass_user}" | sudo -S mv /tmp/linux-xanmod-edge.repo /etc/yum.repos.d
+echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y kernel-6.0-xanmod kernel-6.0-xanmod-devel kernel-6.0-xanmod-uml kernel-6.0-xanmod-uml-modules kernel-modules-nvidia515-6.0-xanmod
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;rpm -qa | grep "kernel-xanmod-rosa"

@@ -34,10 +34,10 @@ LinuxKernel
 Стабильное кастомное ядро Linux, оптимизированное для десктопных Linux операционных систем с учетом многоядерных процессоров и современных видеокарт, на выходе больше производительности в играх и программах активно использующих графику. Опции: Low-Latency,BFQ I/O Scheduler,ZSTD kernel,Clear Linux patchs,Wine / Proton Fsync,BMQ_Process_Scheduler,Aufs,PREEMPT_RT
 Яцына М.А.
 xanmod-kernel-stable
-Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Ubuntu 22.04.1 LTS Linux Mint 20.2 Linux Mint 20.3 Linux Mint 21 Debian GNU/Linux bookworm/sid experimental
+Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Ubuntu 22.04.1 LTS Linux Mint 20.2 Linux Mint 20.3 Linux Mint 21 Debian GNU/Linux bookworm/sid  ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3 experimental
 #
 #
-root
+noroot
 xanmod-latest48.png
 Xanmod-latest-ppa
 LinuxKernel
@@ -154,6 +154,16 @@ OpenDriver
 Стабильная версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,HUD: Gallium HUD,Vulkan Overlay. Данная версия экперементально сибирается для проекта bzu-gmb. 
 Яцына М.А.
 mesa-redroot-stable
+ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3  experimental
+#
+#
+noroot
+mesa-redroot-git48.png
+Mesa-Redroot-Git
+OpenDriver
+Тестовая версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,VAAPI,HUD: Gallium HUD,Vulkan Overlay. Данная версия экперементально сибирается для проекта bzu-gmb. 
+Яцына М.А.
+mesa-redroot-git
 ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3  experimental
 #
 #
