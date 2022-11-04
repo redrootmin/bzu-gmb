@@ -19,8 +19,8 @@ git clone https://gitlab.freedesktop.org/mesa/mesa.git
 cd mesa
 # for mesa 22.2+
 git checkout 22.2
-#for mesa 22.3-devel
-git checkout main
+#for mesa 22.3-rc1
+git checkout staging/22.3
 
 #сборка версии mesa-devel 64bit FULL
 meson build64 --libdir lib64 \
@@ -59,6 +59,44 @@ meson build64 --libdir lib64 \
 ulimit -n 4096 && sudo ninja -C build64 install
 
 
+A couple of notes for packagers:
+- When building the Intel Vulkan driver with ray-tracing (using
+  `-D intel-clc=enabled`, disabled by default), libclc is required
+  (both as build and runtime dependency).
+- Rusticl, the OpenCL implementation (`-D gallium-rusticl=true`,
+  disabled by default), introduces a bunch of new dependencies.
+  Make sure you read docs/rusticl.rst (https://docs.mesa3d.org/rusticl)
+  if you-re considering enabling it.
+
+The minimum versions to build Rusticl are:
+
+    Rust: 1.59
+
+    Meson: 0.61.4
+
+    Bindgen: 0.58.0
+
+    LLVM: 11.0.0 (recommended: 15.0.0)
+
+    SPIRV-Tools: any version (recommended: v2022.3)
+
+Afterwards you only need to add -Dgallium-rusticl=true -Dllvm=enabled -Drust_std=2021 to your build options.
+
+Rusticl environment variables¶
+
+RUSTICL_DEVICE_TYPE
+
+    allows to overwrite the device type of devices. Possible values are accelerator, cpu, custom and gpu
+RUSTICL_CL_VERSION
+
+    overwrites the auto detected OpenCL version of all devices. Specified as major.minor.
+RUSTICL_ENABLE
+
+    a comma-separated list of drivers to enable CL on. An optional list of comma-separated integers can be passed per driver to specify which devices to enable. Examples:
+
+        RUSTICL_ENABLE=iris (enables all iris devices)
+
+        RUSTICL_ENABLE=iris:1,radeonsi:0,2 (enables second iris and first and third radeonsi device)
 
 
 
@@ -80,7 +118,6 @@ ulimit -n 4096 && sudo ninja -C build64 install
 
 
 
-uild () {
     meson setup mesa _build \
        -D b_ndebug=true \
        -D b_lto=false \
@@ -116,8 +153,6 @@ uild () {
        --wrap-mode=nofallback \
        -D prefix=/usr \
        -D sysconfdir=/etc
-
-
 
 
 
