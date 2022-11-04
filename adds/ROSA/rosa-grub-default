@@ -1,0 +1,1 @@
+GRUB_CMDLINE_LINUX_DEFAULT="amdgpu.ppfeaturemask=0xffffffff mitigations=off split_lock_detect=off maxcpus=16 splash=silent logo.nologo quiet"
