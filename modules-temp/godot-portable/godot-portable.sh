@@ -58,7 +58,7 @@ bash mini_install.sh
 
 # 5 секунд теста программы
 app_name="godot-portable"
-app_run="cat ${app_install}/${name_script}/version"
+app_run=`cat ${app_install}/${name_script}/version`
 echo "Testing:${version_app}"
 cd "${app_install}/${name_script}"
 echo "Папка установки:${app_install}/${name_script}"
