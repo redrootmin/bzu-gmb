@@ -31,13 +31,6 @@ tput sgr0
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.2" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop 12.3" > /dev/null
 then
- if [ -e /etc/yum.repos.d/mesa-redroot-stable.repo ];then
-tput setaf 3;echo "Репозитарий: mesa-redroot-stable.repo, уже установлен, просто обнавляем систему";tput sgr0
-echo "${pass_user}" | sudo -S dnf --refresh distrosync -y
-echo "${pass_user}" | sudo -S dnf update -y
-echo "${pass_user}" | sudo -S dnf autoremove -y
-echo "${pass_user}" | sudo -S dnf clean packages
- else
 #запуск основных команд модуля
 echo "${pass_user}" | sudo -S rm -f /etc/yum.repos.d/mesa*
 #echo "${pass_user}" | sudo -S rm -f "/etc/yum.repos.d/mesa-devel-fidel.repo"
@@ -47,23 +40,24 @@ echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean packages
 echo "[mesa-redroot-stable-x86_64]
 name=mesa-redroot-stable-x86_64
-baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4168027/x86_64/main/release/
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/repository/rosa2021.1/x86_64/main/release/
 gpgcheck=0
 enabled=1
 cost=999
 
 [mesa-redroot-stable-i686]
 name=mesa-redroot-stable-i686
-baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4168028/i686/main/release/
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/repository/rosa2021.1/i686/main/release/
 gpgcheck=0
 enabled=1
 cost=1000" > /tmp/mesa-redroot-stable.repo
-echo "${pass_user}" | sudo -S mv /tmp/mesa-redroot-stable.repo /etc/yum.repos.d
+echo "${pass_user}" | sudo -S mv -f /tmp/mesa-redroot-stable.repo /etc/yum.repos.d
 echo "${pass_user}" | sudo -S dnf --refresh distrosync
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean packages
- fi
+
+
 fi
 
 

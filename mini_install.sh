@@ -187,14 +187,14 @@ name=rosa_gaming
 baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/x86_64/main/release/
 gpgcheck=0
 enabled=1
-cost=999
+cost=998
 
 [rosa_gaming-i686]
 name=mesa-git-i686
 baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/i686/main/release/
 gpgcheck=0
 enabled=1
-cost=1000" > /tmp/rosa_gaming.repo
+cost=999" > /tmp/rosa_gaming.repo
 echo "${pass_user}" | sudo -S mv -f /tmp/rosa_gaming.repo /etc/yum.repos.d
 ##################################################################################
 # решение проблем с правами пользователей
