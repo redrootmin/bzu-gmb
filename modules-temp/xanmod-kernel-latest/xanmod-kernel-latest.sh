@@ -42,7 +42,7 @@ echo "${pass_user}" | sudo -S dnf autoremove -y
 echo "${pass_user}" | sudo -S dnf clean -y
 echo "[linux-xanmod-edge]
 name=linux-xanmod-edge
-baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/container/4168995/x86_64/kernel_6_0_xanmod/release/
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_system_apps_personal/repository/rosa2021.1/x86_64/main/release/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
