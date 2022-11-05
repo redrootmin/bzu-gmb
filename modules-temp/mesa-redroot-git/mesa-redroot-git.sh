@@ -66,13 +66,14 @@ echo "${pass_user}" | sudo -S dnf clean packages
  fi
 cd
 echo "${pass_user}" | sudo -S rm -f -r mesa
-echo "${pass_user}" | sudo -S dnf install -y --allowerasing --skip-broken --nobest inxi mangohud gcc* meson git flex bison gccmakedep lm_sensors-devel lib64elfutils-devel libllvm-devel expat libselinux-devel libatomic-devel python3-mako libdrm_amdgpu1 libdrm_intel1 libdrm_radeon1 libudev1 libglvnd lib64epoxy-devel gtk+3.0 libzstd1 libzstd-devel vulkan lib64xdamage-devel lib64xfixes-devel lib64xmu-devel lib64xxf86vm-devel lib64xv-devel lib64xvmc-devel valgrind lib64stdc++-static-devel libssl1 libclc lib64xvmc-devel lib64vdpau-drivers lib64vdpau-devel libva2 wayland-protocols-devel wayland*-devel glslang glslang-devel patchelf lib64xrandr-devel libd3dadapter9-devel lib64d3dadapter9-devel libvulkan-devel lib64vulkan-devel lib64python3-devel libxrandr-devel libxxf86vm-devel lib64xshmfence-devel libxfixes-devel lib64wayland-devel lib64elf-devel lib64drm-devel libdrm-common libdrm-common.i686 lib64drm_amdgpu1 libxcb-devel.i686 libxcb-devel libzstd-devel.i686 libzstd-devel expat-devel libxshmfence-devel libxshmfence-devel.i686 libunwind-devel libunwind-devel.i686 libomxil-bellagio-devel libomxil-bellagio-devel.i686 zlib-devel libvdpau-devel libvdpau-devel.i686 libdrm-devel libdrm-devel.i686 pkgconf pkgconf.i686 python-pkgconfig python3-pkgconfig lib64omxil-bellagio-devel lib64va-devel lib64zstd-devel lib64clang-devel
+echo "${pass_user}" | sudo -S dnf install -y --allowerasing --skip-broken --nobest gcc* meson git flex bison gccmakedep lm_sensors-devel lib64elfutils-devel libllvm-devel expat libselinux-devel libatomic-devel python3-mako libdrm_amdgpu1 libdrm_intel1 libdrm_radeon1 libudev1 libglvnd lib64epoxy-devel gtk+3.0 libzstd1 libzstd-devel vulkan lib64xdamage-devel lib64xfixes-devel lib64xmu-devel lib64xxf86vm-devel lib64xv-devel lib64xvmc-devel valgrind lib64stdc++-static-devel libssl1 libclc lib64xvmc-devel lib64vdpau-drivers lib64vdpau-devel libva2 wayland-protocols-devel wayland*-devel glslang glslang-devel patchelf lib64xrandr-devel lib64d3dadapter9-devel libvulkan-devel lib64vulkan-devel lib64python3-devel libxrandr-devel libxxf86vm-devel lib64xshmfence-devel libxfixes-devel lib64wayland-devel lib64elf-devel lib64drm-devel libdrm-common lib64drm_amdgpu1 libxcb-devel libzstd-devel expat-devel libxshmfence-devel libomxil-bellagio-devel zlib-devel libvdpau-devel libdrm-devel pkgconf python-pkgconfig python3-pkgconfig lib64omxil-bellagio-devel lib64va-devel lib64zstd-devel lib64clang-devel lib64unwind-devel
 git clone https://gitlab.freedesktop.org/mesa/mesa.git
 cd mesa
 git checkout staging/22.3
-meson build64 --libdir lib64 \
+meson build64 \
+       -D b_lto=false \
        -D platforms=x11,wayland \
-       -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,zink,d3d12 \
+       -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,zink \
        -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
        -D vulkan-layers=device-select,overlay \
        -D dri3=enabled \
@@ -80,7 +81,7 @@ meson build64 --libdir lib64 \
        -D gallium-extra-hud=true \
        -D gallium-nine=true \
        -D gallium-omx=bellagio \
-       -D gallium-opencl=disabled \
+       -D gallium-opencl=icd \
        -D gallium-va=enabled \
        -D gallium-vdpau=enabled \
        -D gallium-xa=enabled \
@@ -89,6 +90,7 @@ meson build64 --libdir lib64 \
        -D gles2=enabled \
        -D glvnd=true \
        -D glx=dri \
+       -D libunwind=enabled \
        -D llvm=enabled \
        -D lmsensors=enabled \
        -D osmesa=true \
@@ -98,10 +100,10 @@ meson build64 --libdir lib64 \
        -D tools=[] \
        -D zstd=enabled \
        -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-       -D buildtype=release \
+       -D buildtype=plain \
+       --wrap-mode=nofallback \
        -D prefix=/usr \
-       -D sysconfdir=/etc \
-       -D buildtype=release
+       -D sysconfdir=/etc
      
 ulimit -n 4096 && echo "${pass_user}" | sudo -S ninja -C build64 install
 cd
