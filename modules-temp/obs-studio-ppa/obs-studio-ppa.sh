@@ -40,7 +40,7 @@ then
 #echo "${pass_user}" | sudo -S dnf distro-sync -y
 #echo "${pass_user}" | sudo -S dnf autoremove -y
 #echo "${pass_user}" | sudo -S dnf clean packages
-echo "${pass_user}" | sudo -S dnf install -y obs-studio cmake libGConf2_4 wget
+echo "${pass_user}" | sudo -S dnf install -y obs-studio cmake libGConf2_4 wget xdg-desktop-portal-gnome
 
 # переходим в папку пользователя
 cd
