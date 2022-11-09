@@ -1,18 +1,17 @@
 [buz-gmb 0.495RC1]===================================
 ГОТОВО
-
-
-ТЕСТИРУЕТСЯ
--mesa-redroot-git [mesa 22.3-devel + VAAPI]
--xanmod-rosa-latest [6.0.5]
--xanmod-rosa-stable [5.18.x]
--vscodium-portable - (обнавлено до VSCodium-linux-x64-1.72.2.22289)
 -обновление до ROSA Fresh Desktop 12.3
 -godot-portable - обновлено до 3.5.1
 -Mangohud-git - устранен баг с ошибкой сборки, добавлены пакеты в установку, для решения проблемы
+-vscodium-portable - (обнавлено до VSCodium-linux-x64-1.72.2.22289)
+-mesa-redroot-git [mesa 22.3-devel + VAAPI]
+-xanmod-rosa-latest [6.0.5]
+-xanmod-rosa-stable [5.18.x]
 -репа mesa-redroot-stable - стабильная версия мезы 22.2.2
 -amdvlk-portable (gcn1-rdna2) - обновлено до последней версии
 -xanmod - добавил пакеты, что бы старонние программы могли компилить патчи к ядру
+
+ТЕСТИРУЕТСЯ
 -gnome-gui-switcher - на обновлении (устранен кретический баг (смена стилей только после перезагрузки), стили еще на обнавлении)
 
 В РАЗРАБОТКЕ
