@@ -1,6 +1,6 @@
 sudo dnf install virtualbox
 sudo usermod -aG vboxusers $USER
-
+sudo /sbin/vboxconfig
 
 
 #[Test-devel-builds]
