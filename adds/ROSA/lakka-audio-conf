@@ -1,0 +1,7 @@
+ssh root@192.168.0.25
+aplay -L
+systemctl stop retroarch
+nano /storage/.config/retroarch/retroarch.cfg
+audio_device = "hdmi:CARD=PCH,DEV=1"
+systemctl start retroarch
+
