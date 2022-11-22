@@ -71,39 +71,39 @@ git clone https://gitlab.freedesktop.org/mesa/mesa.git
 cd mesa
 git checkout staging/22.3
 meson build64 \
-       -D b_lto=false \
-       -D platforms=x11,wayland \
-       -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,zink \
-       -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
-       -D vulkan-layers=device-select,overlay \
-       -D dri3=enabled \
-       -D egl=enabled \
-       -D gallium-extra-hud=true \
-       -D gallium-nine=true \
-       -D gallium-omx=bellagio \
-       -D gallium-opencl=icd \
-       -D gallium-va=enabled \
-       -D gallium-vdpau=enabled \
-       -D gallium-xa=enabled \
-       -D gbm=enabled \
-       -D gles1=disabled \
-       -D gles2=enabled \
-       -D glvnd=true \
-       -D glx=dri \
-       -D libunwind=enabled \
-       -D llvm=enabled \
-       -D lmsensors=enabled \
-       -D osmesa=true \
-       -D shared-glapi=enabled \
-       -D microsoft-clc=disabled \
-       -D valgrind=disabled \
-       -D tools=[] \
-       -D zstd=enabled \
-       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-       -D buildtype=plain \
-       --wrap-mode=nofallback \
-       -D prefix=/usr \
-       -D sysconfdir=/etc
+	-D microsoft-clc=disabled \
+	-D shared-llvm=enabled \
+	-D b_ndebug=true \
+	-D c_std=c11 \
+	-D cpp_std=c++17 \
+	-D gallium-drivers=auto,radeonsi,virgl,zink \
+	-D gallium-va=enabled \
+	-D gallium-vdpau=enabled \
+	-D gallium-xa=enabled \
+	-D gallium-nine=true \
+	-D glx=dri \
+	-D platforms=wayland,x11 \
+	-D egl-native-platform=wayland \
+	-D vulkan-layers=device-select,overlay \
+	-D vulkan-drivers=auto,amd,virtio-experimental \
+	-D xlib-lease=auto \
+	-D osmesa=true \
+	-D glvnd=true \
+	-D dri3=enabled \
+	-D egl=enabled \
+	-D gbm=enabled \
+	-D gles1=disabled \
+	-D gles2=enabled \
+	-D glx-direct=true \
+	-D llvm=enabled \
+	-D lmsensors=enabled \
+	-D opengl=true \
+	-D shader-cache=enabled \
+	-D shared-glapi=enabled \
+	-D shared-llvm=enabled \
+	-D prefix=/usr \
+	-D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
+        -D sysconfdir=/etc
      
 ulimit -n 4096 && echo "${pass_user}" | sudo -S ninja -C build64 install
 cd
