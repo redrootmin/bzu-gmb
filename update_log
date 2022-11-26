@@ -1,5 +1,7 @@
 [buz-gmb 0.495RC1]===================================
 ГОТОВО
+-Krita-appimage - обнавлено до 5.1.3
+-Inkscape-appimage - обнавлено до 1.2.1
 -обновление до ROSA Fresh Desktop 12.3
 -godot-portable - обновлено до 3.5.1
 -Mangohud-git - устранен баг с ошибкой сборки, добавлены пакеты в установку, для решения проблемы
@@ -33,8 +35,6 @@
 -Blender-3.3-portable - добавление
 -MagicaVoxel-wine - на обновлении
 -gravity-mark-portable - на обновлении
--Krita-appimage - на обновлении
--Inkscape-appimage - на обновлении
 -remmina-ppa - добавление
 -timeshift ppa - добавление
 -gparted-ppa - добавление

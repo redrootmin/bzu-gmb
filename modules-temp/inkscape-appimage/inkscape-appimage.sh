@@ -36,17 +36,16 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен inkscape-appimage или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/inkscape-appimage" ]
+if [ ! -d "/home/${user_run_script}/bzu-gmb-apps/inkscape-appimage" ]
 then
 tput setaf 2; echo "Векторый редактор ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
-cd
+cd "/home/${user_run_script}/bzu-gmb-apps"
 rm -f inkscape-appimage*.tar.xz
-rm -f inkscape-appimage
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/inkscape-appimage-v1.tar.xz
-pv "inkscape-appimage-v1.tar.xz" | tar -xJ
+wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/inkscape-appimage-1-2-1.tar.xz
+pv "inkscape-appimage-1-2-1.tar.xz" | tar -xJ
 rm -f inkscape-appimage*.tar.xz
-cd ~/inkscape-appimage;chmod +x mini_install.sh
+cd "/home/${user_run_script}/bzu-gmb-apps/inkscape-appimage";chmod +x mini_install.sh
 bash mini_install.sh
 
 if [ ! -d "/home/${user_run_script}/inkscape-appimage" ]

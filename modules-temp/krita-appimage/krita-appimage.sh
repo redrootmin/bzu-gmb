@@ -37,15 +37,15 @@ mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
 # Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/krita-appimage" ];then
+if [ ! -d "/home/${user_run_script}/bzu-gmb-apps/krita-appimage" ];then
 tput setaf 2; echo "Графический редактор ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
 tput sgr0
-cd
-rm -f krita-appimage.tar.xz
-wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/krita-appimage.tar.xz"
-pv "krita-appimage.tar.xz" | tar -xJ
-rm -f krita-appimage.tar.xz
-cd ~/krita-appimage;chmod +x mini_install.sh
+cd "/home/${user_run_script}/bzu-gmb-apps"
+rm -f krita-appimage*.tar.xz
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/krita-appimage-5-1-3.tar.xz"
+pv "krita-appimage-5-1-3.tar.xz" | tar -xJ
+rm -f krita-appimage-5-1-3.tar.xz
+cd "/home/${user_run_script}/bzu-gmb-apps/krita-appimage";chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
@@ -65,7 +65,6 @@ fi
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
-
 #Добавляем информацию о том как использовать CoreCtrl лог установки
 #echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
 #echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
