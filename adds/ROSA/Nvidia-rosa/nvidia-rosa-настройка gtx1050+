@@ -26,6 +26,12 @@ sudo dnf install lib64gstvaapi0.10-devel vlc-plugin-vaapi gstreamer0.10-vaapi gs
 
 sudo dnf install kernel-5.17-generic-devel kernel-5.17-generic kernel-5.17-generic-doc kernel-5.17-generic-uml kernel-5.17-generic-uml-modules kernel-5.17-rosa-flow-abi task-kernel-5.17-generic
 
+
+#new
+sudo dnf install kernel-modules-nvidia470-5.17.11-2-generic.x86_64 nvidia-cuda-toolkit nvidia-cuda-toolkit-devel
+
+
+#old
 sudo dnf install kernel-modules-nvidia470-5.17.11-2-generic kernel-source-nvidia470 nvidia470-doc-html nvidia470-dracut dkms-nvidia470 nvidia470-blacklist nvidia470-core nvidia470-cuda-opencl nvidia470-devel nvidia-cuda-toolkit nvidia-cuda-toolkit-devel python3-pycuda
 
 ###kernel flag###
