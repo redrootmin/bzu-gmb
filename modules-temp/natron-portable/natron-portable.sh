@@ -81,6 +81,7 @@ if [[ $app_installing == "true" ]];then
 #put sgr0
 cd "/home/${user_run_script}/${user_app_dir}"
 rm -f ${name_app_arhive} || true
+rm -fr ${name_app_arhive} || true
 wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/${name_app_arhive}"
 pv "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
