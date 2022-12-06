@@ -61,7 +61,7 @@ if [ -e "/home/${user_run_script}/${user_app_dir}/${name_app_folder}/app/Natron"
 
             install_name_app_arhive=`cat /home/${user_run_script}/${user_app_dir}/${name_app_folder}/app_arhive`
 
-                if [ ${install_name_app_arhive} == ${name_app_arhive} ]; then
+                if [ ${install_name_app_arhive} = ${name_app_arhive} ]; then
                     tput setaf 1; echo "Данная версия редактора визуальных эффектов ${name_script} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
                     tput sgr0
                     else 
@@ -76,7 +76,7 @@ if [ -e "/home/${user_run_script}/${user_app_dir}/${name_app_folder}/app/Natron"
                     app_installing="true"
 fi
 
-if [ ${app_installing} == "true" ];then
+if [ ${app_installing} = "true" ];then
 #tput setaf 2; echo "Начинается установка редактора визуальных эффектовУтилита ${name_script}  в папку пользователя ${user_run_script}"
 #put sgr0
 cd "/home/${user_run_script}/${user_app_dir}"
