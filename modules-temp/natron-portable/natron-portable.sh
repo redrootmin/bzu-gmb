@@ -13,13 +13,18 @@ script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
+user_app_dir=`cat "${script_dir}/config/app-dir"`
+user_utils_dir=`cat "${script_dir}/config/utils-dir"`
+name_app_folder="natron-portable"
+name_app_arhive="natron-portable-2-5-0.tar.xz"
+name_script_start="natron_starter.sh"
 
 #Определение расположениея папок для утилит и т.д.
-utils_dir="${script_dir}/core-utils"
+#utils_dir="${script_dir}/core-utils"
 
 #Определение переменныех утилит и скриптов
-YAD="${utils_dir}/yad"
-zenity="${utils_dir}/zenity"
+#YAD="${utils_dir}/yad"
+#zenity="${utils_dir}/zenity"
 
 #объявляем нужные переменные для скрипта
 date_install=`date`
@@ -52,22 +57,34 @@ fi
 #fi
 
 # Проверка установлен Видеоредактор или нет в папке пользователя
-if [ -e "/home/${user_run_script}/natron-portable/app/Natron" ]
-then
-tput setaf 1; echo "Видеоредактор ${name_script} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
-tput sgr0
-else
-tput setaf 2; echo "Утилита ${name_script} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
-tput sgr0
-cd
-name_app_folder="natron-portable"
-name_app_arhive="natron-portable.tar.xz"
-name_script_start="natron_starter.sh"
-rm -f ${name_app_arhive}
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/natron-portable.tar.xz
+if [ -e "/home/${user_run_script}/${user_app_dir}/${name_app_folder}/app/Natron" ];then
+
+            install_name_app_arhive=`cat /home/${user_run_script}/${user_app_dir}/${name_app_folder}/app_arhive`
+
+                if [ ${install_name_app_arhive} == ${name_app_arhive} ]; then
+                    tput setaf 1; echo "Данная версия редактора визуальных эффектов ${name_script} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+                    tput sgr0
+                    else 
+                    tput setaf 2; echo "Устанавливается редактор визуальных эффектов ${name_script} более новой версии в папку пользователя ${user_run_script}"
+                    tput sgr0
+                    app_installing="true"
+                fi
+
+        else
+                    tput setaf 2; echo "Устанавливается редактор визуальных эффектов ${name_script} более новой версии в папку пользователя ${user_run_script}"
+                    tput sgr0
+                    app_installing="true"
+fi
+
+if [ ${app_installing} == "true" ];then
+#tput setaf 2; echo "Начинается установка редактора визуальных эффектовУтилита ${name_script}  в папку пользователя ${user_run_script}"
+#put sgr0
+cd "/home/${user_run_script}/${user_app_dir}"
+rm -f ${name_app_arhive} || true
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/${name_app_arhive}"
 pv "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
-cd "/home/${user_run_script}/${name_app_folder}";chmod +x mini_install.sh
+cd "/home/${user_run_script}/${user_app_dir}/${name_app_folder}";chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
@@ -76,9 +93,10 @@ bash mini_install.sh
 #cd "/home/${user_run_script}/${name_app_folder}"
 #echo "Папка установки:/home/${user_run_script}/${name_app_folder}"
 #bash -c "/home/${user_run_script}/${name_app_folder}/${name_script_start}" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
-tput setaf 2; echo "Установка утилиты ${name_script} завершена :)"
+tput setaf 2; echo "Установка редактора визуальных эффектов ${name_script} завершена :)"
 tput sgr0
 fi
+
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
