@@ -71,7 +71,7 @@ if [ -d "/home/${user_run_script}/${user_app_dir}/${name_app_folder}" ];then
                 fi
 
         else
-                    tput setaf 2; echo "Устанавливается игровоя утилита ${name_script} более новой версии в папку пользователя ${user_run_script}"
+                    tput setaf 2; echo "Устанавливается игровоя утилита ${name_script} в папку пользователя ${user_run_script}"
                     tput sgr0
                     app_installing="true"
 fi
