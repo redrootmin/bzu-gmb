@@ -7,12 +7,25 @@
 
 # определение имени файла, папки где находиться скрипт и версию скрипта
 name_script0=`basename "$0"`
-name_script=`echo ${name_script0} | sed "s|.sh||g"`
+name_script=`echo ${name_script0} | sed 's/\.sh\>//g'`
 script_dir0=$(cd $(dirname "$0") && pwd); name_cut="/modules-temp/${name_script}"
 script_dir=`echo ${script_dir0} | sed "s|${name_cut}||g"`
 version0=`cat "${script_dir}/config/name_version"`
 version="${version0}"
 user_run_script=`cat "${script_dir}/config/user"`
+user_app_dir=`cat "${script_dir}/config/app-dir"`
+user_utils_dir=`cat "${script_dir}/config/utils-dir"`
+name_app_folder="protonup-qt-appimage"
+name_app_arhive="protonup-qt-appimage-2-7-6.tar.xz"
+name_script_start="protonup-qt_starter.sh"
+name_app_run="ProtonUp-Qt-2.7.6-x86_64.AppImage"
+#Определение расположениея папок для утилит и т.д.
+#utils_dir="${script_dir}/core-utils"
+
+#Определение переменныех утилит и скриптов
+#YAD="${utils_dir}/yad"
+#zenity="${utils_dir}/zenity"
+
 #объявляем нужные переменные для скрипта
 date_install=`date`
 #загружаем данные о модули и файла конфигурации в массив
@@ -26,31 +39,8 @@ version_app=${module_conf[7]}
 pass_user="$1"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка ProtonUp-Qt  - Графический менеджер для Установки и управления Proton-GE для Steam и Wine-GE для Lutris [https://github.com/DavidoTek/ProtonUp-Qt]. Установка ProtonUp-Qt производиться в формате Appimage. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка ProtonUp-Qt  - Графический менеджер для Установки и управления Proton-GE для Steam и Lutris [https://github.com/DavidoTek/ProtonUp-Qt]. Установка ProtonUp-Qt производиться в формате Appimage. Версия скрипта 1.0, автор: Яцына М.А."
 tput sgr0
-
-
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S mkdir -p "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#cd "${script_dir}/modules-temp/${name_script}/temp" || let "error += 1"
-#echo "${pass_user}" | sudo -S add-apt-repository -y   || let "error += 1"
-# переходим в папку пользователя
-#cd
-#echo "${pass_user}" | sudo -S rm -r "${script_dir}/modules-temp/${name_script}/temp" || true
-# УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER
-#echo "${pass_user}" | sudo -S apt install cmake libgconf-2-4
-#скачиваем архив с плагином и распаковываем его
-#wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
-#создаем папку плагины в конфигурации OBS-studio
-#mkdir -p "/home/${user_run_script}/.config/obs-studio/plugins"
-#далее распаковываем архив в папку с плагинами OBS-studio
-#tar xfvz linuxbrowser*.tgz -C "/home/${user_run_script}/.config/obs-studio/plugins/"
-#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
-#как запуститься, в источниках появится Linux Browser, настройки такие же как у obs-qtwebkit
-#echo "${pass_user}" | sudo -S apt install -f -y --reinstall --install-recommends kate breeze || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-#app_status=`dpkg -s kate | grep -ow "installed"`  || tput setaf 1 | echo "${name_script} no installed" | tput sgr0; echo "${name_script}:${app_status}"
-#tput setaf 2; echo "Установлен драйвер:${mesa_version}, тестируем запуск!"  || let "error += 1"
 
 
 #запуск основных команд модуля
@@ -60,42 +50,59 @@ then
 mkdir -p "/home/${user_run_script}/.local/share/applications"
 fi
 
-# Проверка установлен vscodium или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/protonup-qt" ]
-then
-tput setaf 2; echo "Утилита ${version_app} не установлен в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
-tput sgr0
-cd
-name_app_folder="protonup-qt"
-name_app_arhive="${name_app_folder}.tar.xz"
-name_script_start="protonup-qt_starter.sh"
+# Проверка что существует папка .local/bin, если нет, создаем ее
+#if [ ! -d "/home/${user_run_script}/.local/bin" ]
+#then
+#mkdir -p "/home/${user_run_script}/.local/bin"
+#fi
+
+# Проверка установлен Видеоредактор или нет в папке пользователя
+if [ -d "/home/${user_run_script}/${user_app_dir}/${name_app_folder}" ];then
+
+            install_name_app_arhive=`cat /home/${user_run_script}/${user_app_dir}/${name_app_folder}/app_arhive`
+
+                if [ ${install_name_app_arhive} = ${name_app_arhive} ];then
+                    tput setaf 1; echo "Актуальная версия игровой утилиты ${name_script} уже установлена в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+                    tput sgr0
+                    else 
+                    tput setaf 2; echo "Устанавливается игровоя утилита ${name_script} более новой версии в папку пользователя ${user_run_script}"
+                    tput sgr0
+                    app_installing="true"
+                fi
+
+        else
+                    tput setaf 2; echo "Устанавливается игровоя утилита ${name_script} более новой версии в папку пользователя ${user_run_script}"
+                    tput sgr0
+                    app_installing="true"
+fi
+
+if [[ $app_installing == "true" ]];then
+#tput setaf 2; echo "Начинается установка редактора визуальных эффектовУтилита ${name_script}  в папку пользователя ${user_run_script}"
+#put sgr0
+cd "/home/${user_run_script}/${user_app_dir}"
+rm -f ${name_app_arhive} || true
+rm -fr ${name_app_arhive} || true
+wget "https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/${name_app_arhive}"
+pv "${name_app_arhive}" | tar -xJ
 rm -f ${name_app_arhive}
-wget https://github.com/redrootmin/bzu-gmb-modules/releases/download/v1/protonup-qt.tar.xz
-tar -xpJf "${name_app_arhive}"
-rm -f ${name_app_arhive}
-cd ~/${name_app_folder};chmod +x mini_install.sh
+cd "/home/${user_run_script}/${user_app_dir}/${name_app_folder}";chmod +x mini_install.sh
 bash mini_install.sh
 
 # 5 секунд теста программы
-app_name="protonup-qt"
-echo "Testing:${version_app}"
-cd "/home/${user_run_script}/${name_app_folder}"
-echo "Папка установки:/home/${user_run_script}/${name_app_folder}"
-bash -c "/home/${user_run_script}/${name_app_folder}/${name_script_start}" & sleep 5;echo "${pass_user}" | sudo -S killall "python3"
-tput setaf 2; echo "Установка утилиты ${version_app} завершена :)"
-tput sgr0
-else
-tput setaf 1; echo "Утилита ${version_app} уже установлен в папку пользователя ${user_run_script}, что бы не стереть ваши важные данные, установка прирывается!"
+#app_name="Natron"
+#echo "Testing:${version_app}"
+#cd "/home/${user_run_script}/${name_app_folder}"
+#echo "Папка установки:/home/${user_run_script}/${name_app_folder}"
+#bash -c "/home/${user_run_script}/${name_app_folder}/${name_script_start}" & sleep 5;echo "${pass_user}" | sudo -S killall "${app_name}"
+tput setaf 2; echo "Установка редактора визуальных эффектов ${name_script} завершена :)"
 tput sgr0
 fi
+
 
 
 #добавляем информацию в лог установки о уровне ошибок модуля, чем выше цифра, тем больше было ошибок и нужно проверить модуль разработчику
 echo "модуль ${name_script}, дата установки:${date_install}, количество ошибок:${error}"	 				  >> "${script_dir}/module_install_log"
 
-#Добавляем информацию о том как использовать CoreCtrl лог установки
-#echo "Подробнее о том как запускать CoreCtrl без постоянного ввода пароля тут: https://gitlab.com/corectrl/corectrl/-/wikis/Setup"	 				  >> "${script_dir}/module_install_log"
-#echo "Подробнее о командах и функциях тут: https://github.com/lutris/lutris/wiki" >> "${script_dir}/module_install_log"
 exit 0
 
 
