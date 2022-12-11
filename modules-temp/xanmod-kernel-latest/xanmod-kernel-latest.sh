@@ -39,7 +39,7 @@ then
 # установка  обновление системы
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
-echo "${pass_user}" | sudo -S dnf clean -y
+echo "${pass_user}" | sudo -S dnf clean packages
 echo "[linux-xanmod-edge]
 name=linux-xanmod-edge
 baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_system_apps_personal/repository/rosa2021.1/x86_64/main/release/

@@ -22,9 +22,8 @@
 -Lossless-Cut-appimage - обнавленно до 3.48.2
 
 [В РАЗРАБОТКЕ]
--Lossless-Cut-appimage - на обновлении
--Kdenlive-appimage - на обновлении
 -Blender-3.4-portable - добавление
+-Kdenlive-appimage - на обновлении
 -gnome-gui-switcher - добовление генератора наборов стилей, и стилей в них, путом парсинга папок с наборами стилей. Тестовое меню выбора стилей на HTML5
 -mesa-переключатель - добавление
 -gamepad-bt-service - добавление

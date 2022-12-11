@@ -39,16 +39,16 @@ then
 # установка  обновление системы
 echo "${pass_user}" | sudo -S dnf update -y
 echo "${pass_user}" | sudo -S dnf autoremove -y
-echo "${pass_user}" | sudo -S dnf clean -y
-echo "[kernel-xanmod-x86_64]
-name=kernel with XanMod patch
-baseurl=http://abf-downloads.rosalinux.ru/kelpee_personal/repository/rosa2021.1/x86_64/kernel_xanmod/release/
+echo "${pass_user}" | sudo -S dnf clean packages
+echo "[linux-xanmod-stable]
+name=linux-xanmod-stable
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_system_apps_personal/repository/rosa2021.1/x86_64/main/release/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 priority=0" > /tmp/kernel-xanmod-stable.repo
 echo "${pass_user}" | sudo -S mv /tmp/kernel-xanmod-stable.repo /etc/yum.repos.d
-echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y task-kernel-xanmod kernel-xanmod-devel kernel-xanmod-rosa-flow-abi kernel-modules-nvidia515-5.18-xanmod kernel-xanmod-uml kernel-xanmod-uml-modules task-kernel-xanmod
+echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y task-kernel-xanmod kernel-xanmod-devel kernel-xanmod-rosa-flow-abi kernel-xanmod-uml kernel-xanmod-uml-modules
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;rpm -qa | grep "kernel-xanmod-rosa"

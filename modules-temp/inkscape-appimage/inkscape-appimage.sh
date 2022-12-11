@@ -48,7 +48,7 @@ rm -f inkscape-appimage*.tar.xz
 cd "/home/${user_run_script}/bzu-gmb-apps/inkscape-appimage";chmod +x mini_install.sh
 bash mini_install.sh
 
-if [ ! -d "/home/${user_run_script}/inkscape-appimage" ]
+if [ ! -d "/home/${user_run_script}/bzu-gmb-apps/inkscape-appimage" ]
 then
 tput setaf 1; echo "Что то пошло не так и Векторый редактор ${version_app} не установлен :(";tput sgr0
 let "error += 10"
