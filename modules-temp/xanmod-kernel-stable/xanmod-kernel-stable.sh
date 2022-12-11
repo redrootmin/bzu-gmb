@@ -48,7 +48,7 @@ skip_if_unavailable=1
 gpgcheck=0
 priority=0" > /tmp/kernel-xanmod-stable.repo
 echo "${pass_user}" | sudo -S mv /tmp/kernel-xanmod-stable.repo /etc/yum.repos.d
-echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y task-kernel-xanmod kernel-xanmod-devel kernel-xanmod-rosa-flow-abi kernel-xanmod-uml kernel-xanmod-uml-modules
+echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf install -y kernel-xanmod-lts kernel-xanmod-lts-devel
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;rpm -qa | grep "kernel-xanmod-rosa"
