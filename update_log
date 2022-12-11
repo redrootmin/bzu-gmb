@@ -11,9 +11,9 @@
 -vscodium-portable - (обнавлено до VSCodium-linux-x64-1.72.2.22289)
 -mesa-redroot-git [mesa 22.3-rc3+ VAAPI]
 -mesa-redroot-git-devel [mesa 23.00-dev VAAPI]
--xanmod-rosa-latest [6.0.6]
--xanmod-rosa-stable [5.18.x]
--репа mesa-redroot-stable - стабильная версия мезы 22.2.2
+-xanmod-rosa-latest [6.0.12+]
+-xanmod-rosa-stable [5.15+]
+-репа mesa-redroot-stable - стабильная версия мезы 22.3+
 -amdvlk-portable (gcn1-rdna2) - обновлено до последней версии
 -xanmod - добавил пакеты, что бы старонние программы могли компилить патчи к ядру
 
