@@ -38,6 +38,16 @@ Ubuntu 20.04.3 LTS Ubuntu 20.04.4 LTS Ubuntu 21.10 Ubuntu 22.04 LTS Ubuntu 22.04
 #
 #
 noroot
+rosa-linux48.png
+Rosa-kernel-5.18
+LinuxKernel
+Это версия 5.18 оригинального ядра Linux для Rosa fresh desktop, автор репозитория не сообщил о какой либо особенности данного ядра. Его можно использовать для программ или утилит, которым требуется оригинальное ядро без специфический изменений и оптимизаций. Например для драйвера Nvidia
+Яцына М.А.
+rosa-kernel-5
+ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3
+#
+#
+noroot
 xanmod-latest48.png
 Xanmod-latest-ppa
 LinuxKernel
