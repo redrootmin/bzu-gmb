@@ -24,13 +24,13 @@ readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_con
 #version_kernel=${module_conf[*]} - Все записи в массиве
 #version_kernel=${#module_conf[*]} - Количество записей в массиве, нумерания с нуля
 #version_kernel=${module_conf[7]} - Определенная запись в массиве
-version_proton=${module_conf[7]}
+#version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка стабильного кастомного ядра Linux от XanMod [https://xanmod.org]. Версия скрипта 1.0, автор: Яцына М.А."
+tput setaf 2; echo "Установка оригинального ядра Linux 5.18 для Rosa fresh desktop [https://www.rosalinux.ru/rosa-linux-download-links/]. Версия скрипта 1b, автор: Яцына М.А."
 tput sgr0
 
 #Проверяем какая система запустила bzu-gmb, если ROSA Fresh Desktop 12.x устанавливаем нужные пакеты
@@ -52,22 +52,6 @@ echo "${pass_user}" | sudo -S dnf update -y && echo "${pass_user}" | sudo -S dnf
 
 #формируем информацию о том что в итоге установили и показываем в терминал
 tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;rpm -qa | grep "kernel-xanmod-rosa"
-#сброс цвета текста в терминале
-tput sgr0
-fi
-#=====================================================================================
-
-#Проверяем какая система запустила bzu-gmb, если Ubuntu\Linux Mint устанавливаем нужные пакеты
-if echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 20.04.4 LTS" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Mint" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 21.10" > /dev/null || echo "${linuxos_run_bzu_gmb}" | grep -ow "Ubuntu 22.04 LTS" > /dev/null
-then
-#запуск основных команд модуля
-echo "${pass_user}" | sudo -S  echo 'deb http://deb.xanmod.org releases main' > /etc/apt/sources.list.d/xanmod-kernel.list  && wget -qO - https://dl.xanmod.org/gpg.key | echo "${pass_user}" | sudo -S apt-key add - || let "error += 1"
-echo "${pass_user}" | sudo -S apt update || let "error += 1"
-echo "${pass_user}" | sudo -S apt install -f -y linux-xanmod-cacule || let "error += 1"
-echo "${pass_user}" | sudo -S update-grub || let "error += 1"
-echo "${pass_user}" | sudo -S update-initramfs -u || let "error += 1"
-#формируем информацию о том что в итоге установили и показываем в терминал
-tput setaf 2;echo "В вашу систему установлены следующие linux ядра Xanmod:";tput sgr0;dpkg --list | grep "xanmod"  | grep -oP 'linux-image(.*)' | grep -Eo '^[^ ]+'
 #сброс цвета текста в терминале
 tput sgr0
 fi
