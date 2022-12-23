@@ -17,9 +17,9 @@ user_run_script=`cat "${script_dir}/config/user"`
 date_install=`date`
 user_app_dir=`cat "${script_dir}/config/app-dir"`
 user_utils_dir=`cat "${script_dir}/config/utils-dir"`
-name_app_folder="godot[4-dev8]portable"
-name_app_arhive="godot[4-dev8]portable.tar.xz"
-name_script_start="godot-4-dev8-portable-starter.sh"
+name_app_folder="godot[4-dev]portable"
+name_app_arhive="godot.4-dev.portable-dev8.tar.xz"
+name_script_start="godot-4-dev-portable-starter.sh"
 name_pack_apps="v1"
 #загружаем данные о модули и файла конфигурации в массив
 readarray -t module_conf < "${script_dir}/modules-temp/${name_script}/module_config"
