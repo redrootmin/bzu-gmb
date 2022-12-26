@@ -1,5 +1,5 @@
 #1
-sudo dd if=/dev/sda of=/dev/sdb bs=64K conv=noerror,sync
+sudo dd if=/dev/sda of=/dev/sdb bs=64K conv=noerror,sync status=progress
 Здесь:
 
     sdb- это пункт назначения
