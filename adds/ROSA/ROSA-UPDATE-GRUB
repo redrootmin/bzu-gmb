@@ -1,2 +1,4 @@
+sudo update-grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+sudo dracut --regenerate-all --force
 
