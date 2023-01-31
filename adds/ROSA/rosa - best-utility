@@ -1,1 +1,1 @@
-sudo dnf install meld
+sudo dnf install meld gksu
