@@ -159,7 +159,7 @@ mesa-git-fidel
 #
 noroot
 mesa-redroot-stable48.png
-Mesa-Redroot-Stable
+MESA-Redroot-Stable
 OpenDriver
 Стабильная версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,HUD: Gallium HUD,Vulkan Overlay. Данная версия экспериментально прибирается для проекта bzu-gmb. 
 Яцына М.А.
@@ -169,7 +169,7 @@ ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3  experimental
 #
 noroot
 mesa-redroot-git48.png
-Mesa-Redroot-Git
+Mesa-Redroot-git
 OpenDriver
 Тестовая версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,VAAPI,HUD: Gallium HUD,Vulkan Overlay. Данная версия экперементально сибирается для проекта bzu-gmb. 
 Яцына М.А.
@@ -179,7 +179,7 @@ ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3  experimental
 #
 noroot
 mesa-redroot-git-devel48.png
-Mesa-Redroot-Git-Devel
+Mesa-Redroot-GIT-Devel
 OpenDriver
 Нестабильная (для разработчиков) версия открытого драйвера Mesa для Видеокарт AMD\INTEL\Nvidia, есть аппаратная поддержка: OpenGL 2/3/4,Vulkan 1.3+,Valve ACO,Vulkan RT,Zink, virtio-experimental,iris,r300,r600,radeonsi,nouveau,virgl,VAAPI,HUD: Gallium HUD,Vulkan Overlay. Данная версия экперементально сибирается для проекта bzu-gmb. 
 Яцына М.А.

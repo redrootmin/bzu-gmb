@@ -43,7 +43,9 @@ PROTON_LOG=1 %command%
 
 [vkBAZALT flags]
 ENABLE_VKBASALT=1
+RADV_PERFTEST=dccmsaa,gpl,nggc,nv_ms,rt,rtwave64,sam 
 
+gamescope  -U -f -W 3440 -Y 1440 -- ENABLE_VKBASALT=1  %command%
 
 [NEW MESA FLAGS 21.2+]
 
