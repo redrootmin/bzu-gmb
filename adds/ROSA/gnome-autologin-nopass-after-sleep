@@ -16,3 +16,6 @@ AutomaticLoginEnable=true
 AutomaticLogin=user
 ............
 Вполне возможно, при помощи nano выполнить команду не получится по причине того, что каталог "gdm" скрытый, в этом случае лучше сделать это в Midnught Commander, в нём у меня всё получилось с разбегу.
+
+# отключить запрос пароля после сна
+gsettings set org.gnome.desktop.screensaver lock-enabled false
