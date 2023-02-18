@@ -1,0 +1,14 @@
+sudo gedit /usr/share/X11/xorg.conf.d/50-magicmouse.conf
+
+     Section "InputClass"
+      Identifier "Apple Magic Mouse" # This can be anything
+      MatchIsPointer "on"
+      MatchDevicePath "/dev/input/event*"
+      MatchProduct "Steve’s Mouse" # Product name from 'xinput list'
+      Driver "evdev" # From '/var/log/Xorg.0.log' after mouse connected
+      Option "AccelerationProfile" "0"
+      Option "ConstantDeceleration" "5"
+      Option "AdaptiveDeceleration" "1"
+      Option "VelocityScale" "8"
+      Option "ButtonMapping" "1 2 3 5 4 0 0"
+    EndSection
