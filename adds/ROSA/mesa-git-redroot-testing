@@ -1,15 +1,15 @@
-# mesa-redroot-stable
+# mesa-redroot-stable 23.00
 
 echo "[mesa-redroot-stable-x86_64]
 name=mesa-redroot-stable-x86_64
-baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/repository/rosa2021.1/x86_64/main/release/
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4376857/x86_64/main/release/
 gpgcheck=0
 enabled=1
 cost=999
 
 [mesa-redroot-stable-i686]
 name=mesa-redroot-stable-i686
-baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/repository/rosa2021.1/i686/main/release/
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4376858/i686/main/release/
 gpgcheck=0
 enabled=1
 cost=1000" > /tmp/mesa-redroot-stable.repo
