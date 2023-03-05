@@ -1,1 +1,0 @@
-sudo dnf install -y nemo lib64nemo-extensions-devel lib64nemo-extensions1 lib64nemo-gir3.0 nemo-audio-tab nemo-compare nemo-fileroller nemo-image-converter nemo-python nemo-python-devel nemo-pastebin
