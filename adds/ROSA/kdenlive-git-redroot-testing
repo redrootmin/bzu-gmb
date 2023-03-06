@@ -1,0 +1,9 @@
+# kdenlive-git-redroot-testing
+
+echo "[kdenlive-git-redroot-testing-x86_64]
+name=kdenlive-git-redroot-testing-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_app_for_creators_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999" > /tmp/kdenlive-git-redroot-testing.repo
+sudo mv /tmp/kdenlive-git-redroot-testing.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
