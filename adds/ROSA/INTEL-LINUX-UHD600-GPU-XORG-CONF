@@ -1,0 +1,69 @@
+Speed boost with new mesa for recent intel GPU's (needs config)
+
+with my UHD Graphics (comet lake GT2) I had some minor issues...
+
+I couldn't use DRI3 (it wouldn't swap buffers!) and small windows were slooow (half the fps of fullscreen - quite odd)
+
+I was using this config
+
+sudo nano /usr/share/X11/xorg.conf.d/20-intel.conf
+
+Section "Device"
+  Identifier  "Intel Graphics"
+  Driver  "intel"
+  Option  "DRI" "2"
+  Option  "TearFree"    "true" 
+EndSection
+
+apparently there has been a bunch of work done with intel gpu's and glamor acceleration... so I'm now using the following config instead. (I renamed 20-intel.conf to 20-intel.conf.XXX)
+
+sudo nano /usr/share/X11/xorg.conf.d/18-intel-glamor.conf
+
+Section "Device"
+    Identifier  "Intel Graphics"
+    Driver      "modesetting"
+    Option      "AccelMethod"    "glamor"
+    Option      "DRI"            "3"
+    Option      "Backlight"      "intel_backlight"
+EndSection
+
+checking xorg logs I now see... which I didn't before
+# V-3
+Section "Device"
+    Identifier  "Intel Graphics"
+    Driver      "modesetting"
+    Option      "AccelMethod"    "glamor"
+    Option      "DRI"            "3"
+    Option      "Backlight"      "intel_backlight"
+    Option      "TripleBuffer" "true"
+    Option      "TearFree"    "true"
+EndSection
+
+X зависает/падает с драйверами intel
+
+Некоторые проблемы со сбоем X, зависания GPU, или проблемы с зависанием X, могут быть решены путем отключения использования GPU с опцией NoAccel:
+
+/etc/X11/xorg.conf.d/20-intel.conf
+
+Section "Device"
+   Identifier "Intel Graphics"
+   Driver "intel"
+   Option "NoAccel" "True"
+EndSection
+
+Кроме того, попробуйте отключить 3D-ускорение только с опцией DRI:
+
+/etc/X11/xorg.conf.d/20-intel.conf
+
+Section "Device"
+   Identifier "Intel Graphics"
+   Driver "intel"
+   Option "DRI" "False"
+EndSection
+
+
+
+#MODPROBE
+sudo nano /etc/modprobe.d/i915.conf
+options i915 enable_fbc=1
+options i915 fastboot=1
