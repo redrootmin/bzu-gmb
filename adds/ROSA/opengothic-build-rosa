@@ -1,0 +1,43 @@
+fedora:
+sudo dnf install git cmake gcc-c++ glslang vulkan-loader-devel alsa-lib-devel libX11-devel libXcursor-devel vulkan-validation-layers-devel libglvnd-devel
+
+udo dnf install git cmake gcc-c++ glslang lib64vulkan-devel lib64vulkan1 lib64vulkan-intel-devel lib64clalsadrv-devel lib64alsa-oss-devel lib64alsaplayer-devel lib64x11-devel lib64x11-xcb1 lib64xcb-cursor-devel lib64xcursor-devel lib64x11-devel lib64glvnd-devel lib64z-devel zlibrary-common lib64openal-devel libBulletDynamics2.86 libBulletSoftBody2.86 lib64png16 libpng16 lib64LLVMSPIRVLib-devel lib64spirv-tools-devel spirv-llvm-translator-tools lib64minizip-devel libbullet-devel lib64bullet3.17 libbullet-devel.i686 lib64squish-devel
+
+
+git clone --recurse-submodules https://github.com/Try/OpenGothic.git
+cd OpenGothic
+cmake -B build -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+make -C build -j $(nproc)
+
+# following builds:
+git pull --recurse-submodules
+make -C build -j $(nproc)
+
+
+Argument(s) 	Description
+-g 	specify path containing Gothic game data
+-game:<modfile.init> 	specify game modification manifest (GothicStarter compatibility)
+-nomenu 	skip main menu
+-w <worldname.zen> 	startup world; newworld.zen is default
+-save q 	load the quick save on start
+-save <number> 	load a specified save-game slot on start
+-v -validation 	enable Vulkan validation mode
+-dx12 	force DirectX 12 renderer instead of Vulkan (Windows only)
+-g1 	assume a Gothic 1 installation
+-g2 	assume a Gothic 2 installation
+-rt <boolean> 	explicitly enable or disable ray-query
+-ms <boolean> 	explicitly enable or disable meshlets
+-window 	windowed debugging mode (not to be used for playing)
+
+
+    Run '/OpenGothic/bin/Gothic2Notr.exe -g "C:\Program Files (x86)\Path\To\Gothic II"'
+
+Common Gothic installation paths to be provided via -g:
+
+    "C:\Program Files (x86)\JoWooD\Gothic II"
+    "C:\Gothic II"
+    "C:\Program Files (x86)\Steam\steamapps\common\Gothic II"
+    "~/PlayOnLinux's virtual drives/Gothic2_gog/drive_c/Gothic II"
+
+
+
