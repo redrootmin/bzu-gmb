@@ -1,0 +1,10 @@
+
+# rosa_gaming_app_for_creators_personal
+
+echo "[rosa_gaming_app_for_creator]
+name=rosa_gaming_app_for_creator-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_app_for_creators_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999" > /tmp/rosa_gaming_app_for_creator.repo
+sudo mv /tmp/rosa_gaming_app_for_creator.repo /etc/yum.repos.d && sudo dnf --refresh distrosync

@@ -1,0 +1,16 @@
+# mesa-redroot-stable 22.3.5+
+
+echo "[mesa-redroot-stable-x86_64]
+name=mesa-redroot-stable-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4376857/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa-redroot-stable-i686]
+name=mesa-redroot-stable-i686
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4376858/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-redroot-stable.repo
+sudo mv /tmp/mesa-redroot-stable.repo /etc/yum.repos.d && sudo dnf --refresh distrosync

@@ -1,0 +1,16 @@
+# mesa-redroot-testing 23.00
+
+echo "[mesa-redroot-testing-x86_64]
+name=mesa-redroot-testing-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4376857/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa-redroot-testing-i686]
+name=mesa-redroot-testing-i686
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4376858/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-redroot-testing.repo
+sudo mv /tmp/mesa-redroot-testing.repo /etc/yum.repos.d && sudo dnf --refresh distrosync

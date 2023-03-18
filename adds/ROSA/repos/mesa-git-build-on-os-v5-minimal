@@ -1,0 +1,71 @@
+
+#ставим нужные пакеты 64-bit
+
+sudo dnf install -y --allowerasing --skip-broken inxi mangohud gcc* meson git flex bison gccmakedep lm_sensors-devel lib64elfutils-devel libllvm-devel expat libselinux-devel libatomic-devel python3-mako libdrm_amdgpu1 libdrm_intel1 libdrm_radeon1 libudev1 libglvnd lib64epoxy-devel gtk+3.0 libzstd1 libzstd-devel vulkan lib64xdamage-devel lib64xfixes-devel lib64xmu-devel lib64xxf86vm-devel lib64xv-devel lib64xvmc-devel valgrind lib64stdc++-static-devel libssl1 libclc lib64xvmc-devel lib64vdpau-drivers lib64vdpau-devel libva2 wayland-protocols-devel wayland*-devel glslang glslang-devel patchelf lib64xrandr-devel lib64d3dadapter9-devel libvulkan-devel lib64vulkan-devel lib64python3-devel libxrandr-devel libxxf86vm-devel lib64xshmfence-devel libxfixes-devel lib64wayland-devel lib64elf-devel lib64drm-devel libdrm-common lib64drm_amdgpu1 libxcb-devel libzstd-devel expat-devel libxshmfence-devel libomxil-bellagio-devel zlib-devel libvdpau-devel libdrm-devel pkgconf python-pkgconfig python3-pkgconfig lib64omxil-bellagio-devel lib64va-devel lib64zstd-devel lib64clang-devel lib64unwind-devel sudo dnf install libomxil-bellagio-devel libomxil-bellagio lib64ezlib1 lib64drm_intel1 vaapi-driver-intel lib64dri-drivers-intel
+
+# создаем папку для сборки mesa-git
+sudo rm -fr mesa
+git clone https://gitlab.freedesktop.org/mesa/mesa.git
+cd mesa
+#for mesa 22.2.x
+git checkout staging/22.2
+
+#for mesa 22.3+
+git checkout staging/22.3
+
+#for mesa 23.1+ (dev)
+git checkout main
+
+#сборка версии mesa-devel 64bit FULL
+
+meson build64 \
+	-D microsoft-clc=disabled \
+	-D shared-llvm=enabled \
+	-D b_ndebug=true \
+	-D c_std=c11 \
+	-D cpp_std=c++17 \
+	-D gallium-drivers=auto,radeonsi,virgl,zink,swrast,i915,iris,crocus,d3d12 \
+	-D gallium-va=enabled \
+	-D gallium-vdpau=enabled \
+	-D gallium-xa=enabled \
+	-D gallium-nine=true \
+	-D glx=dri \
+	-D platforms=wayland,x11 \
+	-D egl-native-platform=wayland \
+	-D vulkan-layers=device-select,overlay \
+	-D vulkan-drivers=auto,amd,virtio-experimental,swrast,intel,intel_hasvk \
+	-D xlib-lease=auto \
+	-D osmesa=true \
+	-D glvnd=true \
+	-D dri3=enabled \
+	-D egl=enabled \
+	-D gbm=enabled \
+	-D gles1=disabled \
+	-D gles2=enabled \
+	-D glx-direct=true \
+	-D llvm=enabled \
+	-D lmsensors=enabled \
+	-D opengl=true \
+	-D shader-cache=enabled \
+	-D shared-glapi=enabled \
+	-D shared-llvm=enabled \
+	-D prefix=/usr \
+	-D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
+        -D sysconfdir=/etc
+
+ulimit -n 8192 && sudo ninja -C build64 install
+
+
+#https://www.phoronix.com/review/intel-arc-a380-linux
+#https://www.phoronix.com/review/intel-a750-a770-arc-linux
+#https://www.phoronix.com/news/Rusticl-Zink-Vulkan-Works
+#https://wenxiaoming.github.io/2020/06/28/Intel%20vulkan%20driver%20introduction/
+# INTEL_COMPUTE_CLASS=1 , INTEL_DEBUG=c-cs , INTEL_DEBUG=noccs
+# for add intel arc a380
+sudo gedit /etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT + i915.force_probe=56a5
+sample: GRUB_CMDLINE_LINUX_DEFAULT='i915.force_probe=56a5 silent logo.nologo quiet'
+#For Intel ARC A750: i915.force_probe=56a1
+#For Intel ARC A770: i915.force_probe=5690
+sudo update-grub2
+sudo reboot
