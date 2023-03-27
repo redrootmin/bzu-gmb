@@ -1,0 +1,24 @@
+Firefox Configurations
+
+For Ubuntu 22.04LTS, the build-in Firefox has enabled it already. To disable, set “media.hardware-video-decoding.enabled” ➞ false
+
+For earlier Ubuntu, run “about:config” in Firefox URL and configure:
+Search for ‘ffmpeg’
+
+“media.ffmpeg.vaapi.enabled” ➞ true
+Search for ‘vpx’
+
+“media.ffvpx.enabled” ➞ false
+“media.navigator.mediadatadecoder_vpx_enabled” ➞ true
+“media.rdd-vpx.enabled” ➞ false
+Search for ‘webrender’
+
+“gfx.webrender.all” ➞ true
+Search for ‘hardware-video-decoding’
+
+“media.hardware-video-decoding.enabled” ➞ true
+Verify
+
+Relaunch Firefox to apply.
+
+Run about:support in Firefox URL.
