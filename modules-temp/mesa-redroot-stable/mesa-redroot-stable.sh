@@ -26,7 +26,7 @@ pass_user0="$1"
 export pass_user="${pass_user0}"
 
 #даем информацию в терминал какой модуль установливается
-tput setaf 2; echo "Установка стабильного открытого драйвера Mesa 23+. Версия скрипта 1b, автор-скрипта: Яцына М.А."
+tput setaf 2; echo "Установка стабильного открытого драйвера Mesa 23+ для rosa linux. Версия скрипта 1b, автор-скрипта: Яцына М.А."
 tput sgr0
 
 if echo "${linuxos_run_bzu_gmb}" | grep -ow "ROSA Fresh Desktop" > /dev/null
