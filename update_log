@@ -1,8 +1,62 @@
-[buz-gmb 0.495RC1]===================================
+[buz-gmb 0.496-beta]===================================
  
 [ГОТОВО]
 
 
+[ТЕСТИРУЕТСЯ]
+-обновление до ROSA Fresh Desktop 12.4
+-mesa-redroot-stable - обновление до 30.0.1
+-Rosa-kernel - обновление до версии 6.1.20
+
+
+[В РАЗРАБОТКЕ]
+-Natron-portable -
+-Krita-appimage -
+-Inkscape-appimage -
+-gnome-gui-switcher - 
+-godot-portable -
+-Mangohud-git - 
+-vscodium-portable - 
+-mesa-redroot-git 
+-mesa-redroot-git-devel 
+-amdvlk-portable (gcn1-rdna2) - 
+-ProtonUp-Qt - 
+-Lossless-Cut-appimage - 
+-Blender-portable - 
+-Kdenlive-appimage - 
+-godot-4-dev-portable - 
+-gnome-gui-switcher - добавление генератора наборов стилей, и стилей в них, путом парсинга папок с наборами стилей. Тестовое меню выбора стилей на HTML5
+-mesa-переключатель - добавление
+-gamepad-bt-service - добавление
+-steam-deck-mode - добавление
+-Nvidia antitearing - добавление
+-Nvidia driver + cuda support for blender+ добавление
+-wallpapers from redroot in ROSA gnome-settings - на обновлении
+-GWE (overclock nvidia) - добавление
+-libstrangle-tools - добавление
+-obs-studio-ppa - на обновлении
+-NoiseTorch-app - на обновлении
+-MagicaVoxel-wine - на обновлении
+-gravity-mark-portable - на обновлении
+-remmina-ppa - добавление
+-timeshift ppa - добавление
+-gparted-ppa - добавление
+-grub-customizer ppa - добавление
+-stacer ppa - добавление
+-icq-new-portable - добавление
+-discord-ppa - добавление
+-scribus-ppa - добавление
+-firefox-ppa - добавление
+-chromium-ppa - добавление
+-qbittorent-ppa - добавление
+
+
+
+
+
+[buz-gmb 0.495RC1]===================================
+ 
+[ГОТОВО]
 -Natron-portable - обнавлено до 2.5.0 + коммьюнити скрипты + плагины (добавить в из папки программы)
 -Krita-appimage - обновлено до 5.1.3
 -Inkscape-appimage - обновлено до 1.2.1
