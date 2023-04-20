@@ -1,7 +1,5 @@
-fedora:
-sudo dnf install git cmake gcc-c++ glslang vulkan-loader-devel alsa-lib-devel libX11-devel libXcursor-devel vulkan-validation-layers-devel libglvnd-devel
-
-udo dnf install git cmake gcc-c++ glslang lib64vulkan-devel lib64vulkan1 lib64vulkan-intel-devel lib64clalsadrv-devel lib64alsa-oss-devel lib64alsaplayer-devel lib64x11-devel lib64x11-xcb1 lib64xcb-cursor-devel lib64xcursor-devel lib64x11-devel lib64glvnd-devel lib64z-devel zlibrary-common lib64openal-devel libBulletDynamics2.86 libBulletSoftBody2.86 lib64png16 libpng16 lib64LLVMSPIRVLib-devel lib64spirv-tools-devel spirv-llvm-translator-tools lib64minizip-devel libbullet-devel lib64bullet3.17 libbullet-devel.i686 lib64squish-devel
+[ROSA FRESH R12.4 DESKTOP GNOME]
+sudo dnf install git cmake gcc-c++ glslang lib64vulkan-devel lib64vulkan1 lib64vulkan-intel-devel lib64clalsadrv-devel lib64alsa-oss-devel lib64alsaplayer-devel lib64x11-devel lib64x11-xcb1 lib64xcb-cursor-devel lib64xcursor-devel lib64x11-devel lib64glvnd-devel lib64z-devel zlibrary-common lib64openal-devel libBulletDynamics2.86 libBulletSoftBody2.86 lib64png16 libpng16 lib64LLVMSPIRVLib-devel lib64spirv-tools-devel spirv-llvm-translator-tools lib64minizip-devel libbullet-devel lib64bullet3.17 libbullet-devel.i686 lib64squish-devel vulkan-headers
 
 
 git clone --recurse-submodules https://github.com/Try/OpenGothic.git
