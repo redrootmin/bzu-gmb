@@ -12,7 +12,7 @@ cost=999" > /tmp/kernel-redroot-testing.repo
 sudo mv /tmp/kernel-redroot-testing.repo /etc/yum.repos.d
 
 #3# обнавляем систему
-sudo dnf --refresh distrosync
+sudo dnf --refresh distrosync;sudo dnf install -y kernel-6.3-generic
 
 ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
 #1
