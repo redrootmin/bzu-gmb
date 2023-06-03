@@ -1,9 +1,0 @@
-# glib-redroot-testing for rosa 2021.1 , glib 2.37+
-
-echo "[glib237-redroot-testing-x86_64]
-name=glib237-redroot-testing-x86_64
-baseurl=http://abf-downloads.rosalinux.ru/redroot_personal/container/4385924/x86_64/main/release/
-gpgcheck=0
-enabled=1
-cost=999" > /tmp/glib237-redroot-testing.repo
-sudo mv /tmp/glib237-redroot-testing.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
