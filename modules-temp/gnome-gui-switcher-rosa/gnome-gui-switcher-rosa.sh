@@ -25,16 +25,11 @@ version_proton=${module_conf[7]}
 #получение пароля root пользователя
 pass_user="$1"
 #даем информацию в терминал какой модуль устанавливается
-tput setaf 2; echo "Установка [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в ubuntu 22.04 LTS c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. Версия скрипта 1.0 beta, автор: Яцына М.А."
+tput setaf 2; echo "Установка [GGS]gnome-gui-switcher - это утилита для настройки\изменения интерфейса в Rosa Fresh R12+ c рабочим столом gnome42+ с помощью готовых профилей:Ubuntu,macos,windows,RedRoot. Версия скрипта 1.1, автор: Яцына М.А."
 tput sgr0
 
 #запуск основных команд модуля
 version_app="[GGS]gnome-gui-switcher-rosa"
-# Проверка установлен [GGS]gnome-gui-switcher или нет в папке пользователя
-if [ ! -d "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa" ]
-then
-tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
-tput sgr0
 # Проверка что существует папка bzu-gmb-apps, если нет, создаем ее
  if [ ! -d "/home/${USER}/.local/share/bzu-gmb-apps" ]
  then
@@ -46,6 +41,11 @@ ln -s /home/$USER/.local/share/bzu-gmb-apps /home/$USER/bzu-gmb-apps
 echo "ярлыка небыло, создаем его"
   fi
  fi
+# Проверка установлен [GGS]gnome-gui-switcher или нет в папке пользователя
+if [ ! -d "/home/${user_run_script}/bzu-gmb-apps/gnome-gui-switcher-rosa" ]
+then
+tput setaf 2; echo "Утилита ${version_app} не установлена в папку пользователя ${user_run_script}, поэтому можно устанавливать :)"
+tput sgr0
 cd "/home/${user_run_script}/bzu-gmb-apps/"
 rm -f [GGS]gnome-gui-switcher*
 wget https://github.com/redrootmin/gnome-gui-switcher/archive/refs/heads/rosa.zip -O [GGS]gnome-gui-switcher-rosa.zip
