@@ -48,6 +48,16 @@ ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3 ROSA Fresh Desktop 12.4
 #
 #
 noroot
+rosa-linux-redroot48.png
+Rosa-Kernel-6.3.x
+LinuxKernel
+Это версия 6.3.x оригинального ядра Linux для Rosa fresh desktop
+Яцына М.А.
+rosa-kernel-63
+ROSA Fresh Desktop 12.2 ROSA Fresh Desktop 12.3 ROSA Fresh Desktop 12.4
+#
+#
+noroot
 xanmod-latest48.png
 Xanmod-latest-ppa
 LinuxKernel
