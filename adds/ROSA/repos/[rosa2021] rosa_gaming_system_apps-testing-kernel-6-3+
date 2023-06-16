@@ -1,0 +1,38 @@
+# ТЕСТОВЫЙ ИГРОВОЙ РЕПОЗИТАРИЙ С НОВЫМ ЯДРОМ
+
+#1# Создаем файл с временным репозитарием
+
+echo "[rosa-gaming-system-apps-testing-x86_64]
+name=rosa-gaming-system-apps-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_system_apps_personal/container/4595536/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[rosa-gaming-system-apps-testing-i686]
+name=rosa-gaming-system-apps-i686
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_system_apps_personal/container/4595537/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/rosa-gaming-system-apps-testing.repo
+
+#2# переносним файл в папку с репозитариев
+sudo mv /tmp/rosa-gaming-system-apps-testing.repo /etc/yum.repos.d
+
+#3# обнавляем систему
+sudo dnf --refresh distrosync
+
+#просматриваем кикие ядра доступны для установки
+dnf search kernel-6*
+
+#устанвливаем (нужно установить все основыне файлы ядра)
+sudo dnf install kernel-6.*-generic kernel-6.*-generic-devel kernel-6.*-rosa-flow-abi
+
+
+ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
+#1
+sudo rm -f /etc/yum.repos.d/rosa-gaming-system-apps.repo
+
+#2
+sudo dnf --refresh distrosync
+
