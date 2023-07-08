@@ -136,7 +136,7 @@ exit 0
 
 
 #[ENCFS -EASY WAY TO ENCRYPT FOLDERS IN PC OR CLOUD STORAGE]
-sudo apt dnf install encfs
+sudo dnf install encfs
 #MANUAL: https://vitux.com/how-to-encrypt-cloud-storage-with-encfs-on-ubuntu/
 
 
