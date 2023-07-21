@@ -1,5 +1,6 @@
-одключение репозитория rosa_gaming
-
+Подключение репозитория rosa_gaming
+------------------------------------
+#1
 echo "[rosa_gaming]
 name=rosa_gaming
 baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa2021.1/x86_64/main/release/
@@ -13,4 +14,5 @@ baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_personal/repository/rosa20
 gpgcheck=0
 enabled=1
 cost=1000" > /tmp/rosa_gaming.repo
+#2
 sudo mv /tmp/rosa_gaming.repo /etc/yum.repos.d && sudo dnf --refresh distrosync
