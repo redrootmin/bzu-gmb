@@ -1,0 +1,3 @@
+# Enable power-saving display C-states (0=disable; 1=up to DC5; 2=up to DC6)
+#i915.fastboot=1 i915_enable_dc=0
+GRUB_CMDLINE_LINUX_DEFAULT='i915.fastboot=1 i915.enable_dc=0 mitigations=off splash=silent logo.nologo quiet'
