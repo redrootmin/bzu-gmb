@@ -3,14 +3,14 @@
 #1# Создаем файл с временным репозитарием
 echo "[mesa-redroot-testing-x86_64]
 name=mesa-redroot-testing-x86_64
-baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4638562/x86_64/main/release/
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4639411/x86_64/main/release/
 gpgcheck=0
 enabled=1
 cost=999
 
 [mesa-redroot-testing-i686]
 name=mesa-redroot-testing-i686
-baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4638563/i686/main/release/
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_stable_personal/container/4639413/i686/main/release/
 gpgcheck=0
 enabled=1
 cost=1000" > /tmp/mesa-redroot-testing.repo
