@@ -1,0 +1,42 @@
+# РЕПОЗИТАРИЙ MESA-REDROOT-RC 23+
+
+#1# Создаем файл с временным репозитарием
+echo "[mesa-redroot-rc-x86_64]
+name=mesa-redroot-rc-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_rc_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999
+
+[mesa-redroot-rc-i686]
+name=mesa-redroot-rc-i686
+baseurl=http://abf-downloads.rosalinux.ru/mesa_redroot_rc_personal/repository/rosa2021.1/i686/main/release/
+gpgcheck=0
+enabled=1
+cost=1000" > /tmp/mesa-redroot-rc.repo
+
+#2# переносним файл в папку с репозитариев
+sudo mv /tmp/mesa-redroot-rc.repo /etc/yum.repos.d
+
+#3# обнавляем систему
+sudo dnf --refresh distrosync
+
+ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
+#1
+sudo rm -f /etc/yum.repos.d/mesa-redroot-rc.repo
+
+#2
+sudo dnf --refresh distrosync
+
+
+
+#ДЛЯ ИСПОЛЬЗОВАНИЯ VAAPI (УСКАРЕНИЕ GPU) В ПРОГРАММАХ
+sudo dnf install vaapi-driver-intel vaapi-driver-vdpau gstreamer1.0-vaapi lib64vdpau_va_gl1 intel-media-driver
+
+# ИСПОЛЬЗОВАНИЕ  VAAPI В OBS-STUDIO
+#1# скачиваем библиотеку с github
+cd
+wget https://github.com/fzwoch/obs-vaapi/releases/download/0.2.0/obs-vaapi.zip
+
+#2# распаковываем и переносим библиотку в папку с плагинами obs-studio, что бы получилось так:
+~/.config/obs-studio/plugins/obs-vaapi/bin/64bit/obs-vaapi.so
