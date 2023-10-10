@@ -1,0 +1,8 @@
+sudo dnf install git cmake make clang lib64qt5widgets-devel lib64qt5widgets5 extra-cmake-modules
+git clone https://github.com/silash35/qpdftools.git
+cd qpdftools
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+sudo make install
