@@ -23,10 +23,21 @@ sudo mv /tmp/rosa-gaming-system-apps.repo /etc/yum.repos.d
 sudo dnf --refresh distrosync
 
 #просматриваем кикие ядра доступны для установки
-dnf search kernel-6*
+dnf search kernel-6
+# или более новое
+dnf search kernel-6.5
 
 #устанвливаем (нужно установить все основыне файлы ядра)
 sudo dnf install kernel-6.*-generic kernel-6.*-generic-devel kernel-6.*-rosa-flow-abi
+
+#устанвливаем ядро 6.3.+
+kernel-6.3-xanmod kernel-6.3-generic-devel kernel-6.3-xanmod-uml kernel-6.3-xanmod-uml-modules kernel-modules-nvidia530-6.3-xanmod
+
+#устанвливаем ядро 6.4.+
+kernel-6.4-xanmod kernel-6.4-generic-devel kernel-6.4-xanmod-uml kernel-6.4-xanmod-uml-modules kernel-modules-nvidia535-6.4-xanmod
+
+#устанвливаем ядро 6.5.+
+sudo dnf install kernel-6.5-xanmod.x86_64 kernel-6.5-xanmod-uml.x86_64 kernel-6.5-xanmod-uml-modules kernel-6.5-xanmod-devel
 
 
 ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
