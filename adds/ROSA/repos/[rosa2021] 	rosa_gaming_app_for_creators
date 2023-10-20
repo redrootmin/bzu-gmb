@@ -1,0 +1,25 @@
+# РЕПОЗИТОРИЙ ДЛЯ КРИЕЙТОРОВ КОНТЕНТА (ДИЗАЙНЕРЫ И Т.Д.) С АУДИО/ВИДЕО/ГРАФИЧЕСКИМИ РЕДАКТОРАМИ И КОНВЕРТЕРАМИ
+
+#1# Создаем файл с временным репозитарием
+
+echo "[rosa-gaming-app-for-creators-x86_64]
+name=rosa-gaming-app-for-creators-x86_64
+baseurl=http://abf-downloads.rosalinux.ru/rosa_gaming_app_for_creators_personal/repository/rosa2021.1/x86_64/main/release/
+gpgcheck=0
+enabled=1
+cost=999" > /tmp/rosa-gaming-app-for-creators.repo
+
+#2# переносним файл в папку с репозитариев
+sudo mv /tmp/rosa-gaming-app-for-creators.repo /etc/yum.repos.d
+
+#3# обнавляем систему
+sudo dnf --refresh distrosync
+
+
+ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
+#1
+sudo rm -f /etc/yum.repos.d/rosa-gaming-app-for-creators.repo
+
+#2
+sudo dnf --refresh distrosync
+
