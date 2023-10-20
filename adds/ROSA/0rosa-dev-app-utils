@@ -1,2 +1,0 @@
-sudo dnf install python3-pip;pip3 install Xlib pygame pywebview
-
