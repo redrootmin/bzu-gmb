@@ -39,6 +39,9 @@ kernel-6.4-xanmod kernel-6.4-generic-devel kernel-6.4-xanmod-uml kernel-6.4-xanm
 #устанвливаем ядро 6.5.+
 sudo dnf install kernel-6.5-xanmod.x86_64 kernel-6.5-xanmod-uml.x86_64 kernel-6.5-xanmod-uml-modules kernel-6.5-xanmod-devel
 
+#устанвливаем ядро 6.6.+
+sudo dnf install kernel-6.6-xanmod kernel-6.6-xanmod-devel kernel-6.6-xanmod kernel-6.6-xanmod-uml kernel-6.6-xanmod-uml-modules kernel-xanmod-rosa-flow-abi
+
 
 ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
 #1
