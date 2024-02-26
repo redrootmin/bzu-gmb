@@ -39,5 +39,15 @@ cat "/etc/os-release" | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/"/
 Как получить список всех Linux ядер установленных в систему Debian-base (включая остатки пакетов от ядер)
 dpkg -l | grep "linux" | grep "rc linux" | cut -d " " -f 3
 
+#6
+обновить систему и исключить один или несколько пакетов
+dnf search google-chrome
 
+google-chrome-beta.x86_64 : Google Chrome (beta)
+google-chrome-stable.x86_64 : Google Chrome
+google-chrome-unstable.x86_64 : Google Chrome (unstable)
+
+sudo dnf --refresh -x 'google-chrome-beta.x86_64,google-chrome-stable.x86_64,google-chrome-unstable.x86_64' update 
+
+sudo dnf --refresh --exclude 'google-chrome-beta.x86_64,google-chrome-stable.x86_64,google-chrome-unstable.x86_64' update 
 
