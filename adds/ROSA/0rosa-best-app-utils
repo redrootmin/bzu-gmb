@@ -14,6 +14,8 @@ sudo /sbin/vboxconfig
 
 #1
 sudo dd if=/dev/sda of=/dev/sdb bs=64K conv=noerror,sync status=progress
+# если диски не равны по емкости, но разделы помещаются.
+sudo dd if=/dev/nvme0n1 of=/dev/sda bs=1M conv=sparse,sync status=progress
 Здесь:
 
     sdb- это пункт назначения
