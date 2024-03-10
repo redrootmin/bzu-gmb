@@ -45,6 +45,9 @@ sudo dnf install kernel-6.6-xanmod kernel-6.6-xanmod-devel kernel-6.6-xanmod ker
 #устанвливаем ядро 6.7.+
 sudo dnf install kernel-6.7-xanmod kernel-6.7-xanmod-devel kernel-6.7-xanmod kernel-6.7-xanmod-uml kernel-6.7-xanmod-uml-modules kernel-xanmod-rosa-flow-abi
 
+#устанвливаем ядро 6.8.+
+sudo dnf install kernel-6.8-generic-devel kernel-6.8-generic kernel-6.8-generic-doc kernel-6.8-rosa-flow-abi
+
 ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
 #1
 sudo rm -f /etc/yum.repos.d/rosa-gaming-system-apps.repo
