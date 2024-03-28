@@ -47,6 +47,8 @@ sudo dnf install kernel-6.7-xanmod kernel-6.7-xanmod-devel kernel-6.7-xanmod ker
 
 #устанвливаем ядро 6.8.+
 sudo dnf install kernel-6.8-generic-devel kernel-6.8-generic kernel-6.8-generic-doc kernel-6.8-rosa-flow-abi
+#v2
+sudo dnf install kernel-6.8-generic-devel kernel-6.8-xanmod-devel kernel-6.8-generic.x86_64 ernel-6.8-generic-doc.noarch kernel-6.8-rosa-flow-abi kernel-6.8-xanmod.x86_64 kernel-6.8-xanmod-doc kernel-6.8-xanmod-rosa-flow-abi
 
 ВНИМАНИЕ: если будут глюки и т.д. достаточно удалить файл репозитария и обновить систему, пакеты заменятся на старые.
 #1
